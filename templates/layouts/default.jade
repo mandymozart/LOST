@@ -38,12 +38,12 @@ html
 	body
 
 		//- HEADER
-		#header: .container
+		#header
 
 			//- Customise your site's navigation by changing the navLinks Array in ./routes/middleware.js
 			//- ... or completely change this header to suit your design.
 
-			div(role="navigation").navbar.navbar-default
+			div(role="navigation").navbar.navbar-fixed-top.navbar-inverse
 				.container-fluid
 					.navbar-header
 						button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
@@ -59,7 +59,7 @@ html
 						ul.nav.navbar-nav.navbar-right
 							if user
 								if user.canAccessKeystone
-									li: a(href='/keystone') Open Keystone
+									li: a(href='/keystone') Open My Account
 								li: a(href='/keystone/signout') Sign Out
 							else
 								li: a(href='/keystone/signin') Sign In
@@ -86,7 +86,11 @@ html
 		.container: #footer
 
 			//- You don't _have_ to include a link saying your site is powered by KeystoneJS, but we appreciate it!
-			p Powered by <a href="http://keystonejs.com" target="_blank">KeystoneJS</a>.
+			p &copy; 2015 LOST
+				a(href='#') &nbsp;Terms Of Use/Legal&nbsp;
+				| Crafted by
+				a(href="http://www.wearepictures.com",target="_blank")
+					img(src='http://cdn.wearepictures.com/f/wearepictures-logo-952e2e.png')
 
 
 		//- JAVASCRIPT
