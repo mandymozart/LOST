@@ -16,6 +16,7 @@ html
 		link(href="/styles/site.css", rel="stylesheet")
 		link(href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css", rel="stylesheet")
 
+
 		//- This file provides the default styling for the KeystoneJS Content Editor
 		if user && user.canAccessKeystone
 			link(href="/keystone/styles/content/editor.min.css", rel="stylesheet")
@@ -34,7 +35,7 @@ html
 		block head
 
 	//- HTML BODY
-	body
+	body(ng-app="demo", ng-cloak)
 
 		//- HEADER
 		#header
@@ -82,7 +83,7 @@ html
 
 
 		//- FOOTER
-		.container: #footer
+		.container-fluid: #footer
 
 			//- You don't _have_ to include a link saying your site is powered by KeystoneJS, but we appreciate it!
 			p &copy; 2015 LOST
@@ -98,16 +99,30 @@ html
 				a(href='http://www.shalomsalon.de/',target='_blank') Shalom Salon
 
 
+		//script(type="text/ng-template",id="modalContent.html"):
+			.modal-header
+			  h3.modal-title Event action occurred!
+			.modal-body
+			  p Action: {{ action }}
+			  p Event: {{ event | json }}
+			.modal-footer
+			  button.btn.btn-primary(ng-click="$modalInstance.close()") OK
+
 		//- JAVASCRIPT
 
-		//- jQuery 1.11.1 is included by default, and required by both Bootstrap
-		//- and the KeystoneJS Content Editor. If you are not targeting IE8,
-		//- you can upgrade to 2.1.1 (also bundled) for better performance.
-		script(src='/js/lib/jquery/jquery-1.11.1.min.js')
+		//- TODO: build makefile/grunt to put all local bower components into /js/lib.js
+		script(src='/js/lib/jquery/jquery-2.1.1.min.js')
 
 		//- Customise which Bootstrap javascript files are served by including
 		//- them specifically here, instead of bootstrap-3.2.0.min.js
 		script(src='/js/lib/bootstrap/bootstrap-3.2.0.min.js')
+		script(src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.0/moment.min.js")
+		script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js")
+		script(src="//cdn.jsdelivr.net/angular.bootstrap/0.12.1/ui-bootstrap-tpls.min.js")
+		script(src="/js/lib/angular-bootstrap-calendar-tpls.min.js")
+
+		// Main Frontend App TODO: grunt to app.js
+		script(src="js/app.js")
 
 		//- The KeystoneJS Content Editor provides support for ks-editable data attributes,
 		//- which generate links to edit content for users who can access Keystone

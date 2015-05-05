@@ -1,0 +1,103 @@
+extends ../layouts/default
+
+block intro
+	.container-fluid
+		h1 Calendar
+
+block content
+	.container-fluid
+		.row#calendar
+			.col-sm-4#negotiations
+			.col-sm-8#primary-calendar
+				.row#demo(ng-controller="MainCtrl")
+					.col-md-8.col-md-offset-2
+						h2.text-center {{ calendarTitle }}
+							.row
+								.col-md-6.text-center
+							.btn-group
+								button.btn.btn-primary(
+									mwl-date-modifier,
+									date="calendarDay",
+									decrement="calendarView") Previous
+								button.btn.btn-default(
+									mwl-date-modifier,
+									date="calendarDay",
+									set-to-today) Today
+								button.btn.btn-primary(
+									mwl-date-modifier,
+									date="calendarDay",
+									increment="calendarView") Next
+								br.visible-xs.visible-sm
+								.col-md-6.text-center
+								.btn-group
+									span.label.btn.btn-primary(ng-model="calendarView",btn-radio="'year'") Year
+									span.label.btn.btn-primary(ng-model="calendarView",btn-radio="'month'") Month
+									span.label.btn.btn-primary(ng-model="calendarView",btn-radio="'week'") Week
+									span.label.btn.btn-primary(ng-model="calendarView",btn-radio="'day'") Day
+				mwl-calendar(
+					events="events",
+					view="calendarView",
+					view-title="calendarTitle",
+					current-day="calendarDay",
+					on-event-click="eventClicked(calendarEvent)",
+					edit-event-html="fa-pencil",
+					delete-event-html="fa-remove",
+					on-edit-event-click="eventEdited(calendarEvent)",
+					on-delete-event-click="eventDeleted(calendarEvent)",
+					auto-open="true")
+			.col-sm-4#else
+			.col-sm-4.filtered-list.filtered-list--ontour#ontour
+				table.table.table-striped.table-hover.artist-filtered-list
+					thead.artist-filtered-list--head
+						tr
+							th(colspan='3') On Tour (
+								span#ontour-count 2)
+					tbody.artist-filtered-list--body
+						tr
+							td.artist-info
+								span.artist-info-list--item.fa.fa-star.text-success
+								span.artist-info-list--item.fa.fa-play
+								span.artist-info-list--item.artist-name Amewu
+
+
+							td.artist-genre-list
+								span.artist-genre-list--item.label.label-info Hip Hop
+								span.artist-genre-list--item.label.label-info Bass
+								span.artist-genre-list--item.label.label-info Rap
+
+							td.artist-action-list
+								span.artist-action-list--item.btn.btn-primary.btn-xs
+									span.fa.fa-comments-o
+						tr
+							td.artist-info
+								span.artist-info-list--item.fa.fa-play
+								span.artist-info-list--item.artist-name Cindy Sizer
+
+
+							td.artist-genre-list
+								span.artist-genre-list--item.label.label-info Deep House
+								span.artist-genre-list--item.label.label-info Down Beat
+
+							td.artist-action-list
+								span.artist-action-list--item.btn.btn-primary.btn-xs
+									span.fa.fa-comments-o
+
+			.col-sm-4.filtered-list.filtered-list--residents#resident
+				table.table.table-striped.table-hover.artist-filtered-list
+					thead.artist-filtered-list--head
+						tr
+							th(colspan='3') Resident (
+								span#ontour-count 1)
+					tbody.artist-filtered-list--body
+						tr
+							td.artist-info
+								span.artist-info-list--item.fa.fa-star.text-warning
+								span.artist-info-list--item.fa.fa-play
+								span.artist-info-list--item.artist-name Budzillus
+							td.artist-genre-list
+								span.artist-genre-list--item.label.label-info Rock
+								span.artist-genre-list--item.label.label-info Polka
+							td.artist-action-list
+								span.artist-action-list--item.btn.btn-primary.btn-xs
+									span.fa.fa-comments-o
+
