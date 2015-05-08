@@ -7,97 +7,87 @@ block intro
 block content
 	.container-fluid
 		.row#calendar
-			.col-sm-4#negotiations
-			.col-sm-8#primary-calendar
-				.row#demo(ng-controller="MainCtrl")
-					.col-md-8.col-md-offset-2
-						h2.text-center {{ calendarTitle }}
-							.row
-								.col-md-6.text-center
-							.btn-group
-								button.btn.btn-primary(
-									mwl-date-modifier,
-									date="calendarDay",
-									decrement="calendarView") Previous
-								button.btn.btn-default(
-									mwl-date-modifier,
-									date="calendarDay",
-									set-to-today) Today
-								button.btn.btn-primary(
-									mwl-date-modifier,
-									date="calendarDay",
-									increment="calendarView") Next
-								br.visible-xs.visible-sm
-								.col-md-6.text-center
-								.btn-group
-									span.label.btn.btn-primary(ng-model="calendarView",btn-radio="'year'") Year
-									span.label.btn.btn-primary(ng-model="calendarView",btn-radio="'month'") Month
-									span.label.btn.btn-primary(ng-model="calendarView",btn-radio="'week'") Week
-									span.label.btn.btn-primary(ng-model="calendarView",btn-radio="'day'") Day
-				mwl-calendar(
-					events="events",
-					view="calendarView",
-					view-title="calendarTitle",
-					current-day="calendarDay",
-					on-event-click="eventClicked(calendarEvent)",
-					edit-event-html="fa-pencil",
-					delete-event-html="fa-remove",
-					on-edit-event-click="eventEdited(calendarEvent)",
-					on-delete-event-click="eventDeleted(calendarEvent)",
-					auto-open="true")
-			.col-sm-4#else
-			.col-sm-4.filtered-list.filtered-list--ontour#ontour
-				table.table.table-striped.table-hover.artist-filtered-list
-					thead.artist-filtered-list--head
-						tr
-							th(colspan='3') On Tour (
-								span#ontour-count 2)
-					tbody.artist-filtered-list--body
-						tr
-							td.artist-info
-								span.artist-info-list--item.fa.fa-star.text-success
-								span.artist-info-list--item.fa.fa-play
-								span.artist-info-list--item.artist-name Amewu
+			.col-sm-6#negotiations
+				.panel.panel-info
+					.panel-header
+						span Specific Date Notes
+					.panel-body
+						span booked day for selected date goes here
+			.col-sm-6#primary-calendar
+				.panel.panel-primary(ng-controller='DatepickerDemoCtrl')
+					.panel-header
+						span Select a date
+					.panel-body
+						datepicker(ng-model='dt', min-date='minDate', show-weeks='true', custom-class='getDayClass(date, mode)')
+
+			.col-sm-6
+				.panel.panel-default.with-nav-tabs#save-gigs
+					.panel-header
+						ul.nav.nav-tabs
+							li.active: a(href="#tab-gigs", data-toggle="tab") Gigs (10)
+							li: a(href="#tab-venues", data-toggle="tab") Venues (100)
+			.col-sm-6
+				.panel.panel-default.with-nav-tabs.filtered-list#filtered-list
+					.panel-header
+						ul.nav.nav-tabs
+							li.active: a(href="#tab-ontour", data-toggle="tab") On Tour (1)
+							li: a(href="#tab-resident", data-toggle="tab") Resident (2)
+						a.btn.btn-sm.btn-default.fa.fa-sort
+					.panel-body
+						.tab-content
+							.tab-pane.fade.in.active#tab-ontour
+								table.table.table-striped.table-hover.profile-filtered-list
+									thead.profile-filtered-list--head
+										tr
+											th(colspan='3') Resident (
+												span#ontour-count 1)
+									tbody.profile-filtered-list--body
+										tr
+											td.profile-info
+												span.profile-info-list--item.fa.fa-star.text-warning
+												span.profile-info-list--item.fa.fa-play
+												span.profile-info-list--item.profile-name Budzillus
+												span.profile-type.label.label-primary Artist
+											td.profile-genre-list
+												span.profile-genre-list--item.label.label-info Rock
+												span.profile-genre-list--item.label.label-info Polka
+											td.profile-action-list
+												a.profile-action-list--item.btn.btn-default.btn-xs
+													span.fa.fa-comments-o
+												a.profile-action-list--item.btn.btn-default.btn-xs
+													span.fa.fa-comments-o
+							.tab-pane.fade.in#tab-resident
+								table.table.table-striped.table-hover.profile-filtered-list
+									thead.profile-filtered-list--head
+										tr
+											th(colspan='3') On Tour (
+												span#ontour-count 2)
+									tbody.profile-filtered-list--body
+										tr
+											td.profile-info
+												span.profile-info-list--item.fa.fa-star.text-success
+												span.profile-info-list--item.fa.fa-play
+												span.profile-info-list--item.profile-name Amewu
 
 
-							td.artist-genre-list
-								span.artist-genre-list--item.label.label-info Hip Hop
-								span.artist-genre-list--item.label.label-info Bass
-								span.artist-genre-list--item.label.label-info Rap
+											td.profile-genre-list
+												span.profile-genre-list--item.label.label-info Hip Hop
+												span.profile-genre-list--item.label.label-info Bass
+												span.profile-genre-list--item.label.label-info Rap
 
-							td.artist-action-list
-								span.artist-action-list--item.btn.btn-primary.btn-xs
-									span.fa.fa-comments-o
-						tr
-							td.artist-info
-								span.artist-info-list--item.fa.fa-play
-								span.artist-info-list--item.artist-name Cindy Sizer
+											td.profile-action-list
+												span.profile-action-list--item.btn.btn-primary.btn-xs
+													span.fa.fa-comments-o
+										tr
+											td.profile-info
+												span.profile-info-list--item.fa.fa-play
+												span.profile-info-list--item.profile-name Cindy Sizer
 
 
-							td.artist-genre-list
-								span.artist-genre-list--item.label.label-info Deep House
-								span.artist-genre-list--item.label.label-info Down Beat
+											td.profile-genre-list
+												span.profile-genre-list--item.label.label-info Deep House
+												span.profile-genre-list--item.label.label-info Down Beat
 
-							td.artist-action-list
-								span.artist-action-list--item.btn.btn-primary.btn-xs
-									span.fa.fa-comments-o
-
-			.col-sm-4.filtered-list.filtered-list--residents#resident
-				table.table.table-striped.table-hover.artist-filtered-list
-					thead.artist-filtered-list--head
-						tr
-							th(colspan='3') Resident (
-								span#ontour-count 1)
-					tbody.artist-filtered-list--body
-						tr
-							td.artist-info
-								span.artist-info-list--item.fa.fa-star.text-warning
-								span.artist-info-list--item.fa.fa-play
-								span.artist-info-list--item.artist-name Budzillus
-							td.artist-genre-list
-								span.artist-genre-list--item.label.label-info Rock
-								span.artist-genre-list--item.label.label-info Polka
-							td.artist-action-list
-								span.artist-action-list--item.btn.btn-primary.btn-xs
-									span.fa.fa-comments-o
-
+											td.profile-action-list
+												span.profile-action-list--item.btn.btn-primary.btn-xs
+													span.fa.fa-comments-o
