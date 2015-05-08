@@ -13,7 +13,7 @@ Profile.add({
     about : {
                 brief    : { type: Types.Html, wysiwig: true, height: 50 },
                 extended : { type: Types.Html, wysiwig: true, height: 300} 
-            }
+            },
     //TODO socialLinks    : {type : undefined } 
     //TODO souncloudLinks : {type : undefined }
     //TODO videoLinks     : {type : undefined }
