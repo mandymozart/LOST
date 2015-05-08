@@ -1,37 +1,91 @@
 extends ../layouts/default
 
-block intro
-	.container-fluid
-		h1 Calendar
+block header
+	div(role="navigation").navbar.navbar-fixed-top.navbar-default
+		.container-fluid
+			.navbar-header
+				a.navbar-brand(href='/')
+					img(src='/images/muriquee-brand.svg',height='32')
+			ul.nav.navbar-nav.navbar-left
+				li.navbar-link: a(href='/calendar')
+					span.fa.fa-calendar
+				li.navbar-link: a(href='/map')
+					span.fa.fa-street-view
+			form.navbar-form.navbar-left(role='search')
+				.input-group
+					input.form-control(type='text', placeholder='Search', name='SearchQuery', id='searchQuery', class="form-control", value='')
+					.input-group-btn
+						button.btn.btn-default(type='submit')
+							span.fa.fa-search
+			ul.nav.navbar-nav.navbar-right
+				li.dropdown
+					a.dropdown-toggle(href='#',data-toggle='dropdown',role='button',aria-expanded='false') Loophole &nbsp;
+						span.label.label-warning Venue
+						| &nbsp;
+						span.fa.fa-user &nbsp;
+						span.caret
+					ul.dropdown-menu(role='menu')
+						li.dropdown-header Switch to Profile
+						li: a(href='#') Mandy Mozart &nbsp;
+							span.label.label-default Artist
+						li: a(href='#') Minister President &nbsp;
+							span.label.label-default Artist
+						li: a(href='#') Shalom Salon &nbsp;
+							span.label.label-info Promoter
+						li: a(href='#') Platoon &nbsp;
+							span.label.label-warning Venue
+						li.divider
+						li: a(href='#')
+							span.fa.fa-cog &nbsp;Preferences
+						li: a(href='#')
+							span.fa.fa-sign-out &nbsp;Sign Out
+
 
 block content
 	.container-fluid
 		.row#calendar
 			.col-sm-6#negotiations
-				.panel.panel-info
-					.panel-header
-						span Specific Date Notes
+				.panel.panel-default
+					.panel-heading
+						.panel-title Specific Date Notes
 					.panel-body
 						span booked day for selected date goes here
 			.col-sm-6#primary-calendar
-				.panel.panel-primary(ng-controller='DatepickerDemoCtrl')
-					.panel-header
-						span Select a date
+				.panel.panel-default(ng-controller='DatepickerDemoCtrl')
+					.panel-heading
+						.panel-title Select a date
 					.panel-body
 						datepicker(ng-model='dt', min-date='minDate', show-weeks='true', custom-class='getDayClass(date, mode)')
 
 			.col-sm-6
-				.panel.panel-default.with-nav-tabs#save-gigs
-					.panel-header
-						ul.nav.nav-tabs
-							li.active: a(href="#tab-gigs", data-toggle="tab") Gigs (10)
-							li: a(href="#tab-venues", data-toggle="tab") Venues (100)
+				.panel.panel-default#createGig
+					.panel-heading
+						.panel-title New Gig (9. May 2015)
+					.panel-body
+						.form-group
+							label.col-sm-2.control-label(for='inputName') Name
+							.col-sm-10
+								input.form-control(type='text',placeholder='Name your gig',name='inputName',id='inputName')
+						.form-group
+							label.col-sm-2.control-label(for='inputGenres') Genres
+							.col-sm-10
+								input.form-control(type='text',placeholder='Type to select genres',name='inputGenre',id='inputGenre')
+						.form-group
+							label.col-sm-2.control-label(for='inputDescription') Request Description
+							.col-sm-10
+								textarea.form-control(rows='3')
+						p &nbsp;
+						input.btn.btn-block.btn-default(type='submit',value='Create')
+
+
 			.col-sm-6
 				.panel.panel-default.with-nav-tabs.filtered-list#filtered-list
 					.panel-header
 						ul.nav.nav-tabs
-							li.active: a(href="#tab-ontour", data-toggle="tab") On Tour (1)
-							li: a(href="#tab-resident", data-toggle="tab") Resident (2)
+							li.active: a(href="#tab-ontour", data-toggle="tab")
+								span.fa.fa-plane &nbsp;On Tour (1)
+							li: a(href="#tab-resident", data-toggle="tab")
+								span.fa.fa-home &nbsp;Resident (2)
 						a.btn.btn-sm.btn-default.fa.fa-sort
 					.panel-body
 						.tab-content
@@ -53,9 +107,9 @@ block content
 												span.profile-genre-list--item.label.label-info Polka
 											td.profile-action-list
 												a.profile-action-list--item.btn.btn-default.btn-xs
-													span.fa.fa-comments-o
+													span.fa.fa-paw &nbsp;Ping
 												a.profile-action-list--item.btn.btn-default.btn-xs
-													span.fa.fa-comments-o
+													span.fa.fa-eye Show Profile
 							.tab-pane.fade.in#tab-resident
 								table.table.table-striped.table-hover.profile-filtered-list
 									thead.profile-filtered-list--head

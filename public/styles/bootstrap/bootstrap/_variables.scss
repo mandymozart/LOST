@@ -30,7 +30,7 @@ $brand-danger:          #d9534f !default;
 //## Settings for some of the most global styles.
 
 //** Background color for `<body>`.
-$body-bg:               #fff !default;
+$body-bg:               #fdfdfd !default;
 //** Global text color on `<body>`.
 $text-color:            $gray-dark !default;
 
@@ -75,7 +75,7 @@ $headings-color:          inherit !default;
 
 //== Iconography
 //
-//## Specify custom location and filename of the included Glyphicons icon font. Useful for those including Bootstrap via Bower.
+//## Specify custom location and filename of the included glyphicons icon font. Useful for those including Bootstrap via Bower.
 
 //** Load fonts from this directory.
 

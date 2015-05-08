@@ -1,6 +1,7 @@
 'use strict';
-angular.module('muriquee', ['ui.bootstrap']);
-angular.module('muriquee').controller('DatepickerDemoCtrl', function ($scope) {
+var app = angular.module('muriquee', ['ui.bootstrap'])
+
+app.controller('DatepickerDemoCtrl', function ($scope) {
     $scope.today = function() {
         $scope.dt = new Date();
     };
@@ -66,4 +67,11 @@ angular.module('muriquee').controller('DatepickerDemoCtrl', function ($scope) {
 
         return '';
     };
+})
+app.controller('CreateGigGenreTypeheadCtrl', function($scope) {
+
+    $scope.selected = undefined;
+    //Get from API / Prefered by user
+    $scope.genres = ['Rock','Pop','Classic','Deep House','Hip Hop','Experimental','Techno','Acid House'];
+
 });

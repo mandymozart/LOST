@@ -74,14 +74,14 @@ $headings-color:          #444;
 
 //== Iconography
 //
-//## Specify custom location and filename of the included Glyphicons icon font. Useful for those including Bootstrap via Bower.
+//## Specify custom location and filename of the included fas icon font. Useful for those including Bootstrap via Bower.
 
 //** Load fonts from this directory.
 $icon-font-path:          "../fonts/";
 //** File name for all font files.
-$icon-font-name:          "glyphicons-halflings-regular";
+$icon-font-name:          "fas-halflings-regular";
 //** Element ID within SVG icon file.
-$icon-font-svg-id:        "glyphicons_halflingsregular";
+$icon-font-svg-id:        "fas_halflingsregular";
 
 
 //== Components
