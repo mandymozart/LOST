@@ -114,12 +114,10 @@ block content
 							.col-sm-10
 								.radio
 									label
-										input#optionsKind1(type='radio', name='optionsKind', value='Venue', checked='')
-										|             Option one is this
-									.radio
-										label
-											input#optionsKind2(type='radio', name='optionsKind', value='option2')
-											|             Option two can be something else
+										input#optionsKind1(type='radio', name='optionsKind', value='Venue', checked='checked') Solo Performer
+								.radio
+									label
+										input#optionsKind2(type='radio', name='optionsKind', value='option2') Band
 						.form-group
 							label.col-sm-2.control-label(for='inputGenres') Genres
 							.col-sm-10
@@ -128,6 +126,7 @@ block content
 							label.col-sm-2.control-label(for='inputDescription') Request notice
 							.col-sm-10
 								textarea.form-control(rows='3')
+								.help-block Add a few lines of love to your request
 						p &nbsp;
 						button.btn.btn-default(type='submit'): span.fa.fa-search
 							| &nbsp; Search
