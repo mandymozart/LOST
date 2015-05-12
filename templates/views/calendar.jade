@@ -11,12 +11,6 @@ block header
 					span.fa.fa-calendar
 				li.navbar-link: a(href='/map')
 					span.fa.fa-street-view
-			form.navbar-form.navbar-left(role='search')
-				.input-group
-					input.form-control(type='text', placeholder='Search', name='SearchQuery', id='searchQuery', class="form-control", value='')
-					.input-group-btn
-						button.btn.btn-default(type='submit')
-							span.fa.fa-search
 			ul.nav.navbar-nav.navbar-right
 				li.dropdown
 					a.dropdown-toggle(href='#',data-toggle='dropdown',role='button',aria-expanded='false') Loophole &nbsp;
@@ -43,13 +37,70 @@ block header
 
 block content
 	.container-fluid
-		.row#calendar
+		.row#calendar1
 			.col-sm-6#negotiations
 				.panel.panel-default
 					.panel-heading
-						.panel-title Specific Date Notes
+						.panel-title Incoming proposals
 					.panel-body
-						span booked day for selected date goes here
+						table.table.table-striped.table-hover.profile-filtered-list
+							thead.profile-filtered-list--head
+								tr
+									th(colspan='2')
+									th.text-right
+										.dropdown.pull-right
+											a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
+												span.fa.fa-angle-down
+											ul.dropdown-menu(role='menu')
+												li
+													a(href='#') by stared&nbsp;
+														span.fa.fa-star
+												li
+													a(href='#') by fee&nbsp;
+														span.fa.fa-money
+
+							tbody.profile-filtered-list--body
+								tr
+									td.profile-info
+										span.profile-info-list--item.fa.fa-star.text-warning
+										span.profile-info-list--item.fa.fa-play
+										span.profile-info-list--item.profile-name Uri Hamster
+										span.profile-type.label.label-primary Artist
+									td.profile-genre-list
+										span.profile-genre-list--item.label.label-info Acid
+									td.profile-action-list
+										a.profile-action-list--item.btn.btn-default.btn-xs
+											span.fa.fa-paw &nbsp;Ping
+										a.profile-action-list--item.btn.btn-default.btn-xs
+											span.fa.fa-eye Show Profile
+								tr
+									td.profile-info
+										span.profile-info-list--item.fa.fa-star.text-warning
+										span.profile-info-list--item.fa.fa-play
+										span.profile-info-list--item.profile-name Sido
+										span.profile-type.label.label-primary Artist
+									td.profile-genre-list
+										span.profile-genre-list--item.label.label-info Hip Hop
+										span.profile-genre-list--item.label.label-info Rap
+									td.profile-action-list
+										a.profile-action-list--item.btn.btn-default.btn-xs
+											span.fa.fa-paw &nbsp;Ping
+										a.profile-action-list--item.btn.btn-default.btn-xs
+											span.fa.fa-eye Show Profile
+								tr
+									td.profile-info
+										span.profile-info-list--item.fa.fa-star.text-warning
+										span.profile-info-list--item.fa.fa-play
+										span.profile-info-list--item.profile-name Utku Tavil
+										span.profile-type.label.label-primary Artist
+									td.profile-genre-list
+										span.profile-genre-list--item.label.label-info Noise
+										span.profile-genre-list--item.label.label-info Stamina
+									td.profile-action-list
+										a.profile-action-list--item.btn.btn-default.btn-xs
+											span.fa.fa-paw &nbsp;Ping
+										a.profile-action-list--item.btn.btn-default.btn-xs
+											span.fa.fa-eye Show Profile
 			.col-sm-6#primary-calendar
 				.panel.panel-default(ng-controller='DatepickerDemoCtrl')
 					.panel-heading
@@ -57,44 +108,157 @@ block content
 					.panel-body
 						datepicker(ng-model='dt', min-date='minDate', show-weeks='true', custom-class='getDayClass(date, mode)')
 
+		.row#calendar2
 			.col-sm-6
 				.panel.panel-default#createGig
 					.panel-heading
-						.panel-title New Gig (9. May 2015)
-					.panel-body
-						.form-group
-							label.col-sm-2.control-label(for='inputName') Name
-							.col-sm-10
-								input.form-control(type='text',placeholder='Name your gig',name='inputName',id='inputName')
-						.form-group
-							label.col-sm-2.control-label(for='inputGenres') Genres
-							.col-sm-10
-								input.form-control(type='text',placeholder='Type to select genres',name='inputGenre',id='inputGenre')
-						.form-group
-							label.col-sm-2.control-label(for='inputDescription') Request Description
-							.col-sm-10
-								textarea.form-control(rows='3')
-						p &nbsp;
-						input.btn.btn-block.btn-default(type='submit',value='Create')
-
-
-			.col-sm-6
-				.panel.panel-default.with-nav-tabs.filtered-list#filtered-list
+						.panel-title 9. May 2015
 					.panel-header
 						ul.nav.nav-tabs
-							li.active: a(href="#tab-ontour", data-toggle="tab")
+							li.active: a(href="#callForArtistTab", data-toggle="tab")
+								span.fa.fa-plane &nbsp;Call for Artists
+							li: a(href="#callForVenueTab", data-toggle="tab")
+								span.fa.fa-home &nbsp;Call for Venue
+							li: a(href="#callForOrganizerTab", data-toggle="tab")
+								span.fa.fa-home &nbsp;Call for Organizer
+					.panel-body
+
+						.tab-content
+							// Tab: Call for Artists
+							.tab-pane.fade.in.active#callForArtistTab
+								.form-group
+									label.col-sm-2.control-label(for='inputType') Type
+									.col-sm-10
+										.radio
+											label
+												input#optionsType1(type='radio', name='optionsType', value='Solo Performer', checked='checked')
+												| Solo Performer
+										.radio
+											label
+												input#optionsType2(type='radio', name='optionsType', value='Band')
+												| Band
+										.radio
+											label
+												input#optionsType3(type='radio', name='optionsType', value='Orchestra')
+												| Orchestra
+										.radio
+											label
+												input#optionsType4(type='radio', name='optionsType', value='Magician')
+												| Magician
+								.form-group
+									label.col-sm-2.control-label(for='inputGenres') Genres*
+									.col-sm-10
+										input.form-control(type='text',placeholder='Type to select genres',name='inputGenre',id='inputGenre')
+								.form-group
+									label.col-sm-2.control-label(for='inputDescription') Request notice
+									.col-sm-10
+										textarea.form-control(rows='3')
+										.help-block Add a few lines of love to your request
+								.form-group
+									label.col-sm-2.control-label(for='inputProfile') Specific artist
+									.col-sm-10
+										input.form-control(type='text',placeholder='Contact artist',name='inputProfile',id='inputProfile')
+
+							// Tab: Call for Venue
+							.tab-pane.fade.in#callForVenueTab
+								.form-group
+									label.col-sm-2.control-label(for='inputType') Type
+									.col-sm-10
+										.radio
+											label
+												input#optionsType1(type='radio', name='optionsType', value='Concert Hall', checked='checked')
+												| Concert Hall
+										.radio
+											label
+												input#optionsType2(type='radio', name='optionsType', value='Live Hall')
+												| Live Hall
+										.radio
+											label
+												input#optionsType3(type='radio', name='optionsType', value='Club')
+												| Club
+										.radio
+											label
+												input#optionsType4(type='radio', name='optionsType', value='Open Air')
+												| Open Air
+										.radio
+											label
+												input#optionsType5(type='radio', name='optionsType', value='Bar')
+												| Bar
+								.form-group
+									label.col-sm-2.control-label(for='inputGenres') Genres*
+									.col-sm-10
+										input.form-control(type='text',placeholder='Type to select genres',name='inputGenre',id='inputGenre')
+								.form-group
+									label.col-sm-2.control-label(for='inputDescription') Request notice
+									.col-sm-10
+										textarea.form-control(rows='3')
+										.help-block Add a few lines of love to your request
+								.form-group
+									label.col-sm-2.control-label(for='inputProfile') Specific venue
+									.col-sm-10
+										input.form-control(type='text',placeholder='Type venue name',name='inputProfile',id='inputProfile')
+
+							// Tab: Call for Organizer
+							.tab-pane.fade.in#callForOrganizerTab
+								.form-group
+									label.col-sm-2.control-label(for='inputType') Type
+									.col-sm-10
+										.radio
+											label
+												input#optionsType1(type='radio', name='optionsType', value='Live', checked='checked')
+												| Live
+										.radio
+											label
+												input#optionsType2(type='radio', name='optionsType', value='Club')
+												| Club
+										.radio
+											label
+												input#optionsType2(type='radio', name='optionsType', value='Festival')
+												| Festival
+										.radio
+											label
+												input#optionsType2(type='radio', name='optionsType', value='Avant Garde')
+												| Avant Garde
+								.form-group
+									label.col-sm-2.control-label(for='inputGenres') Genres*
+									.col-sm-10
+										input.form-control(type='text',placeholder='Type to select genres',name='inputGenre',id='inputGenre')
+								.form-group
+									label.col-sm-2.control-label(for='inputDescription') Request notice
+									.col-sm-10
+										textarea.form-control(rows='3')
+										.help-block Add a few lines of love to your request
+								.form-group
+									label.col-sm-2.control-label(for='inputProfile') Specific venue
+									.col-sm-10
+										input.form-control(type='text',placeholder='Type organizer name',name='inputProfile',id='inputProfile')
+
+					.panel-footer.text-right
+						button.btn.btn-default(type='submit'): span.fa.fa-search
+							| &nbsp; Search
+						button.btn.btn-primary(type='submit') Push Call
+
+			.col-sm-6
+				.panel.panel-default.with-nav-tabs.filtered-list#searchResults
+					.panel-header
+						.panel-heading
+							.panel-title Results
+						ul.nav.nav-tabs
+							li.active: a(href="#ontourArtistTab", data-toggle="tab")
 								span.fa.fa-plane &nbsp;On Tour (1)
-							li: a(href="#tab-resident", data-toggle="tab")
+							li: a(href="#residentArtistTab", data-toggle="tab")
 								span.fa.fa-home &nbsp;Resident (2)
-						a.btn.btn-sm.btn-default.fa.fa-sort
 					.panel-body
 						.tab-content
-							.tab-pane.fade.in.active#tab-ontour
+							.tab-pane.fade.in.active#ontourArtistTab
 								table.table.table-striped.table-hover.profile-filtered-list
 									thead.profile-filtered-list--head
 										tr
-											th(colspan='3') Resident (
-												span#ontour-count 1)
+											th(colspan='2') Resident (
+												span.profile-filtered-list--count  1
+												|)
+											th(style='text-align:right')
+												span.fa.fa-angle-down
 									tbody.profile-filtered-list--body
 										tr
 											td.profile-info
@@ -110,12 +274,13 @@ block content
 													span.fa.fa-paw &nbsp;Ping
 												a.profile-action-list--item.btn.btn-default.btn-xs
 													span.fa.fa-eye Show Profile
-							.tab-pane.fade.in#tab-resident
+							.tab-pane.fade.in#residentArtistTab
 								table.table.table-striped.table-hover.profile-filtered-list
 									thead.profile-filtered-list--head
 										tr
 											th(colspan='3') On Tour (
-												span#ontour-count 2)
+												span.profile-filtered-list--count 2
+												|)
 									tbody.profile-filtered-list--body
 										tr
 											td.profile-info
