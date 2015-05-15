@@ -42,6 +42,8 @@ block content
 				.panel.panel-default
 					.panel-heading
 						.panel-title Incoming proposals
+							.pull-right
+								span.fa.fa-chevron-down
 					.panel-body
 						table.table.table-striped.table-hover.profile-filtered-list
 							thead.profile-filtered-list--head
@@ -101,18 +103,62 @@ block content
 											span.fa.fa-paw &nbsp;Ping
 										a.profile-action-list--item.btn.btn-default.btn-xs
 											span.fa.fa-eye Show Profile
-			.col-sm-6#primary-calendar
+			.col-sm-3#primary-calendar
+				.panel.panel-default
+					.panel-heading
+						.panel-title Ongoing negotiations
+							.pull-right
+								span.fa.fa-chevron-down
+					.panel-body
+						table.table.table-striped.table-hover.profile-filtered-list
+							thead.profile-filtered-list--head
+								tr
+									th(colspan='2')
+									th.text-right
+										.dropdown.pull-right
+											a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
+												span.fa.fa-angle-down
+											ul.dropdown-menu(role='menu')
+												li
+													a(href='#') by stared&nbsp;
+														span.fa.fa-star
+												li
+													a(href='#') by fee&nbsp;
+														span.fa.fa-money
+
+							tbody.profile-filtered-list--body
+								tr
+									td.profile-info
+										span.profile-info-list--item.fa.fa-star.text-warning
+										span.profile-info-list--item.fa.fa-play
+										span.profile-info-list--item.profile-name Uri Hamster
+										span.profile-type.label.label-primary Artist
+									td.profile-genre-list
+										span.profile-genre-list--item.label.label-info Acid
+									td.profile-action-list
+										a.profile-action-list--item.btn.btn-default.btn-xs
+											span.fa.fa-reply
+										a.profile-action-list--item.btn.btn-default.btn-xs
+											span.fa.fa-trash
+
+			.col-sm-3#primary-calendar
 				.panel.panel-default(ng-controller='DatepickerDemoCtrl')
 					.panel-heading
 						.panel-title Select a date
+							.pull-right
+								span.fa.fa-chevron-down
 					.panel-body
-						datepicker(ng-model='dt', min-date='minDate', show-weeks='true', custom-class='getDayClass(date, mode)')
-
+						datepicker.calendar--datepicker(ng-model='dt', min-date='minDate', show-weeks='true', custom-class='getDayClass(date, mode)')
+					.panel-footer Book two more acts for that night
+						.pull-right
+							span.fa.fa-pencil
 		.row#calendar2
 			.col-sm-6
 				.panel.panel-default#createGig
 					.panel-heading
 						.panel-title 9. May 2015
+							.pull-right
+								span.fa.fa-chevron-down
 					.panel-header
 						ul.nav.nav-tabs
 							li.active: a(href="#callForArtistTab", data-toggle="tab")
@@ -243,6 +289,8 @@ block content
 					.panel-header
 						.panel-heading
 							.panel-title Results
+								.pull-right
+									span.fa.fa-chevron-down
 						ul.nav.nav-tabs
 							li.active: a(href="#ontourArtistTab", data-toggle="tab")
 								span.fa.fa-plane &nbsp;On Tour (1)
