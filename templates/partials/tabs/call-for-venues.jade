@@ -1,0 +1,37 @@
+.tab-pane.fade.in#callForVenuesTab
+	.form-group
+		label.col-sm-2.control-label(for='inputType') Type
+		.col-sm-10
+			.radio
+				label
+					input#optionsType1(type='radio', name='optionsType', value='Concert Hall', checked='checked')
+					| Concert Hall
+			.radio
+				label
+					input#optionsType2(type='radio', name='optionsType', value='Live Hall')
+					| Live Hall
+			.radio
+				label
+					input#optionsType3(type='radio', name='optionsType', value='Club')
+					| Club
+			.radio
+				label
+					input#optionsType4(type='radio', name='optionsType', value='Open Air')
+					| Open Air
+			.radio
+				label
+					input#optionsType5(type='radio', name='optionsType', value='Bar')
+					| Bar
+	.form-group
+		label.col-sm-2.control-label(for='inputGenres') Genres*
+		.col-sm-10
+			input.form-control(type='text',placeholder='Type to select genres',name='inputGenre',id='inputGenre')
+	.form-group
+		label.col-sm-2.control-label(for='inputDescription') Request notice
+		.col-sm-10
+			textarea.form-control(rows='3')
+			.help-block Add a few lines of love to your request
+	.form-group
+		label.col-sm-2.control-label(for='inputProfile') Specific venue
+		.col-sm-10
+			input.form-control(type='text',placeholder='Type venue name',name='inputProfile',id='inputProfile')

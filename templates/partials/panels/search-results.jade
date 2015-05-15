@@ -1,0 +1,73 @@
+.panel.panel-default.with-nav-tabs.filtered-list#searchResultsPanel
+	.panel-header
+		.panel-heading
+			.panel-title Results
+				.pull-right
+					span.fa.fa-chevron-down
+		ul.nav.nav-tabs
+			li.active: a(href="#ontourArtistTab", data-toggle="tab")
+				span.fa.fa-plane &nbsp;On Tour (1)
+			li: a(href="#residentArtistTab", data-toggle="tab")
+				span.fa.fa-home &nbsp;Resident (2)
+	.panel-body
+		.tab-content
+			.tab-pane.fade.in.active#ontourArtistTab
+				table.table.table-striped.table-hover.profile-filtered-list
+					thead.profile-filtered-list--head
+						tr
+							th(colspan='2') Resident (
+								span.profile-filtered-list--count  1
+								|)
+							th(style='text-align:right')
+								span.fa.fa-angle-down
+					tbody.profile-filtered-list--body
+						tr
+							td.profile-info
+								span.profile-info-list--item.fa.fa-star.text-warning
+								span.profile-info-list--item.fa.fa-play
+								span.profile-info-list--item.profile-name Budzillus
+								span.profile-type.label.label-primary Artist
+							td.profile-genre-list
+								span.profile-genre-list--item.label.label-info Rock
+								span.profile-genre-list--item.label.label-info Polka
+							td.profile-action-list
+								a.profile-action-list--item.btn.btn-default.btn-xs
+									span.fa.fa-paw &nbsp;Ping
+								a.profile-action-list--item.btn.btn-default.btn-xs
+									span.fa.fa-eye Show Profile
+			.tab-pane.fade.in#residentArtistTab
+				table.table.table-striped.table-hover.profile-filtered-list
+					thead.profile-filtered-list--head
+						tr
+							th(colspan='3') On Tour (
+								span.profile-filtered-list--count 2
+								|)
+					tbody.profile-filtered-list--body
+						tr
+							td.profile-info
+								span.profile-info-list--item.fa.fa-star.text-success
+								span.profile-info-list--item.fa.fa-play
+								span.profile-info-list--item.profile-name Amewu
+
+
+							td.profile-genre-list
+								span.profile-genre-list--item.label.label-info Hip Hop
+								span.profile-genre-list--item.label.label-info Bass
+								span.profile-genre-list--item.label.label-info Rap
+
+							td.profile-action-list
+								span.profile-action-list--item.btn.btn-primary.btn-xs
+									span.fa.fa-comments-o
+						tr
+							td.profile-info
+								span.profile-info-list--item.fa.fa-play
+								span.profile-info-list--item.profile-name Cindy Sizer
+
+
+							td.profile-genre-list
+								span.profile-genre-list--item.label.label-info Deep House
+								span.profile-genre-list--item.label.label-info Down Beat
+
+							td.profile-action-list
+								span.profile-action-list--item.btn.btn-primary.btn-xs
+									span.fa.fa-comments-o

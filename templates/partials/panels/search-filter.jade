@@ -1,0 +1,29 @@
+.panel.panel-default#searchPanel
+	.panel-heading
+		.panel-title 9. May 2015
+			.pull-right
+				span.fa.fa-chevron-down
+	.panel-header
+		ul.nav.nav-tabs
+			li.active: a(href="#callForArtistTab", data-toggle="tab")
+				span.fa.fa-plane &nbsp;Call for Artists
+			li: a(href="#callForVenuesTab", data-toggle="tab")
+				span.fa.fa-home &nbsp;Call for Venues
+			li: a(href="#callForOrganizersTab", data-toggle="tab")
+				span.fa.fa-home &nbsp;Call for Organizers
+	.panel-body
+
+		.tab-content
+			// Tab: Call for Artists
+			include ../../partials/tabs/call-for-artists.jade
+
+			// Tab: Call for Venues
+			include ../../partials/tabs/call-for-venues.jade
+
+			// Tab: Call for Organizers
+			include ../../partials/tabs/call-for-organizers.jade
+
+	.panel-footer.text-right
+		button.btn.btn-default(type='submit'): span.fa.fa-search
+			| &nbsp; Search
+		button.btn.btn-primary(type='submit') Push Call

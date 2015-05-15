@@ -1,0 +1,66 @@
+.panel.panel-default#incomingProposalsPanel
+	.panel-heading
+		.panel-title Incoming proposals
+			.pull-right
+				span.fa.fa-chevron-down
+	.panel-body
+		table.table.table-striped.table-hover.profile-filtered-list
+			thead.profile-filtered-list--head
+				tr
+					th(colspan='2')
+					th.text-right
+						.dropdown.pull-right
+							a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
+								span.fa.fa-angle-down
+							ul.dropdown-menu(role='menu')
+								li
+									a(href='#') by stared&nbsp;
+										span.fa.fa-star
+								li
+									a(href='#') by fee&nbsp;
+										span.fa.fa-money
+
+
+			// Table Body
+			tbody.profile-filtered-list--body
+				tr
+					td.profile-info
+						span.profile-info-list--item.fa.fa-star.text-warning
+						span.profile-info-list--item.fa.fa-play
+						span.profile-info-list--item.profile-name Uri Hamster
+						span.profile-type.label.label-primary Artist
+					td.profile-genre-list
+						span.profile-genre-list--item.label.label-info Acid
+					td.profile-action-list
+						a.profile-action-list--item.btn.btn-default.btn-xs
+							span.fa.fa-paw &nbsp;Ping
+						a.profile-action-list--item.btn.btn-default.btn-xs
+							span.fa.fa-eye Show Profile
+				tr
+					td.profile-info
+						span.profile-info-list--item.fa.fa-star.text-warning
+						span.profile-info-list--item.fa.fa-play
+						span.profile-info-list--item.profile-name Sido
+						span.profile-type.label.label-primary Artist
+					td.profile-genre-list
+						span.profile-genre-list--item.label.label-info Hip Hop
+						span.profile-genre-list--item.label.label-info Rap
+					td.profile-action-list
+						a.profile-action-list--item.btn.btn-default.btn-xs
+							span.fa.fa-paw &nbsp;Ping
+						a.profile-action-list--item.btn.btn-default.btn-xs
+							span.fa.fa-eye Show Profile
+				tr
+					td.profile-info
+						span.profile-info-list--item.fa.fa-star.text-warning
+						span.profile-info-list--item.fa.fa-play
+						span.profile-info-list--item.profile-name Utku Tavil
+						span.profile-type.label.label-primary Artist
+					td.profile-genre-list
+						span.profile-genre-list--item.label.label-info Noise
+						span.profile-genre-list--item.label.label-info Stamina
+					td.profile-action-list
+						a.profile-action-list--item.btn.btn-default.btn-xs
+							span.fa.fa-paw &nbsp;Ping
+						a.profile-action-list--item.btn.btn-default.btn-xs
+							span.fa.fa-eye Show Profile
