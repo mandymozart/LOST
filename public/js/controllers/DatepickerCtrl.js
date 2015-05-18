@@ -1,7 +1,7 @@
 'use strict';
-var app = angular.module('muriquee', ['ui.bootstrap'])
+var app = angular.module('muriquee')
 
-app.controller('DatepickerDemoCtrl', function ($scope) {
+app.controller('DatepickerCtrl', function ($scope) {
     $scope.today = function() {
         $scope.dt = new Date();
     };

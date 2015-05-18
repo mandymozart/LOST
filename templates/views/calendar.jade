@@ -108,47 +108,37 @@ block content
 					.panel-body
 						datepicker(ng-model='dt', min-date='minDate', show-weeks='true', custom-class='getDayClass(date, mode)')
 
-		.row#calendar2
+		.row#calendar2(ng-controller="ProfileSearchCtrl")
 			.col-sm-6
 				.panel.panel-default#createGig
 					.panel-heading
 						.panel-title 9. May 2015
 					.panel-header
 						ul.nav.nav-tabs
-							li.active: a(href="#callForArtistTab", data-toggle="tab")
+							li.active(ng-click="tabchanged(0)"): a(href="#callForArtistTab", data-toggle="tab")
 								span.fa.fa-plane &nbsp;Call for Artists
-							li: a(href="#callForVenueTab", data-toggle="tab")
+							li(ng-click="tabchanged(1)"): a(href="#callForVenueTab", data-toggle="tab")
 								span.fa.fa-home &nbsp;Call for Venue
-							li: a(href="#callForOrganizerTab", data-toggle="tab")
+							li(ng-click="tabchanged(2)"): a(href="#callForOrganizerTab", data-toggle="tab")
 								span.fa.fa-home &nbsp;Call for Organizer
 					.panel-body
-
 						.tab-content
 							// Tab: Call for Artists
 							.tab-pane.fade.in.active#callForArtistTab
 								.form-group
 									label.col-sm-2.control-label(for='inputType') Type
 									.col-sm-10
-										.radio
+										.radio(ng-repeat="option in artistTypes")
 											label
-												input#optionsType1(type='radio', name='optionsType', value='Solo Performer', checked='checked')
-												| Solo Performer
-										.radio
-											label
-												input#optionsType2(type='radio', name='optionsType', value='Band')
-												| Band
-										.radio
-											label
-												input#optionsType3(type='radio', name='optionsType', value='Orchestra')
-												| Orchestra
-										.radio
-											label
-												input#optionsType4(type='radio', name='optionsType', value='Magician')
-												| Magician
+												input(type='radio', name="optionsType", value="{{option}}", ng-model="searchOptions.subtype")
+												| {{option}}
 								.form-group
 									label.col-sm-2.control-label(for='inputGenres') Genres*
 									.col-sm-10
-										input.form-control(type='text',placeholder='Type to select genres',name='inputGenre',id='inputGenre')
+										select.form-control(ng-model="searchOptions.genre")
+											//option(value="rock", selected)
+											//option(value="electro")
+											option(ng-repeat="option in genres",value="{{option}}") {{option}}
 								.form-group
 									label.col-sm-2.control-label(for='inputDescription') Request notice
 									.col-sm-10
@@ -157,7 +147,7 @@ block content
 								.form-group
 									label.col-sm-2.control-label(for='inputProfile') Specific artist
 									.col-sm-10
-										input.form-control(type='text',placeholder='Contact artist',name='inputProfile',id='inputProfile')
+										input.form-control(type='text',placeholder='Contact artist',name='inputProfile',id='inputProfile', ng-model="searchOptions.profileName")
 
 							// Tab: Call for Venue
 							.tab-pane.fade.in#callForVenueTab
@@ -234,7 +224,7 @@ block content
 										input.form-control(type='text',placeholder='Type organizer name',name='inputProfile',id='inputProfile')
 
 					.panel-footer.text-right
-						button.btn.btn-default(type='submit'): span.fa.fa-search
+						button.btn.btn-default(type='submit', ng-click="submitSearch()"): span.fa.fa-search
 							| &nbsp; Search
 						button.btn.btn-primary(type='submit') Push Call
 
@@ -245,68 +235,55 @@ block content
 							.panel-title Results
 						ul.nav.nav-tabs
 							li.active: a(href="#ontourArtistTab", data-toggle="tab")
-								span.fa.fa-plane &nbsp;On Tour (1)
+								span.fa.fa-plane &nbsp;On Tour ({{searchResultsCount}})
 							li: a(href="#residentArtistTab", data-toggle="tab")
-								span.fa.fa-home &nbsp;Resident (2)
+								span.fa.fa-home &nbsp;Resident (0)
 					.panel-body
 						.tab-content
 							.tab-pane.fade.in.active#ontourArtistTab
 								table.table.table-striped.table-hover.profile-filtered-list
 									thead.profile-filtered-list--head
 										tr
-											th(colspan='2') Resident (
-												span.profile-filtered-list--count  1
+											th(colspan='2') On Tour (
+												span.profile-filtered-list--count {{searchResultsCount}}
 												|)
 											th(style='text-align:right')
 												span.fa.fa-angle-down
 									tbody.profile-filtered-list--body
-										tr
+										tr(ng-repeat="result in searchResults | filter:filterOnTour")
 											td.profile-info
 												span.profile-info-list--item.fa.fa-star.text-warning
 												span.profile-info-list--item.fa.fa-play
-												span.profile-info-list--item.profile-name Budzillus
-												span.profile-type.label.label-primary Artist
+												span.profile-info-list--item.profile-name {{result.name}}
+												span.profile-type.label.label-primary {{result.type}}
 											td.profile-genre-list
-												span.profile-genre-list--item.label.label-info Rock
-												span.profile-genre-list--item.label.label-info Polka
+												span.profile-genre-list--item.label.label-info(ng-repeat="g in result.genres") {{g}}
 											td.profile-action-list
-												a.profile-action-list--item.btn.btn-default.btn-xs
+												a.profile-action-list--item.btn.btn-default.btn-xs(ng-click="pingProfile(result)")
 													span.fa.fa-paw &nbsp;Ping
-												a.profile-action-list--item.btn.btn-default.btn-xs
+												a.profile-action-list--item.btn.btn-default.btn-xs(ng-click="showProfile(result)")
 													span.fa.fa-eye Show Profile
 							.tab-pane.fade.in#residentArtistTab
 								table.table.table-striped.table-hover.profile-filtered-list
 									thead.profile-filtered-list--head
 										tr
-											th(colspan='3') On Tour (
-												span.profile-filtered-list--count 2
+											th(colspan='3') Resident (
+												span.profile-filtered-list--count 0
 												|)
 									tbody.profile-filtered-list--body
-										tr
+										tr(ng-repeat="result in searchResults | filter:filterResident")
 											td.profile-info
 												span.profile-info-list--item.fa.fa-star.text-success
 												span.profile-info-list--item.fa.fa-play
-												span.profile-info-list--item.profile-name Amewu
-
-
+												span.profile-info-list--item.profile-name {{result.name}}
+												span.profile-type.label.label-primary {{result.type}}
 											td.profile-genre-list
-												span.profile-genre-list--item.label.label-info Hip Hop
-												span.profile-genre-list--item.label.label-info Bass
-												span.profile-genre-list--item.label.label-info Rap
+												span.profile-genre-list--item.label.label-info(ng-repeat="g in result.genres") {{g}}
 
 											td.profile-action-list
-												span.profile-action-list--item.btn.btn-primary.btn-xs
+												span.profile-action-list--item.btn.btn-primary.btn-xs(ng-click="commentProfile(result)")
 													span.fa.fa-comments-o
-										tr
-											td.profile-info
-												span.profile-info-list--item.fa.fa-play
-												span.profile-info-list--item.profile-name Cindy Sizer
-
-
-											td.profile-genre-list
-												span.profile-genre-list--item.label.label-info Deep House
-												span.profile-genre-list--item.label.label-info Down Beat
-
-											td.profile-action-list
-												span.profile-action-list--item.btn.btn-primary.btn-xs
-													span.fa.fa-comments-o
+												a.profile-action-list--item.btn.btn-default.btn-xs(ng-click="pingProfile(result)")
+													span.fa.fa-paw &nbsp;Ping
+												a.profile-action-list--item.btn.btn-default.btn-xs(ng-click="showProfile(result)")
+													span.fa.fa-eye Show Profile

@@ -1,0 +1,34 @@
+extends ../layouts/default
+
+block header
+    h1 Profile Overview:
+
+block content
+    div.container-fluid(ng-controller="ProfileCtrl")
+        .row
+            .col-sm-4
+                div.panel.panel-default
+                    div.panel-body
+                        p
+                            h1 select a profile
+                        ul
+                            li(ng-click="loadProfile(profile)", ng-repeat="profile in profiles | orderBy:'name'") 
+                                {{profile.name}}
+                        br
+                        button.btn.btn-default(ng-click="createProfile()") create new profile
+                        button.btn.btn-default(ng-click="loadCalendar($index)") go to calendar
+            .col-sm-8
+                div.panel.panel-default
+                    div.panel-body
+                        form(action="save-profile.asp", method="post", role="form")
+                            div.form-group
+                                label(for="profile-name-area") Profile Name:
+                                    textarea.form-control(id="profile-name-area",rows="2", cols="50", ng-model="profile.name")
+                                br
+                                label(for="profile-about-brief-area") About - brief:
+                                    textarea.form-control(id="profile-about-brief-area", rows="5", cols="50", ng-model="profile.about.brief")
+                                br
+                                label(for="profile-about-extended-area") About - extended:
+                                    textarea.form-control(id="profile-about-extended-area",rows="20",cols="50", ng-model="profile.about.extended")
+                                br
+                                button.btn.btn-default(type="submit") Save Profile            

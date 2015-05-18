@@ -9,8 +9,10 @@ var Types    = keystone.Field.Types;
 var Negotiation = new keystone.List('Negotiation');
 
 Negotiation.add({
-
-
+    date : { type: Date },
+    requestingProfile : { type: Types.Relationship, ref:'Profile' },
+    respondingProfile : { type: Types.Relationship, ref:'Profile' },
+    description : { type: String }
 });
 
 //register
