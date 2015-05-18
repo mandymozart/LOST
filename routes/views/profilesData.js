@@ -5,10 +5,10 @@ function match(p, options){
 
 	console.log(p.name)
 	var res = 
-		(p.name.indexOf(options.profileName) > -1);// &&
-		//((p.type == options.profileType)) &&
-		//(!p.subtype || (p.subtype == options.subtype)) &&
-		//(p.genres.indexOf(options.genre) > -1);
+		(p.name.indexOf(options.profileName) > -1) &&
+		((p.type == options.profileType)) &&
+		(!p.subtype || (p.subtype == options.subtype)) &&
+		(p.genres.indexOf(options.genre) > -1);
 	return res;
 }
 
@@ -22,7 +22,7 @@ exports = module.exports = function(req, res){
 				console.log(err);
 			}
 			var results = [];
-			//console.log(profiles);
+			console.log(profiles);
 			for (var i=0;i<profiles.length;i++){
 				if (match(profiles[i], options)){
 					results.push(profiles[i]);
@@ -32,7 +32,7 @@ exports = module.exports = function(req, res){
 		})
 	}
 	else{
-		user.populate('pofiles', function (err, doc) {
+		user.populate('profiles', function (err, doc) {
 		if (err) console.log(err);
 		keystone.list('Profile').model.find()
 			.where('_id').in(doc.profiles)
