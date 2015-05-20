@@ -1,0 +1,17 @@
+section.section#searchResultsSection
+	.panel-header
+		.panel-heading
+			.panel-title Results
+				.pull-right
+					span.fa.fa-chevron-down
+		ul.nav.nav-tabs
+			li.active: a(href="#ontourArtistTab", data-toggle="tab")
+				span.fa.fa-space-shuttle &nbsp;On Tour ({{searchResultsCount}})
+			li: a(href="#residentArtistTab", data-toggle="tab")
+				span.fa.fa-street-view &nbsp;Resident (2)
+	.panel-body
+		.tab-content
+			// Tab: Residents
+			include ../tabs/results-resident.jade
+			// Tab: On Tour
+			include ../tabs/results-ontour.jade

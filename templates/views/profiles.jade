@@ -1,0 +1,12 @@
+extends ../layouts/default
+block header
+	h1 Profile Overview:
+block content
+	div.container-fluid(ng-controller="ProfileCtrl")
+		.row
+			.col-sm-4
+				// Panel: Profile Select
+				include ../partials/panels/profile-select.jade
+			.col-sm-8
+				// Panel: Profile Detail
+				include ../partials/panels/profile-detail.jade

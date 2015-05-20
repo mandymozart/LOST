@@ -1,0 +1,20 @@
+.panel.panel-default.with-nav-tabs.filtered-list#profileDetailPanel
+	.panel-header
+		.panel-heading
+			.panel-title Profile
+	.panel-body
+		form(action="save-profile.asp", method="post", role="form")
+			.form-group
+				label(for="profile-name-area") Profile Name:
+					input.form-control(id="profile-name-area",rows="2", cols="50", ng-model="profile.name")
+
+			.form-group
+				label(for="profile-about-brief-area") About - brief:
+				textarea.form-control(id="profile-about-brief-area", rows="2", cols="50", ng-model="profile.about.brief")
+
+			.form-group
+				label(for="profile-about-extended-area") About - extended:
+				textarea.form-control(id="profile-about-extended-area",rows="10",cols="50", ng-model="profile.about.extended")
+	.panel-footer.text-right
+		button.btn.btn-primary(type="submit"): span.fa.fa-save
+			| &nbsp; Save profile
