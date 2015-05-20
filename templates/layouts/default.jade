@@ -46,27 +46,7 @@ html
 			//- ... or completely change this header to suit your design.
 			block header
 
-				div(role="navigation").navbar.navbar-fixed-top.navbar-default
-					.container-fluid
-						.navbar-header
-							button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
-								span.sr-only Toggle navigation
-								span.icon-bar
-								span.icon-bar
-								span.icon-bar
-							a.navbar-brand(href='/')
-								img(src='/images/muriquee-brand.svg',height='54')
-						.collapse.navbar-collapse
-							ul.nav.navbar-nav.navbar-left
-								each link in navLinks
-									li(class=(section == link.key ? 'active' : null)): a(href=link.href)= link.label
-							ul.nav.navbar-nav.navbar-right
-								if user
-									if user.canAccessKeystone
-										li: a(href='/keystone') Open My Account
-									li: a.btn.btn-sm(href='/keystone/signout') Sign Out
-								else
-									li: a.btn.btn-sm.btn-success(href='/keystone/signin') Sign In
+				include ../partials/navbars/frontend.jade
 
 		//- BODY
 		#body
