@@ -12,12 +12,16 @@ Profile.add({
     name  : { type: String, required: true, index: true },
     about : {
                 brief    : { type: Types.Html, wysiwig: true, height: 50 },
-                extended : { type: Types.Html, wysiwig: true, height: 300} 
-            }
-    //TODO socialLinks    : {type : undefined } 
+                extended : { type: Types.Html, wysiwig: true, height: 300}
+            },
+    genres : { type: String, many:true },
+    type  : { type: String },
+    subtype : {type: String},
+    negotiations : { type: Types.Relationship, ref: 'Negotiation', many:true }
+    //TODO socialLinks    : {type : undefined }
     //TODO souncloudLinks : {type : undefined }
     //TODO videoLinks     : {type : undefined }
-    //TODO 
+    //TODO ...
 });
 
 

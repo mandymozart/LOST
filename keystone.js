@@ -26,8 +26,10 @@ keystone.init({
 	'session': true,
 	'auth': true,
 	'user model': 'User',
-	'cookie secret': '<qZTmLihRM$CA89m~a*zzz4yv!rTSxQy._V[N3tQd![9M*g-NfWde.]+hx#+aa.0'
+	'cookie secret': '<qZTmLihRM$CA89m~a*zzz4yv!rTSxQy._V[N3tQd![9M*g-NfWde.]+hx#+aa.0',
 
+	'signin url':'/keystone/signin',
+	'signin redirect':'/profiles'
 });
 
 // Load your project's Models

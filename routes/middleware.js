@@ -60,12 +60,40 @@ exports.flashMessages = function(req, res, next) {
  */
 
 exports.requireUser = function(req, res, next) {
-	
 	if (!req.user) {
+		console.log('acces denied');
 		req.flash('error', 'Please sign in to access this page.');
 		res.redirect('/keystone/signin');
 	} else {
 		next();
-	}
-	
+	}	
 };
+
+exports.requirePremiumUser = function(req, res, next) {
+	if (!req.user) {
+		req.flash('error', 'Please sign in to access this page.');
+		res.redirect('/keystone/signin');
+	}
+	else if (!req.user.isPremium){
+		req.flash('error', 'This feature can only be used by Premium Users.');
+		res.redirect('/keystone/signin');
+	} 
+	else{
+		next();
+	}
+};
+
+exports.requireAdmin = function(req, res, next) {
+	if (!req.user) {
+		req.flash('error', 'Please sign in to access this page.');
+		res.redirect('/keystone/signin');
+	}
+	else if (!req.user.canAccessKeystone()){
+		req.flash('error', 'This feature can only be accessed by administrators.');
+	}
+	else{
+		next();
+	}
+}
+
+
