@@ -1,7 +1,7 @@
-.tab-pane.fade.in.active#callForArtistsTab
+.tab-pane.fade.in.active(role="tabpanel")#callForArtistsTab
 	.col-sm-4
 		select.form-control(name='selectArtistsType')
-			option(value="{{option}}",ng-repeat="option in artistTypes" , ng-model="searchOptions.subtype")
+			option(value="{{option}}", ng-model="searchOptions.subtype", ng-repeat="option in artistTypes")
 				| {{option}}
 	.col-sm-4
 		ui-select(multiple, ng-model="searchOptions.genres", theme="select2", ng-disabled="disabled", style="max_width: 100%; width: 100%;")

@@ -1,0 +1,12 @@
+div(role="navigation").navbar.navbar-fixed-top.navbar-default
+	.container-fluid
+		.navbar-header
+			a.navbar-brand(href='/')
+				img(src='/images/muriquee-brand.svg',height='32')
+		// show this if profile is selected
+		ul.nav.navbar-nav.navbar-right
+			if user
+				if user.canAccessKeystone
+					li: a(href='/keystone') Open Admin
+				li: a.btn.btn-sm(href='/keystone/signout') Sign Out
+		// this is analog to profile select panel except additional preferences, and user functions // + admin section

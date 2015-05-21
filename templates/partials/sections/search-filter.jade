@@ -1,11 +1,11 @@
 section.section#searchFilterSection
 	.panel-header
 		ul.nav.nav-tabs
-			li.active(ng-click="tabchanged(0)"): a(href="#callForArtistsTab", data-toggle="tab")
+			li.active(role="presentation",ng-click="tabchanged(0)"): a(href="#callForArtistsTab", data-toggle="tab")
 				span.fa.fa-user &nbsp;Call for Artists
-			li(ng-click="tabchanged(1)"): a(href="#callForVenuesTab", data-toggle="tab")
+			li(role="presentation",ng-click="tabchanged(1)"): a(href="#callForVenuesTab", data-toggle="tab")
 				span.fa.fa-building &nbsp;Call for Venues
-			li(ng-click="tabchanged(2)"): a(href="#callForOrganizersTab", data-toggle="tab")
+			li(role="presentation",ng-click="tabchanged(2)"): a(href="#callForOrganizersTab", data-toggle="tab")
 				span.fa.fa-user-secret &nbsp;Call for Organizers
 	.panel-body
 		.tab-content
