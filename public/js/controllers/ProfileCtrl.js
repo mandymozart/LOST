@@ -2,7 +2,7 @@
 var app = angular.module('muriquee')
 
 
-app.controller('ProfileCtrl', function($scope, $http, $location, $timeout, Profile){
+app.controller('ProfileCtrl', function($scope, $http, $localStorage, Profile){
 	function updateView(){
 		$('#profile-name-area').val($scope.profile.name);
 		$('#profile-about-brief-area').val($scope.profile.about.brief);
@@ -20,12 +20,21 @@ app.controller('ProfileCtrl', function($scope, $http, $location, $timeout, Profi
   		}
 	};
 
+	$scope.storage = $localStorage.$default({
+		profiles       : [],
+		profile        : {},
+		searchOptions  : {},
+		searchResults  : [],
+		selectedResult : {}
+	});
+
 	$scope.profiles = [];
 	$scope.profile  = undefined
 
 	$http.post('/profilesData')
 		.success(function(data){
 			$scope.profiles = data;
+			$scope.storage.profiles = data;
 		})
 		.error(function(){
 			alert('error retrieving profile data from server');
@@ -34,7 +43,7 @@ app.controller('ProfileCtrl', function($scope, $http, $location, $timeout, Profi
 
 	$scope.loadProfile = function(p){
 		$scope.profile = p;
-		Profile.setProfile(p);
+		$scope.storage.profile = p;
 		console.log(Profile.getProfile());
 	}
 	$scope.createProfile = function(){

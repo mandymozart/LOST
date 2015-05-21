@@ -1,13 +1,13 @@
 .tab-pane.fade.in.active(role="tabpanel")#callForArtistsTab
 	.col-sm-4
-		select.form-control(name='selectArtistsType')
-			option(value="{{option}}", ng-model="searchOptions.subtype", ng-repeat="option in artistTypes")
+		select.form-control(name='selectArtistsType', ng-model="storage.searchOptions.subtype")
+			option(value="{{option}}", ng-repeat="option in artistTypes")
 				| {{option}}
 	.col-sm-4
-		ui-select(multiple, ng-model="searchOptions.genres", theme="select2", ng-disabled="disabled", style="max_width: 100%; width: 100%;")
+		ui-select(multiple, ng-model="storage.searchOptions.genres", theme="select2", ng-disabled="disabled", style="max_width: 100%; width: 100%;")
 			ui-select-match(placeholder="Select genres...") {{$item}}
 			ui-select-choices(repeat="genre in genres | filter:$select.search")
 				| {{genre}}
 		//input.form-control(type='text',placeholder='Add genres',name='inputGenre',id='inputGenre')
 	.col-sm-4
-		input.form-control(type='text',placeholder='Contact artist',name='inputProfile',id='inputProfile')
+		input.form-control(ng-model="storage.searchOptions.profileName",type='text',placeholder='Contact artist',name='inputProfile',id='inputProfile')

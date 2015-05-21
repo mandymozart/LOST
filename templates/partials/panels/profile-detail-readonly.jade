@@ -4,16 +4,16 @@
 			.panel-title Profile
 				.pull-right
 					span.fa.fa-chevron-down
-	.panel-body
+	.panel-body(ng-controller="ProfileDetailReadonlyCtrl")
 		.row
 			.col-sm-4 Profile Name:
 			.col-sm-8
-				| {{profile.name}}
+				| {{storage.selectedResult.name}}
 		.row
 			.col-sm-4 About - brief:
 			.col-sm-8
-				| {{profile.about.brief}}
+				| {{storage.selectedResult.about.brief}}
 		.row
 			.col-sm-4 About - extended:
 			.col-sm-8
-				| {{profile.about.extended}}
+				| {{storage.selectedResult.about.extended}}

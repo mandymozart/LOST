@@ -1,15 +1,21 @@
 'use strict';
-var app = angular.module('muriquee', ['ui.bootstrap','ngSanitize', 'ui.select'])
+var app = angular.module('muriquee', ['ui.bootstrap','ngSanitize', 'ui.select','ngStorage'])
 
 app.factory('Profile', function(){
     var profile = {};
-
+    var profiles = [];
     return {
         getProfile: function () {
             return profile;
         },
         setProfile: function (value) {
             profile = value;
+        },
+        getProfiles: function(){
+            return profiles;
+        },
+        setProfiles: function(value) {
+            profiles = value;
         }
     };
 });

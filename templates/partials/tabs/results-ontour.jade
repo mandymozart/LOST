@@ -6,7 +6,7 @@
 					span.profile-filtered-list--count {{searchResultsCount}}
 					| )
 		tbody.profile-filtered-list--body
-			tr(ng-repeat="result in searchResults | filter:filterOnTour")
+			tr(ng-repeat="result in storage.searchResults | filter:filterOnTour")
 				td.profile-info
 					span.profile-info-list--item.fa.fa-star.text-warning
 					span.profile-info-list--item.fa.fa-play
