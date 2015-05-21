@@ -1,6 +1,19 @@
 'use strict';
 var app = angular.module('muriquee', ['ui.bootstrap','ngSanitize', 'ui.select'])
 
+app.factory('Profile', function(){
+    var profile = {};
+
+    return {
+        getProfile: function () {
+            return profile;
+        },
+        setProfile: function (value) {
+            profile = value;
+        }
+    };
+});
+
 app.controller('DatepickerDemoCtrl', function ($scope) {
     $scope.today = function() {
         $scope.dt = new Date();

@@ -2,7 +2,7 @@
 var app = angular.module('muriquee')
 
 
-app.controller('ProfileCtrl', function($scope, $http, $location, $timeout){
+app.controller('ProfileCtrl', function($scope, $http, $location, $timeout, Profile){
 	function updateView(){
 		$('#profile-name-area').val($scope.profile.name);
 		$('#profile-about-brief-area').val($scope.profile.about.brief);
@@ -22,6 +22,7 @@ app.controller('ProfileCtrl', function($scope, $http, $location, $timeout){
 
 	$scope.profiles = [];
 	$scope.profile  = undefined
+
 	$http.post('/profilesData')
 		.success(function(data){
 			$scope.profiles = data;
@@ -32,8 +33,9 @@ app.controller('ProfileCtrl', function($scope, $http, $location, $timeout){
 
 
 	$scope.loadProfile = function(p){
-        console.log(p)
 		$scope.profile = p;
+		Profile.setProfile(p);
+		console.log(Profile.getProfile());
 	}
 	$scope.createProfile = function(){
 		if ($scope.profiles.length == 0) return;
