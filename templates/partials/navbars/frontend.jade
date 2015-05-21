@@ -14,6 +14,8 @@ div(role="navigation").navbar.navbar-fixed-top.navbar-default
 					li(class=(section == link.key ? 'active' : null)): a(href=link.href)= link.label
 			ul.nav.navbar-nav.navbar-right
 				if user
+					li: a(href='/profiles') Select Profile
+				if user
 					if user.canAccessKeystone
 						li: a(href='/keystone') Open Admin
 					li: a.btn.btn-sm(href='/keystone/signout') Sign Out
