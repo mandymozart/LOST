@@ -32,3 +32,7 @@ div(role="navigation").navbar.navbar-fixed-top.navbar-default
 						span.fa.fa-cog &nbsp;Preferences
 					li: a(href='/keystone/signout')
 						span.fa.fa-sign-out &nbsp;Sign Out
+					if user.canAccessKeystone
+						li.divider
+						li: a(href='/keystone/')
+							span.fa.fa-user-plus &nbsp;Admin

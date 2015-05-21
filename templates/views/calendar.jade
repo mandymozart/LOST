@@ -1,38 +1,7 @@
 extends ../layouts/default
 
 block header
-	div(role="navigation").navbar.navbar-fixed-top.navbar-default
-		.container-fluid
-			.navbar-header
-				a.navbar-brand(href='/')
-					img(src='/images/muriquee-brand.svg',height='32')
-			ul.nav.navbar-nav.navbar-left
-				li.navbar-link: a(href='/calendar')
-					span.fa.fa-calendar
-				li.navbar-link: a(href='/map')
-					span.fa.fa-street-view
-			ul.nav.navbar-nav.navbar-right
-				li.dropdown
-					a.dropdown-toggle(href='#',data-toggle='dropdown',role='button',aria-expanded='false') Loophole &nbsp;
-						span.label.label-warning Venue
-						| &nbsp;
-						span.fa.fa-user &nbsp;
-						span.caret
-					ul.dropdown-menu(role='menu')
-						li.dropdown-header Switch to Profile
-						li: a(href='#') Mandy Mozart &nbsp;
-							span.label.label-default Artist
-						li: a(href='#') Minister President &nbsp;
-							span.label.label-default Artist
-						li: a(href='#') Shalom Salon &nbsp;
-							span.label.label-info Promoter
-						li: a(href='#') Platoon &nbsp;
-							span.label.label-warning Venue
-						li.divider
-						li: a(href='#')
-							span.fa.fa-cog &nbsp;Preferences
-						li: a(href='#')
-							span.fa.fa-sign-out &nbsp;Sign Out
+	include ../partials/navbars/backend
 
 
 block content
