@@ -55,13 +55,13 @@ app.controller('ProfileSearchCtrl', function($scope, $http){
 	$scope.profileTypes   = ['Artist', 'Venue', 'Promoter'];
 	$scope.artistTypes    = ['Solo Performer', 'Band', 'Magician', 'Orchestra'];
 	$scope.venueTypes     = ['Concert Hall', 'Live Hall', 'Club', 'Open Air', 'Bar'];
-	$scope.genres = ['Rock','Pop','Classic','Deep House','Hip Hop','Experimental','Techno','Acid House'];
+	$scope.genres         = ['Rock','Pop','Classic','Deep House','Hip Hop','Experimental','Techno','Acid House'];
 	$scope.organiserTypes = ['Live', 'Club', 'Festival', 'Avant Garde'];
 	$scope.searchOptions  = {
 		profileType    : 'Artist',
 		location       : [ 0.0, 0.0 ],
 		radius         : 15.0,
-		genre          : 'Rock',
+		genres         : [],
 		subtype        : '',
 		profileName    : ''
 	};

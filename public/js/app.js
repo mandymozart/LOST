@@ -1,5 +1,5 @@
 'use strict';
-var app = angular.module('muriquee', ['ui.bootstrap'])
+var app = angular.module('muriquee', ['ui.bootstrap','ngSanitize', 'ui.select'])
 
 app.controller('DatepickerDemoCtrl', function ($scope) {
     $scope.today = function() {
