@@ -15,7 +15,7 @@ div(role="navigation").navbar.navbar-fixed-top.navbar-default
 			ul.nav.navbar-nav.navbar-right
 				if user
 					if user.canAccessKeystone
-						li: a(href='/keystone') Open My Account
+						li: a(href='/keystone') Open Admin
 					li: a.btn.btn-sm(href='/keystone/signout') Sign Out
 				else
 					li: a.btn.btn-sm.btn-success(href='/keystone/signin') Sign In

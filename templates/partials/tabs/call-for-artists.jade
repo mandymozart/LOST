@@ -1,7 +1,7 @@
-.tab-pane.fade.in.active#callForArtistsTab
+.tab-pane.fade.in.active(role="tabpanel")#callForArtistsTab
 	.col-sm-4
-		select.form-control(name='selectArtistsType', ng-repeat="option in artistTypes")
-			option(value="{{option}}", ng-model="searchOptions.subtype")
+		select.form-control(name='selectArtistsType')
+			option(value="{{option}}", ng-model="searchOptions.subtype", ng-repeat="option in artistTypes")
 				| {{option}}
 	.col-sm-4
 		input.form-control(type='text',placeholder='Add genres',name='inputGenre',id='inputGenre')

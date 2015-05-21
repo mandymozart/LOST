@@ -1,4 +1,4 @@
-.tab-pane.fade.in#callForOrganizersTab
+.tab-pane.fade(role="tabpanel")#callForOrganizersTab
 	.col-sm-4
 		select.form-control(name='selectOrganizersType', ng-model="searchOptions.organizers")
 			option(ng-repeat="option in organizers",value="{{option}}") {{option}}

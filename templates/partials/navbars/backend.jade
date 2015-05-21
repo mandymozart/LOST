@@ -10,7 +10,7 @@ div(role="navigation").navbar.navbar-fixed-top.navbar-default
 			li.navbar-link: a(href='/map')
 				span.fa.fa-street-view
 		// this is analog to profile select panel except additional preferences, and user functions // + admin section
-		ul.nav.navbar-nav.navbar-right
+		ul.nav.navbar-nav.navbar-right(ng-controller="ProfileCtrl")
 			li.dropdown
 				a.dropdown-toggle(href='#',data-toggle='dropdown',role='button',aria-expanded='false') Loophole &nbsp;
 					span.label.label-warning Venue

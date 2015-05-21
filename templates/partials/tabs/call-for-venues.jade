@@ -1,4 +1,4 @@
-.tab-pane.fade.in#callForVenuesTab
+.tab-pane.fade(role="tabpanel")#callForVenuesTab
 	.col-sm-4
 		select.form-control(name='selectVenuesType', ng-model="searchOptions.venue")
 			option(ng-repeat="option in genres",value="{{option}}") {{option}}
