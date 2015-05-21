@@ -32,6 +32,7 @@ app.controller('ProfileCtrl', function($scope, $http, $location, $timeout){
 
 
 	$scope.loadProfile = function(p){
+        console.log(p)
 		$scope.profile = p;
 	}
 	$scope.createProfile = function(){

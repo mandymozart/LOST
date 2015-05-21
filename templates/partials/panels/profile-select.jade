@@ -6,17 +6,19 @@
 				span.fa.fa-chevron-down
 
 	.panel-body
-		tbody.profile-filtered-list--body
-			tr(ng-click="loadProfile(profile)", ng-repeat="profile in profiles | orderBy:'name'")
-				td.profile-info
-					span.profile-info-list--item.fa.fa-star.text-warning
-					span.profile-info-list--item.fa.fa-play
-					span.profile-info-list--item.profile-name {{profile.name}}
-					span.profile-type.label.label-primary {{profile.type}}
-				td.profile-genre-list
-					span.profile-genre-list--item.label.label-info(ng-repeat="g in result.genres") {{g}}
-				td.profile-action-list
-					span ..
+		hheheheh
+		table
+			tbody.profile-filtered-list--body
+				tr(ng-repeat="profile in profiles | orderBy:'name'")
+					td.profile-info
+						span.profile-info-list--item.fa.fa-star.text-warning
+						span.profile-info-list--item.fa.fa-play
+						span.profile-info-list--item.profile-name {{profile.name}}
+						span.profile-type.label.label-primary
+					td.profile-genre-list
+						span.profile-genre-list--item.label.label-info(ng-repeat="g in result.genres") {{g}}
+					td.profile-action-list
+						.btn.btn-default(ng-click="loadProfile(profile)") Select
 	.panel-footer.text-right
 		button.btn.btn-default(ng-click="createProfile()"): span.fa.fa-search
 			| &nbsp; New profile
