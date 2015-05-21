@@ -7,7 +7,7 @@
 
 	.panel-body
 		hheheheh
-		table
+		table.table.table-striped.table-hover.profile-filtered-list
 			tbody.profile-filtered-list--body
 				tr(ng-repeat="profile in profiles | orderBy:'name'")
 					td.profile-info
@@ -16,7 +16,7 @@
 					td.profile-genre-list
 						span.profile-genre-list--item.label.label-info(ng-repeat="g in result.genres") {{g}}
 					td.profile-action-list
-						.btn.btn-default(ng-click="loadProfile(profile)") Select
+						.btn.btn-default.btn-xs(ng-click="loadProfile(profile)") Select
 	.panel-footer.text-right
 		button.btn.btn-default(ng-click="createProfile()"): span.fa.fa-search
 			| &nbsp; New profile
