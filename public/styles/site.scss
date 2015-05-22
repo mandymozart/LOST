@@ -5,6 +5,8 @@
 
 @import "bootstrap/bootstrap";
 
+@import "bootstrap/extensions/columns-same-height";
+
 // The easiest way to customise Bootstrap variables while
 // being able to easily override the source files with new
 // versions is to override the ones you want in another file.
@@ -17,15 +19,17 @@
 @import "bootstrap/theme/variables";
 @import "bootstrap/theme/bootswatch";
 
+@import "site/fixes"; // quickfixes
+
 // Site Styles
 // ===========
 
 // Add your own site style includes here
 @import "site/layout";
-@import "site/calendar";
+@import "site/components/list-results";
+@import "site/panels/calendar/datepicker";
 
 
 // Library Styles
 @import "lib/angular-ui-select";
 @import "lib/select2";
-@import "lib/glyphicons"; // glyphicons aliases for font awesome
