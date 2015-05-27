@@ -7,20 +7,27 @@ block header
 block content
 	.container-fluid
 
-		.row#calendar-top
+		.row#calendar-interactions
 			.col-sm-6
+				h4#activeDate
+					span.calendar-date.stacked-icons
+						span.calendar-stack.fa-stack.fa-2x
+							span.calendar-stack--icon.fa.fa-calendar-o.fa-stack-1x
+							span.calendar-stack--text.fa-stack-1x
+								span.calendar-digit.calendar--day 27
+								span.calendar-digit.calendar--month May&nbsp;
+								span.calendar-digit.calendar--year 2015
+
 				include ../partials/panels/incoming-proposals.jade
-
-			.col-sm-3
-				include ../partials/panels/ongoing-negotiations.jade
-
-			.col-sm-3
-				include ../partials/panels/date-picker.jade
-
-		.row#calendar-bottom
-			.col-sm-6
 				include ../partials/panels/search.jade
 
-			.col-sm-6
-				include ../partials/panels/profile-detail-readonly.jade
 
+			.col-sm-6#calendar-controls
+				.row
+					.col-sm-6
+						include ../partials/panels/ongoing-negotiations.jade
+					.col-sm-6
+						include ../partials/panels/date-picker.jade
+				.row
+					.col-sm-12
+						include ../partials/panels/profile-detail-readonly.jade

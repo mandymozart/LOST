@@ -1,0 +1,25 @@
+
+/* Font Awesome Icon Stack overwrite
+http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
+*/
+
+.calendar-date .calendar-stack {
+  width: 100%;
+  margin-left: 10px;
+
+}
+.calendar-date .calendar-stack--icon {
+  text-align: left !important;
+}
+.calendar-date .calendar-stack--text {
+  font-size: 17px;
+  font-family: Roboto;
+  font-weight: 900;
+  margin-top: 6px;
+  margin-left: 7px;
+  text-align: left !important; // overwrite text-center fa-stack-1x
+}
+.calendar-date .calendar-digit:first-child {
+  margin-right: 20px;
+}
+//.file-text { margin-top: .2em; }

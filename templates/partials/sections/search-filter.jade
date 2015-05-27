@@ -2,16 +2,16 @@ section.section#searchFilterSection
 	.panel-header
 		ul.nav.nav-tabs
 			li.active(role="presentation",ng-click="tabchanged(0)"): a(href="#callForArtistsTab", data-toggle="tab")
-				span.fa.fa-user &nbsp;Call for Artists
+				span.fa.fa-user &nbsp;Artists
 			li(role="presentation",ng-click="tabchanged(1)"): a(href="#callForVenuesTab", data-toggle="tab")
-				span.fa.fa-building &nbsp;Call for Venues
+				span.fa.fa-building &nbsp;Venues
 			li(role="presentation",ng-click="tabchanged(2)"): a(href="#callForOrganizersTab", data-toggle="tab")
-				span.fa.fa-user-secret &nbsp;Call for Organizers
+				span.fa.fa-user-secret &nbsp;Organizers
 	.panel-body
 		.tab-content
-			// Tab: Call for Artists
-			include ../../partials/tabs/call-for-artists.jade
-			// Tab: Call for Venues
-			include ../../partials/tabs/call-for-venues.jade
-			// Tab: Call for Organizers
-			include ../../partials/tabs/call-for-organizers.jade
+			// Tab: Artists
+			include ../../partials/tabs/search-artists.jade
+			// Tab: Venues
+			include ../../partials/tabs/search-venues.jade
+			// Tab: Organizers
+			include ../../partials/tabs/search-organizers.jade

@@ -22,12 +22,12 @@ div(role="navigation").navbar.navbar-fixed-top.navbar-default
 					li(ng-repeat="p in profiles")
 						a(href='#') {{p.name}} &nbsp;
 							if p
-								if p.type == 'Artist'
-									span.label.label-info {{p.type}}
-								if p.type == 'Organizer'
-									span.label.label-warning {{p.type}}
-								if p.type == 'Venue'
-									span.label.label-primary {{p.type}}
+								if p.subtype == 'Artist'
+									span.label.label-info {{p.subtype}}
+								if p.subtype == 'Organizer'
+									span.label.label-warning {{p.subtype}}
+								if p.subtype == 'Venue'
+									span.label.label-primary {{p.subtype}}
 							else
 								span.label.label-default Undefined
 					li.divider

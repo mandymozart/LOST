@@ -840,7 +840,7 @@ body {
   font-size: 14px;
   line-height: 1.42857;
   color: #333333;
-  background-color: #fdfdfd; }
+  background-color: whitesmoke; }
 
 input, button, select, textarea {
   font-family: inherit;
@@ -874,7 +874,7 @@ img {
 .img-thumbnail {
   padding: 4px;
   line-height: 1.42857;
-  background-color: #fdfdfd;
+  background-color: whitesmoke;
   border: 1px solid #ddd;
   border-radius: 4px;
   -webkit-transition: all 0.2s ease-in-out;
@@ -1905,7 +1905,7 @@ th {
   .table > tbody + tbody {
     border-top: 2px solid #ddd; }
   .table .table {
-    background-color: #fdfdfd; }
+    background-color: whitesmoke; }
 
 .table-condensed > thead > tr > th, .table-condensed > thead > tr > td, .table-condensed > tbody > tr > th, .table-condensed > tbody > tr > td, .table-condensed > tfoot > tr > th, .table-condensed > tfoot > tr > td {
   padding: 5px; }
@@ -2927,7 +2927,7 @@ tbody.collapse.in {
         border-color: #eeeeee #eeeeee #ddd; }
     .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
       color: #555555;
-      background-color: #fdfdfd;
+      background-color: whitesmoke;
       border: 1px solid #ddd;
       border-bottom-color: transparent;
       cursor: default; }
@@ -2979,7 +2979,7 @@ tbody.collapse.in {
       border-radius: 4px 4px 0 0; }
 
     .nav-tabs-justified > .active > a, .nav-tabs.nav-justified > .active > a, .nav-tabs-justified > .active > a:hover, .nav-tabs.nav-justified > .active > a:hover, .nav-tabs-justified > .active > a:focus, .nav-tabs.nav-justified > .active > a:focus {
-      border-bottom-color: #fdfdfd; }
+      border-bottom-color: whitesmoke; }
  }
 
 .tab-content > .tab-pane {
@@ -3558,7 +3558,7 @@ a.badge:hover, a.badge:focus {
   padding: 4px;
   margin-bottom: 20px;
   line-height: 1.42857;
-  background-color: #fdfdfd;
+  background-color: whitesmoke;
   border: 1px solid #ddd;
   border-radius: 4px;
   -webkit-transition: all 0.2s ease-in-out;
@@ -4923,11 +4923,11 @@ button.close {
   background-size: 200%;
   background-position: 50%; }
   .btn-warning:hover, .btn-warning:active:hover, .btn-warning:focus {
-    background-color: #e08600; }
+    background-color: #ffb420; }
   .btn-warning:active {
-    background-color: #e08600;
-    background-image: -webkit-radial-gradient(circle, #e08600 10%, #ff9800 11%);
-    background-image: radial-gradient(circle, #e08600 10%, #ff9800 11%);
+    background-color: #ffb420;
+    background-image: -webkit-radial-gradient(circle, #ffb420 10%, #ffbe3f 11%);
+    background-image: radial-gradient(circle, #ffb420 10%, #ffbe3f 11%);
     background-repeat: no-repeat;
     background-size: 1000%; }
 
@@ -5133,8 +5133,8 @@ input[type="checkbox"], .checkbox input[type="checkbox"], .checkbox-inline input
     border-color: transparent; }
 
 .has-warning input:not([type=checkbox]), .has-warning .form-control, .has-warning input:not([type=checkbox]):focus, .has-warning .form-control:focus {
-  -webkit-box-shadow: inset 0 -2px 0 #ff9800;
-  box-shadow: inset 0 -2px 0 #ff9800; }
+  -webkit-box-shadow: inset 0 -2px 0 #ffbe3f;
+  box-shadow: inset 0 -2px 0 #ffbe3f; }
 
 .has-error input:not([type=checkbox]), .has-error .form-control, .has-error input:not([type=checkbox]):focus, .has-error .form-control:focus {
   -webkit-box-shadow: inset 0 -2px 0 #e51c23;
@@ -5189,7 +5189,7 @@ input[type="checkbox"], .checkbox input[type="checkbox"], .checkbox-inline input
   .alert-info {
     background-color: #9C27B0; }
   .alert-warning {
-    background-color: #ff9800; }
+    background-color: #ffbe3f; }
   .alert-danger {
     background-color: #e51c23; }
   .alert a:not(.close), .alert .alert-link {
@@ -5228,7 +5228,7 @@ input[type="checkbox"], .checkbox input[type="checkbox"], .checkbox-inline input
     .progress-bar-info:last-child.progress-bar:before {
       background-color: #edc9f3; }
     .progress-bar-warning:last-child.progress-bar:before {
-      background-color: #ffe0b3; }
+      background-color: #fffaf1; }
     .progress-bar-danger:last-child.progress-bar:before {
       background-color: #f28e92; }
 
@@ -5255,9 +5255,7 @@ input[type="checkbox"], .checkbox input[type="checkbox"], .checkbox-inline input
 
 .panel {
   border: none;
-  border-radius: 2px;
-  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3); }
+  border-radius: 2px; }
   .panel-heading {
     border-bottom: none; }
   .panel-footer {
@@ -5298,11 +5296,38 @@ a:focus {
 .profile-action-list--item {
   margin-left: 5px; }
 
+/* Font Awesome Icon Stack overwrite
+http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
+*/
+.calendar-date .calendar-stack {
+  width: 100%;
+  margin-left: 10px; }
+
+.calendar-date .calendar-stack--icon {
+  text-align: left !important; }
+
+.calendar-date .calendar-stack--text {
+  font-size: 17px;
+  font-family: Roboto;
+  font-weight: 900;
+  margin-top: 6px;
+  margin-left: 7px;
+  text-align: left !important; }
+
+.calendar-date .calendar-digit:first-child {
+  margin-right: 20px; }
+
+#datePickerPanel .panel-body {
+  min-height: 259px; }
+
 #datePickerPanel table {
   width: 100%; }
 
 #datePickerPanel th button {
   width: 100%; }
+
+#ongoingNegotiationsPanel {
+  min-height: 340px; }
 
 /*!
  * ui-select
