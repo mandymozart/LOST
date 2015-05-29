@@ -4923,11 +4923,11 @@ button.close {
   background-size: 200%;
   background-position: 50%; }
   .btn-warning:hover, .btn-warning:active:hover, .btn-warning:focus {
-    background-color: #ffb420; }
+    background-color: #e08600; }
   .btn-warning:active {
-    background-color: #ffb420;
-    background-image: -webkit-radial-gradient(circle, #ffb420 10%, #ffbe3f 11%);
-    background-image: radial-gradient(circle, #ffb420 10%, #ffbe3f 11%);
+    background-color: #e08600;
+    background-image: -webkit-radial-gradient(circle, #e08600 10%, #ff9800 11%);
+    background-image: radial-gradient(circle, #e08600 10%, #ff9800 11%);
     background-repeat: no-repeat;
     background-size: 1000%; }
 
@@ -5133,8 +5133,8 @@ input[type="checkbox"], .checkbox input[type="checkbox"], .checkbox-inline input
     border-color: transparent; }
 
 .has-warning input:not([type=checkbox]), .has-warning .form-control, .has-warning input:not([type=checkbox]):focus, .has-warning .form-control:focus {
-  -webkit-box-shadow: inset 0 -2px 0 #ffbe3f;
-  box-shadow: inset 0 -2px 0 #ffbe3f; }
+  -webkit-box-shadow: inset 0 -2px 0 #ff9800;
+  box-shadow: inset 0 -2px 0 #ff9800; }
 
 .has-error input:not([type=checkbox]), .has-error .form-control, .has-error input:not([type=checkbox]):focus, .has-error .form-control:focus {
   -webkit-box-shadow: inset 0 -2px 0 #e51c23;
@@ -5189,7 +5189,7 @@ input[type="checkbox"], .checkbox input[type="checkbox"], .checkbox-inline input
   .alert-info {
     background-color: #9C27B0; }
   .alert-warning {
-    background-color: #ffbe3f; }
+    background-color: #ff9800; }
   .alert-danger {
     background-color: #e51c23; }
   .alert a:not(.close), .alert .alert-link {
@@ -5228,7 +5228,7 @@ input[type="checkbox"], .checkbox input[type="checkbox"], .checkbox-inline input
     .progress-bar-info:last-child.progress-bar:before {
       background-color: #edc9f3; }
     .progress-bar-warning:last-child.progress-bar:before {
-      background-color: #fffaf1; }
+      background-color: #ffe0b3; }
     .progress-bar-danger:last-child.progress-bar:before {
       background-color: #f28e92; }
 
