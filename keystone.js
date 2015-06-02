@@ -11,8 +11,8 @@ var keystone = require('keystone');
 
 keystone.init({
 
-	'name': 'LOST',
-	'brand': 'LOST',
+	'name': 'Muriquee',
+	'brand': 'Muriquee',
 	
 	'sass': 'public',
 	'static': 'public',

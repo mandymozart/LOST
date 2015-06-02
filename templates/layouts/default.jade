@@ -8,7 +8,35 @@ html
 	head
 		meta(charset="utf-8")
 		meta(name="viewport", content="width=device-width, initial-scale=1.0")
-		meta(http-equiv="X-UA-Compatible" content="IE=edge")
+		meta(http-equiv="X-UA-Compatible", content="IE=edge")
+
+		meta(name="description", content="With our map based community you can tell everyone of your tour plan, while you are building it, and plan according to the requests you find. As an organizer you are able to search artists in your area or passing by your area in tour. It´s that simple!")
+		meta(name="author", content="Muriquee")
+		meta(property="og:type", content="website")
+		meta(property="og:site_name", content="Muriquee - Booking on a Map")
+		meta(property="og:title", content="Muriquee - Booking on a Map")
+		meta(property="og:image", content="")
+		meta(property="og:url", content="http://muriquee.com/")
+		meta(property="og:description", content="With our map based community you can tell everyone of your tour plan, while you are building it, and plan according to the requests you find. As an organizer you are able to search artists in your area or passing by your area in tour. It´s that simple!")
+		meta(property="fb:admins", content="100001333739026")
+		meta(property="fb:app_id", content="336496776431398")
+		link(rel="apple-touch-icon", sizes="57x57", href="assets/img/apple-icon-57x57.png")
+		link(rel="apple-touch-icon", sizes="60x60", href="assets/img/apple-icon-60x60.png")
+		link(rel="apple-touch-icon", sizes="72x72", href="assets/img/apple-icon-72x72.png")
+		link(rel="apple-touch-icon", sizes="76x76", href="assets/img/apple-icon-76x76.png")
+		link(rel="apple-touch-icon", sizes="114x114", href="assets/img/apple-icon-114x114.png")
+		link(rel="apple-touch-icon", sizes="120x120", href="assets/img/apple-icon-120x120.png")
+		link(rel="apple-touch-icon", sizes="144x144", href="assets/img/apple-icon-144x144.png")
+		link(rel="apple-touch-icon", sizes="152x152", href="assets/img/apple-icon-152x152.png")
+		link(rel="apple-touch-icon", sizes="180x180", href="assets/img/apple-icon-180x180.png")
+		link(rel="icon" type="image/png", sizes="192x192"  href="assets/img/android-icon-192x192.png")
+		link(rel="icon" type="image/png", sizes="32x32", href="assets/img/favicon-32x32.png")
+		link(rel="icon" type="image/png", sizes="96x96", href="assets/img/favicon-96x96.png")
+		link(rel="icon" type="image/png", sizes="16x16", href="assets/img/favicon-16x16.png")
+		link(rel="manifest", href="assets/img/manifest.json")
+		meta(name="msapplication-TileColor", content="#ffffff")
+		meta(name="msapplication-TileImage", content="assets/img/ms-icon-144x144.png")
+		meta(name="theme-color", content="#ffffff")
 
 		title= title || 'Muriquee'
 		link(rel="shortcut icon", href="/favicon.ico", type="image/x-icon")
@@ -65,25 +93,20 @@ html
 			block content
 
 
-		//- FOOTER
-		.container-fluid: #footer
+	block footer
 
-			//- You don't _have_ to include a link saying your site is powered by KeystoneJS, but we appreciate it!
-			p &copy; 2015 Muriquee UG (haftungsbeschr&auml;nkt)
-				br
-				a(href='#') Terms Of Use/Legal
-				br
-				a(href="/contact") Contact
-				br
-				| in collaboration with&nbsp;
-				a(href="http://www.wearepictures.com",target="_blank")
-					img(src='http://cdn.wearepictures.com/f/wearepictures-logo-952e2e.png')
-				| &nbsp;+&nbsp;
-				a(href='http://www.shalomsalon.de/',target='_blank') Shalom Salon
-				| &nbsp;+&nbsp;
-				a(href='http://www.shalomsalon.de/',target='_blank') Boddinale
-				| &nbsp;+&nbsp;
-				a(href='http://www.shalomsalon.de/',target='_blank') Loophole
+
+	// Modals
+	// Modal: Login
+	include ../partials/modals/login.html
+	// Modal: Company
+	include ../partials/modals/company.html
+	// Modal: Privacy
+	include ../partials/modals/privacy.html
+	// Modal: Terms
+	include ../partials/modals/terms.html
+
+	block modals
 
 
 		//script(type="text/ng-template",id="modalContent.html"):

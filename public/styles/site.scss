@@ -14,22 +14,26 @@
 // You can also add your own custom variables to this file for
 // use in your site stylesheets.
 
-@import "site/variables";
+
+//@import "site/variables";
 
 @import "bootstrap/theme/variables";
 @import "bootstrap/theme/bootswatch";
+
 
 @import "site/fixes"; // quickfixes
 
 // Site Styles
 // ===========
 
-// Add your own site style includes here
+// Layout
 @import "site/layout";
+// Components
 @import "site/components/list-results";
-@import "site/panels/calendar/default";
-@import "site/panels/calendar/datepicker";
-@import "site/panels/calendar/ongoing-negotiations";
+// Panels
+@import "site/panels";
+// Sections
+@import "site/sections";
 
 
 // Library Styles

@@ -2,7 +2,10 @@
 /* Font Awesome Icon Stack overwrite
 http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
 */
-
+#activeDate {
+  margin-top: -12px;
+  color:$brand-primary;
+}
 .calendar-date .calendar-stack {
   width: 100%;
   margin-left: 10px;

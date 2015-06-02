@@ -553,6 +553,10 @@ input[type="checkbox"],
     border-bottom: none;
   }
 
+  &-body {
+    padding: $panel-body-padding;
+  }
+
   &-footer {
     border-top: none;
   }
