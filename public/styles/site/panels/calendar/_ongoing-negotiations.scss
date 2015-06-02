@@ -1,3 +1,8 @@
 #ongoingNegotiationsPanel  {
-  min-height: 340px;
+  min-height: 323px;
+}
+// scrolling messages
+#ongoingNegotiationsPanel .panel-body {
+  max-height: 276px;
+  overflow: scroll;
 }

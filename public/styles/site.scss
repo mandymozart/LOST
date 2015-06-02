@@ -3,6 +3,8 @@
 
 // Bootstrap can be removed entirely by deleting this line.
 
+@import "bootstrap/theme/variables";
+
 @import "bootstrap/bootstrap";
 
 @import "bootstrap/extensions/columns-same-height";
@@ -17,8 +19,9 @@
 
 //@import "site/variables";
 
-@import "bootstrap/theme/variables";
+
 @import "bootstrap/theme/bootswatch";
+
 
 
 @import "site/fixes"; // quickfixes
