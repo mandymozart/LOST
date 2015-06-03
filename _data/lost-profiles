@@ -1,0 +1,6 @@
+{"_id":{"$oid":"5547d43fa69277e4545ca5ab"},"name":"ujhj","__v":0,"about":{"brief":"","extended":""},"user":{"$oid":"552eb4e17736a9f0049b8eae"}}
+{"_id":{"$oid":"5559a1bdf4a19fc234d5e73a"},"name":"Mandy Mozart","negotiations":[],"__v":0,"about":{"brief":"","extended":""},"genres":["Rock","Pop","Acid House"],"subtype":"Artist","type":"","user":{"$oid":"5559a1aaf4a19fc234d5e739"}}
+{"_id":{"$oid":"5559a1dff4a19fc234d5e73c"},"name":"Minister President","negotiations":[],"__v":0}
+{"_id":{"$oid":"5559a1f9f4a19fc234d5e73e"},"name":"Bullet Train","negotiations":[],"__v":0,"about":{"brief":"","extended":""},"genres":"","subtype":"","type":"","user":{"$oid":"5559a1aaf4a19fc234d5e739"}}
+{"_id":{"$oid":"5559a1d3f4a19fc234d5e73b"},"name":"Cindy Sizer","negotiations":[],"__v":0,"about":{"brief":"A band from the world","extended":"http://www.cindysizer.com"},"genres":"Deep House, Rock, Blues","subtype":"","type":"Band","user":{"$oid":"5559a1aaf4a19fc234d5e739"}}
+{"_id":{"$oid":"5559a1e7f4a19fc234d5e73d"},"name":"A+V","negotiations":[],"__v":0,"about":{"brief":"Audio Visual Eye Candy","extended":"http://www.facebook.com/aplusv"},"genres":"","subtype":"","type":""}

@@ -8,6 +8,5 @@
 			ui-select-match(placeholder="Select genres...") {{$item}}
 			ui-select-choices(repeat="genre in genres | filter:$select.search")
 				| {{genre}}
-		//input.form-control(type='text',placeholder='Add genres',name='inputGenre',id='inputGenre')
 	.col-sm-4
 		input.form-control(ng-model="storage.searchOptions.profileName",type='text',placeholder='Contact artist',name='inputProfile',id='inputProfile')

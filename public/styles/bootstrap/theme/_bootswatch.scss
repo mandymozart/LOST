@@ -47,7 +47,7 @@
       background-color: darken($bg, 6%);
       @include gradient-radial(darken($bg, 6%) 10%, $bg 11%);
       background-size: 1000%;
-      @include box-shadow(2px 2px 2px rgba(0,0,0,.3));
+      // @include box-shadow(2px 2px 2px rgba(0,0,0,.3));
     }
   }
 }
@@ -61,9 +61,7 @@
 
 .btn {
   text-transform: uppercase;
-  border-right: none;
-  border-bottom: none;
-  @include box-shadow(1px 1px 2px rgba(0,0,0,.3));
+  // @include box-shadow(1px 1px 2px rgba(0,0,0,.3));
   @include transition(all 0.2s);
 
   &-link {
@@ -123,6 +121,9 @@ a {
 }
 
 // Tables =====================================================================
+.table {
+  margin-bottom: 0;
+}
 
 .table-hover {
   > tbody > tr,
@@ -549,10 +550,14 @@ input[type="checkbox"],
 .panel {
   border: none;
   border-radius: 2px;
-  @include box-shadow(0 1px 4px rgba(0,0,0,.3));
+  //@include box-shadow(0 1px 4px rgba(0,0,0,.3));
 
   &-heading {
     border-bottom: none;
+  }
+
+  &-body {
+    padding: $panel-body-padding;
   }
 
   &-footer {

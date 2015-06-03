@@ -21,7 +21,15 @@ div(role="navigation").navbar.navbar-fixed-top.navbar-default
 					li.dropdown-header Switch to Profile
 					li(ng-repeat="p in profiles")
 						a(href='#') {{p.name}} &nbsp;
-						span.label.label-default {{p.type}}
+							if p
+								if p.subtype == 'Artist'
+									span.label.label-info {{p.subtype}}
+								if p.subtype == 'Organizer'
+									span.label.label-warning {{p.subtype}}
+								if p.subtype == 'Venue'
+									span.label.label-primary {{p.subtype}}
+							else
+								span.label.label-default Undefined
 					li.divider
 					li: a(href='#')
 						span.fa.fa-cog &nbsp;Preferences

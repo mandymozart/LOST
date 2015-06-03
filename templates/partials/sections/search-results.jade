@@ -2,13 +2,11 @@ section.section#searchResultsSection
 	.panel-header
 		.panel-heading
 			.panel-title Results
-				.pull-right
-					span.fa.fa-chevron-down
 		ul.nav.nav-tabs
-			li.active: a(href="#resultsOntourTab", data-toggle="tab")
-				span.fa.fa-space-shuttle &nbsp;On Tour ({{searchResultsCount}})
-			li: a(href="#resultsResidentTab", data-toggle="tab")
-				span.fa.fa-street-view &nbsp;Resident (2)
+			li.active: a(href="#resultsResidentTab", data-toggle="tab")
+				span.fa.fa-street-view &nbsp;Resident ({{searchResultsCount}})
+			li: a(href="#resultsOntourTab", data-toggle="tab")
+				span.fa.fa-space-shuttle &nbsp;On tour (2)
 	.panel-body
 		.tab-content
 			// Tab: Residents

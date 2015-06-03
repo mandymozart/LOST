@@ -1,9 +1,12 @@
+*:focus {
+  outline:none !important;
+}
 #body {
-  margin-top: 67px;
+  margin-top: 80px;
 }
 
 .navbar-default {
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.90);
 }
 
 #footer {

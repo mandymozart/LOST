@@ -1,9 +1,9 @@
-.panel.panel-default#ongoingNegotiationsPanel
+.panel.panel-default#ongoingNegotiationsPanel(ng-controller="NegotiationsListCtrl")
 	.panel-heading
 		.panel-title Ongoing negotiations
 			.pull-right
 				span.fa.fa-chevron-down
-	.panel-body(ng-controller="NegotiationsListCtrl")
+	.panel-body
 		table.table.table-striped.table-hover.profile-filtered-list
 			thead.profile-filtered-list--head
 				tr
@@ -37,3 +37,4 @@
 					//		span.fa.fa-reply
 					//	a.profile-action-list--item.btn.btn-default.btn-xs
 					//		span.fa.fa-trash
+
