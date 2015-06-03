@@ -13,7 +13,8 @@
 					span.profile-info-list--item.profile-name {{result.name}}
 					span.profile-type.label.label-primary {{result.type}}
 				td.profile-genre-list
-					span.profile-genre-list--item.label.label-info(ng-repeat="g in result.genres") {{g}}
+					span.profile-genre-list--item.label.label-info(ng-repeat="g in result.genres") 
+						|{{g}}
 				td.profile-action-list
 					a.profile-action-list--item.btn.btn-default.btn-xs(ng-click="pingProfile(result)")
 						span.fa.fa-paw &nbsp;Ping

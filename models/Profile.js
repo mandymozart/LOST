@@ -14,8 +14,8 @@ Profile.add({
                 brief    : { type: Types.Html, wysiwig: true, height: 50 },
                 extended : { type: Types.Html, wysiwig: true, height: 300}
             },
-    genres : { type: String, many:true },
-    type  : { type: String },
+    genres : { type: Types.TextArray },
+    type  : { type: Types.Select, options:'Artist, Venue, Promoter'},
     subtype : {type: String},
     negotiations : { type: Types.Relationship, ref: 'Negotiation', many:true }
     //TODO socialLinks    : {type : undefined }
@@ -24,8 +24,6 @@ Profile.add({
     //TODO ...
 });
 
-
-//relationships
 
 
 //registration

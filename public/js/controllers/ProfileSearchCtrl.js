@@ -23,7 +23,6 @@ app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage){
 	}
 	$scope.showProfile = function(p){
 		$localStorage.selectedResult = p;
-		//alert('show profile: \n' + JSON.stringify(p));
 	}
 	$scope.pingProfile = function(p){
 		//TODO

@@ -1,9 +1,14 @@
 .panel.panel-default.with-nav-tabs.filtered-list#profileDetailPanel
 	.panel-header
 		.panel-heading
-			.panel-title Profile
+			.panel-title Profile <br><em> {{saveStatus}} </em>
 	.panel-body
-		form(action="save-profile.asp", method="post", role="form")
+		form
+			.form-group
+				label(for="profile-type-select") Profile Type: <br>
+				select(id="profile-type-select", ng-model="profile.type")
+					option(value="{{option}}", ng-repeat="option in profileTypes")
+						| {{option}}
 			.form-group
 				label(for="profile-name-area") Profile Name:
 					input.form-control(id="profile-name-area",rows="2", cols="50", ng-model="profile.name")
@@ -15,6 +20,13 @@
 			.form-group
 				label(for="profile-about-extended-area") About - extended:
 				textarea.form-control(id="profile-about-extended-area",rows="10",cols="50", ng-model="profile.about.extended")
+			
+			.form-group
+				label(for="genre-select") Genres:
+				ui-select(id="genre-select",multiple, ng-model="profile.genres", theme="select2", ng-disabled="disabled", style="max_width: 100%; width: 100%;")
+					ui-select-match(placeholder="Select genres...") {{$item}}
+					ui-select-choices(repeat="genre in genres | filter:$select.search")
+						| {{genre}}
 	.panel-footer.text-right
-		button.btn.btn-primary(type="submit"): span.fa.fa-save
+		button.btn.btn-primary(ng-click="saveProfile()"): span.fa.fa-save
 			| &nbsp; Save profile

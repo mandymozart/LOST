@@ -37,7 +37,7 @@ User.schema.methods.getProfiles = function(callback){
  * Relationships
  */
 
-
+User.relationship({path:'profiles', ref:'Profile', refPath:'User'});
 
 /**
  * Registration

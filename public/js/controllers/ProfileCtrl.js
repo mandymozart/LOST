@@ -42,8 +42,30 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage, Profile){
 
 
 	$scope.loadProfile = function(p){
+		if (!p._id) {
+			$scope.saveStatus = "unsaved profile";
+			return;
+		}
 		$scope.profile = p;
 		$scope.storage.profile = p;
+		var req = {
+ 			method: 'POST',
+ 			url: '/profilesData',
+ 			headers: {
+   				'Content-Type': 'application/json'
+ 			},
+ 			data: {
+ 				populateNegotiations:true,
+ 				profile:$localStorage.profile
+ 			}
+		}
+		$http(req)
+		.success(function(data){
+			$localStorage.negotiations = data;
+		})
+		.error(function(){
+			alert('error retreiveing negotiations data from server');
+		});
 		console.log(Profile.getProfile());
 	}
 	$scope.createProfile = function(){
@@ -67,4 +89,36 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage, Profile){
 			alert('no profile selected');
 		}
 	}
+	$scope.saveProfile = function(){
+		if ($scope.profile){
+			var req = {
+ 				method: 'POST',
+ 				url: '/profilesData',
+ 				headers: {
+   					'Content-Type': 'application/json'
+ 				},
+ 				data: {
+ 					saveProfile:true,
+ 					profile:$scope.profile
+ 				}
+			}
+			$http(req)
+			.success(function(data){
+				$scope.saveStatus = "successfully saved profile";
+			})
+			.error(function(){
+				$scope.saveStatus = "error saving profile";
+			});
+		}
+		else $scope.saveStatus = "no profile selected to save";
+	}
+
+	$scope.saveStatus     = "";
+
+	$scope.profileTypes   = ['Artist', 'Venue', 'Promoter'];
+	$scope.artistTypes    = ['Solo Performer', 'Band', 'Magician', 'Orchestra'];
+	$scope.venueTypes     = ['Concert Hall', 'Live Hall', 'Club', 'Open Air', 'Bar'];
+	$scope.organiserTypes = ['Live', 'Club', 'Festival', 'Avant Garde'];
+	$scope.genres         = ['Rock','Pop','Classic','Deep House','Hip Hop','Experimental','Techno','Acid House'];
+	
 });
