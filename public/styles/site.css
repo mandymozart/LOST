@@ -5301,6 +5301,7 @@ a:focus {
 .profile-action-list--item {
   margin-left: 5px; }
 
+/* Calendar */
 /* Font Awesome Icon Stack overwrite
 http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
 */
@@ -5342,6 +5343,90 @@ http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
   max-height: 276px;
   overflow: scroll; }
 
+/* Frontend */
+.social-signup-buttons {
+  display: table;
+  margin-bottom: 20px;
+  margin-left: -5px;
+  margin-right: -5px;
+  table-layout: fixed;
+  width: 100%; }
+  .social-signup-buttons .signup-button {
+    display: table-cell;
+    margin: 0;
+    padding-left: 5px;
+    padding-right: 5px; }
+    .social-signup-buttons .signup-button .entypo-social {
+      font-size: 40px;
+      vertical-align: middle; }
+    .social-signup-buttons .signup-button .btn {
+      position: relative; }
+    .social-signup-buttons .signup-button .btn:hover, .social-signup-buttons .signup-button .btn:focus {
+      top: -1px; }
+    .social-signup-buttons .signup-button .btn:active {
+      top: 1px; }
+
+.signup-button__text {
+  display: none; }
+
+@media (min-width: 992px) {
+  .signup-button__text {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 6px; }
+ }
+
+.auth-form-divider {
+  color: #bbb;
+  margin-bottom: 1.5em;
+  margin-top: 1em;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  /*	&:after {
+		.size(100%,1px);
+		background-color: $hr-border;
+		content: "";
+		left: 0;
+		top: 50%;
+		position: absolute;
+	} */ }
+
+.auth-form-divider-text {
+  background-color: whitesmoke;
+  display: inline-block;
+  padding: 0 1em;
+  position: relative;
+  z-index: 1; }
+  .modal .auth-form-divider-text {
+    background-color: white; }
+
+.auth-form {
+  /*
+	.form-control--first {
+		.border-top-radius( 4px );
+	}
+	.form-control--last {
+		.border-bottom-radius( 4px );
+	}
+	*/ }
+  .auth-form .form-groups {
+    margin-bottom: 1em; }
+  .auth-form .form-group {
+    margin-bottom: 0; }
+  .auth-form .form-control {
+    border-radius: 0;
+    box-shadow: none;
+    height: auto;
+    margin-top: -1px;
+    padding-bottom: 0.75em;
+    padding-top: 0.75em;
+    -webkit-appearance: none;
+    /*&:focus {
+			box-shadow: 0 0 5px -2px fade($link-color, 60%), 0 1px 2px $gray-lighter;
+			position: relative;
+		} */ }
+
 /* carousel */
 .carousel {
   margin-top: 58px;
@@ -5373,7 +5458,7 @@ http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
   min-height: 100px; }
 
 .marketing {
-  margin-top: 170px; }
+  margin-top: 0px; }
 
 /*!
  * ui-select

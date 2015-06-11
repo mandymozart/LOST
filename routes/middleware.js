@@ -24,11 +24,20 @@ exports.initLocals = function(req, res, next) {
 	var locals = res.locals;
 	
 	locals.navLinks = [
-		{ label: 'Blog',		key: 'blog',		href: '/blog' },
-		{ label: 'Calendar',	key: 'calendar',	href: '/calendar' }
+		{ label: 'Blog',		key: 'blog',		href: '/blog' }
 	];
 	
 	locals.user = req.user;
+
+    var bowser = require('../lib/node-bowser').detect(req);
+
+    locals.system = {
+        mobile: bowser.mobile,
+        ios: bowser.ios,
+        iphone: bowser.iphone,
+        ipad: bowser.ipad,
+        android: bowser.android
+    }
 	
 	next();
 	
@@ -60,7 +69,7 @@ exports.requireUser = function(req, res, next) {
 	if (!req.user) {
 		console.log('acces denied');
 		req.flash('error', 'Please sign in to access this page.');
-		res.redirect('/keystone/signin');
+		res.redirect('/signin');
 	} else {
 		next();
 	}	
@@ -69,11 +78,11 @@ exports.requireUser = function(req, res, next) {
 exports.requirePremiumUser = function(req, res, next) {
 	if (!req.user) {
 		req.flash('error', 'Please sign in to access this page.');
-		res.redirect('/keystone/signin');
+		res.redirect('/signin');
 	}
 	else if (!req.user.isPremium){
 		req.flash('error', 'This feature can only be used by Premium Users.');
-		res.redirect('/keystone/signin');
+		res.redirect('/signin');
 	} 
 	else{
 		next();
