@@ -11,6 +11,18 @@ div(role="navigation").navbar.navbar-fixed-top.navbar-default
 				span.fa.fa-street-view
 		// this is analog to profile select panel except additional preferences, and user functions // + admin section
 		ul.nav.navbar-nav.navbar-right
+			//h4#selectedDate
+				//	span.calendar-date.stacked-icons
+				//		span.calendar-stack.fa-stack.fa-2x
+				//			span.calendar-stack--icon.fa.fa-calendar-o.fa-stack-1x
+				//			span.calendar-stack--text.fa-stack-1x
+				//				span.calendar-digit.calendar--day 27
+				//				span.calendar-digit.calendar--month May&nbsp;
+				//				span.calendar-digit.calendar--year 2015
+			li#selectedDate
+				span.calendar-digit.calendar--day {{getDay()}}&nbsp;
+				span.calendar-digit.calendar--month {{getMonth()}}&nbsp;
+				span.calendar-digit.calendar--year {{getYear()}}&nbsp;
 			li.dropdown
 				a.dropdown-toggle(href='#',data-toggle='dropdown',role='button',aria-expanded='false') {{profile.name}} &nbsp;
 					span.label.label-default {{profile.type}}

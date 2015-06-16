@@ -12,7 +12,11 @@
 	include ../sections/search-results.jade
 
 	.panel-footer.text-right
+		button.btn.btn-default(type='submit', ng-click="rememberAll()"): span
+			| &nbsp; Remember All
+		button.btn.btn-default(type='submit', ng-click="removeAll()"): span
+			| &nbsp; Remove All
 		button.btn.btn-default(type='submit', ng-click="submitSearch()"): span.fa.fa-search
 			| &nbsp; Search
-		button.btn.btn-primary(type='submit'): span.fa.fa-send-o
+		button.btn.btn-primary(type='submit', ng-click="pushCall()"): span.fa.fa-send-o
 			| &nbsp; Push Call

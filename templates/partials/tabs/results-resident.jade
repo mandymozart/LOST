@@ -1,4 +1,4 @@
-.tab-pane.fade.in.active#resultsResidentTab
+.tab-pane.fade.in.active.scrollable#resultsResidentTab(style="height: 400px; overflow: auto")
 	table.table.table-striped.table-hover.profile-filtered-list
 		tbody.profile-filtered-list--body
 			tr(ng-repeat="result in storage.searchResults | filter:filterOnTour")
@@ -9,7 +9,14 @@
 					span.profile-info-list--item.profile-name {{result.name}}
 					span.profile-type.label.label-primary {{result.type}}
 				td.profile-genre-list
-					span.profile-genre-list--item.label.label-info(ng-repeat="g in result.genres") {{g}}
-				td.profile-action-list
-					a.profile-action-list--item.btn.btn-default.btn-xs(ng-click="pingProfile(result)")
-						span.fa.fa-bell &nbsp;Ping
+					span.profile-genre-list--item.label.label-info(ng-repeat="g in result.genres track by $index") {{g}}
+				td.
+				td.profile-action-list(on="result")
+					a.profile-action-list--item.btn.btn-success.btn-xs(ng-if="result.isRemembered", ng-click="removeRemeberedProfile(result)")
+						| Remove
+					a.profile-action-list--item.btn.btn-default.btn-xs(ng-if="!result.isRemembered", ng-click="rememberProfile(result)")
+						| Remember
+
+				//td.profile-action-list
+				//	a.profile-action-list--item.btn.btn-default.btn-xs(ng-click="pingProfile(result)")
+				//		span.fa.fa-bell &nbsp;Ping

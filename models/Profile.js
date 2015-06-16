@@ -15,9 +15,10 @@ Profile.add({
                 extended : { type: Types.Html, wysiwig: true, height: 300}
             },
     genres : { type: Types.TextArray },
-    type  : { type: Types.Select, options:'Artist, Venue, Promoter'},
+    type  : { type: Types.Select, options:'Artist, Venue, Organiser'},
     subtype : {type: String},
-    negotiations : { type: Types.Relationship, ref: 'Negotiation', many:true }
+    negotiations : { type: Types.Relationship, ref: 'Negotiation', many:true },
+    proposals : {type: Types.Relationship, ref: 'Proposal', many:true}
     //TODO socialLinks    : {type : undefined }
     //TODO souncloudLinks : {type : undefined }
     //TODO videoLinks     : {type : undefined }

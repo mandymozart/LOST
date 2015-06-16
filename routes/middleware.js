@@ -85,8 +85,9 @@ exports.requireAdmin = function(req, res, next) {
 		req.flash('error', 'Please sign in to access this page.');
 		res.redirect('/keystone/signin');
 	}
-	else if (!req.user.canAccessKeystone()){
+	else if (!req.user.isAdmin){
 		req.flash('error', 'This feature can only be accessed by administrators.');
+		res.redirect('/profiles')
 	}
 	else{
 		next();

@@ -2,7 +2,7 @@
 var app = angular.module('muriquee')
 
 
-app.controller('ProfileCtrl', function($scope, $http, $localStorage, Profile){
+app.controller('ProfileCtrl', function($scope, $http, $localStorage){
 	function updateView(){
 		$('#profile-name-area').val($scope.profile.name);
 		$('#profile-about-brief-area').val($scope.profile.about.brief);
@@ -20,25 +20,35 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage, Profile){
   		}
 	};
 
-	$scope.storage = $localStorage.$default({
-		profiles       : [],
-		profile        : {},
-		searchOptions  : {},
-		searchResults  : [],
-		selectedResult : {}
-	});
+	function resetStorage(){
+		$scope.storage = {};
+		$scope.storage = $localStorage.$default({
+			profiles       : [],
+			profile        : {},
+			searchOptions  : {},
+			searchResults  : [],
+			selectedResult : {},
+			selectedDate   : new Date()
+		});
+	}
+
+	resetStorage();
 
 	$scope.profiles = [];
 	$scope.profile  = undefined
 
-	$http.post('/profilesData')
-		.success(function(data){
-			$scope.profiles = data;
-			$scope.storage.profiles = data;
-		})
-		.error(function(){
-			alert('error retrieving profile data from server');
-		});
+	$scope.fetchProfiles = function(callback){
+		$http.post('/profilesData')
+			.success(function(data){
+				$scope.profiles = data;
+				$scope.storage.profiles = data;
+				if (callback) callback();
+			})
+			.error(function(){
+				alert('error retrieving profile data from server');
+			});
+	}
+	$scope.fetchProfiles();
 
 
 	$scope.loadProfile = function(p){
@@ -61,12 +71,13 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage, Profile){
 		}
 		$http(req)
 		.success(function(data){
+			resetStorage();
+			$scope.saveStatus = "";
 			$localStorage.negotiations = data;
 		})
 		.error(function(){
 			alert('error retreiveing negotiations data from server');
 		});
-		console.log(Profile.getProfile());
 	}
 	$scope.createProfile = function(){
 		if ($scope.profiles.length == 0) return;
@@ -105,6 +116,11 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage, Profile){
 			$http(req)
 			.success(function(data){
 				$scope.saveStatus = "successfully saved profile";
+				var i = $scope.profiles.indexOf($scope.profile);
+				$scope.fetchProfiles(function(){
+					console.log($scope.profiles[i])
+					$scope.loadProfile($scope.profiles[i]);
+				});
 			})
 			.error(function(){
 				$scope.saveStatus = "error saving profile";
@@ -115,7 +131,7 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage, Profile){
 
 	$scope.saveStatus     = "";
 
-	$scope.profileTypes   = ['Artist', 'Venue', 'Promoter'];
+	$scope.profileTypes   = ['Artist', 'Venue', 'Organiser'];
 	$scope.artistTypes    = ['Solo Performer', 'Band', 'Magician', 'Orchestra'];
 	$scope.venueTypes     = ['Concert Hall', 'Live Hall', 'Club', 'Open Air', 'Bar'];
 	$scope.organiserTypes = ['Live', 'Club', 'Festival', 'Avant Garde'];

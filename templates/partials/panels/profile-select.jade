@@ -6,7 +6,6 @@
 				span.fa.fa-chevron-down
 
 	.panel-body
-		hheheheh
 		table.table.table-striped.table-hover.profile-filtered-list
 			tbody.profile-filtered-list--body
 				tr(ng-repeat="profile in profiles | orderBy:'name'")
@@ -14,7 +13,7 @@
 						span.profile-info-list--item.profile-name {{profile.name}}
 						span.profile-type.label.label-primary {{profile.type}}
 					td.profile-genre-list
-						span.profile-genre-list--item.label.label-info(ng-repeat="g in result.genres") {{g}}
+						span.profile-genre-list--item.label.label-info(ng-repeat="g in result.genres track by $index") {{g}}
 					td.profile-action-list
 						.btn.btn-default.btn-xs(ng-click="loadProfile(profile)") Select
 	.panel-footer.text-right

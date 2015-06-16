@@ -4,6 +4,7 @@ var app = angular.module('muriquee')
 app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage){
 	//listeners
 	$scope.submitSearch = function(index){
+		$localStorage.searchOptions.profileSearch = true;
 		var req = {
  			method: 'POST',
  			url: '/profilesData',
@@ -32,6 +33,50 @@ app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage){
 		//TODO
 		alert('commentProfile: \n' + JSON.stringify(p));
 	}
+	$scope.rememberProfile = function(p){
+		if (!$scope.storage.rememberedProfiles){
+			$scope.storage.rememberedProfiles = [];
+		}
+		if ($scope.storage.rememberedProfiles.indexOf(p) == -1){
+			$scope.storage.rememberedProfiles.push(p);
+			p.isRemembered = true;
+		}
+	}
+	$scope.removeRemeberedProfile = function(p){
+		var i = $scope.storage.rememberedProfiles.indexOf(p);
+		$scope.storage.rememberedProfiles.splice(i, 1);
+		p.isRemembered = false;
+	}
+	$scope.rememberAll = function(){
+		$scope.storage.searchResults.forEach($scope.rememberProfile);
+	}
+	$scope.removeAll = function(){
+		$scope.storage.rememberedProfiles.forEach(function(p){
+			p.isRemembered = false;
+		});
+		$scope.storage.rememberedProfiles = [];
+	}
+	$scope.pushCall = function(){
+		var req = {
+ 			method: 'POST',
+ 			url: '/profilesData',
+ 			headers: {
+   				'Content-Type': 'application/json'
+ 			},
+ 			data: {
+ 				profile:$scope.storage.profile,
+ 				profiles:$scope.storage.rememberedProfiles,
+ 				proposedDate:$scope.storage.selectedDate
+ 			}
+		}
+		$http(req)
+		.success(function(data){
+			alert('sucessfully sent proposals');
+		})
+		.error(function(){
+			alert('error sending profiles');
+		})
+	}
 
 	//filters
 	$scope.filterOnTour = function(p){
@@ -43,12 +88,33 @@ app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage){
 		return false;
 	}
 
+	$scope.onProfileTypeSelectionChanged = function(){
+		var pt = $scope.storage.searchOptions.profileType;
+		if (pt === 'Artist'){
+			$scope.profileSubtypes = $scope.artistTypes;
+		}
+		else if (pt === 'Venue'){
+			$scope.profileSubtypes = $scope.venueTypes;
+		}
+		else {
+			$scope.profileSubtypes = $scope.organiserTypes;
+		}
+		$scope.storage.searchOptions.subtypes = []
+	}
+
 	$scope.storage = $localStorage;
+	if (!$scope.storage.rememberedProfiles){
+		$scope.storage.rememberedProfiles = [];
+	}
 
 	$scope.profileTypes   = ['Artist', 'Venue', 'Promoter'];
+
 	$scope.artistTypes    = ['Solo Performer', 'Band', 'Magician', 'Orchestra'];
 	$scope.venueTypes     = ['Concert Hall', 'Live Hall', 'Club', 'Open Air', 'Bar'];
 	$scope.organiserTypes = ['Live', 'Club', 'Festival', 'Avant Garde'];
+
+	$scope.profileSubtypes = $scope.artistTypes;
+
 	$scope.genres         = ['Rock','Pop','Classic','Deep House','Hip Hop','Experimental','Techno','Acid House'];
 	if ($localStorage.searchOptions === {}){
 		$localStorage.searchOptions  = {
@@ -56,7 +122,7 @@ app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage){
 			location       : [ 0.0, 0.0 ],
 			radius         : 15.0,
 			genres         : [],
-			subtype        : '',
+			subtypes       : [],
 			profileName    : ''
 		};
 	}

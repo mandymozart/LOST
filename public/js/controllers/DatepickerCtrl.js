@@ -1,11 +1,15 @@
 'use strict';
 var app = angular.module('muriquee')
 
-app.controller('DatepickerCtrl', function ($scope) {
+app.controller('DatepickerCtrl', function ($scope, $localStorage) {
     $scope.today = function() {
         $scope.dt = new Date();
     };
     $scope.today();
+
+    $scope.$watch('dt', function(newValue, oldValue){
+        $localStorage.selectedDate = newValue;
+    })
 
     $scope.clear = function () {
         $scope.dt = null;

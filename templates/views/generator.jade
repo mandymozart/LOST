@@ -1,0 +1,15 @@
+extends ../layouts/default
+
+block header
+	include ../partials/navbars/backend
+
+
+block content
+	.container-fluid(ng-controller="GeneratorCtrl")
+		span
+			| {{msg}}
+			br
+		span
+			| number of profiles to generate
+		input(type="number", ng-model="no")
+		button(ng-click="submit()") submit

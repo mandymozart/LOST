@@ -44,8 +44,11 @@ exports = module.exports = function(app) {
 	app.get('/calendar', middleware.requireUser, routes.views.calendar);
 	app.get('/profiles', middleware.requireUser, routes.views.profiles);
 
+	app.get('/generator', middleware.requireAdmin, routes.views.generator);
+	
 	// Data
 	app.post('/profilesData', middleware.requireUser, routes.views.profilesData);
+	app.post('/generatorPost', middleware.requireAdmin, routes.views.generatorPost);
 
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);

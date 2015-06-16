@@ -7,9 +7,13 @@ section.section#searchResultsSection
 				span.fa.fa-street-view &nbsp;Resident ({{searchResultsCount}})
 			li: a(href="#resultsOntourTab", data-toggle="tab")
 				span.fa.fa-space-shuttle &nbsp;On tour (2)
+			li: a(href="#resultsRememberedTab", data-toggle="tab")
+				span &nbsp; Remembered ({{storage.rememberedProfiles.length}})
 	.panel-body
 		.tab-content
 			// Tab: Residents
 			include ../tabs/results-resident.jade
 			// Tab: On Tour
 			include ../tabs/results-ontour.jade
+			// Tab: Remembered
+			include ../tabs/results-remembered.jade

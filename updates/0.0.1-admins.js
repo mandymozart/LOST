@@ -11,6 +11,17 @@ exports.create = {
 	User: [
 		{ 'name.first': 'Admin', 'name.last': 'User', email: 'janikhotz@gmail.com', password: 'admin', isAdmin: true }
 	
+	],
+	Genre: [
+		{ name : 'Techno' },
+		{ name : 'Deep House'},
+		{ name : 'Classical'},
+		{ name : 'Rock'},
+		{ name : 'Pop'},
+		{ name : 'Acid House'},
+		{ name : 'Experimental'},
+		{ name : 'Hip Hop'},
+		{ name : 'World'}
 	]
 };
 

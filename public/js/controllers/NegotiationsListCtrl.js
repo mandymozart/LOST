@@ -20,7 +20,7 @@ app.controller('NegotiationsListCtrl', function($scope, $localStorage, $http){
 		$http(req)
 		.success(function(data){
 			$localStorage.selectedNegotiation = data;
-			$localStorage.selectedNegotiation.other = undefined; //TODO
+			//$localStorage.selectedNegotiation.other = undefined; //TODO
 		})
 		.error(function(){
 			alert('error retreiveing negotiations messages from server');
