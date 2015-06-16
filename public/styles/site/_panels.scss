@@ -1,4 +1,9 @@
+/* Calendar */
 @import "panels/calendar/default";
 @import "panels/calendar/datepicker";
 @import "panels/calendar/ongoing-negotiations";
 @import "panels/calendar/profile-detail-readonly";
+
+/* Frontend */
+//@import "panels/frontend/mixins"; update to scss
+@import "panels/frontend/session";
