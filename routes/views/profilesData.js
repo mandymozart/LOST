@@ -14,7 +14,7 @@ function match(p, options){
 	//filter by profile type
 	res = res && options.profileType == p.type;
 	//filter by profile subtype
-	res = res && options.profileSubtype == p.subtype;
+	//res = res && options.profileSubtype == p.subtype;
 	//return
 	return res;
 }
@@ -28,12 +28,14 @@ exports = module.exports = function(req, res){
 			if(err){
 				console.log(err);
 			}
+			console.log('num profiles:' + profiles.length);
 			var results = [];
 			for (var i=0;i<profiles.length;i++){
 				if (match(profiles[i], options)){
 					results.push(profiles[i]);
 				}
 			}
+			console.log('num results:' + results.length);
 			res.send(JSON.stringify(results));
 		})
 	}
