@@ -66,7 +66,8 @@ app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage){
  			data: {
  				profile:$scope.storage.profile,
  				profiles:$scope.storage.rememberedProfiles,
- 				proposedDate:$scope.storage.selectedDate
+ 				proposedDate:$scope.storage.selectedDate,
+ 				sendProposal:true
  			}
 		}
 		$http(req)
@@ -74,7 +75,7 @@ app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage){
 			alert('sucessfully sent proposals');
 		})
 		.error(function(){
-			alert('error sending profiles');
+			alert('error sending proposals');
 		})
 	}
 

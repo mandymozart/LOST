@@ -28,14 +28,14 @@ exports = module.exports = function(req, res){
 			if(err){
 				console.log(err);
 			}
-			console.log('num profiles:' + profiles.length);
+			//console.log('num profiles:' + profiles.length);
 			var results = [];
 			for (var i=0;i<profiles.length;i++){
 				if (match(profiles[i], options)){
 					results.push(profiles[i]);
 				}
 			}
-			console.log('num results:' + results.length);
+			//console.log('num results:' + results.length);
 			res.send(JSON.stringify(results));
 		})
 	}
@@ -113,11 +113,13 @@ exports = module.exports = function(req, res){
 	}
 	else if (req.body.sendProposal){
 		var dt = new Date();
-		var proposal = new keystone.list('Proposal').model;
+		var Proposal = keystone.list('Proposal').model;
+		var proposal = Proposal();
+		console.log(proposal);
 		proposal.set({
 			sentDate:dt,
 			proposedDate:req.body.proposedDate,
-			sender:req.body.profile
+			sender:req.body.profile._id
 		});
 		proposal.save();
 		var pids = _.map(req.body.profiles, function(p){
@@ -130,6 +132,7 @@ exports = module.exports = function(req, res){
      			doc.proposals.push(proposal._id);
      			doc.save();
      		})
+     		res.sendStatus(200);
 		});
 	}
 	else{ // user profiles
