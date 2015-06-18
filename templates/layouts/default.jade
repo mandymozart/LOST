@@ -1,5 +1,6 @@
 include ../mixins/flash-messages
 include ../mixins/form-mixins
+include ../mixins/auth/auth-forms
 
 doctype html
 html
@@ -107,7 +108,12 @@ html
 	// Modal: Terms
 	include ../partials/modals/terms.html
 
-	block modals
+	block modal
+		if !user
+			#modal-auth(tabindex="-1", role="dialog", aria-labelledby="signinModal", aria-hidden="true").modal.fade
+				.modal-dialog
+					.modal-content
+						+auth-forms({ modal: true, initial: 'signin' })
 
 
 		//script(type="text/ng-template",id="modalContent.html"):

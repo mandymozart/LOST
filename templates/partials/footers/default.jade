@@ -19,3 +19,11 @@
 		a(href='http://www.shalomsalon.de/',target='_blank') Boddinale
 		| &nbsp;+&nbsp;
 		a(href='http://www.shalomsalon.de/',target='_blank') Loophole
+
+	#admin-login
+		if user
+			if user.canAccessKeystone
+				a(href='/keystone') Open Admin
+			a.btn.btn-sm(href='/keystone/signout') Sign Out
+		else
+			a.btn.btn-xs.btn-success(href='/keystone/signin') Admin Sign In

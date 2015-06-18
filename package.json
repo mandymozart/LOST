@@ -24,7 +24,13 @@
     "time-grunt": "~0.3.1",
     "grunt-concurrent": "~0.5.0",
     "grunt-nodemon": "~0.2.1",
-    "open": "0.0.5"
+    "passport": "^0.2.1",
+    "passport-facebook": "^2.0.0",
+    "passport-github": "^0.1.5",
+    "passport-google-oauth": "^0.2.0",
+    "passport-twitter": "^1.0.3",
+    "open": "0.0.5",
+    "request": "^2.55.0"
   },
   "engines": {
     "node": ">=0.10.22",

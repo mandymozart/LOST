@@ -13,11 +13,19 @@ div(role="navigation").navbar.navbar-fixed-top.navbar-default
 				each link in navLinks
 					li(class=(section == link.key ? 'active' : null)): a(href=link.href)= link.label
 			ul.nav.navbar-nav.navbar-right
-				if user
+				//if user
 					li: a(href='/profiles') Select Profile
+				// From SydJs
 				if user
-					if user.canAccessKeystone
-						li: a(href='/keystone') Open Admin
-					li: a.btn.btn-sm(href='/keystone/signout') Sign Out
+					li
+						a(href='/profiles').user.hidden-xs
+							//img(src=(user.photo && user._.photo.thumbnail(27,27) : user.avatarUrl || '/images/avatar.png'), width=27).img-circle
+							= user.name.first
+					li: a(href='/signout')
+						span.visible-xs Sign out
+						span.entypo.entypo-large.entypo-logout.hidden-xs
 				else
-					li: a.btn.btn-sm.btn-success(href='/keystone/signin') Sign In
+					li: a(href='/signin', data-initial='signin',data-toggle="modal",data-target="#signinModal").js-auth-trigger Sign in
+					li: a(href='/join').js-auth-trigger Join
+
+
