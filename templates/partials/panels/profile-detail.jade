@@ -1,32 +1,56 @@
 .panel.panel-default.with-nav-tabs.filtered-list#profileDetailPanel
 	.panel-header
 		.panel-heading
-			.panel-title Profile <br><em> {{saveStatus}} </em>
+			.panel-title Profile {{profile.name}}
+				.label-info.pull-right(ng-if="saveStatus !== ''") {{saveStatus}}
 	.panel-body
 		form
-			.form-group
-				label(for="profile-type-select") Profile Type: <br>
-				select(id="profile-type-select", ng-model="profile.type")
-					option(value="{{option}}", ng-repeat="option in profileTypes")
-						| {{option}}
-			.form-group
-				label(for="profile-name-area") Profile Name:
-					input.form-control(id="profile-name-area",rows="2", cols="50", ng-model="profile.name")
+			.row
+				.col-sm-4
+					.form-group
+						label(for="profile-name-area") Name:
+							input.form-control(id="profile-name-area",rows="2", cols="50", ng-model="profile.name", placeholder="Unique Name")
 
-			.form-group
-				label(for="profile-about-brief-area") About - brief:
-				textarea.form-control(id="profile-about-brief-area", rows="2", cols="50", ng-model="profile.about.brief")
+				.col-sm-4
+					.form-group
+						label(for="profile-type-select") Type:
+						br
+						select(id="profile-type-select", ng-model="profile.type", ng-change="onProfileTypeSelectionChanged()",style="width:100%")
+							option(value="{{option}}", ng-repeat="option in profileTypes", selected="selected", ng-if="option == 'Artist'")
+								| {{option}}
+							option(value="{{option}}", ng-repeat="option in profileTypes", ng-if="option != 'Artist'")
+								| {{option}}
+					.form-group
+						label(for="subtype-select") Subtype:
+						br
+						select(id="subtype-select", ng-model="profileSubtype",style="width:100%")
+							option(value="{{option}}", ng-repeat="option in profileSubtypes")
+								| {{option}}
+				.col-sm-4
+					.form-group
+						label(for="genre-select") Genres:
+						ui-select(id="genre-select",multiple, ng-model="profile.genres", theme="select2", ng-disabled="disabled", style="max_width: 100%; width: 100%;")
+							ui-select-match(placeholder="Select genres...") {{$item}}
+							ui-select-choices(repeat="genre in genres | filter:$select.search")
+								| {{genre}}
+			.row
+				.col-sm-4
+					.form-group
+						label(for="profile-zip") ZIP Code
+						input.form-control(id="profile-zip", placeholder="ex. 0711")
+				.col-sm-8
+					.form-group
+						label(for="profile-link") Link:
+						input.form-control(id="profile-link",placeholder="ex. http://www.soundcloud.com/awesome_user")
+			.row
+				.col-sm-4
+					//placeholder for profile picture
+				.col-sm-8
+					.form-group
+						label(for="profile-about-brief-area") About:
+						textarea.form-control(id="profile-about-brief-area", rows="2", cols="50", ng-model="profile.about.brief")
 
-			.form-group
-				label(for="profile-about-extended-area") About - extended:
-				textarea.form-control(id="profile-about-extended-area",rows="10",cols="50", ng-model="profile.about.extended")
-			
-			.form-group
-				label(for="genre-select") Genres:
-				ui-select(id="genre-select",multiple, ng-model="profile.genres", theme="select2", ng-disabled="disabled", style="max_width: 100%; width: 100%;")
-					ui-select-match(placeholder="Select genres...") {{$item}}
-					ui-select-choices(repeat="genre in genres | filter:$select.search")
-						| {{genre}}
+
 	.panel-footer.text-right
 		button.btn.btn-primary(ng-click="saveProfile()"): span.fa.fa-save
 			| &nbsp; Save profile
