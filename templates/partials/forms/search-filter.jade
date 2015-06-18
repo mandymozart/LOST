@@ -1,0 +1,27 @@
+form.form-inline#searchFilterForm
+	.row
+		.col-md-3
+			.form-group
+				select.form-control(name='selectProfileType', ng-model="storage.searchOptions.profileType",ng-change="onProfileTypeSelectionChanged()")
+					option(value="{{option}}", ng-repeat="option in profileTypes")
+						| {{option}}
+		.col-md-3
+			.form-group
+				ui-select(name="selectSubtype", multiple, ng-model="storage.searchOptions.subtypes", theme="select2", ng-disabled="disabled")
+					ui-select-match(placeholder="Select subtypes...") {{$item}}
+					ui-select-choices(repeat="st in profileSubtypes | filter:$select.search")
+						| {{st}}
+		.col-md-3
+			.form-group
+				ui-select(name="selectGenres", multiple, ng-model="storage.searchOptions.genres", theme="select2", ng-disabled="disabled")
+					ui-select-match(placeholder="Select genres...") {{$item}}
+					ui-select-choices(repeat="genre in genres | filter:$select.search")
+						| {{genre}}
+		.col-md-3
+			.form-group
+				.input-group
+					.input-group-addon: span.fa.fa-user
+					input.form-control(ng-model="storage.searchOptions.profileName",type='text',placeholder='Contact artist',name='inputProfile',id='inputProfile')
+					.input-group-addon
+						button.btn.btn-default(type='submit', ng-click="submitSearch()"): span.fa.fa-search
+

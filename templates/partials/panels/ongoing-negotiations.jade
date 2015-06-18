@@ -1,29 +1,22 @@
-.panel.panel-default#ongoingNegotiationsPanel(ng-controller="NegotiationsListCtrl", style="height=250; overflow: auto")
+.panel.panel-default.scrollable#ongoingNegotiationsPanel(ng-controller="NegotiationsListCtrl", style="height=250; overflow: auto")
 	.panel-heading
-		.panel-title Ongoing negotiations ({{storage.profile.negotiations.length}})
-			.pull-right
-				span.fa.fa-chevron-down
+		.panel-title: span.fa.fa-gavel &nbsp; Ongoing negotiations ({{storage.profile.negotiations.length}})
+			.dropdown.pull-right
+				a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
+					span.fa.fa-filter
+				ul.dropdown-menu(role='menu')
+					li
+						a(href='#') by stared&nbsp;
+							span.fa.fa-star
+					li
+						a(href='#') by fee&nbsp;
+							span.fa.fa-money
 	.panel-body
 		table.table.table-striped.table-hover.profile-filtered-list
-			thead.profile-filtered-list--head
-				tr
-					th(colspan='2')
-					th.text-right
-						.dropdown.pull-right
-							a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
-								span.fa.fa-angle-down
-							ul.dropdown-menu(role='menu')
-								li
-									a(href='#') by stared&nbsp;
-										span.fa.fa-star
-								li
-									a(href='#') by fee&nbsp;
-										span.fa.fa-money
-
 			tbody.profile-filtered-list--body
 				tr(ng-repeat="n in storage.profile.negotiations")
 					td
-						span.profile-info-list {{n.date}}
+						span.profile-info-list.hidden {{n.date}}
 					td.profile-info
 						span.profile-info-list--item.fa.fa-star.text-warning
 						span.profile-info-list--item.fa.fa-play

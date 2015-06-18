@@ -2,7 +2,6 @@
 	table.table.table-striped.table-hover.profile-filtered-list
 		tbody.profile-filtered-list--body
 			tr(ng-repeat="result in storage.searchResults | filter:filterOnTour")
-				// hier ist logisch was total falsch. also der filterOnTour müßte in dem fall eigentlich Resident anzeigen.
 				td.profile-info(ng-click="showProfile(result)")
 					span.profile-info-list--item.fa.fa-star.text-warning
 					span.profile-info-list--item.fa.fa-play
@@ -12,9 +11,9 @@
 					span.profile-genre-list--item.label.label-info(ng-repeat="g in result.genres track by $index") {{g}}
 				td.
 				td.profile-action-list(on="result")
-					a.profile-action-list--item.btn.btn-success.btn-xs(ng-if="result.isRemembered", ng-click="removeRemeberedProfile(result)")
+					a.profile-action-list--item.btn.btn-success.btn-xs(ng-if="result.isRemembered", ng-click="removeRemeberedProfile(result)"): span.fa.fa-bookmark-o
 						| Remove
-					a.profile-action-list--item.btn.btn-default.btn-xs(ng-if="!result.isRemembered", ng-click="rememberProfile(result)")
+					a.profile-action-list--item.btn.btn-default.btn-xs(ng-if="!result.isRemembered", ng-click="rememberProfile(result)"): span.fa.fa-bookmark
 						| Remember
 
 				//td.profile-action-list

@@ -1,8 +1,6 @@
 .panel.panel-default#incomingProposalsPanel(style="height=250; overflow: auto", ng-controller="IncomingProposalsCtrl", ng-if="storage.profile.proposals.length != 0")
 	.panel-heading
-		.panel-title Incoming proposals ({{storage.profile.proposals.length}})
-			.pull-right
-				span.fa.fa-chevron-down
+		.panel-title: span.fa.fa-inbox &nbsp; Incoming proposals ({{storage.profile.proposals.length}})
 	.panel-body.scrollable
 		table.table.table-striped.table-hover.profile-filtered-list
 			tbody.profile-filtered-list--body

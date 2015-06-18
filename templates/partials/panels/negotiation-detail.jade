@@ -1,8 +1,12 @@
-.panel.panel-default(ng-controller="NegotiationDetailCtrl")#negotiationDetailPanel
+.panel.panel-default.panel-front(ng-controller="NegotiationDetailCtrl",ng-if="!storage.selectedNegotiation.sender.name")#negotiationDetailPanel
 	.panel-heading
 		.panel-title Negotiation between <b>{{storage.selectedNegotiation.sender.name}}</b> and <b>{{storage.selectedNegotiation.receiver.name}}</b>
-		textarea(id="negotiation-offer-area", rows="1", cols="20",ng-model="storage.selectedNegotiation.currentOffer")
-		button.btn.btn-default(ng-click="offer()") submit offer
+			.pull-right
+				button.btn.btn-default: span.fa.fa-close
+		.input-group
+			input.form-control(id="negotiation-offer-area", placeholder="0,00",ng-model="storage.selectedNegotiation.currentOffer")
+			.input-group-addon: button.btn.btn-default(ng-click="offer()") Submit offer
+
 	.panel-body
 		row(ng-repeat="message in storage.selectedNegotiation.messages | orderBy:date")
 				span.negotiation-date.negotiation-msg-sent
@@ -19,7 +23,7 @@
 				.form-group
 					button.btn.btn-default(ng-click="send()") Send	
 	.panel-footer
-		button.btn.btn-default(ng-click="acceptNegotiation()") Accept
-		button.btn.btn-default(ng-click="closeNegotiation()") Decline
+		button.btn.btn-success(ng-click="acceptNegotiation()") Accept
+		button.btn.btn-warning(ng-click="closeNegotiation()") Decline
 		
 
