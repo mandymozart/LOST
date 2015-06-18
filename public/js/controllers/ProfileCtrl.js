@@ -21,7 +21,6 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage){
 	};
 
 	function resetStorage(){
-		$scope.storage = {};
 		$scope.storage = $localStorage.$default({
 			profiles       : [],
 			profile        : {},
@@ -30,6 +29,12 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage){
 			selectedResult : {},
 			selectedDate   : new Date()
 		});
+		$localStorage.searchResults = [];
+		$localStorage.rememberedProfiles = [];
+		$localStorage.negotiations = [];
+		$localStorage.selectedNegotiation = undefined;
+		$localStorage.selectedResult = undefined;
+		$localStorage.searchOptions = {};
 	}
 
 	resetStorage();
@@ -56,8 +61,7 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage){
 			$scope.saveStatus = "unsaved profile";
 			return;
 		}
-		$scope.profile = p;
-		$scope.storage.profile = p;
+
 		var req = {
  			method: 'POST',
  			url: '/profilesData',
@@ -66,14 +70,15 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage){
  			},
  			data: {
  				populateNegotiations:true,
- 				profile:$localStorage.profile
+ 				profile:p
  			}
 		}
 		$http(req)
 		.success(function(data){
 			resetStorage();
+			$scope.profile = data;
+			$scope.storage.profile = data;
 			$scope.saveStatus = "";
-			$localStorage.negotiations = data;
 		})
 		.error(function(){
 			alert('error retreiveing negotiations data from server');
@@ -81,16 +86,17 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage){
 	}
 	$scope.createProfile = function(){
 		if ($scope.profiles.length == 0) return;
-		$scope.profiles.push({
+		var newProfile = {
 			user  : $scope.profiles[0].user,
 			name  : "enter profile name here",
 			about : {
 				brief : "brief description",
 				extended : "longer description"
 			},
-			negotiations : []
-		});
-		$scope.profile = $scope.profiles[$scope.profiles.length - 1];
+			negotiations : [],
+		}
+		$scope.profile = newProfile;
+		$scope.saveProfile();
 	}
 	$scope.loadCalendar = function(){
 		if ($scope.profile){
@@ -116,10 +122,8 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage){
 			$http(req)
 			.success(function(data){
 				$scope.saveStatus = "successfully saved profile";
-				var i = $scope.profiles.indexOf($scope.profile);
 				$scope.fetchProfiles(function(){
-					console.log($scope.profiles[i])
-					$scope.loadProfile($scope.profiles[i]);
+					console.log('fetched');
 				});
 			})
 			.error(function(){

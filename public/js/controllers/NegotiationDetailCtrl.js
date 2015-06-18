@@ -6,6 +6,7 @@ app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http){
 	$scope.negotiation = $localStorage.selectedNegotiation;
 	$scope.messageAreaText = " ";
 	$scope.profile = $localStorage.profile;
+	$scope.storage = $localStorage;
 
 	$scope.sent = function(nm){
 		return nm.sender === $localStorage.profile._id;

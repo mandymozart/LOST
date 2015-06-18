@@ -25,7 +25,5 @@ Profile.add({
     //TODO ...
 });
 
-
-
 //registration
 Profile.register();

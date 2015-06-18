@@ -15,7 +15,10 @@
 					td.profile-genre-list
 						span.profile-genre-list--item.label.label-info(ng-repeat="g in result.genres track by $index") {{g}}
 					td.profile-action-list
-						.btn.btn-default.btn-xs(ng-click="loadProfile(profile)") Select
+						.btn.btn-default.btn-xs(ng-click="loadProfile(profile)", ng-if="profile._id != storage.profile._id") 
+							| Select
+						.btn.btn-success.btn-xs(ng-click="loadProfile(profile)", ng-if="profile._id == storage.profile._id") 
+							| Selected
 	.panel-footer.text-right
 		button.btn.btn-default(ng-click="createProfile()"): span.fa.fa-search
 			| &nbsp; New profile

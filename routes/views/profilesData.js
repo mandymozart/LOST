@@ -1,16 +1,18 @@
 var keystone = require('keystone');
 var _        = require('underscore');
+var async    = require('async');
 
 function match(p, options){
 	var res = true;
 	//filter by name
-	res = res && (options.profileName == "") || (p.name.toLowerCase().indexOf(options.profileName.toLowerCase()) > -1)
+	res = res && (options.profileName == "") || (!options.profileName) || (p.name.toLowerCase().indexOf(options.profileName.toLowerCase()) > -1)
 	//filter by genres
 	var containsGenres = false;
-	for (var i=0; i<options.genres.length; i++){
+	var k = options.genres ? options.genres.length : 0;
+	for (var i=0; i<k; i++){
 		containsGenres = containsGenres || (p.genres.indexOf(options.genres[i]) > -1)
 	}
-	res = res && (containsGenres || options.genres.length == 0);
+	res = res && (containsGenres || k == 0);
 	//filter by profile type
 	res = res && options.profileType == p.type;
 	//filter by profile subtype
@@ -43,18 +45,38 @@ exports = module.exports = function(req, res){
 		var p_id = req.body.profile._id;
 		keystone.list('Profile').model.find()
 			.where('_id', p_id)
+			.populate('negotiations')
+			.populate('proposals')
 			.exec(function(err, profiles){
 				var p = profiles[0];
-				p.populate('negotiations, proposals', function(err,doc){
-					doc.negotiations.forEach(function(n){
-						var nms = [];
-						for (var i=0;i<n.messages.length;i++){
-							nms.push(JSON.parse(n.messages[i]));
-						}
-						n.messages = nms;
+				function populateNegotiationMessages(cb){
+					async.each(p.negotiations,
+						function(n, callback){
+							n.populate('messages , receiver , sender', function(err, doc){
+								//console.log(doc);
+								callback();
+							})
+						},
+						function done(err){
+							cb();
+						})	
+				}
+				function populateProposals(cb){
+					async.each(p.proposals,
+						function(pr, callback){
+							pr.populate('sender', function(err, doc){
+								callback();
+							})
+						},
+						function done(err){
+							cb();
+						})
+				}
+				populateNegotiationMessages(function(){
+					populateProposals(function(){
+						res.send(p);
 					})
-					res.send(JSON.stringify(doc.negotiations));
-				})
+				})		
 			})
 	}
 	else if (req.body.saveProfile){ //save profile
@@ -115,12 +137,12 @@ exports = module.exports = function(req, res){
 		var dt = new Date();
 		var Proposal = keystone.list('Proposal').model;
 		var proposal = Proposal();
-		console.log(proposal);
 		proposal.set({
 			sentDate:dt,
 			proposedDate:req.body.proposedDate,
 			sender:req.body.profile._id
 		});
+		//console.log(proposal);
 		proposal.save();
 		var pids = _.map(req.body.profiles, function(p){
 			return p._id;
@@ -130,9 +152,77 @@ exports = module.exports = function(req, res){
 		}, function(err, docs){
      		docs.forEach(function(doc){
      			doc.proposals.push(proposal._id);
+     			console.log(doc);
      			doc.save();
      		})
      		res.sendStatus(200);
+		});
+	}
+	else if (req.body.acceptProposal){
+		//create negotiation
+		var Negotiation = keystone.list('Negotiation').model;
+		var negotiation = Negotiation();
+		negotiation.set({
+			date         : req.body.proposal.proposedDate,
+    		sender       : req.body.proposal.sender._id,
+    		receiver     : req.body.profile._id,
+    		description  : "",
+    		messages     : [],
+    		currentOffer : "offer gage",
+   			status       : "open"
+		})
+		negotiation.save();
+		//console.log(negotiation);
+		//add negotiation to profiles
+		keystone.list('Profile').model.find({
+			'_id': { $in: [ req.body.profile._id, req.body.proposal.sender._id ] }
+		},function(err, docs){
+			var p = undefined;
+			_.each(docs, function(d){
+				if (d._id == req.body.profile._id){
+					p = d;
+					var index = -1;
+					for (var i=0;i<d.proposals.length;i++){
+						if (d.proposals[i]._id == req.body.proposal._id){
+							index = i;
+							break;
+						}
+					}
+					d.proposals.splice(index, 1);
+				}
+				d.negotiations.push(negotiation._id);
+				d.save();
+				//console.log(d);
+			});
+			p.populate('proposals , negotiations', function(err, doc){
+				function populateNegotiationMessages(cb){
+					async.each(doc.negotiations,
+						function(n, callback){
+							n.populate('messages , receiver , sender', function(err, doc){
+								callback();
+							})
+						},
+						function done(err){
+							cb();
+						})	
+				}
+				function populateProposals(cb){
+					async.each(doc.proposals,
+						function(pr, callback){
+							pr.populate('sender', function(err, doc){
+								callback();
+							})
+						},
+						function done(err){
+							cb();
+						})
+				}
+				populateNegotiationMessages(function(){
+					populateProposals(function(){
+						res.send(doc);
+					})
+				})
+			})
 		});
 	}
 	else{ // user profiles

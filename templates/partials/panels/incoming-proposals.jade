@@ -1,7 +1,24 @@
-.panel.panel-default#incomingProposalsPanel
+.panel.panel-default#incomingProposalsPanel(style="height=250; overflow: auto", ng-controller="IncomingProposalsCtrl", ng-if="storage.profile.proposals.length != 0")
 	.panel-heading
-		.panel-title Incoming proposals
+		.panel-title Incoming proposals ({{storage.profile.proposals.length}})
 			.pull-right
 				span.fa.fa-chevron-down
-	.panel-body
-		.alert.alert-warning Yet to be implemented.
+	.panel-body.scrollable
+		table.table.table-striped.table-hover.profile-filtered-list
+			tbody.profile-filtered-list--body
+				tr(ng-repeat="proposal in storage.profile.proposals")
+					td
+						span.fa.fa-calendar
+						span {{getMonth(proposal)}} {{getDay(proposal)}} {{getYear(proposal)}}
+					td(ng-click="showProfile(proposal.sender)")
+						span.profile-info-list--item.fa.fa-star.text-warning
+						span.profile-info-list--item.fa.fa-play
+						span.profile-info-list--item.profile-name {{proposal.sender.name}}
+						span.profile-type.label.label-primary {{proposal.sender.type}}
+					td
+						button.btn.btn-default.btn-xs(ng-click="acceptProposal(proposal)")
+							| Accept
+					td
+						button.btn.btn-default.btn-xs(ng-click="declineProposal(proposal)")
+							| Decline
+		

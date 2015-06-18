@@ -1,10 +1,10 @@
 .panel.panel-default(ng-controller="NegotiationDetailCtrl")#negotiationDetailPanel
 	.panel-heading
-		.panel-title Negotiation between <b>{{negotiation.sender.name}}</b> and <b>{{negotiation.receiver.name}}</b>
-		textarea(id="negotiation-offer-area", rows="1", cols="20",ng-model="negotiation.currentOffer")
+		.panel-title Negotiation between <b>{{storage.selectedNegotiation.sender.name}}</b> and <b>{{storage.selectedNegotiation.receiver.name}}</b>
+		textarea(id="negotiation-offer-area", rows="1", cols="20",ng-model="storage.selectedNegotiation.currentOffer")
 		button.btn.btn-default(ng-click="offer()") submit offer
 	.panel-body
-		row(ng-repeat="message in negotiation.messages | orderBy:date")
+		row(ng-repeat="message in storage.selectedNegotiation.messages | orderBy:date")
 				span.negotiation-date.negotiation-msg-sent
 					| {{message.date}}
 					<br>
