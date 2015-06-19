@@ -5301,6 +5301,14 @@ a:focus {
 .profile-action-list--item {
   margin-left: 5px; }
 
+.scrollable {
+  overflow: auto; }
+
+/* Default */
+.panel-front {
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3); }
+
 /* Calendar */
 /* Font Awesome Icon Stack overwrite
 http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
@@ -5326,10 +5334,6 @@ http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
 
 .calendar-date .calendar-digit:first-child {
   margin-right: 20px; }
-
-.panel form .row {
-  margin-left: 0;
-  margin-right: 0; }
 
 #datePickerPanel .panel-body {
   min-height: 233px; }
@@ -5648,6 +5652,28 @@ body > .ui-select-bootstrap.open {
 /* Mark invalid Bootstrap */
 .ui-select-bootstrap.ng-dirty.ng-invalid > button.btn.ui-select-match {
   border-color: #D44950; }
+
+.animate-enter, .animate-leave {
+  -webkit-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -moz-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -ms-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -o-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  text-overflow: clip;
+  white-space: nowrap; }
+
+.animate-leave.animate-leave-active, .animate-enter {
+  opacity: 0;
+  width: 0px;
+  height: 0px; }
+
+.animate-enter.animate-enter-active, .animate-leave {
+  opacity: 1;
+  width: 150px;
+  height: 30px; }
 
 /*
 Version: 3.4.5 Timestamp: Mon Nov  4 08:22:42 PST 2013
@@ -6139,3 +6165,35 @@ disabled look for disabled choices in the results dropdown
   overflow: scroll; }
 
 /* Retina-ize icons */
+.ui-select-container[search-enabled=false] .ui-select-match.ng-hide {
+  display: inline-block !important; }
+
+.ui-select-container[search-enabled=false] .ui-select-match .text-muted.ng-hide {
+  display: inline !important; }
+
+.ui-select-container[search-enabled=false].ng-dirty .ui-select-match .text-muted.ng-hide {
+  display: none !important; }
+
+.material-icons.md-18 {
+  font-size: 18px; }
+
+.material-icons.md-24 {
+  font-size: 24px; }
+
+.material-icons.md-36 {
+  font-size: 36px; }
+
+.material-icons.md-48 {
+  font-size: 48px; }
+
+.material-icons.md-dark {
+  color: rgba(0, 0, 0, 0.54); }
+
+.material-icons.md-dark.md-inactive {
+  color: rgba(0, 0, 0, 0.26); }
+
+.material-icons.md-light {
+  color: white; }
+
+.material-icons.md-light.md-inactive {
+  color: rgba(255, 255, 255, 0.3); }

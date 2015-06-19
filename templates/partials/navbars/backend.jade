@@ -19,10 +19,12 @@ div(role="navigation").navbar.navbar-fixed-top.navbar-default
 				//				span.calendar-digit.calendar--day 27
 				//				span.calendar-digit.calendar--month May&nbsp;
 				//				span.calendar-digit.calendar--year 2015
-			li#selectedDate
-				span.calendar-digit.calendar--month {{getMonth()}}&nbsp;
-				span.calendar-digit.calendar--day {{getDay()}}&nbsp;
-				span.calendar-digit.calendar--year {{getYear()}}&nbsp;
+			li.navbar-text#selectedDate
+				b.text-info
+					span.fa.fa-calendar-o &nbsp;
+					span.calendar-digit.calendar--month {{getMonth()}}&nbsp;
+					span.calendar-digit.calendar--day {{getDay()}}&nbsp;
+					span.calendar-digit.calendar--year {{getYear()}}&nbsp;
 			li.dropdown
 				a.dropdown-toggle(href='#',data-toggle='dropdown',role='button',aria-expanded='false') {{profile.name}} &nbsp;
 					span.label.label-default {{profile.type}}
@@ -33,16 +35,13 @@ div(role="navigation").navbar.navbar-fixed-top.navbar-default
 					li.dropdown-header Switch to Profile
 					li(ng-repeat="p in profiles")
 						a(href='#') {{p.name}} &nbsp;
-							if p
-								if p.subtype == 'Artist'
-									span.label.label-info {{p.subtype}}
-								if p.subtype == 'Organizer'
-									span.label.label-warning {{p.subtype}}
-								if p.subtype == 'Venue'
-									span.label.label-primary {{p.subtype}}
-							else
-								span.label.label-default Undefined
+									span.label.label-primary(ng-if="p.type==Artist") {{p.type}}
+									span.label.label-warning(ng-if="p.type == 'Organiser'") {{p.type}}
+									span.label.label-info(ng-if="p.type == 'Venue'") {{p.type}}
+									span.label.label-default(ng-if="!p.type") error
 					li.divider
+					li: a(href='/profiles'): .text-primary
+						span.fa.fa-users &nbsp;Profiles
 					li: a(href='#')
 						span.fa.fa-cog &nbsp;Preferences
 					li: a(href='/signout')

@@ -2,6 +2,7 @@ form.form-inline#searchFilterForm
 	.row
 		.col-md-3
 			.form-group
+
 				select.form-control(name='selectProfileType', ng-model="storage.searchOptions.profileType",ng-change="onProfileTypeSelectionChanged()")
 					option(value="{{option}}", ng-repeat="option in profileTypes")
 						| {{option}}
@@ -20,8 +21,6 @@ form.form-inline#searchFilterForm
 		.col-md-3
 			.form-group
 				.input-group
-					.input-group-addon: span.fa.fa-user
 					input.form-control(ng-model="storage.searchOptions.profileName",type='text',placeholder='Contact artist',name='inputProfile',id='inputProfile')
-					.input-group-addon
-						button.btn.btn-default(type='submit', ng-click="submitSearch()"): span.fa.fa-search
+	button.btn.btn-primary.btn-block(type='submit', ng-click="submitSearch()"): span.fa.fa-search
 

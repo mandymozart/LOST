@@ -1,5 +1,5 @@
-.tab-pane.fade.scrollable#resultsRememberedTab(style="height: 400px; overflow: auto")
-	table.table.table-striped.table-hover.profile-filtered-list
+.tab-pane.fade.scrollable#resultsRememberedTab(style="height: 400px")
+	table.table.table-striped.table-hover.profile-filtered-list(ng-if="storage.rememberedProfiles.length!=0")
 		tbody.profile-filtered-list--body
 			tr(ng-repeat="result in storage.rememberedProfiles")
 				td.profile-info(ng-click="showProfile(result)")
@@ -11,3 +11,5 @@
 				td.profile-action-list
 					a.profile-action-list--item.btn.btn-success.btn-xs(ng-click="removeRemeberedProfile(result)")
 						span Remove
+	.well-lg.text-center(ng-if="storage.rememberedProfiles.length==0 && storage.searchResults.length!=0") Click on the result tabs and select some profiles to contact!
+	.well-lg.text-center(ng-if="storage.rememberedProfiles.length==0 && storage.searchResults.length==0") First, think! Second, maybe search first!

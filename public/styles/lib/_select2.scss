@@ -599,3 +599,13 @@ disabled look for disabled choices in the results dropdown
     overflow: scroll;
 }
 /* Retina-ize icons */
+
+.ui-select-container[search-enabled=false] .ui-select-match.ng-hide {
+  display: inline-block !important;
+}
+.ui-select-container[search-enabled=false] .ui-select-match .text-muted.ng-hide {
+  display: inline !important;
+}
+.ui-select-container[search-enabled=false].ng-dirty .ui-select-match .text-muted.ng-hide {
+  display: none !important;
+}

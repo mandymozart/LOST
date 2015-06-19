@@ -1,27 +1,28 @@
 .panel.panel-default.scrollable#ongoingNegotiationsPanel(ng-controller="NegotiationsListCtrl", style="height=250; overflow: auto")
 	.panel-heading
-		.panel-title: span.fa.fa-gavel &nbsp; Ongoing negotiations ({{storage.profile.negotiations.length}})
-			.dropdown.pull-right
-				a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
-					span.fa.fa-filter
-				ul.dropdown-menu(role='menu')
-					li
-						a(href='#') by stared&nbsp;
-							span.fa.fa-star
-					li
-						a(href='#') by fee&nbsp;
-							span.fa.fa-money
-	.panel-body
-		table.table.table-striped.table-hover.profile-filtered-list
+		.dropdown.pull-right
+			a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
+				span.fa.fa-cog
+			ul.dropdown-menu(role='menu')
+				li
+					a(href='#') by stared&nbsp;
+						span.fa.fa-star
+				li
+					a(href='#') by fee&nbsp;
+						span.fa.fa-money
+		.panel-title: span.fa.fa-gavel &nbsp; Ongoing negotiations
+			.label.label-info(ng-if="storage.profile.negotiations!=0") {{storage.profile.negotiations.length}}
+
+	.panel-body.scrollable
+		table.table.table-striped.table-hover.profile-filtered-list(ng-if="storage.profile.negotiations.length!=0")
 			tbody.profile-filtered-list--body
-				tr(ng-repeat="n in storage.profile.negotiations")
+				tr(ng-repeat="n in storage.profile.negotiations",ng-animate="'animate'")
 					td
 						span.profile-info-list.hidden {{n.date}}
 					td.profile-info
-						span.profile-info-list--item.fa.fa-star.text-warning
-						span.profile-info-list--item.fa.fa-play
 						span.profile-info-list--item.profile-name {{otherProfile(n).name}}
 						span.profile-type.label.label-primary {{otherProfile(n).type}}
 					td
 						a.profile-action-list--item.btn.btn-default.btn-xs(ng-click="selectNegotiation(n)") select
+		.well-lg.text-center(ng-if="storage.profile.negotiations.length==0") No active negotiations!
 		

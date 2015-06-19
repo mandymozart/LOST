@@ -1,29 +1,33 @@
 .panel.panel-default.panel-front(ng-controller="NegotiationDetailCtrl",ng-if="!storage.selectedNegotiation.sender.name")#negotiationDetailPanel
-	.panel-heading
-		.panel-title Negotiation between <b>{{storage.selectedNegotiation.sender.name}}</b> and <b>{{storage.selectedNegotiation.receiver.name}}</b>
+	form#negotiationForm
+		.panel-heading
 			.pull-right
-				button.btn.btn-default: span.fa.fa-close
-		.input-group
-			input.form-control(id="negotiation-offer-area", placeholder="0,00",ng-model="storage.selectedNegotiation.currentOffer")
-			.input-group-addon: button.btn.btn-default(ng-click="offer()") Submit offer
+				a.btn-close(ng-click="closeNegotiation()"): span.fa.fa-close
+			.panel-title
+				span.fa.fa-envelope &nbsp; Negotiation between <b>{{storage.selectedNegotiation.sender.name}}</b> and <b>{{storage.selectedNegotiation.receiver.name}}</b>
 
-	.panel-body
-		row(ng-repeat="message in storage.selectedNegotiation.messages | orderBy:date")
-				span.negotiation-date.negotiation-msg-sent
-					| {{message.date}}
-					<br>
-				span.negotiation-msg.negotiation-msg-sent
-					| {{message.content}}
-					<br>
-		row
-			form.negotiation-msg.negotiation-msg-sent
-				.form-group
-					label(for="message-area")
-					textarea.form-control(id="message-area",rows="4",cols="50",ng-model="messageAreaText")
-				.form-group
-					button.btn.btn-default(ng-click="send()") Send	
-	.panel-footer
-		button.btn.btn-success(ng-click="acceptNegotiation()") Accept
-		button.btn.btn-warning(ng-click="closeNegotiation()") Decline
-		
+			.input-group
+				input.form-control(id="negotiation-offer-area", placeholder="0,00",ng-model="storage.selectedNegotiation.currentOffer")
+
+			button.btn.btn-primary.btn-block(ng-click="offer()") Submit offer
+
+		.panel-body
+			.section(ng-repeat="message in storage.selectedNegotiation.messages | orderBy:date")
+					span.negotiation-date.negotiation-msg-sent
+						| {{message.date}}
+						<br>
+					span.negotiation-msg.negotiation-msg-sent
+						| {{message.content}}
+						<br>
+			.section
+				form.negotiation-msg.negotiation-msg-sent
+					.form-group
+						label(for="message-area")
+						textarea.form-control(id="message-area",rows="4",cols="50",ng-model="messageAreaText")
+					.form-group
+						button.btn.btn-default(ng-click="send()") Send
+		.panel-footer.text-right
+			button.btn.btn-success(ng-click="acceptNegotiation()") Accept
+			button.btn.btn-warning(ng-click="closeNegotiation()") Decline
+
 
