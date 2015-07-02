@@ -19,9 +19,6 @@
 							| Select
 						.btn.btn-success.btn-xs(ng-click="loadProfile(profile)", ng-if="profile._id == storage.profile._id") 
 							| Selected
-	.panel-footer.text-right
-		button.btn.btn-default(ng-click="createProfile(undefined)"): span.fa.fa-user-plus
-			| &nbsp; New profile
 		button.btn.btn-default(ng-click="loadCalendar($index)") Go to calendar
 
 
@@ -33,15 +30,15 @@
 		br
 		br
 		div.list-group
-			.list-group-item.active(href='#')
+			.list-group-item(href='#')
 				h4.list-group-item-heading: span.fa.fa-user
 					| &nbsp; Artist
 				p.list-group-item-text You are a performer and are looking for opportunities. With your free user you can create up to 4 profile.
-			.list-group-item.active(href='#')
+			.list-group-item(href='#')
 				h4.list-group-item-heading: span.fa.fa-user-secret
 					| &nbsp; Organiser
 				p.list-group-item-text Organizing events is your job and your passion. Put yourself on the map and find artists around you.
-			.list-group-item.active(href='#')
+			.list-group-item(href='#')
 				h4.list-group-item-heading: span.fa.fa-building
 					| &nbsp; Venue
 				p.list-group-item-text You are the hub, you are the shelter!
