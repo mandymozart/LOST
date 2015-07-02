@@ -1,0 +1,20 @@
+.alert.alert-info.alert--instruction(ng-if='storage.profiles.length == 0')
+	h4: span.fa.fa-map-marker
+		| &nbsp; Only one more step!
+
+	p.lead To interact with other profiles you need to place your own on the map. You can create 3 types of profiles:
+		br
+		br
+		div.list-group
+			.list-group-item(href='#')
+				h4.list-group-item-heading: span.fa.fa-user
+					| &nbsp; Artist
+				p.list-group-item-text You are a performer and are looking for opportunities. With your free user you can create up to 4 profile.
+			.list-group-item(href='#')
+				h4.list-group-item-heading: span.fa.fa-user-secret
+					| &nbsp; Organiser
+				p.list-group-item-text Organizing events is your job and your passion. Put yourself on the map and find artists around you.
+			.list-group-item(href='#')
+				h4.list-group-item-heading: span.fa.fa-building
+					| &nbsp; Venue
+				p.list-group-item-text You are the hub, you are the shelter!
