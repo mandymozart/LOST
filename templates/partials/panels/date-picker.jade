@@ -1,8 +1,6 @@
 .panel.panel-default(ng-controller='DatepickerCtrl')#datePickerPanel
 	.panel-heading
 		.panel-title Select a date
-			.pull-right
-				span.fa.fa-chevron-down
 	.panel-body
 		datepicker.calendar--datepicker(ng-model='dt', min-date='minDate', show-weeks='false', custom-class='getDayClass(date, mode)')
 	.panel-footer Book two more acts for that night

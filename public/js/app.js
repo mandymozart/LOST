@@ -1,5 +1,5 @@
 'use strict';
-var app = angular.module('muriquee', ['ui.bootstrap','ngSanitize', 'ui.select','ngStorage'])
+var app = angular.module('muriquee', ['ui.bootstrap','ngSanitize', 'ui.select','ngStorage','angularjs-dropdown-multiselect'])
 
 
 app.controller('DatepickerDemoCtrl', function ($scope) {
