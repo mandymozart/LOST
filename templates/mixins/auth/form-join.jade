@@ -18,7 +18,7 @@ mixin form-join(args)
 			form(method='post', action='/join', autocomplete='off', novalidate).auth-form
 				input(type='hidden', name='action', value='join')
 				if !args.modal
-					if form.error
+					//if form.error
 						.flash-messages
 							.alert.alert-danger
 								div!= form.error.message || form.error
