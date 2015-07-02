@@ -38,7 +38,7 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage){
 	$scope.fetchProfiles();
 
 	$scope.isProfileSelected = function(){
-		return $localStorage.profile.name;
+		return $localStorage.profile.name != undefined;
 	}
 
 
@@ -47,7 +47,6 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage){
 			$scope.saveStatus = "unsaved profile";
 			return;
 		}
-
 		var req = {
  			method: 'POST',
  			url: '/api/populateProfile',

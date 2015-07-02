@@ -38,7 +38,7 @@ app.controller('NegotiationsListCtrl', function($scope, $localStorage, $http){
 		$localStorage.selectedNegotiation = undefined;
 	}
 	$scope.dateFilter = function(n){
-		return !filterDate || n.date == $localStorage.selectedDate;
+		return !$scope.filterDate || n.date == $localStorage.selectedDate;
 	}
 	$scope.filterDate = false;
 });

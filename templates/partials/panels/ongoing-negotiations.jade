@@ -12,14 +12,10 @@
 						span.fa.fa-money
 		.panel-title: span.fa.fa-gavel &nbsp; Ongoing negotiations
 			.label.label-info(ng-if="storage.profile.negotiations!=0") {{storage.profile.negotiations.length}}
-			.label
-				input(type="checkbox", ng-model="filterDate")
-				span 
-					| filter by date
 	.panel-body.scrollable
 		table.table.table-striped.table-hover.profile-filtered-list(ng-if="storage.profile.negotiations.length!=0")
 			tbody.profile-filtered-list--body
-				tr(ng-repeat="n in storage.profile.negotiations",ng-animate="'animate'")
+				tr(ng-repeat="n in storage.profile.negotiations | filter:dateFilter",ng-animate="'animate'")
 					td
 						span.profile-info-list.hidden {{n.date}}
 					td.profile-info
@@ -34,6 +30,8 @@
 									ng-if="storage.selectedNegotiation._id != n._id"
 									ng-click="selectNegotiation(n)")
 							| select
+		.well-lg Filter by date
+			input(type="checkbox", ng-model="filterDate")
 		.well-lg.text-center(ng-if="storage.profile.negotiations.length==0") No active negotiations!
 
 		
