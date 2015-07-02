@@ -1,22 +1,29 @@
 .panel.panel-default#searchPanel(ng-controller="ProfileSearchCtrl")
 
 	.panel-heading
-		.panel-title Search
-			.pull-right
-				span.fa.fa-chevron-down
+		.dropdown.pull-right
+			a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
+				span.fa.fa-cog
+			ul.dropdown-menu(role='menu')
+				li
+					a(href='#') by stared&nbsp;
+						span.fa.fa-star
+				li
+					a(href='#') by fee&nbsp;
+						span.fa.fa-money
+		.panel-title
+			span.fa.fa-search &nbsp; Find opportunity
+		// Form: Filter
+		include ../forms/search-filter.jade
 
-	// Section: Filter
-	include ../sections/search-filter.jade
-
-	// Section: Results
-	include ../sections/search-results.jade
+	.panel-body
+		// Section: Results
+		include ../sections/search-results.jade
 
 	.panel-footer.text-right
 		button.btn.btn-default(type='submit', ng-click="rememberAll()"): span
 			| &nbsp; Remember All
 		button.btn.btn-default(type='submit', ng-click="removeAll()"): span
 			| &nbsp; Remove All
-		button.btn.btn-default(type='submit', ng-click="submitSearch()"): span.fa.fa-search
-			| &nbsp; Search
 		button.btn.btn-primary(type='submit', ng-click="pushCall()"): span.fa.fa-send-o
 			| &nbsp; Push Call

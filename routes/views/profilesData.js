@@ -170,7 +170,7 @@ exports = module.exports = function(req, res){
     		receiver     : req.body.profile._id,
     		description  : "",
     		messages     : [],
-    		currentOffer : "offer gage",
+    		currentOffer : "0.00",
    			status       : "open"
 		})
 		negotiation.save();

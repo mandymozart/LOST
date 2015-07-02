@@ -5301,6 +5301,14 @@ a:focus {
 .profile-action-list--item {
   margin-left: 5px; }
 
+.scrollable {
+  overflow: auto; }
+
+/* Default */
+.panel-front {
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3); }
+
 /* Calendar */
 /* Font Awesome Icon Stack overwrite
 http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
@@ -5342,6 +5350,14 @@ http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
 #ongoingNegotiationsPanel .panel-body {
   max-height: 276px;
   overflow: scroll; }
+
+#searchPanel .ui-select-container input, #searchPanel select, #searchPanel .form-control, #searchPanel .form-group {
+  width: 100%; }
+
+/* Profiles */
+#profileDetailPanel .row {
+  margin-left: 0;
+  margin-right: 0; }
 
 /* Frontend */
 .social-signup-buttons {
@@ -5642,6 +5658,28 @@ body > .ui-select-bootstrap.open {
 .ui-select-bootstrap.ng-dirty.ng-invalid > button.btn.ui-select-match {
   border-color: #D44950; }
 
+.animate-enter, .animate-leave {
+  -webkit-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -moz-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -ms-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -o-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  text-overflow: clip;
+  white-space: nowrap; }
+
+.animate-leave.animate-leave-active, .animate-enter {
+  opacity: 0;
+  width: 0px;
+  height: 0px; }
+
+.animate-enter.animate-enter-active, .animate-leave {
+  opacity: 1;
+  width: 150px;
+  height: 30px; }
+
 /*
 Version: 3.4.5 Timestamp: Mon Nov  4 08:22:42 PST 2013
 */
@@ -5795,7 +5833,7 @@ Version: 3.4.5 Timestamp: Mon Nov  4 08:22:42 PST 2013
   display: block;
   width: 100%;
   height: 100%;
-  background: url('select2.png') no-repeat 0 1px; }
+  background: url('../images/select2.png') no-repeat 0 1px; }
 
 .select2-search {
   display: inline-block;
@@ -5821,11 +5859,11 @@ Version: 3.4.5 Timestamp: Mon Nov  4 08:22:42 PST 2013
   border-radius: 0;
   -webkit-box-shadow: none;
   box-shadow: none;
-  background: #fff url('select2.png') no-repeat 100% -22px;
-  background: url('select2.png') no-repeat 100% -22px, -webkit-gradient(linear, left bottom, left top, color-stop(0.85, #fff), color-stop(0.99, #eee));
-  background: url('select2.png') no-repeat 100% -22px, -webkit-linear-gradient(center bottom, #fff 85%, #eee 99%);
-  background: url('select2.png') no-repeat 100% -22px, -moz-linear-gradient(center bottom, #fff 85%, #eee 99%);
-  background: url('select2.png') no-repeat 100% -22px, linear-gradient(top, #fff 85%, #eee 99%); }
+  background: #fff url('../images/select2.png') no-repeat 100% -22px;
+  background: url('../images/select2.png') no-repeat 100% -22px, -webkit-gradient(linear, left bottom, left top, color-stop(0.85, #fff), color-stop(0.99, #eee));
+  background: url('../images/select2.png') no-repeat 100% -22px, -webkit-linear-gradient(center bottom, #fff 85%, #eee 99%);
+  background: url('../images/select2.png') no-repeat 100% -22px, -moz-linear-gradient(center bottom, #fff 85%, #eee 99%);
+  background: url('../images/select2.png') no-repeat 100% -22px, linear-gradient(top, #fff 85%, #eee 99%); }
 
 .select2-drop.select2-drop-above .select2-search input {
   margin-top: 4px; }
@@ -6075,7 +6113,7 @@ disabled look for disabled choices in the results dropdown
   top: 4px;
   font-size: 1px;
   outline: none;
-  background: url('select2.png') right top no-repeat; }
+  background: url('../images/select2.png') right top no-repeat; }
 
 .select2-container-multi .select2-search-choice-close {
   left: 3px; }
@@ -6132,3 +6170,35 @@ disabled look for disabled choices in the results dropdown
   overflow: scroll; }
 
 /* Retina-ize icons */
+.ui-select-container[search-enabled=false] .ui-select-match.ng-hide {
+  display: inline-block !important; }
+
+.ui-select-container[search-enabled=false] .ui-select-match .text-muted.ng-hide {
+  display: inline !important; }
+
+.ui-select-container[search-enabled=false].ng-dirty .ui-select-match .text-muted.ng-hide {
+  display: none !important; }
+
+.material-icons.md-18 {
+  font-size: 18px; }
+
+.material-icons.md-24 {
+  font-size: 24px; }
+
+.material-icons.md-36 {
+  font-size: 36px; }
+
+.material-icons.md-48 {
+  font-size: 48px; }
+
+.material-icons.md-dark {
+  color: rgba(0, 0, 0, 0.54); }
+
+.material-icons.md-dark.md-inactive {
+  color: rgba(0, 0, 0, 0.26); }
+
+.material-icons.md-light {
+  color: white; }
+
+.material-icons.md-light.md-inactive {
+  color: rgba(255, 255, 255, 0.3); }
