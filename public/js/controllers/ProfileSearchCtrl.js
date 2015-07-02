@@ -116,6 +116,11 @@ app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage){
 
 	$scope.profileSubtypes = $scope.artistTypes;
 
+    $scope.getProfileTypes = function(){
+        var res = []
+        for(var i,)
+    }
+
 	$scope.genres         = ['Rock','Pop','Classic','Deep House','Hip Hop','Experimental','Techno','Acid House'];
 	if ($localStorage.searchOptions === {}){
 		$localStorage.searchOptions  = {
