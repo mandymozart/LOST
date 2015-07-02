@@ -32,17 +32,18 @@ exports = module.exports = function(req, res){
 		else{
 			t = "Organiser"
 		}
+		var zip = getRandomInt(1000);
 		p.set({
 			user  : user._id,
-    		name  : "TestProfile"+i,
-    		about : {
-                brief    : "brief description",
-                extended : "extended description"
-            },
+    		name  : "TestProfile:"+i,
+    		about : "description",
     		genres : gs,
     		type  : t,
     		subtype : "subtype",
-    		negotiations : []
+    		negotiations : [],
+    		zip: zip,
+    		creationDate: new Date(),
+    		state : "published"
 		})
 		console.log(p)
 		p.save();

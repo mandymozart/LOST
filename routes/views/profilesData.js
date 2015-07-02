@@ -94,12 +94,14 @@ exports = module.exports = function(req, res){
 			})
 		}
 		else{
+			//console.log('creating new profile');
 			var PM = keystone.list('Profile').model;
 			var pdb = new PM();
 			pdb.set(p);
 			pdb.set({user:req.user._id});
 			req.user.profiles.push(pdb._id);
 			req.user.save();
+			//console.log(pdb);
 			pdb.save();
 			res.send(pdb);
 		}

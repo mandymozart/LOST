@@ -30,5 +30,12 @@
 						span.profile-info-list--item.profile-name {{otherProfile(n).name}}
 						span.profile-type.label.label-primary {{otherProfile(n).type}}
 					td
-						a.profile-action-list--item.btn.btn-default.btn-xs(ng-click="selectNegotiation(n)") select
+						a.profile-action-list--item.btn.btn-success.btn-xs(
+									ng-if="storage.selectedNegotiation._id == n._id"
+									ng-click="unselectNegotiations()") 
+							| selected
+						a.profile-action-list--item.btn.btn-default.btn-xs(
+									ng-if="storage.selectedNegotiation._id != n._id"
+									ng-click="selectNegotiation(n)")
+							| select
 		

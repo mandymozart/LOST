@@ -8,7 +8,7 @@
 	.panel-body
 		table.table.table-striped.table-hover.profile-filtered-list
 			tbody.profile-filtered-list--body
-				tr(ng-repeat="profile in profiles | orderBy:'name'")
+				tr(ng-repeat="profile in storage.profiles | orderBy:'name'")
 					td.profile-info
 						span.profile-info-list--item.profile-name {{profile.name}}
 						span.profile-type.label.label-primary {{profile.type}}
@@ -20,12 +20,12 @@
 						.btn.btn-success.btn-xs(ng-click="loadProfile(profile)", ng-if="profile._id == storage.profile._id") 
 							| Selected
 	.panel-footer.text-right
-		button.btn.btn-default(ng-click="createProfile()"): span.fa.fa-search
+		button.btn.btn-default(ng-click="createProfile(undefined)"): span.fa.fa-search
 			| &nbsp; New profile
 		button.btn.btn-default(ng-click="loadCalendar($index)") Go to calendar
 
 
-.alert.alert-info.alert--instruction(ng-if='profiles.length == 0')
+.alert.alert-info.alert--instruction(ng-if='storage.profiles.length == 0')
 	h4: span.fa.fa-map-marker
 		| &nbsp; Only one more step!
 

@@ -3,36 +3,75 @@
 var app = angular.module('muriquee');
 
 app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http){
-	$scope.negotiation = $localStorage.selectedNegotiation;
-	$scope.messageAreaText = " ";
-	$scope.profile = $localStorage.profile;
+	$scope.models = {}
+	$scope.models.messageAreaText = '';
 	$scope.storage = $localStorage;
 
 	$scope.sent = function(nm){
 		return nm.sender === $localStorage.profile._id;
 	}
 	$scope.send = function(){
-		//alert(messageAreaText);
+		//alert($scope.models.messageAreaText);
 		var req = {
  			method: 'POST',
- 			url: '/profilesData',
+ 			url: '/api/sendNegotiationMessage',
  			headers: {
    				'Content-Type': 'application/json'
  			},
  			data: {
- 				sendNegotiationMessage:true,
  				negotiation:$localStorage.selectedNegotiation,
- 				message:$scope.messageAreaText,
+ 				message:$scope.models.messageAreaText,
  				profile:$localStorage.profile
  			}
 		};
 		$http(req)
 		.success(function(data){
-			$localStorage.selectedNegotiation = data;
-			//$localStorage.selectedNegotiation.other = undefined; //TODO
+			var req = {
+				method: 'POST',
+ 				url: '/api/populateNegotiationMessages',
+ 				headers: {
+   					'Content-Type': 'application/json'
+ 				},
+				data:{
+					negotiation:data
+				}
+			};
+			$http(req)
+			.success(function(data){
+				$localStorage.selectedNegotiation = data;
+			})
+			.error(function(){
+				alert('error populating negotiation messages');
+			});
 		})
 		.error(function(){
 			alert('error posting negotiation message');
 		});
+	}
+	$scope.offer = function(){
+		var req = {
+			method : 'POST',
+			url : '/api/submitNegotiationOffer',
+			headers : {
+				'Content-Type':'application/json'
+			} ,
+			data : {
+				negotiation:$localStorage.selectedNegotiation,
+				offer:$localStorage.selectedNegotiation.currentOffer
+			}
+		}
+		$http(req)
+		.success(function(data){
+			$localStorage.selectedNegotiation = data;
+		})
+		.error(function(){
+			alert('error submitting offer');
+		})
+	}
+	$scope.accept = function(){
+		//TODO
+	}
+	$scope.decline = function(){
+		//TODO
 	}
 });

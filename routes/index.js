@@ -60,9 +60,21 @@ exports = module.exports = function(app) {
     //app.all('/auth/app', routes.auth.app);
     app.all('/auth/:service', routes.auth.service);
 
-	// Data
+	// API
 	app.post('/profilesData', middleware.requireUser, routes.views.profilesData);
-	app.post('/generatorPost', middleware.requireAdmin, routes.views.generatorPost);
+
+	app.get('/api/getDataLists', middleware.requireUser, routes.api.getDataLists);
+	app.get('/api/getUserProfiles', middleware.requireUser, routes.api.getUserProfiles);
+	app.post('/api/generator', middleware.requireAdmin, routes.api.generator);
+	app.post('/api/populateProfile', middleware.requireUser, routes.api.populateProfile);
+	app.post('/api/saveProfile', middleware.requireUser, routes.api.saveProfile);
+	app.post('/api/profileSearch',middleware.requireUser, routes.api.profileSearch);
+	app.post('/api/sendProposal', middleware.requireUser, routes.api.sendProposal);
+	app.post('/api/sendNegotiationMessage', middleware.requireUser, routes.api.sendNegotiationMessage);
+	app.post('/api/acceptProposal', middleware.requireUser, routes.api.acceptProposal);
+	app.post('/api/submitNegotiationOffer', middleware.requireUser, routes.api.submitNegotiationOffer);
+	app.post('/api/populateNegotiationMessages', middleware.requireUser, routes.api.populateNegotiationMessages);
+	app.post('/api/deleteProfile', middleware.requireUser, routes.api.deleteProfile);
 
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);

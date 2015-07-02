@@ -3,22 +3,6 @@ var app = angular.module('muriquee')
 
 
 app.controller('ProfileCtrl', function($scope, $http, $localStorage){
-	function updateView(){
-		$('#profile-name-area').val($scope.profile.name);
-		$('#profile-about-brief-area').val($scope.profile.about.brief);
-		$('#profile-about-extended-area').val($scope.profile.about.extended);
-	}
-
-	$scope.safeApply = function(fn) {
-  		var phase = this.$root.$$phase;
-  		if(phase == '$apply' || phase == '$digest') {
-   			if(fn && (typeof(fn) === 'function')) {
-      			fn();
-    		}
-  		} else {
-    		this.$apply(fn);
-  		}
-	};
 
 	function resetStorage(){
 		$scope.storage = $localStorage.$default({
@@ -35,17 +19,15 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage){
 		$localStorage.selectedNegotiation = undefined;
 		$localStorage.selectedResult = undefined;
 		$localStorage.searchOptions = {};
+		$localStorage.profile = {};
 	}
 
 	resetStorage();
-
-	$scope.profiles = [];
-	$scope.profile  = undefined
+	$localStorage.profiles = [];
 
 	$scope.fetchProfiles = function(callback){
-		$http.post('/profilesData')
+		$http.get('/api/getUserProfiles')
 			.success(function(data){
-				$scope.profiles = data;
 				$scope.storage.profiles = data;
 				if (callback) callback();
 			})
@@ -64,19 +46,17 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage){
 
 		var req = {
  			method: 'POST',
- 			url: '/profilesData',
+ 			url: '/api/populateProfile',
  			headers: {
    				'Content-Type': 'application/json'
  			},
  			data: {
- 				populateNegotiations:true,
  				profile:p
  			}
 		}
 		$http(req)
 		.success(function(data){
 			resetStorage();
-			$scope.profile = data;
 			$scope.storage.profile = data;
 			$scope.saveStatus = "";
 		})
@@ -84,39 +64,56 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage){
 			alert('error retreiveing negotiations data from server');
 		});
 	}
-	$scope.createProfile = function(){
-		if ($scope.profiles.length == 0) return;
-		var newProfile = {
-			user  : $scope.profiles[0].user,
-			name  : "enter profile name here",
-			about : {
-				brief : "brief description",
-				extended : "longer description"
-			},
-			negotiations : [],
+	$scope.createProfile = function(type){
+		console.log($localStorage.profiles);
+		if (!type) {
+			var type = "Artist";
 		}
-		$scope.profile = newProfile;
-		$scope.saveProfile();
-	}
+
+		var newProfile = {
+			name            : '',
+			about 		    : '',
+			genres          : [],
+			type            : type,
+			subtype         : '',
+			negotiations 	: [],
+			proposals 		: [],
+			state 			: 'draft',
+			zip 			: '000',
+			socialLinks 	: [],
+			soundcloundId   : 0,
+			image           : null,
+			creationDate    : new Date(),
+			favourites      : [],
+			called 			: [],
+			tours 			: []
+		}
+		$localStorage.profile = newProfile;
+		$localStorage.profiles.push(newProfile);
+
+		console.log($localStorage.profiles);
+	}//end create profile
+
 	$scope.loadCalendar = function(){
-		if ($scope.profile){
+		if ($localStorage.profile){
 			window.location.assign('/calendar');
 		}
 		else{
 			alert('no profile selected');
 		}
-	}
+	}//end load calendar
+
 	$scope.saveProfile = function(){
-		if ($scope.profile){
+		if ($localStorage.profile){
 			var req = {
  				method: 'POST',
- 				url: '/profilesData',
+ 				url: '/api/saveProfile',
  				headers: {
    					'Content-Type': 'application/json'
  				},
  				data: {
  					saveProfile:true,
- 					profile:$scope.profile
+ 					profile:$localStorage.profile
  				}
 			}
 			$http(req)
@@ -133,12 +130,67 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage){
 		else $scope.saveStatus = "no profile selected to save";
 	}
 
-	$scope.saveStatus     = "";
+	$scope.deleteProfile = function(p){
+		var req = {
+			method: 'POST',
+			url: 'api/deleteProfile',
+			headers: {
+				'Content-Type' : 'application/json'
+			},
+			data: {
+				profile:$localStorage.profile
+			}
+		}
+		$http(req)
+		.success(function(data){
+			alert('successfully deleted profile');
+		})
+		.error(function(){
+			alert('error deleting profile');
+		})
+	}
 
-	$scope.profileTypes   = ['Artist', 'Venue', 'Organiser'];
-	$scope.artistTypes    = ['Solo Performer', 'Band', 'Magician', 'Orchestra'];
-	$scope.venueTypes     = ['Concert Hall', 'Live Hall', 'Club', 'Open Air', 'Bar'];
-	$scope.organiserTypes = ['Live', 'Club', 'Festival', 'Avant Garde'];
-	$scope.genres         = ['Rock','Pop','Classic','Deep House','Hip Hop','Experimental','Techno','Acid House'];
+	$scope.onProfileTypeSelectionChanged = function(){
+		var pt = $localStorage.searchOptions.profileType;
+		if (pt === 'Artist'){
+			$scope.profileSubtypes = $localStorage.datalists.artistTypes;
+		}
+		else if (pt === 'Venue'){
+			$scope.profileSubtypes = $localStorage.datalists.venueTypes;
+		}
+		else {
+			$scope.profileSubtypes = $localStorage.datalists.organiserTypes;
+		}
+	}
+
+	$scope.fetchDataLists = function(){
+		var req = {
+			method  : 'GET',
+			url     : 'api/getDataLists',
+			headers : {
+				'Content-Type' : 'application/json'
+			},
+			data    : {
+
+			}
+		}
+		$http(req)
+		.success(function(data){
+			$localStorage.datalists = data;
+		})
+		.error(function(){
+			alert('error fetching data lists');
+		})
+	}
+
+	$scope.addSocialLink = function(){
+		$localStorage.profile.socialLinks.push($scope.linkInput);
+	}
+
+	$scope.linkInput = "";
+	$scope.saveStatus = "";
+	$scope.fetchDataLists();
+	$scope.profileSubtypes = $localStorage.datalists.artistTypes;
 	
+
 });

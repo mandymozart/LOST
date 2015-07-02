@@ -4,10 +4,9 @@ var app = angular.module('muriquee')
 app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage){
 	//listeners
 	$scope.submitSearch = function(index){
-		$localStorage.searchOptions.profileSearch = true;
 		var req = {
  			method: 'POST',
- 			url: '/profilesData',
+ 			url: '/api/profileSearch',
  			headers: {
    				'Content-Type': 'application/json'
  			},
@@ -59,7 +58,7 @@ app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage){
 	$scope.pushCall = function(){
 		var req = {
  			method: 'POST',
- 			url: '/profilesData',
+ 			url: '/api/sendProposal',
  			headers: {
    				'Content-Type': 'application/json'
  			},
@@ -67,11 +66,11 @@ app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage){
  				profile:$scope.storage.profile,
  				profiles:$scope.storage.rememberedProfiles,
  				proposedDate:$scope.storage.selectedDate,
- 				sendProposal:true
  			}
 		}
 		$http(req)
 		.success(function(data){
+			$localStorage.
 			alert('sucessfully sent proposals');
 		})
 		.error(function(){
@@ -90,15 +89,15 @@ app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage){
 	}
 
 	$scope.onProfileTypeSelectionChanged = function(){
-		var pt = $scope.storage.searchOptions.profileType;
+		var pt = $localStorage.searchOptions.profileType;
 		if (pt === 'Artist'){
-			$scope.profileSubtypes = $scope.artistTypes;
+			$scope.profileSubtypes = $localStorage.datalists.artistTypes;
 		}
 		else if (pt === 'Venue'){
-			$scope.profileSubtypes = $scope.venueTypes;
+			$scope.profileSubtypes = $localStorage.datalists.venueTypes;
 		}
 		else {
-			$scope.profileSubtypes = $scope.organiserTypes;
+			$scope.profileSubtypes = $localStorage.datalists.organiserTypes;
 		}
 		$scope.storage.searchOptions.subtypes = []
 	}
@@ -110,13 +109,8 @@ app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage){
 
 	$scope.profileTypes   = ['Artist', 'Venue', 'Promoter'];
 
-	$scope.artistTypes    = ['Solo Performer', 'Band', 'Magician', 'Orchestra'];
-	$scope.venueTypes     = ['Concert Hall', 'Live Hall', 'Club', 'Open Air', 'Bar'];
-	$scope.organiserTypes = ['Live', 'Club', 'Festival', 'Avant Garde'];
+	$scope.profileSubtypes = [];
 
-	$scope.profileSubtypes = $scope.artistTypes;
-
-	$scope.genres         = ['Rock','Pop','Classic','Deep House','Hip Hop','Experimental','Techno','Acid House'];
 	if ($localStorage.searchOptions === {}){
 		$localStorage.searchOptions  = {
 			profileType    : 'Artist',

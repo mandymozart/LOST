@@ -8,7 +8,7 @@ app.controller('GeneratorCtrl', function($scope, $http){
 	$scope.submit = function(){
 		var req = {
  			method: 'POST',
- 			url: '/generatorPost',
+ 			url: '/api/generator',
  			headers: {
    				'Content-Type': 'application/json'
  			},

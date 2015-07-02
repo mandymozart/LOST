@@ -10,6 +10,7 @@
     "mongoose-deep-populate": "^1.1.0",
     "node-sass": "~1.0.1",
     "node-sass-middleware": "^0.4.0",
+    "restful-keystone": "^0.3.0",
     "underscore": "~1.7.0"
   },
   "devDependencies": {

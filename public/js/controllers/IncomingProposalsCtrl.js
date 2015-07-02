@@ -33,7 +33,6 @@ app.controller('IncomingProposalsCtrl', function($scope, $localStorage, $http){
 		$localStorage.selectedResult = p;
 	}
 	$scope.acceptProposal = function(p){
-		//TODO
 		var req = {
  			method: 'POST',
  			url: '/profilesData',

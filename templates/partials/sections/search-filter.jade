@@ -34,7 +34,7 @@ section.section#searchFilterSection
 				select.form-control(name='selectProfileType', 
 								    ng-model="storage.searchOptions.profileType", 
 								    ng-change="onProfileTypeSelectionChanged()")
-					option(value="{{option}}", ng-repeat="option in profileTypes")
+					option(value="{{option}}", ng-repeat="option in storage.datalists.profileTypes")
 						| {{option}}
 			.col-sm-3
 				ui-select(name="selectSubtype", multiple, ng-model="storage.searchOptions.subtypes", theme="select2", ng-disabled="disabled", style="max_width: 100%; width: 100%;")
@@ -44,7 +44,7 @@ section.section#searchFilterSection
 			.col-sm-3
 				ui-select(name="selectGenres", multiple, ng-model="storage.searchOptions.genres", theme="select2", ng-disabled="disabled", style="max_width: 100%; width: 100%;")
 					ui-select-match(placeholder="Select genres...") {{$item}}
-					ui-select-choices(repeat="genre in genres | filter:$select.search")
+					ui-select-choices(repeat="genre in storage.datalists.genres | filter:$select.search")
 						| {{genre}}
 			.col-sm-3
 				input.form-control(ng-model="storage.searchOptions.profileName",type='text',placeholder='Contact artist',name='inputProfile',id='inputProfile')

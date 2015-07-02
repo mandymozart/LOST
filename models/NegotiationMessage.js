@@ -4,7 +4,7 @@ var Types    = keystone.Field.Types;
 var NegotiationMessage = new keystone.List('NegotiationMessage');
 
 NegotiationMessage.add({
-	date    : {type : Date},
+	date    : {type : Types.Date},
 	content : {type : String},
 	sender  : {type : Types.Relationship, ref:'Profile'}
 });
