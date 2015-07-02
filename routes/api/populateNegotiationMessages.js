@@ -7,6 +7,8 @@ exports = module.exports = function(req, res){
 	keystone.list('Negotiation').model.find()
 		.where('_id', n._id)
 		.populate('messages')
+		.populate('sender')
+		.populate('receiver')
 		.exec(function(err, docs){
 			if (err) console.log(err);
 			res.send(docs[0]);

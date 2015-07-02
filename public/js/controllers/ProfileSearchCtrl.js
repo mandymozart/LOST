@@ -70,8 +70,7 @@ app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage){
         }
         $http(req)
             .success(function(data){
-                $localStorage.
-                    alert('sucessfully sent proposals');
+                alert('sucessfully sent proposals for: ' + $localStorage.selectedDate);
             })
             .error(function(){
                 alert('error sending proposals');

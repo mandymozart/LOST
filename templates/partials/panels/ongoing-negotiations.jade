@@ -12,7 +12,10 @@
 						span.fa.fa-money
 		.panel-title: span.fa.fa-gavel &nbsp; Ongoing negotiations
 			.label.label-info(ng-if="storage.profile.negotiations!=0") {{storage.profile.negotiations.length}}
-
+			.label
+				input(type="checkbox", ng-model="filterDate")
+				span 
+					| filter by date
 	.panel-body.scrollable
 		table.table.table-striped.table-hover.profile-filtered-list(ng-if="storage.profile.negotiations.length!=0")
 			tbody.profile-filtered-list--body
@@ -32,4 +35,5 @@
 									ng-click="selectNegotiation(n)")
 							| select
 		.well-lg.text-center(ng-if="storage.profile.negotiations.length==0") No active negotiations!
+
 		

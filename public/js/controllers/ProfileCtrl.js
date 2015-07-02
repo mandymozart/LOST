@@ -37,6 +37,10 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage){
 	}
 	$scope.fetchProfiles();
 
+	$scope.isProfileSelected = function(){
+		return $localStorage.profile.name;
+	}
+
 
 	$scope.loadProfile = function(p){
 		if (!p._id) {
