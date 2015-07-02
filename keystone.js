@@ -97,6 +97,15 @@ keystone.set('nav', {
 	'support': 'enquiries'
 });
 
+//create default admin user:
+//var User = keystone.list('User').model;
+//var admin = new User();
+//admin.set(
+//	{ 'name.first': 'Admin', 'name.last': 'User', email: 'janikhotz@gmail.com', password: 'admin', isAdmin: true }
+//);
+//console.log(admin);
+//admin.save();
+
 // Start Keystone to connect to your database and initialise the web server
 
 keystone.start();

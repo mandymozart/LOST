@@ -33,8 +33,15 @@ exports = module.exports = function(req, res){
 			t = "Organiser"
 		}
 		var zip = getRandomInt(1000);
+		var u = new User();
+		u.set({
+			name: 'TestUser:'+i,
+			email: 'TestUser'+i+'@email.com',
+			password: '1234'
+		});
+		u.save();
 		p.set({
-			user  : user._id,
+			user  : u._id,
     		name  : "TestProfile:"+i,
     		about : "description",
     		genres : gs,
@@ -44,10 +51,10 @@ exports = module.exports = function(req, res){
     		zip: zip,
     		creationDate: new Date(),
     		state : "published"
-		})
-		console.log(p)
+		});
 		p.save();
-		user.profiles.push(p._id);
+		u.profiles.push(p._id);
+		u.save();		
 	}
 	res.send("created profiles");
 }
