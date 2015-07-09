@@ -6,22 +6,21 @@ block header
 block content
 	.container(ng-controller="ProfileCtrl")
 		.row
-			.col-sm-12.text-right
-
-				button.btn.btn-default(ng-click="createProfile(undefined)"): span.fa.fa-user
-					| &nbsp; New artist
-				button.btn.btn-default(ng-click="createProfile(undefined)"): span.fa.fa-user-secret
-					| &nbsp; New organiser
-				button.btn.btn-default(ng-click="createProfile(undefined)"): span.fa.fa-building
-					| &nbsp; New venue
+			.col-sm-6
+				h4 My profiles
+			.col-sm-6.text-right#createProfileButtons(ng-if="!isProfileSelected()")
+					button.btn.btn-default(ng-click="createProfile(undefined)"): span.fa.fa-user
+						| &nbsp; New artist
+					button.btn.btn-default(ng-click="createProfile(undefined)"): span.fa.fa-user-secret
+						| &nbsp; New organiser
+					button.btn.btn-default(ng-click="createProfile(undefined)"): span.fa.fa-building
+						| &nbsp; New venue
 		hr.divider
 		.row
-			.col-sm-4
-				// Panel: Profile Select
-				include ../partials/panels/profile-select.jade
-			.col-sm-8
-				// Panel: Profile Detail
-				include ../partials/panels/profile-detail.jade
+			// Panel: Profile Select
+			include ../partials/panels/profile-select.jade
+			// Panel: Profile Detail
+			include ../partials/panels/profile-detail.jade
 		hr.divider
 		.row
 			.col-sm-8.col-sm-offset-2
