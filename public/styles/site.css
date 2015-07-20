@@ -4752,6 +4752,40 @@ http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
 #datePickerPanel th button {
   width: 100%; }
 
+#datePickerPanel .event-selected {
+  border-radius: 10px;
+  border-color: black;
+  border-width: 5px; }
+
+#datePickerPanel .event-proposal button {
+  background-color: limegreen;
+  border-radius: 10px;
+  color: black; }
+
+#datePickerPanel .event-negotiation button {
+  background-color: orange;
+  border-radius: 10px;
+  color: black; }
+
+#datePickerPanel .event-negotiation-proposal button {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#5ee064+0,2fc43e+50,ff7c00+51,ff7f04+100 */
+  background: #5ee064;
+  /* Old browsers */
+  background: -moz-linear-gradient(-45deg, #5ee064 0%, #2fc43e 50%, #ff7c00 51%, #ff7f04 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #5ee064), color-stop(50%, #2fc43e), color-stop(51%, #ff7c00), color-stop(100%, #ff7f04));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(-45deg, #5ee064 0%, #2fc43e 50%, #ff7c00 51%, #ff7f04 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(-45deg, #5ee064 0%, #2fc43e 50%, #ff7c00 51%, #ff7f04 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(-45deg, #5ee064 0%, #2fc43e 50%, #ff7c00 51%, #ff7f04 100%);
+  /* IE10+ */
+  background: linear-gradient(135deg, #5ee064 0%, #2fc43e 50%, #ff7c00 51%, #ff7f04 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5ee064', endColorstr='#ff7f04',GradientType=1 );
+  /* IE6-9 fallback on horizontal gradient */ }
+
 #ongoingNegotiationsPanel {
   min-height: 323px; }
 

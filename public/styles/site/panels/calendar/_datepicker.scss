@@ -7,3 +7,25 @@
 #datePickerPanel th button {
   width: 100%;
 }
+
+#datePickerPanel .event-selected {
+    border-color: black;
+    border-width: 3px;
+}
+#datePickerPanel .event-proposal button {
+    background-color: $event-proposal-background-color;
+}
+#datePickerPanel .event-negotiation button {
+    background-color: $event-negotiation-background-color;
+}
+#datePickerPanel .event-negotiation-proposal button {
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/$event-negotiation-background-color+0,2fc43e+50,ff7c00+51,ff7f04+100 */
+	background: $event-negotiation-background-color; /* Old browsers */
+	background: -moz-linear-gradient(-45deg, $event-negotiation-background-color 0%, $event-negotiation-background-color 50%, $event-proposal-background-color 51%, $event-proposal-background-color 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,$event-negotiation-background-color), color-stop(50%,$event-negotiation-background-color), color-stop(51%,$event-proposal-background-color), color-stop(100%,$event-proposal-background-color)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(-45deg, $event-negotiation-background-color 0%,$event-negotiation-background-color 50%,$event-proposal-background-color 51%,$event-proposal-background-color 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(-45deg, $event-negotiation-background-color 0%,$event-negotiation-background-color 50%,$event-proposal-background-color 51%,$event-proposal-background-color 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(-45deg, $event-negotiation-background-color 0%,$event-negotiation-background-color 50%,$event-proposal-background-color 51%,$event-proposal-background-color 100%); /* IE10+ */
+	background: linear-gradient(135deg, $event-negotiation-background-color 0%,$event-negotiation-background-color 50%,$event-proposal-background-color 51%,$event-proposal-background-color 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$event-negotiation-background-color', endColorstr='$event-proposal-background-color',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
