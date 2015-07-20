@@ -73,6 +73,14 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage){
 			var type = "Artist";
 		}
 
+		console.log(navigator.geolocation)
+
+		if (navigator.geolocation){
+			navigator.geolocation.getCurrentPosition(function(position){
+				console.log(position)
+			})
+		}
+
 		var newProfile = {
 			name            : '',
 			about 		    : '',
@@ -82,7 +90,7 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage){
 			negotiations 	: [],
 			proposals 		: [],
 			state 			: 'draft',
-			zip 			: '000',
+			zip 			: '00000',
 			socialLinks 	: [],
 			soundcloundId   : 0,
 			image           : null,
