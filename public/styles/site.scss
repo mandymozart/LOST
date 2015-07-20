@@ -17,7 +17,7 @@
 // use in your site stylesheets.
 
 
-//@import "site/variables";
+@import "site/variables";
 
 
 @import "bootstrap/theme/bootswatch";
@@ -33,6 +33,7 @@
 @import "site/layout";
 // Components
 @import "site/components/list-results";
+@import "site/components/buttons";
 // Panels
 @import "site/panels";
 // Sections

@@ -1,26 +1,23 @@
-.panel.panel-default(ng-if='profiles.length != 0')
-
-	.panel-heading
-		.panel-title Select a profile
-			.pull-right
-				span.fa.fa-chevron-down
-
-	.panel-body
-		table.table.table-striped.table-hover.profile-filtered-list
-			tbody.profile-filtered-list--body
-				tr(ng-repeat="profile in storage.profiles | orderBy:'name'")
-					td.profile-info
-						span.profile-info-list--item.profile-name {{profile.name}}
-						span.profile-type.label.label-primary {{profile.type}}
-					td.profile-genre-list
-						span.profile-genre-list--item.label.label-info(ng-repeat="g in result.genres track by $index") {{g}}
-					td.profile-action-list
-						.btn.btn-default.btn-xs(ng-click="loadProfile(profile)", ng-if="profile._id != storage.profile._id") 
-							| Select
-						.btn.btn-success.btn-xs(ng-click="loadProfile(profile)", ng-if="profile._id == storage.profile._id") 
-							| Selected
-		button.btn.btn-default(ng-click="loadCalendar($index)") Go to calendar
-
-
-
-
+.col-sm-3.col-xs-6(ng-if="!isProfileSelected()",ng-repeat="profile in storage.profiles | orderBy:'name'")
+	.panel.panel-profile.panel--artist(ng-if="profile.type == 'Artist'")
+	.panel.panel-profile.panel--organiser(ng-if="profile.type == 'Organiser'")
+	.panel.panel-profile.panel--venue(ng-if="profile.type == 'Venue'")
+		.panel-header
+			.panel-heading
+				h4.panel-title
+					span.fa.fa-user(ng-if="profile.type == 'Artist'")
+					span.fa.fa-user-plus(ng-if="profile.type == 'Organiser'")
+					span.fa.fa-building(ng-if="profile.type == 'Venue'")
+					span.profile-info-list--item.profile-name &nbsp; {{profile.name}}
+					.pull-right
+						.fa.fa-cog(ng-click="loadProfile(profile)", ng-if="profile._id != storage.profile._id")
+						//span.fa.fa-cog(ng-click="loadProfile(profile)", ng-if="profile._id == storage.profile._id")
+		.panel-body
+			p.profile
+				.profile-genre-list
+					span.profile-genre-list--item.label.label-info(ng-repeat="g in result.genres track by $index") {{g}}
+				.profile-ongoing-negotiations
+					span.fa.fa-envelope
+					| &nbsp; 5 new proposals
+		.panel-footer
+			button.btn.btn-primary.btn-xs(ng-click="loadCalendar($index)") Calendar
