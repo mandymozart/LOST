@@ -1,7 +1,5 @@
 .col-sm-3.col-xs-6(ng-if="!isProfileSelected()",ng-repeat="profile in storage.profiles | orderBy:'name'")
-	.panel.panel-profile.panel--artist(ng-if="profile.type == 'Artist'")
-	.panel.panel-profile.panel--organiser(ng-if="profile.type == 'Organiser'")
-	.panel.panel-profile.panel--venue(ng-if="profile.type == 'Venue'")
+	.panel.panel-profile(ng-class="{Artist:'panel--artist',Venue:'panel--venue',Organiser:'panel--organiser'}[profile.type]")
 		.panel-header
 			.panel-heading
 				h4.panel-title
@@ -19,5 +17,5 @@
 				.profile-ongoing-negotiations
 					span.fa.fa-envelope
 					| &nbsp; 5 new proposals
-		.panel-footer
+		.panel-footer.text-right
 			button.btn.btn-primary.btn-xs(ng-click="loadCalendar($index)") Calendar
