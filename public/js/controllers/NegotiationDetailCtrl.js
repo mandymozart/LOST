@@ -69,9 +69,43 @@ app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http){
 		})
 	}
 	$scope.accept = function(){
-		//TODO
+		var req = {
+			method : 'POST',
+			url : '/api/acceptNegotiation',
+			headers : {
+				'Content-Type':'application/json'
+			},
+			data : {
+				profile : $localStorage.profile,
+				negotiation : $localStorage.selectedNegotiation
+			}
+		}
+		$http(req)
+		.success(function(data){
+			$localStorage.selectedNegotiation = data;
+		})
+		.error(function(){
+			alert('error accepting negotiation');
+		})
 	}
 	$scope.decline = function(){
-		//TODO
+		var req = {
+			method : 'POST',
+			url : '/api/rejectNegotiation',
+			headers : {
+				'Content-Type':'application/json'
+			},
+			data : {
+				profile : $localStorage.profile,
+				negotiation : $localStorage.selectedNegotiation
+			}
+		}
+		$http(req)
+		.success(function(data){
+			$localStorage.selectedNegotiation = data;
+		})
+		.error(function(){
+			alert('error declining negotiation');
+		})
 	}
 });

@@ -15,7 +15,7 @@ Negotiation.add({
     messages     : { type: Types.Relationship, ref:'NegotiationMessage', many:true },
     //messages     : { type: Types.TextArray },
     currentOffer : { type: String },
-    status       : { type:Types.Select, options: 'open, closed, cancelled', default:'open', index:true}
+    status       : { type:Types.Select, options: 'open, sender_accepted, receiver_accepted, closed, cancelled', default:'open', index:true}
 });
 
 //register

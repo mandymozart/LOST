@@ -75,7 +75,8 @@ exports = module.exports = function(app) {
 	app.post('/api/submitNegotiationOffer', middleware.requireUser, routes.api.submitNegotiationOffer);
 	app.post('/api/populateNegotiationMessages', middleware.requireUser, routes.api.populateNegotiationMessages);
 	app.post('/api/deleteProfile', middleware.requireUser, routes.api.deleteProfile);
-
+	app.post('/api/acceptNegotiation', middleware.requireUser, routes.api.acceptNegotiation);
+	app.post('/api/rejectNegotiation', middleware.requireUser, routes.api.rejectNegotiation);
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);
 	

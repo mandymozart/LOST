@@ -42,8 +42,8 @@
 				.col-sm-8
 					.form-group
 						label(for="profile-link") Links: <br>
-						label(ng-repeat="link in storage.profile.socialLinks") {{link}},  
-						input.form-control(id="profile-link",placeholder="ex. http://www.soundcloud.com/awesome_user", ng-model="linkInput")
+						label(ng-repeat="link in storage.profile.socialLinks") {{link.data}} &nbsp;
+						input.form-control(id="profile-link",placeholder="ex. http://www.soundcloud.com/awesome_user", ng-model="linkInput.data")
 						button(ng-click="addSocialLink()") Add Link
 			.row
 				.col-sm-4

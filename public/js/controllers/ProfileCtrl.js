@@ -190,8 +190,8 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage){
 		$localStorage.profile.socialLinks.push($scope.linkInput);
 	}
 
-	$scope.linkInput = "";
-	$scope.saveStatus = "";
+	$scope.linkInput = {data:''};
+	$scope.saveStatus = '';
 	$scope.fetchDataLists();
 	$scope.profileSubtypes = $localStorage.datalists.artistTypes;
 	
