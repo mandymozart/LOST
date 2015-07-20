@@ -1,0 +1,10 @@
+.panel-profile .panel-body {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.panel-profile:hover {
+  @include box-shadow(0 1px 4px rgba(0,0,0,.3));
+}
+.panel-profile {
+  transition: all 0.5s;
+}

@@ -9,12 +9,16 @@ block content
 			.col-sm-6
 				h4 My profiles
 			.col-sm-6.text-right#createProfileButtons(ng-if="!isProfileSelected()")
-					button.btn.btn-default(ng-click="createProfile(undefined)"): span.fa.fa-user
+					button.btn.btn-primary.btn--artist(ng-click="createProfile(undefined)")
+						span.fa.fa-user
 						| &nbsp; New artist
-					button.btn.btn-default(ng-click="createProfile(undefined)"): span.fa.fa-user-secret
+					button.btn.btn-default.btn--organiser(ng-click="createProfile(undefined)")
+						span.fa.fa-user-secret
 						| &nbsp; New organiser
-					button.btn.btn-default(ng-click="createProfile(undefined)"): span.fa.fa-building
+					button.btn.btn-default.btn--venue(ng-click="createProfile(undefined)")
+						span.fa.fa-building
 						| &nbsp; New venue
+
 		hr.divider
 		.row
 			// Panel: Profile Select
