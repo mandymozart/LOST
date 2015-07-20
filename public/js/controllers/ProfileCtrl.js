@@ -22,6 +22,8 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage){
 		$localStorage.profile = {};
 	}
 
+	$scope.editprofile = {};
+
 	resetStorage();
 	$localStorage.profiles = [];
 
@@ -38,11 +40,11 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage){
 	$scope.fetchProfiles();
 
 	$scope.isProfileSelected = function(){
-		return $localStorage.profile.name != undefined;
+		return $scope.editprofile.name != undefined;
 	}
 
 
-	$scope.loadProfile = function(p){
+	$scope.loadProfile = function(p, callback){
 		if (!p._id) {
 			$scope.saveStatus = "unsaved profile";
 			return;
@@ -60,13 +62,21 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage){
 		$http(req)
 		.success(function(data){
 			resetStorage();
-			$scope.storage.profile = data;
+			$localStorage.profile = data;
 			$scope.saveStatus = "";
+			if (callback){
+				callback()
+			}
 		})
 		.error(function(){
 			alert('error retreiveing negotiations data from server');
 		});
 	}
+
+	$scope.editProfile = function(p) {
+		$scope.editprofile = p;
+	}
+
 	$scope.createProfile = function(type){
 		console.log($localStorage.profiles);
 		if (!type) {
@@ -99,10 +109,8 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage){
 			called 			: [],
 			tours 			: []
 		}
-		$localStorage.profile = newProfile;
-		$localStorage.profiles.push(newProfile);
-
-		console.log($localStorage.profiles);
+		$scope.editprofile = newProfile;
+		$scope.saveStatus = "new unsaved profile";
 	}//end create profile
 
 	$scope.loadCalendar = function(){
@@ -114,8 +122,8 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage){
 		}
 	}//end load calendar
 
-	$scope.saveProfile = function(){
-		if ($localStorage.profile){
+	$scope.saveProfile = function(p){
+		if (p){
 			var req = {
  				method: 'POST',
  				url: '/api/saveProfile',
@@ -124,7 +132,7 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage){
  				},
  				data: {
  					saveProfile:true,
- 					profile:$localStorage.profile
+ 					profile:p
  				}
 			}
 			$http(req)
@@ -141,24 +149,37 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage){
 		else $scope.saveStatus = "no profile selected to save";
 	}
 
-	$scope.deleteProfile = function(p){
-		var req = {
-			method: 'POST',
-			url: 'api/deleteProfile',
-			headers: {
-				'Content-Type' : 'application/json'
-			},
-			data: {
-				profile:$localStorage.profile
-			}
+	$scope.returnToSelection = function(p){
+		var r = true;
+		if ($scope.saveStatus != "successfully saved profile"){
+			r = confirm("Are you sure you want to return without saving your profile?");
 		}
-		$http(req)
-		.success(function(data){
-			alert('successfully deleted profile');
-		})
-		.error(function(){
-			alert('error deleting profile');
-		})
+		if (r) {
+			$scope.editprofile = {};
+		}
+		$scope.saveStatus = "";
+	}
+
+	$scope.deleteProfile = function(p){
+		if (p){
+			var req = {
+				method: 'POST',
+				url: 'api/deleteProfile',
+				headers: {
+					'Content-Type' : 'application/json'
+				},
+				data: {
+					profile:p
+				}
+			}
+			$http(req)
+			.success(function(data){
+				alert('successfully deleted profile');
+			})
+			.error(function(){
+				alert('error deleting profile');
+			})
+		}
 	}
 
 	$scope.onProfileTypeSelectionChanged = function(){
@@ -195,7 +216,7 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage){
 	}
 
 	$scope.addSocialLink = function(){
-		$localStorage.profile.socialLinks.push($scope.linkInput);
+		$scope.editprofile.socialLinks.push($scope.linkInput);
 	}
 
 	$scope.linkInput = {data:''};

@@ -5,8 +5,9 @@ var async    = require('async')
 exports = module.exports = function(req, res){
 
 	var callback = function(p, n){
-		n.state = 'cancelled'
-		res.send(n)
+		n.status = 'cancelled';
+		n.save();
+		res.send(n);
 	}
 
 	keystone.list('Profile').model.find()

@@ -7,11 +7,17 @@ exports = module.exports = function(req, res){
 	var n_id = req.body.negotiation._id; // the belonging negotiation
 	var p_id = req.body.profile._id;  // sender id
 	var msg  = req.body.message; // the msg to add to the negotiation
-	console.log(req.body);
 	keystone.list('Negotiation').model.find()
 		.where('_id', n_id)
 		.exec(function(err, negotiations){
 			var n = negotiations[0];
+			if (n.status == 'cancelled'){
+				res.send({
+					err : true,
+					message : 'You cannot send messages in a declined negotiation!'
+				});
+				return;
+			}
 			var NegotiationMessage = keystone.list('NegotiationMessage').model;
 			var negotiationMessage = NegotiationMessage();
 			negotiationMessage.set({

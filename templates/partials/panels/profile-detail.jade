@@ -2,7 +2,7 @@
 .panel.panel-default.with-nav-tabs.filtered-list#profileDetailPanel(ng-if="isProfileSelected()")
 	.panel-header
 		.panel-heading
-			.panel-title Profile {{storage.profile.name}}
+			.panel-title Profile {{editprofile.name}}
 				.label-info.pull-right(ng-if="saveStatus !== ''") {{saveStatus}}
 	.panel-body
 		form
@@ -10,13 +10,13 @@
 				.col-sm-4
 					.form-group
 						label(for="profile-name-area") Name:
-							input.form-control(id="profile-name-area",rows="2", cols="50", ng-model="storage.profile.name", placeholder="Unique Name")
+							input.form-control(id="profile-name-area",rows="2", cols="50", ng-model="editprofile.name", placeholder="Unique Name")
 
 				.col-sm-4
 					.form-group
 						label(for="profile-type-select") Type:
 						br
-						select(id="profile-type-select", ng-model="storage.profile.type", ng-change="onProfileTypeSelectionChanged()",style="width:100%")
+						select(id="profile-type-select", ng-model="editprofile.type", ng-change="onProfileTypeSelectionChanged()",style="width:100%")
 							option(value="{{option}}", ng-repeat="option in storage.datalists.profileTypes", selected="selected", ng-if="option == 'Artist'")
 								| {{option}}
 							option(value="{{option}}", ng-repeat="option in storage.datalists.profileTypes", ng-if="option != 'Artist'")
@@ -24,13 +24,13 @@
 					.form-group
 						label(for="subtype-select") Subtype:
 						br
-						select(id="subtype-select", ng-model="storage.profile.subtype",style="width:100%")
+						select(id="subtype-select", ng-model="editprofile.subtype",style="width:100%")
 							option(value="{{option}}", ng-repeat="option in profileSubtypes")
 								| {{option}}
 				.col-sm-4
 					.form-group
 						label(for="genre-select") Genres:
-						ui-select(id="genre-select",multiple, ng-model="storage.profile.genres", theme="select2", ng-disabled="disabled", style="max_width: 100%; width: 100%;")
+						ui-select(id="genre-select",multiple, ng-model="editprofile.genres", theme="select2", ng-disabled="disabled", style="max_width: 100%; width: 100%;")
 							ui-select-match(placeholder="Select genres...") {{$item}}
 							ui-select-choices(repeat="genre in storage.datalists.genres | filter:$select.search")
 								| {{genre}}
@@ -38,11 +38,11 @@
 				.col-sm-4
 					.form-group
 						label(for="profile-zip") ZIP Code
-						input.form-control(id="profile-zip", placeholder="ex. 0711", ng-model="storage.profile.zip")
+						input.form-control(id="profile-zip", placeholder="ex. 0711", ng-model="editprofile.zip")
 				.col-sm-8
 					.form-group
 						label(for="profile-link") Links: <br>
-						label(ng-repeat="link in storage.profile.socialLinks") {{link.data}} &nbsp;
+						label(ng-repeat="link in editprofile.socialLinks track by $index") {{link.data}} &nbsp;
 						input.form-control(id="profile-link",placeholder="ex. http://www.soundcloud.com/awesome_user", ng-model="linkInput.data")
 						button(ng-click="addSocialLink()") Add Link
 			.row
@@ -51,9 +51,11 @@
 				.col-sm-8
 					.form-group
 						label(for="profile-about-brief-area") About:
-						textarea.form-control(id="profile-about-brief-area", rows="2", cols="50", ng-model="storage.profile.about")
+						textarea.form-control(id="profile-about-brief-area", rows="2", cols="50", ng-model="editprofile.about")
 
 
 	.panel-footer.text-right
-		button.btn.btn-primary(ng-click="saveProfile()"): span.fa.fa-save
+		button.btn.btn-primary(ng-click="returnToSelection(editprofile)")
+			| Return to selection
+		button.btn.btn-primary(ng-click="saveProfile(editprofile)"): span.fa.fa-save
 			| &nbsp; Save profile

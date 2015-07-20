@@ -26,6 +26,10 @@ app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http){
 		};
 		$http(req)
 		.success(function(data){
+			if (data.err){
+				alert(data.message);
+				return;
+			}
 			var req = {
 				method: 'POST',
  				url: '/api/populateNegotiationMessages',
@@ -83,6 +87,7 @@ app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http){
 		$http(req)
 		.success(function(data){
 			$localStorage.selectedNegotiation = data;
+			alert('successfully accepted negotiation. status: ' + data.status);
 		})
 		.error(function(){
 			alert('error accepting negotiation');
@@ -103,6 +108,7 @@ app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http){
 		$http(req)
 		.success(function(data){
 			$localStorage.selectedNegotiation = data;
+			alert('successfully declined negotiation. status: ' + data.status);
 		})
 		.error(function(){
 			alert('error declining negotiation');
