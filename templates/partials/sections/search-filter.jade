@@ -37,7 +37,10 @@ section.section#searchFilterSection
 					option(value="{{option}}", ng-repeat="option in storage.datalists.profileTypes")
 						| {{option}}
 			.col-sm-3
-				ui-select(name="selectSubtype", multiple, ng-model="storage.searchOptions.subtypes", theme="select2", ng-disabled="disabled", style="max_width: 100%; width: 100%;")
+				button.btn.btn-default(ng-model="storage.searchOptions.subtypes",data-html="1",data-multiple="1",data-animation="am-flip-x",ng-options="st in profileSubtypes | filter:$select.search",bs-select): Select subtypes...
+					span.caret
+
+				//ui-select(name="selectSubtype", multiple, ng-model="storage.searchOptions.subtypes", theme="select2", ng-disabled="disabled", style="max_width: 100%; width: 100%;")
 					ui-select-match(placeholder="Select subtypes...") {{$item}}
 					ui-select-choices(repeat="st in profileSubtypes | filter:$select.search")
 						| {{st}}
