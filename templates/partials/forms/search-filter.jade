@@ -8,7 +8,7 @@ form.form-inline#searchFilterForm
 						| {{option}}
 		.col-md-4
 			.form-group
-				multiselect.input-xlarge(multiple="true", ng-model="storage.searchOptions.profileSubtypes", options="st.name for st in profileSubtypes", change="selected()")
+				multiselect.input-xlarge(multiple="true", ng-model="storage.searchOptions.profileSubtypes", options="st.name for st in profileSubtypes | filter:$select.search", change="selected()")
 				//div(ng-dropdown-multiselect="", options="profileSubtypes", selected-model="storage.searchOptions.subtypes")
 				// JavaScript $scope.example1model = []; $scope.example1data = [ {id: 1, label: "David"}, {id: 2, label: "Jhon"}, {id: 3, label: "Danny"}];
 
@@ -19,6 +19,7 @@ form.form-inline#searchFilterForm
 						| {{st}}
 		.col-md-4
 			.form-group
+				multiselect.input-xlarge(multiple="true", ng-model="storage.searchOptions.genres", options="genre.name for genre in genres | filter:$select.search", change="selected()")
 				//div(ng-dropdown-multiselect="", options="genres", selected-model="storage.searchOptions.genres")
 				//ui-select(name="selectGenres", multiple, ng-model="storage.searchOptions.genres", theme="select2", ng-disabled="disabled")
 					ui-select-match(placeholder="Select genres...") {{$item}}
