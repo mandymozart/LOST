@@ -4704,9 +4704,11 @@ a:focus {
 multiselect {
   display: block; }
 
-multiselect .btn {
-  width: 100%;
-  background-color: #FFF; }
+multiselect .btn-group {
+  width: 100%; }
+
+multiselect .btn-group .dropdown-toggle {
+  width: 100%; }
 
 multiselect .btn.error {
   border: 1px solid #da4f49 !important; }
