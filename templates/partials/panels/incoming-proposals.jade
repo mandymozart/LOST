@@ -1,21 +1,21 @@
-.panel.panel-default#incomingProposalsPanel(style="height=250; overflow: auto", ng-controller="IncomingProposalsCtrl", ng-if="storage.profile.proposals.length != 0")
-	.panel-heading
-		.panel-title: span.fa.fa-inbox &nbsp; Incoming proposals
-			.label.label-info(ng-if="storage.profile.proposals.length!=0") {{storage.profile.proposals.length}}
-	.panel-body.scrollable
-		table.table.table-striped.table-hover.profile-filtered-list(ng-if="storage.profile.proposals.length!=0")
-			tbody.profile-filtered-list--body
-				tr(ng-repeat="proposal in storage.profile.proposals")
-					td
-						span.fa.fa-calendar
-						span {{getMonth(proposal)}} {{getDay(proposal)}} {{getYear(proposal)}}
-					td(ng-click="showProfile(proposal.sender)")
-						span.profile-info-list--item.profile-name {{proposal.sender.name}}
-						span.profile-type.label.label-primary {{proposal.sender.type}}
-					td
-						button.btn.btn-default.btn-xs(ng-click="acceptProposal(proposal)")
-							| Accept
-					td
-						button.btn.btn-default.btn-xs(ng-click="declineProposal(proposal)")
-							| Decline
-		.well-lg.text-center(ng-if="storage.profile.proposals.length==0") No incoming proposals, yet!
+#incomingProposalCtrl(ng-controller="IncomingProposalsCtrl")
+	.panel.panel-default#incomingProposalsPanel(ng-if="storage.selectedNegotiation == undefined", style="height=250; overflow: auto")
+		.panel-heading
+			.panel-title: span.fa.fa-inbox &nbsp; Incoming proposals
+				.label.label-info(ng-if="storage.profile.proposals.length!=0") {{storage.profile.proposals.length}}
+		.panel-body.scrollable
+			table.table.table-striped.table-hover.profile-filtered-list(ng-if="storage.profile.proposals.length!=0")
+				tbody.profile-filtered-list--body
+					tr(ng-repeat="proposal in storage.profile.proposals")
+						td
+							span.fa.fa-calendar
+							span &nbsp; {{getMonth(proposal)}} {{getDay(proposal)}} {{getYear(proposal)}}
+						td(ng-click="showProfile(proposal.sender)")
+							span.profile-info-list--item.profile-name {{proposal.sender.name}}
+							span.profile-type.label.label-primary {{proposal.sender.type}}
+						td.text-right
+							button.btn.btn-success.btn-xs(ng-click="acceptProposal(proposal)")
+								| Accept
+							button.btn.btn-warning.btn-xs(ng-click="declineProposal(proposal)")
+								| Decline
+			.well-lg.text-center(ng-if="storage.profile.proposals.length==0") No incoming proposals, yet!

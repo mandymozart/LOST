@@ -6,12 +6,12 @@ exports = module.exports = function(req, res) {
 
 	var callback = function(p, n){
 		if (n.status == 'open'){
-			n.status = p._id == n.sender ? 'sender_accepted' : 'receiver_accepted'
+			n.status = p._id.toString() == n.sender.toString() ? 'sender_accepted' : 'receiver_accepted'
 			n.save()
 			res.send(n)
 		}
 		else if (n.status == 'sender_accepted'){
-			if (p._id == n.receiver){
+			if (p._id.toString() == n.receiver.toString()){
 				n.status = 'closed'
 				n.save()
 				res.send(n)
@@ -21,8 +21,8 @@ exports = module.exports = function(req, res) {
 			}
 		}
 		else if (n.status == 'receiver_accepted'){
-			if (p._id == n.sender){
-				p.status = 'closed'
+			if (p._id.toString() == n.sender.toString()){
+				n.status = 'closed'
 				n.save()
 				res.send(n)
 			}
@@ -42,7 +42,6 @@ exports = module.exports = function(req, res) {
 				.where('_id', req.body.negotiation._id)
 				.exec(function(err1, negotiations){
 					if (err1) console.log(err1)
-					console.log(negotiations[0])
 					callback(profiles[0], negotiations[0])
 				})
 		})

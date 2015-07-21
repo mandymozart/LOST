@@ -5,12 +5,11 @@
 				span.fa.fa-cog
 			ul.dropdown-menu(role='menu')
 				li
-					a(href='#') by stared&nbsp;
-						span.fa.fa-star
-				li
-					a(href='#') by fee&nbsp;
-						span.fa.fa-money
-		.panel-title: span.fa.fa-gavel &nbsp; Ongoing negotiations
+					input(type="checkbox", ng-model="filterDate")
+					span Filter by date
+		.panel-title
+			span.fa.fa-gavel
+			span &nbsp; Ongoing negotiations
 			.label.label-info(ng-if="storage.profile.negotiations!=0") {{storage.profile.negotiations.length}}
 	.panel-body.scrollable
 		table.table.table-striped.table-hover.profile-filtered-list(ng-if="storage.profile.negotiations.length!=0")
@@ -30,8 +29,7 @@
 									ng-if="storage.selectedNegotiation._id != n._id"
 									ng-click="selectNegotiation(n)")
 							| select
-		.well-lg Filter by date
-			input(type="checkbox", ng-model="filterDate")
+
 		.well-lg.text-center(ng-if="storage.profile.negotiations.length==0") No active negotiations!
 
 		

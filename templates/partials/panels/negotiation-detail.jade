@@ -1,34 +1,41 @@
 #negotiationDetailCtrl(ng-controller="NegotiationDetailCtrl")
 	.panel.panel-default#negotiationDetailPanel(ng-if="storage.selectedNegotiation != undefined", style="height=350; overflow: auto")
 		.panel-heading
-			.panel-title Negotiation between <b>{{storage.selectedNegotiation.sender.name}}</b> and <b>{{storage.selectedNegotiation.receiver.name}}</b>
-			textarea(id="negotiation-offer-area",
-					rows="1",
-					cols="20",
-					ng-model="storage.selectedNegotiation.currentOffer")
-			button.btn.btn-default( ng-click="offer()")
-				| submit offer
+			.row
+				.col-md-8
+					.panel-title Negotiation with <b>{{storage.selectedNegotiation.sender.name}}</b> &nbsp;
+						span.profile-type.label.label-primary {{storage.selectedNegotiation.sender.type}}
+						span &nbsp; for &nbsp;
+						b.text-info
+							span.fa.fa-calendar-o &nbsp;
+							span.calendar-digit.calendar--month {{getMonth()}}&nbsp;
+							span.calendar-digit.calendar--day {{getDay()}}&nbsp;
+							span.calendar-digit.calendar--year {{getYear()}}&nbsp;
+				.col-md-4
+					h4.offer-title Offer
+					input.form-control(id="negotiation-offer-area",ng-model="storage.selectedNegotiation.currentOffer")
+					button.btn.btn-primary.btn-block(ng-click="offer()")
+						| Make new offer
+					button.btn.btn-success.btn-block(ng-click="accept()") Accept
+					button.btn.btn-warning.btn-block(ng-click="decline()") Decline
+
+
+
+
 		.panel-body
-			row(ng-repeat="message in storage.selectedNegotiation.messages | orderBy:date")
-					span.negotiation-date.negotiation-msg-sent(ng-if="sent(message)", style="text-align:left;")
-						| {{message.date}}
-						<br>
-					span.negotiation-msg.negotiation-msg-sent(ng-if="sent(message)", style="text-align:left;")
-						| {{message.content}}
-						<br>
-					span.negotiation-date.negotiation-msg-received(ng-if="!sent(message)", style="text-align:right;")
-						| <font color="red"> {{message.date}} </font>
-						<br>
-					span.negotiation-msg.negotiation-msg-received(ng-if="!sent(message)", style="text-align:right;")
-						| <font color="red"> {{message.content}} </font>
-						<br>
-			row
-				form.negotiation-msg.negotiation-msg-sent
-					.form-group
-						label(for="message-area")
-						input.form-control(type="text", id="message-area",rows="4",cols="50",ng-model="models.messageAreaText")
-					.form-group
-						button.btn.btn-default(ng-click="send()") Send
+			h5.message-title Your Conversation
+			.row(ng-repeat="message in storage.selectedNegotiation.messages")
+				.col-xs-12
+					.message(ng-class="{true:'message-sent', false:'message-received'}[sent(message)]")
+						p.message-content
+							| {{message.content}} <br>
+						span.message-date
+							| {{message.date}} <br>
+
 		.panel-footer
-			button.btn.btn-default(ng-click="accept()") Accept
-			button.btn.btn-default(ng-click="decline()") Decline
+			form#messageForm
+				.form-group
+					label(for="message-area")
+					input.form-control(type="text", id="message-area",rows="4",cols="50",ng-model="models.messageAreaText")
+			.form-group
+				button.btn.btn-primary.btn-block(ng-click="send()") Send Message

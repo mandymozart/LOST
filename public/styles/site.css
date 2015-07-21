@@ -4777,6 +4777,38 @@ http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
 #datePickerPanel th button {
   width: 100%; }
 
+#datePickerPanel .event-selected {
+  border-color: black;
+  border-width: 3px; }
+
+#datePickerPanel .event-negotiation-open button {
+  background-color: #EF9A9A; }
+
+#datePickerPanel .event-negotiation-closed button {
+  background-color: #66BB6A; }
+
+#datePickerPanel .event-negotiation button {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/neg+0,2fc43e+50,ff7c00+51,ff7f04+100 */
+  background: #EF9A9A;
+  /* Old browsers */
+  background: -moz-linear-gradient(-45deg, #EF9A9A 0%, #EF9A9A 50%, #66BB6A 51%, #66BB6A 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #EF9A9A), color-stop(50%, #EF9A9A), color-stop(51%, #66BB6A), color-stop(100%, #66BB6A));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(-45deg, #EF9A9A 0%, #EF9A9A 50%, #66BB6A 51%, #66BB6A 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(-45deg, #EF9A9A 0%, #EF9A9A 50%, #66BB6A 51%, #66BB6A 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(-45deg, #EF9A9A 0%, #EF9A9A 50%, #66BB6A 51%, #66BB6A 100%);
+  /* IE10+ */
+  background: linear-gradient(135deg, #EF9A9A 0%, #EF9A9A 50%, #66BB6A 51%, #66BB6A 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$event-negotiation-open-background-color', endColorstr='$event-negotiation-closed-background-color',GradientType=1 );
+  /* IE6-9 fallback on horizontal gradient */ }
+
+#datePickerPanel .event-proposal button {
+  font-weight: bold; }
+
 #ongoingNegotiationsPanel {
   min-height: 323px; }
 
@@ -4786,6 +4818,33 @@ http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
 
 #searchPanel .ui-select-container input, #searchPanel select, #searchPanel .form-control, #searchPanel .form-group {
   width: 100%; }
+
+#negotiationDetailPanel .panel-body {
+  padding-left: 15px;
+  padding-right: 15px; }
+
+#negotiationDetailPanel .message {
+  margin-bottom: 15px;
+  border-radius: 4px;
+  width: 80%; }
+
+#negotiationDetailPanel .message.message-sent {
+  float: left;
+  background: #afdaf6; }
+
+#negotiationDetailPanel .message.message-received {
+  float: right;
+  background: #f6cdca; }
+
+#negotiationDetailPanel .message .message-content {
+  padding: 10px; }
+
+#negotiationDetailPanel .message .message-date {
+  font-size: 12px;
+  margin: 8px; }
+
+#negotiationDetailPanel .clear {
+  clear: both; }
 
 /* Profiles */
 #profileDetailPanel .row {
