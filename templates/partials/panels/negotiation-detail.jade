@@ -1,41 +1,51 @@
 #negotiationDetailCtrl(ng-controller="NegotiationDetailCtrl")
-	.panel.panel-default#negotiationDetailPanel(ng-if="storage.selectedNegotiation != undefined", style="height=350; overflow: auto")
+	.panel.panel-default.panel-front#negotiationDetailPanel(ng-if="storage.selectedNegotiation != undefined", style="height=350; overflow: auto")
 		.panel-heading
 			.row
 				.col-md-8
-					.panel-title Negotiation with <b>{{storage.selectedNegotiation.sender.name}}</b> &nbsp;
-						span.profile-type.label.label-primary {{storage.selectedNegotiation.sender.type}}
-						span &nbsp; for &nbsp;
-						b.text-info
-							span.fa.fa-calendar-o &nbsp;
-							span.calendar-digit.calendar--month {{getMonth()}}&nbsp;
-							span.calendar-digit.calendar--day {{getDay()}}&nbsp;
-							span.calendar-digit.calendar--year {{getYear()}}&nbsp;
+					.panel-title
+						span.fa.fa-gavel
+						span &nbsp; Negotiation with <b>{{storage.selectedNegotiation.sender.name}}</b> &nbsp;
+							span.profile-type.label.label-primary {{storage.selectedNegotiation.sender.type}}
+							span &nbsp; for &nbsp;
+							b.text-info
+								span.fa.fa-calendar-o &nbsp;
+								span.calendar-digit.calendar--month {{getMonth()}}&nbsp;
+								span.calendar-digit.calendar--day {{getDay()}}&nbsp;
+								span.calendar-digit.calendar--year {{getYear()}}&nbsp;
 				.col-md-4
-					h4.offer-title Offer
-					input.form-control(id="negotiation-offer-area",ng-model="storage.selectedNegotiation.currentOffer")
-					button.btn.btn-primary.btn-block(ng-click="offer()")
-						| Make new offer
-					button.btn.btn-success.btn-block(ng-click="accept()") Accept
-					button.btn.btn-warning.btn-block(ng-click="decline()") Decline
+					.panel-title
+						span.fa.fa-money
+						span &nbsp; Current offer <b>{{storage.selectedNegotiation.currentOffer}}</b>
+					.col-xs-6
+						input.form-control(id="negotiation-offer-area",ng-model="storage.selectedNegotiation.currentOffer")
+					.col-xs-6
+						button.btn.btn-primary.btn-block(ng-click="offer()")
+							| Update
+					hr
+					.col-xs-6
+						button.btn.btn-success.btn-block(ng-click="accept()") Accept
+					.col-xs-6
+						button.btn.btn-warning.btn-block(ng-click="decline()") Decline
 
 
 
 
 		.panel-body
-			h5.message-title Your Conversation
-			.row(ng-repeat="message in storage.selectedNegotiation.messages")
-				.col-xs-12
-					.message(ng-class="{true:'message-sent', false:'message-received'}[sent(message)]")
-						p.message-content
-							| {{message.content}} <br>
-						span.message-date
-							| {{message.date}} <br>
-
+			h4.chat-title
+				span.fa.fa-comments-o
+				span &nbsp; Messages
+			.chat-body.scrollable#negotiationDetailChatBody
+				.message(ng-class="{true:'message-sent', false:'message-received'}[sent(message)]",ng-repeat="message in storage.selectedNegotiation.messages")
+					p.message-content
+						| {{message.content}} <br>
+					span.message-date
+						| {{message.date}} <br>
+				.well-lg.text-center(ng-if="storage.selectedNegotiation.messages.length == 0") Type into the textfield below to get started!
 		.panel-footer
 			form#messageForm
 				.form-group
 					label(for="message-area")
-					input.form-control(type="text", id="message-area",rows="4",cols="50",ng-model="models.messageAreaText")
+					input.form-control(type="text", id="message-area",placeholder="Type here ...",ng-model="models.messageAreaText")
 			.form-group
 				button.btn.btn-primary.btn-block(ng-click="send()") Send Message
