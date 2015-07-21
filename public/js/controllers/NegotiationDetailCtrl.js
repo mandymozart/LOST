@@ -78,6 +78,11 @@ app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http){
 			$http(req)
 			.success(function(data){
 				$localStorage.selectedNegotiation = data;
+                setTimeout(function(){
+                    var wtf = $('#negotiationDetailChatBody');
+                    var height = wtf[0].scrollHeight;
+                    wtf.scrollTop(height);
+                },500);
 			})
 			.error(function(){
 				alert('error populating negotiation messages');

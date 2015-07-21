@@ -12,5 +12,9 @@ form.form-inline#searchFilterForm
 		.col-md-4
 			.form-group
 				multiselect.input-xlarge(multiple="true", ng-model="storage.searchOptions.genres", options="genre.name for genre in getIndexedList(storage.datalists.genres) | filter:$select.search", change="selected()", placeholder="Genres")
-	button.btn.btn-primary.btn-block(type='submit', ng-click="submitSearch()"): span.fa.fa-search
+	.row
+		.col-md-10
+			input.form-control(ng-model="storage.searchOptions.profileName",type='text',placeholder='Contact artist',name='inputProfile',id='inputProfile')
+		.col-md-2
+			button.btn.btn-primary.btn-block(type='submit', ng-click="submitSearch()"): span.fa.fa-search
 
