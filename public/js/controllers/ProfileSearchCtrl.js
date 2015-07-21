@@ -86,6 +86,14 @@ app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage){
         //TODO
         return false;
     }
+    $scope.profileTypeFilter = function (pt){
+        return pt != $localStorage.profile.type;
+    }
+
+    $scope.getInitialProfileType = function(){
+        if ($scope.profileTypes[0] == $localStorage.profile.type) return $scope.profileTypes[1];
+        else return $scope.profileTypes[0];
+    }
 
     $scope.onProfileTypeSelectionChanged = function(){
         var pt = $localStorage.searchOptions.profileType;
