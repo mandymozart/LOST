@@ -29,6 +29,20 @@ app.controller('NegotiationsListCtrl', function($scope, $localStorage, $http){
 		$http(req)
 		.success(function(data){
 			$localStorage.selectedNegotiation = data;
+                setTimeout(function(){
+                    var hh = document.getElementById('negotiationDetailChatBody').offsetHeight;
+                    //var fh = document.getElementById('footer').offsetHeight;
+                    console.log(hh);
+
+                    var wHeight = window.innerHeight;
+                    console.log(wHeight);
+                    $('#negotiationDetailChatBody').height(wHeight-420);
+                    var wtf = $('#negotiationDetailChatBody');
+                    var height = wtf[0].scrollHeight;
+                    wtf.scrollTop(height);
+                },500);
+
+
 		})
 		.error(function(){
 			alert('error populating negotiation messages');
