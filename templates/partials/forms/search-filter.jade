@@ -2,15 +2,27 @@ form.form-inline#searchFilterForm
 	.row
 		.col-md-4
 			.form-group
-
-				select.form-control(name='selectProfileType', ng-init="getInitialProfileType()", ng-model="storage.searchOptions.profileType",ng-change="onProfileTypeSelectionChanged()")
-					option(value="{{option}}", ng-repeat="option in storage.datalists.profileTypes | filter: profileTypeFilter")
+				select.form-control(name='selectProfileType', 
+					ng-init="getInitialProfileType()", 
+					ng-model="storage.searchOptions.profileType",
+					ng-change="onProfileTypeSelectionChanged()")
+					option(value="{{option}}", ng-repeat="option in profileTypes | filter: profileTypeFilter")
 						| {{option}}
 		.col-md-4
 			.form-group
-				multiselect.input-xlarge(multiple="true", ng-model="storage.searchOptions.profileSubtypes", options="st.name for st in getIndexedList(profileSubtypes) | filter:$select.search", change="selected()", placeholder="Subtypes")
+				multiselect.input-xlarge(multiple="true",
+					ng-if="profileSubtypes.length > 0", 
+					ng-model="storage.searchOptions.profileSubtypes", 
+					options="st.name for st in getIndexedList(getSubtypeList()) | filter:$select.search", 
+					change="selected()", 
+					placeholder="Subtypes")
 		.col-md-4
 			.form-group
-				multiselect.input-xlarge(multiple="true", ng-model="storage.searchOptions.genres", options="genre.name for genre in getIndexedList(storage.datalists.genres) | filter:$select.search", change="selected()", placeholder="Genres")
+				multiselect.input-xlarge(multiple="true", 
+					ng-if="getGenreList().length > 0"
+					ng-model="storage.searchOptions.genres", 
+					options="genre.name for genre in getIndexedList(getGenreList()) | filter:$select.search", 
+					change="selected()", 
+					placeholder="Genres")
 	button.btn.btn-primary.btn-block(type='submit', ng-click="submitSearch()"): span.fa.fa-search
 

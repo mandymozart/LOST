@@ -3,22 +3,22 @@ var _        = require('underscore')
 var async    = require('async')
 
 exports = module.exports = function(req, res){
+	if (!req.body.negotiation._id) res.send(undefined);
 
-	var callback = function(p, n){
-		n.status = 'cancelled';
-		n.save();
-		res.send(n);
-	}
-
-	keystone.list('Profile').model.find()
-		.where('_id', req.body.profile._id)
-		.exec(function(err0, profiles){
-			if (err0) console.log(err0)
-			keystone.list('Negotiation').model.find()
-				.where('_id', req.body.negotiation._id)
-				.exec(function(err1, negotiations){
-					if (err1) console.log(err1)
-					callback(profiles[0], negotiations[0])
-				})
+	keystone.list('Profile').model.find({
+		'_id': { $in: [ req.body.negotiation.sender._id, req.body.negotiation.receiver._id ] }
+	},function(err, docs){
+		_.each(docs,function(doc){
+			//console.log(doc.negotiations);
+			doc.negotiations.splice(doc.negotiations.indexOf(req.body.negotiation._id),1)
+			//console.log(doc.negotiations);
 		})
+		keystone.list('Negotiation').model.find({
+			'_id': req.body.negotiation._id
+		})
+		.remove(function(){
+			console.log('removed negotiation')
+			res.send(undefined);
+		})
+	});
 }
