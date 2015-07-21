@@ -1,16 +1,30 @@
-#negotiationDetailPanel .message-date span
-
-
-#negotiationDetailPanel .message{
-
+#negotiationDetailPanel .panel-body {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+#negotiationDetailPanel .message {
+  margin-bottom: 15px;
+  border-radius: 4px;
+  width: 80%;
 }
 
-#negotiationDetailPanel .message-sent{
-	float: left;
+#negotiationDetailPanel .message.message-sent {
+  float: left;
+  background: #afdaf6;
 }
 
-#negotiationDetailPanel .message-received{
-	float: right;
+#negotiationDetailPanel .message.message-received {
+  float: right;
+  background: #f6cdca;
+}
+
+#negotiationDetailPanel .message .message-content {
+  padding: 10px;
+}
+
+#negotiationDetailPanel .message .message-date {
+  font-size: 12px;
+  margin: 8px;
 }
 
 #negotiationDetailPanel .clear {

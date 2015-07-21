@@ -4794,11 +4794,29 @@ http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
 #searchPanel .ui-select-container input, #searchPanel select, #searchPanel .form-control, #searchPanel .form-group {
   width: 100%; }
 
-#negotiationDetailPanel .message-sent {
-  float: left; }
+#negotiationDetailPanel .panel-body {
+  padding-left: 15px;
+  padding-right: 15px; }
 
-#negotiationDetailPanel .message-received {
-  float: right; }
+#negotiationDetailPanel .message {
+  margin-bottom: 15px;
+  border-radius: 4px;
+  width: 80%; }
+
+#negotiationDetailPanel .message.message-sent {
+  float: left;
+  background: #afdaf6; }
+
+#negotiationDetailPanel .message.message-received {
+  float: right;
+  background: #f6cdca; }
+
+#negotiationDetailPanel .message .message-content {
+  padding: 10px; }
+
+#negotiationDetailPanel .message .message-date {
+  font-size: 12px;
+  margin: 8px; }
 
 #negotiationDetailPanel .clear {
   clear: both; }
