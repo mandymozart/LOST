@@ -1,7 +1,7 @@
 #negotiationDetailCtrl(ng-controller="NegotiationDetailCtrl")
 	.panel.panel-default#negotiationDetailPanel(ng-if="storage.selectedNegotiation != undefined", style="height=350; overflow: auto")
 		.panel-heading
-			.panel-title Negotiation between <b>{{storage.selectedNegotiation.sender.name}}</b> and <b>{{storage.selectedNegotiation.receiver.name}}</b>
+			.panel-title Negotiation between <b>{{storage.selectedNegotiation.sender.name}}</b> and <b>{{storage.selectedNegotiation.receiver.name}}</b> for the <b>{{storage.selectedNegotiation.date}}</b>
 			textarea(id="negotiation-offer-area",
 					rows="1",
 					cols="20",
@@ -9,26 +9,18 @@
 			button.btn.btn-default( ng-click="offer()")
 				| submit offer
 		.panel-body
-			row(ng-repeat="message in storage.selectedNegotiation.messages | orderBy:date")
-					span.negotiation-date.negotiation-msg-sent(ng-if="sent(message)", style="text-align:left;")
-						| {{message.date}}
-						<br>
-					span.negotiation-msg.negotiation-msg-sent(ng-if="sent(message)", style="text-align:left;")
-						| {{message.content}}
-						<br>
-					span.negotiation-date.negotiation-msg-received(ng-if="!sent(message)", style="text-align:right;")
-						| <font color="red"> {{message.date}} </font>
-						<br>
-					span.negotiation-msg.negotiation-msg-received(ng-if="!sent(message)", style="text-align:right;")
-						| <font color="red"> {{message.content}} </font>
-						<br>
-			row
-				form.negotiation-msg.negotiation-msg-sent
-					.form-group
-						label(for="message-area")
-						input.form-control(type="text", id="message-area",rows="4",cols="50",ng-model="models.messageAreaText")
-					.form-group
-						button.btn.btn-default(ng-click="send()") Send
+			row(ng-repeat="message in storage.selectedNegotiation.messages")
+				.message(ng-class="{true:'message-sent', false:'message-received'}[sent(message)]")
+					span
+						| {{message.content}} <br>
+					span.message-date
+						| {{message.date}} <br>
+			form
+				.form-group
+					label(for="message-area")
+					input.form-control(type="text", id="message-area",rows="4",cols="50",ng-model="models.messageAreaText")
+				.form-group
+					button.btn.btn-default(ng-click="send()") Send
 		.panel-footer
 			button.btn.btn-default(ng-click="accept()") Accept
 			button.btn.btn-default(ng-click="decline()") Decline

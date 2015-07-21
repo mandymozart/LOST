@@ -7,6 +7,7 @@
 @import "panels/calendar/ongoing-negotiations";
 @import "panels/calendar/profile-detail-readonly";
 @import "panels/calendar/search";
+@import "panels/calendar/negotiation-detail";
 
 /* Profiles */
 @import "panels/profiles/profile-detail";
@@ -15,3 +16,6 @@
 /* Frontend */
 //@import "panels/frontend/mixins"; update to scss
 @import "panels/frontend/session";
+
+
+

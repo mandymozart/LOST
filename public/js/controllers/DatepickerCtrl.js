@@ -41,7 +41,9 @@ app.controller('DatepickerCtrl', function ($scope, $localStorage) {
     $scope.format = $scope.formats[0];
 
     $scope.getDayClass = function(date, mode) {
-        var classes = []
+        var pno = false;
+        var pnc = false;
+        var pp = false;
         if (mode === 'day') {
             var dayToCheck = new Date(date).setHours(0,0,0,0);
 
@@ -49,20 +51,32 @@ app.controller('DatepickerCtrl', function ($scope, $localStorage) {
                 var n = $localStorage.profile.negotiations[i];
                 var ndt = new Date(n.date).setHours(0,0,0,0);
                 if (dayToCheck === ndt){
-                    classes.push('event-negotiation');
-                    break;
+                    if (n.status == 'closed') pnc = true;
+                    if (n.status != 'closed') pno = true;
                 }
             }
             for (var i=0;i<$localStorage.profile.proposals.length;i++){
                 var p = $localStorage.profile.proposals[i];
-                var pdt = new Date(p.date).setHours(0,0,0,0);
-                if (dayToCheck === ndt){
-                    classes.push('event-proposal');
+                var pdt = new Date(p.proposedDate).setHours(0,0,0,0);
+                if (dayToCheck === pdt){
+                    pp = true;
                     break;
                 }
             }
         }
-
+        var classes = ''
+        if (pno && pnc){
+            classes += 'event-negotiation'
+        }
+        else if (pno){
+            classes += 'event-negotiation-open'
+        }
+        else if (pnc){
+            classes += 'event-negotiation-closed'
+        }
+        if (pp) {
+            classes += ' event-proposal'
+        }
         return classes;
     };
 });

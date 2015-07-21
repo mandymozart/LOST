@@ -23,7 +23,7 @@ app.controller('IncomingProposalsCtrl', function($scope, $localStorage, $http){
 		return new Date(p.proposedDate).getUTCDate();
 	}
 	$scope.getMonth = function(p){
-		return monthNames[new Date(p.proposedDate).getUTCMonth() + 1];
+		return monthNames[new Date(p.proposedDate).getUTCMonth()];
 	}
 	$scope.getYear = function(p){
 		return new Date(p.proposedDate).getUTCFullYear();

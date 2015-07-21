@@ -4753,38 +4753,36 @@ http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
   width: 100%; }
 
 #datePickerPanel .event-selected {
-  border-radius: 10px;
   border-color: black;
-  border-width: 5px; }
+  border-width: 3px; }
 
-#datePickerPanel .event-proposal button {
-  background-color: limegreen;
-  border-radius: 10px;
-  color: black; }
+#datePickerPanel .event-negotiation-open button {
+  background-color: #EF9A9A; }
+
+#datePickerPanel .event-negotiation-closed button {
+  background-color: #66BB6A; }
 
 #datePickerPanel .event-negotiation button {
-  background-color: orange;
-  border-radius: 10px;
-  color: black; }
-
-#datePickerPanel .event-negotiation-proposal button {
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#5ee064+0,2fc43e+50,ff7c00+51,ff7f04+100 */
-  background: #5ee064;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/neg+0,2fc43e+50,ff7c00+51,ff7f04+100 */
+  background: #EF9A9A;
   /* Old browsers */
-  background: -moz-linear-gradient(-45deg, #5ee064 0%, #2fc43e 50%, #ff7c00 51%, #ff7f04 100%);
+  background: -moz-linear-gradient(-45deg, #EF9A9A 0%, #EF9A9A 50%, #66BB6A 51%, #66BB6A 100%);
   /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #5ee064), color-stop(50%, #2fc43e), color-stop(51%, #ff7c00), color-stop(100%, #ff7f04));
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #EF9A9A), color-stop(50%, #EF9A9A), color-stop(51%, #66BB6A), color-stop(100%, #66BB6A));
   /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(-45deg, #5ee064 0%, #2fc43e 50%, #ff7c00 51%, #ff7f04 100%);
+  background: -webkit-linear-gradient(-45deg, #EF9A9A 0%, #EF9A9A 50%, #66BB6A 51%, #66BB6A 100%);
   /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(-45deg, #5ee064 0%, #2fc43e 50%, #ff7c00 51%, #ff7f04 100%);
+  background: -o-linear-gradient(-45deg, #EF9A9A 0%, #EF9A9A 50%, #66BB6A 51%, #66BB6A 100%);
   /* Opera 11.10+ */
-  background: -ms-linear-gradient(-45deg, #5ee064 0%, #2fc43e 50%, #ff7c00 51%, #ff7f04 100%);
+  background: -ms-linear-gradient(-45deg, #EF9A9A 0%, #EF9A9A 50%, #66BB6A 51%, #66BB6A 100%);
   /* IE10+ */
-  background: linear-gradient(135deg, #5ee064 0%, #2fc43e 50%, #ff7c00 51%, #ff7f04 100%);
+  background: linear-gradient(135deg, #EF9A9A 0%, #EF9A9A 50%, #66BB6A 51%, #66BB6A 100%);
   /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5ee064', endColorstr='#ff7f04',GradientType=1 );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$event-negotiation-open-background-color', endColorstr='$event-negotiation-closed-background-color',GradientType=1 );
   /* IE6-9 fallback on horizontal gradient */ }
+
+#datePickerPanel .event-proposal button {
+  font-weight: bold; }
 
 #ongoingNegotiationsPanel {
   min-height: 323px; }
@@ -4795,6 +4793,15 @@ http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
 
 #searchPanel .ui-select-container input, #searchPanel select, #searchPanel .form-control, #searchPanel .form-group {
   width: 100%; }
+
+#negotiationDetailPanel .message-sent {
+  float: left; }
+
+#negotiationDetailPanel .message-received {
+  float: right; }
+
+#negotiationDetailPanel .clear {
+  clear: both; }
 
 /* Profiles */
 #profileDetailPanel .row {
