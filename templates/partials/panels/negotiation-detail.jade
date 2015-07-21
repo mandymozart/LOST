@@ -1,16 +1,29 @@
 #negotiationDetailCtrl(ng-controller="NegotiationDetailCtrl")
 	.panel.panel-default#negotiationDetailPanel(ng-if="storage.selectedNegotiation != undefined", style="height=350; overflow: auto")
 		.panel-heading
-			.panel-title Negotiation between <b>{{storage.selectedNegotiation.sender.name}}</b> and <b>{{storage.selectedNegotiation.receiver.name}}</b> for the <b>{{storage.selectedNegotiation.date}}</b>
-			.pull-right
-				button.btn.btn-success.btn-xs(ng-click="accept()") Accept
-				button.btn.btn-warning.btn-xs(ng-click="decline()") Decline
+			.row
+				.col-md-8
+					.panel-title Negotiation with <b>{{storage.selectedNegotiation.sender.name}}</b> &nbsp;
+						span.profile-type.label.label-primary {{storage.selectedNegotiation.sender.type}}
+						span &nbsp; for &nbsp;
+						b.text-info
+							span.fa.fa-calendar-o &nbsp;
+							span.calendar-digit.calendar--month {{getMonth()}}&nbsp;
+							span.calendar-digit.calendar--day {{getDay()}}&nbsp;
+							span.calendar-digit.calendar--year {{getYear()}}&nbsp;
+				.col-md-4
+					h4.offer-title Offer
+					input.form-control(id="negotiation-offer-area",ng-model="storage.selectedNegotiation.currentOffer")
+					button.btn.btn-primary.btn-block(ng-click="offer()")
+						| Make new offer
+					button.btn.btn-success.btn-block(ng-click="accept()") Accept
+					button.btn.btn-warning.btn-block(ng-click="decline()") Decline
 
-			input.form-control(id="negotiation-offer-area",ng-model="storage.selectedNegotiation.currentOffer")
-			button.btn.btn-default( ng-click="offer()")
-				| Submit offer
+
+
+
 		.panel-body
-			h5.message-titel Your Conversation
+			h5.message-title Your Conversation
 			.row(ng-repeat="message in storage.selectedNegotiation.messages")
 				.col-xs-12
 					.message(ng-class="{true:'message-sent', false:'message-received'}[sent(message)]")

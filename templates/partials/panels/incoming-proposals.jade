@@ -9,14 +9,13 @@
 					tr(ng-repeat="proposal in storage.profile.proposals")
 						td
 							span.fa.fa-calendar
-							span {{getMonth(proposal)}} {{getDay(proposal)}} {{getYear(proposal)}}
+							span &nbsp; {{getMonth(proposal)}} {{getDay(proposal)}} {{getYear(proposal)}}
 						td(ng-click="showProfile(proposal.sender)")
 							span.profile-info-list--item.profile-name {{proposal.sender.name}}
 							span.profile-type.label.label-primary {{proposal.sender.type}}
-						td
-							button.btn.btn-default.btn-xs(ng-click="acceptProposal(proposal)")
+						td.text-right
+							button.btn.btn-success.btn-xs(ng-click="acceptProposal(proposal)")
 								| Accept
-						td
-							button.btn.btn-default.btn-xs(ng-click="declineProposal(proposal)")
+							button.btn.btn-warning.btn-xs(ng-click="declineProposal(proposal)")
 								| Decline
 			.well-lg.text-center(ng-if="storage.profile.proposals.length==0") No incoming proposals, yet!
