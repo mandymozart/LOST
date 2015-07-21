@@ -4,10 +4,11 @@ form.form-inline#searchFilterForm
 			.form-group
 
 				select.form-control(name='selectProfileType', ng-model="storage.searchOptions.profileType",ng-change="onProfileTypeSelectionChanged()")
-					option(value="{{option}}", ng-repeat="option in profileTypes")
+					option(value="{{option}}", ng-repeat="option in profileTypes | filter:{option != storage.profile.type}")
 						| {{option}}
 		.col-md-4
 			.form-group
+				multiselect.input-xlarge(multiple="true", ng-model="storage.searchOptions.profileSubtypes", options="st.name for st in profileSubtypes", change="selected()")
 				//div(ng-dropdown-multiselect="", options="profileSubtypes", selected-model="storage.searchOptions.subtypes")
 				// JavaScript $scope.example1model = []; $scope.example1data = [ {id: 1, label: "David"}, {id: 2, label: "Jhon"}, {id: 3, label: "Danny"}];
 
