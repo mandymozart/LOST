@@ -4,19 +4,13 @@ form.form-inline#searchFilterForm
 			.form-group
 
 				select.form-control(name='selectProfileType', ng-init="getInitialProfileType()", ng-model="storage.searchOptions.profileType",ng-change="onProfileTypeSelectionChanged()")
-					option(value="{{option}}", ng-repeat="option in profileTypes | filter: profileTypeFilter")
+					option(value="{{option}}", ng-repeat="option in storage.datalists.profileTypes | filter: profileTypeFilter")
 						| {{option}}
-
-				//select.form-control(name='selectProfileType',
-					ng-model="storage.searchOptions.profileType",
-					ng-change="onProfileTypeSelectionChanged()",
-					ng-options="option in profileTypes | filter: profileTypeFilter",
-					ng-init="getInitialProfileType()")
 		.col-md-4
 			.form-group
-				multiselect.input-xlarge(multiple="true", ng-model="storage.searchOptions.profileSubtypes", options="st.name for st in profileSubtypes | filter:$select.search", change="selected()")
+				multiselect.input-xlarge(multiple="true", ng-model="storage.searchOptions.profileSubtypes", options="st.name for st in getIndexedList(profileSubtypes) | filter:$select.search", change="selected()", placeholder="Subtypes")
 		.col-md-4
 			.form-group
-				multiselect.input-xlarge(multiple="true", ng-model="storage.searchOptions.genres", options="genre.name for genre in genres | filter:$select.search", change="selected()")
+				multiselect.input-xlarge(multiple="true", ng-model="storage.searchOptions.genres", options="genre.name for genre in getIndexedList(storage.datalists.genres) | filter:$select.search", change="selected()", placeholder="Genres")
 	button.btn.btn-primary.btn-block(type='submit', ng-click="submitSearch()"): span.fa.fa-search
 

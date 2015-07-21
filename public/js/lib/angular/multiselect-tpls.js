@@ -119,20 +119,27 @@ angular.module('ui.multiselect', [
           element.append($compile(popUpEl)(scope));
 
           function getHeaderText() {
-            if (is_empty(modelCtrl.$modelValue)) return scope.header = attrs.msHeader || 'Select';
+            if (is_empty(modelCtrl.$modelValue)) return scope.header = attrs.placeholder || 'Select';
 
               if (isMultiple) {
                   if (attrs.msSelected) {
                       scope.header = $interpolate(attrs.msSelected)(scope);
-                  } else {
-                      scope.header = modelCtrl.$modelValue.length + ' ' + 'selected';
+                  } 
+                  else {
+                      var h = ""
+                      modelCtrl.$modelValue.forEach(function(val){
+                        h += val.name + ", "
+                      })
+                      scope.header = h.length <= 20 ? h.substring(0,h.length-2) : "" + modelCtrl.$modelValue.length + " selected"
+                      //scope.header = modelCtrl.$modelValue.length + ' ' + 'selected';
                   }
 
-            } else {
-              var local = {};
-              local[parsedResult.itemName] = modelCtrl.$modelValue;
-              scope.header = parsedResult.viewMapper(local);
-            }
+              } 
+              else {
+                var local = {};
+                local[parsedResult.itemName] = modelCtrl.$modelValue;
+                scope.header = parsedResult.viewMapper(local);
+              }
           }
 
           function is_empty(obj) {
@@ -287,12 +294,12 @@ angular.module('multiselect.tpl.html', [])
       "      <input class=\"form-control input-sm\" type=\"text\" ng-model=\"searchText.label\" autofocus=\"autofocus\" placeholder=\"Filter\" />\n" +
       "    </li>\n" +
       "    <li ng-show=\"multiple\" role=\"presentation\" class=\"\">\n" +
-      "      <button class=\"btn btn-link btn-xs\" ng-click=\"checkAll()\" type=\"button\"><i class=\"glyphicon glyphicon-ok\"></i> Check all</button>\n" +
-      "      <button class=\"btn btn-link btn-xs\" ng-click=\"uncheckAll()\" type=\"button\"><i class=\"glyphicon glyphicon-remove\"></i> Uncheck all</button>\n" +
+      "      <button class=\"btn btn-link btn-xs\" ng-click=\"checkAll()\" type=\"button\"><i class=\"fa fa-check\"></i> Check all</button>\n" +
+      "      <button class=\"btn btn-link btn-xs\" ng-click=\"uncheckAll()\" type=\"button\"><i class=\"fa fa-remove\"></i> Uncheck all</button>\n" +
       "    </li>\n" +
       "    <li ng-repeat=\"i in items | filter:searchText\">\n" +
       "      <a ng-click=\"select(i); focus()\">\n" +
-      "        <i class=\"glyphicon\" ng-class=\"{'glyphicon-ok': i.checked, 'empty': !i.checked}\"></i> {{i.label}}</a>\n" +
+      "        <i class=\"fa\" ng-class=\"{'fa-check': i.checked, 'empty': !i.checked}\"></i> {{i.label}}</a>\n" +
       "    </li>\n" +
       "  </ul>\n" +
       "</div>");

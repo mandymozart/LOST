@@ -4,13 +4,16 @@ var app = angular.module('muriquee')
 app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage){
     //listeners
     $scope.submitSearch = function(index){
+        var ops = JSON.parse(JSON.stringify($localStorage.searchOptions));
+        ops.genres = $scope.unindexList(ops.genres);
+        ops.subtypes = $scope.unindexList(ops.profileSubtypes);
         var req = {
             method: 'POST',
             url: '/api/profileSearch',
             headers: {
                 'Content-Type': 'application/json'
             },
-            data: JSON.stringify($localStorage.searchOptions)
+            data: JSON.stringify(ops)
         }
         $http(req)
             .success(function(data){
@@ -93,6 +96,26 @@ app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage){
     $scope.getInitialProfileType = function(){
         if ($scope.profileTypes[0] == $localStorage.profile.type) return $scope.profileTypes[1];
         else return $scope.profileTypes[0];
+    }
+
+    $scope.getIndexedList = function(list){
+        var res = [];
+        var i = 1;
+        list.forEach(function(item){
+            res.push({
+                id:i,
+                name:item
+            });
+            i++;
+        })
+        return res;
+    }
+    $scope.unindexList = function(list){
+        var res = [];
+        list.forEach(function(item){
+            res.push(item.name);
+        });
+        return res;
     }
 
     $scope.onProfileTypeSelectionChanged = function(){
