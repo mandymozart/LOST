@@ -9,21 +9,8 @@ form.form-inline#searchFilterForm
 		.col-md-4
 			.form-group
 				multiselect.input-xlarge(multiple="true", ng-model="storage.searchOptions.profileSubtypes", options="st.name for st in profileSubtypes | filter:$select.search", change="selected()")
-				//div(ng-dropdown-multiselect="", options="profileSubtypes", selected-model="storage.searchOptions.subtypes")
-				// JavaScript $scope.example1model = []; $scope.example1data = [ {id: 1, label: "David"}, {id: 2, label: "Jhon"}, {id: 3, label: "Danny"}];
-
-
-				//ui-select(name="selectSubtype", multiple, ng-model="storage.searchOptions.subtypes", theme="select2", ng-disabled="disabled")
-					ui-select-match(placeholder="Select subtypes...") {{$item}}
-					ui-select-choices(repeat="st in profileSubtypes | filter:$select.search")
-						| {{st}}
 		.col-md-4
 			.form-group
 				multiselect.input-xlarge(multiple="true", ng-model="storage.searchOptions.genres", options="genre.name for genre in genres | filter:$select.search", change="selected()")
-				//div(ng-dropdown-multiselect="", options="genres", selected-model="storage.searchOptions.genres")
-				//ui-select(name="selectGenres", multiple, ng-model="storage.searchOptions.genres", theme="select2", ng-disabled="disabled")
-					ui-select-match(placeholder="Select genres...") {{$item}}
-					ui-select-choices(repeat="genre in genres | filter:$select.search")
-						| {{genre}}
 	button.btn.btn-primary.btn-block(type='submit', ng-click="submitSearch()"): span.fa.fa-search
 
