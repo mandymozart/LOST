@@ -99,6 +99,7 @@ app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage){
     }
 
     $scope.getIndexedList = function(list){
+        if (!list) return [];
         var res = [];
         var i = 1;
         list.forEach(function(item){
@@ -111,11 +112,42 @@ app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage){
         return res;
     }
     $scope.unindexList = function(list){
+        if (!list) return [];
         var res = [];
         list.forEach(function(item){
             res.push(item.name);
         });
         return res;
+    }
+    $scope.getGenreList = function(){
+        var uistl = $scope.unindexList(($localStorage.searchOptions.profileSubtypes));
+        if ($localStorage.searchOptions.profileType == 'Artist'){
+            if (uistl && uistl.length > 0){
+                var res = [];
+                uistl.forEach(function(st){
+                    var stgs = $localStorage.datalists.splitgenres[st];
+                    res = res.concat(stgs);
+                })
+                return res;
+            }
+            else{
+                return $localStorage.datalists.genres;
+            }
+        }
+        else if ($localStorage.searchOptions.profileType){
+            return $localStorage.datalists.genres;
+        }
+        else{
+            return [];
+        }
+    }
+    $scope.getSubtypeList = function(){
+        if ($localStorage.searchOptions.profileType === 'Artist'){
+            return $localStorage.datalists.artistTypes;
+        }
+        else{
+            return [];
+        }
     }
 
     $scope.onProfileTypeSelectionChanged = function(){
@@ -137,7 +169,7 @@ app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage){
         $scope.storage.rememberedProfiles = [];
     }
 
-    $scope.profileTypes   = ['Artist', 'Venue', 'Promoter'];
+    $scope.profileTypes   = ['Artist', 'Venue', 'Organiser'];
 
     $scope.profileSubtypes = [];
 

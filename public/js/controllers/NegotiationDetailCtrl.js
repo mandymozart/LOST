@@ -147,8 +147,14 @@ app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http){
 		}
 		$http(req)
 		.success(function(data){
-			$localStorage.selectedNegotiation = data;
-			alert('successfully declined negotiation. status: ' + data.status);
+			for (var i=0;i<$localStorage.profile.negotiations.length;i++){
+				if ($localStorage.profile.negotiations[i]._id == $localStorage.selectedNegotiation._id){
+					$localStorage.profile.negotiations.splice(i,1);
+					alert('removeing at ' + i);
+					break;
+				} 
+			}
+			$localStorage.selectedNegotiation = undefined;
 		})
 		.error(function(){
 			alert('error declining negotiation');

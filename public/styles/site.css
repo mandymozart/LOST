@@ -4676,6 +4676,22 @@ a:focus {
   padding-top: 30px;
   color: #bbb; }
 
+html {
+  position: relative;
+  min-height: 100%; }
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px; }
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 0px;
+  background-color: #fff; }
+
 /* Custome UI components */
 .profile-info-list--item, .profile-genre-list--item {
   margin-right: 5px; }

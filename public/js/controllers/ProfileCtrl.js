@@ -123,6 +123,7 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage){
 	}//end load calendar
 
 	$scope.saveProfile = function(p){
+		p.genres = $scope.unindexList($scope.editgenres.data);
 		if (p){
 			var req = {
  				method: 'POST',
@@ -160,6 +161,41 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage){
 		$scope.saveStatus = "";
 	}
 
+	$scope.getIndexedList = function(list){
+        if (!list) return [];
+        var res = [];
+        var i = 1;
+        list.forEach(function(item){
+            res.push({
+                id:i,
+                name:item
+            });
+            i++;
+        })
+        return res;
+    }
+    $scope.unindexList = function(list){
+        if (!list) return [];
+        var res = [];
+        list.forEach(function(item){
+            res.push(item.name);
+        });
+        return res;
+    }
+    $scope.getGenreList = function(){
+    	if ($scope.editprofile.type == 'Artist'){
+    		if ($scope.editprofile.subtype){
+    			return $localStorage.datalists.splitgenres[$scope.editprofile.subtype];
+    		}
+    		else {
+				return [];
+    		}
+    	}
+    	else {
+    		return $localStorage.datalists.genres;
+    	}
+    }
+
 	$scope.deleteProfile = function(p){
 		if (p){
 			var req = {
@@ -182,18 +218,18 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage){
 		}
 	}
 
-	$scope.onProfileTypeSelectionChanged = function(){
-		var pt = $localStorage.searchOptions.profileType;
-		if (pt === 'Artist'){
-			$scope.profileSubtypes = $localStorage.datalists.artistTypes;
-		}
-		else if (pt === 'Venue'){
-			$scope.profileSubtypes = $localStorage.datalists.venueTypes;
-		}
-		else {
-			$scope.profileSubtypes = $localStorage.datalists.organiserTypes;
-		}
-	}
+	//$scope.onProfileTypeSelectionChanged = function(){
+	//	var pt = $localStorage.searchOptions.profileType;
+	//	if (pt === 'Artist'){
+	//		$scope.profileSubtypes = $localStorage.datalists.artistTypes;
+	//	}
+	//	else if (pt === 'Venue'){
+	//		$scope.profileSubtypes = $localStorage.datalists.venueTypes;
+	//	}
+	//	else {
+	//		$scope.profileSubtypes = $localStorage.datalists.organiserTypes;
+	//	}
+	//}
 
 	$scope.fetchDataLists = function(){
 		var req = {
@@ -216,9 +252,10 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage){
 	}
 
 	$scope.addSocialLink = function(){
-		$scope.editprofile.socialLinks.push($scope.linkInput);
+		$scope.editprofile.socialLinks.push($scope.linkInput.data);
 	}
 
+	$scope.editgenres = {data:[]};
 	$scope.linkInput = {data:''};
 	$scope.saveStatus = '';
 	$scope.fetchDataLists();
