@@ -9,6 +9,7 @@ var Profile = new keystone.List('Profile', {
     autokey : { path:'slug', from:'name', unique:true }
 });
 
+
 Profile.add({
     user            : { type: Types.Relationship, ref: 'User', index: true },
     name            : { type: String, required: true, index: true },

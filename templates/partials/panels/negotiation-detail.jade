@@ -14,6 +14,11 @@
 								span.calendar-digit.calendar--day {{getDay()}}&nbsp;
 								span.calendar-digit.calendar--year {{getYear()}}&nbsp;
 						br
+						//span
+							| other profile = {{otherProfile().name}} <br>
+							| this profile = {{storage.profile.name}} <br>
+							| other profile accepted = {{hasAccepted(otherProfile())}} <br>
+							| this profile accepted = {{hasAccepted(storage.profile)}}
 						span(ng-if="hasAccepted(otherProfile(storage.profile))")
 							| {{otherProfile(storage.selectedNegotiation).name}} has accepted!
 				.col-md-4
@@ -24,7 +29,7 @@
 						input.form-control(id="negotiation-offer-area",ng-model="storage.selectedNegotiation.currentOffer")
 					.col-xs-6
 						button.btn.btn-primary.btn-block(ng-click="offer()")
-							| Update
+							| Offer
 					hr
 					.col-xs-6
 						button.btn.btn-success.btn-block(ng-if="!hasAccepted(storage.profile) && !isNegotiationClosed()",ng-click="accept()") Accept
@@ -42,8 +47,8 @@
 				span &nbsp; Messages
 			.chat-body.scrollable#negotiationDetailChatBody
 				.message(ng-class="{true:'message-sent', false:'message-received'}[sent(message)]",ng-repeat="message in storage.selectedNegotiation.messages")
-					p.message-content
-						| {{message.content}} <br>
+					p.message-content(ng-bind-html="formatMessage(message.content)")
+						| {{formatMessage(message.content)}} <br>
 					span.message-date
 						| {{message.date}} <br>
 				.well-lg.text-center(ng-if="storage.selectedNegotiation.messages.length == 0") Type into the textfield below to get started!
@@ -51,6 +56,6 @@
 			form#messageForm
 				.form-group
 					label(for="message-area")
-					input.form-control(type="text", id="message-area",placeholder="Type here ...",ng-model="models.messageAreaText")
+					textarea.form-control(type="text", id="message-area",placeholder="Type here ...",ng-model="models.messageAreaText")
 			.form-group
 				button.btn.btn-primary.btn-block(ng-click="send()") Send Message

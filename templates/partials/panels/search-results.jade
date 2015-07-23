@@ -1,14 +1,10 @@
-#ProfileSearchResultsCtrl(ng-controller="ProfileSearchResultsCtrl")
-	.panel.panel-default#ProfileSearchResultsPanel(ng-if="storage.selectedNegotiation == undefined")
-
-		.panel-heading
-			.panel-title
-				span.fa.fa-search &nbsp; Results
-
+#profileSearchResultsCtrl(ng-controller="ProfileSearchResultsCtrl")
+	.panel.panel-default#profileSearchResultsPanel(ng-if="storage.selectedNegotiation == undefined")
+		.panel-body#profileSearchResultsBody
 			ul.nav.nav-tabs
 				li.active: a(href="#resultsResidentTab", data-toggle="tab")
 					span.fa.fa-street-view &nbsp;Resident
-						.label.label-info(ng-if="storage.searchResults.length!=0") {{searchResultsCount}}
+						.label.label-info(ng-if="storage.searchResults.length!=0") {{storage.searchResults.length}}
 				//li: a(href="#resultsOntourTab", data-toggle="tab")
 					span.fa.fa-space-shuttle &nbsp;On tour (2)
 				li.pull-right: a(href="#resultsCalledTab", data-toggle="tab")
@@ -17,7 +13,6 @@
 				li.pull-right: a(href="#resultsRememberedTab", data-toggle="tab")
 					span.fa.fa-bookmark &nbsp; Remembered
 						.label.label-success(ng-if="storage.rememberedProfiles.length!=0") {{storage.rememberedProfiles.length}}
-		.panel-body
 			.tab-content
 				// Tab: Residents
 				include ../tabs/results-resident.jade

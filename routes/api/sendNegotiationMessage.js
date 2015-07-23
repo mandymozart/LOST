@@ -9,6 +9,9 @@ exports = module.exports = function(req, res){
 	var msg  = req.body.message; // the msg to add to the negotiation
 	keystone.list('Negotiation').model.find()
 		.where('_id', n_id)
+		.populate('sender')
+		.populate('receiver')
+		.populate('messages')
 		.exec(function(err, negotiations){
 			var n = negotiations[0];
 			if (n.status == 'cancelled'){

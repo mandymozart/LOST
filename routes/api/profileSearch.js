@@ -15,13 +15,17 @@ function match(p,options){
 		return false
 	}
 	//filter by name:
-	if (options.profileName && options.profileName != "" && p.name.toLowerCase().indexOf(options.profileName.toLowerCase() == -1)){
-		//console.log('name exclusion');
-		return false;
+	if (options.profileName && options.profileName != ""){
+		if (p.name.toLowerCase().indexOf(options.profileName.toLowerCase()) == -1){
+			return false;
+		}
 	}
 	//filter by genres:
 	var p = false;
 	var k = options.genres ? options.genres.length : 0;
+
+	if(k>0&&!p.genres) return false;
+
 	for (var i=0;i<k;i++){
 		p = p.genres.indexOf(options.genres[i]) > -1;
 	}

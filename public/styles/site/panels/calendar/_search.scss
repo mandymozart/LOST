@@ -1,3 +1,19 @@
-#profileSearchPanel .row {
-	margin-left: -12px;
+#profileSearchPanel .row .row {
+	margin-left: 0;
+}
+#profileSearchPanel .row .row .col-md-4 {
+	padding-left: 0;
+	padding-right: 0;
+}
+#profileSearchPanel .row .row .col-md-4:first-child,
+#profileSearchPanel .row .row .col-md-12 {
+	padding-left: 15px;
+	padding-right: 0px;
+}
+#profileSearchPanel #profileTypeFilter {
+	margin-top: 7px;
+	height:30px;
+}
+#profileSearchPanel #genreFilter .dropdown-menu {
+	text-transform: capitalize;
 }
