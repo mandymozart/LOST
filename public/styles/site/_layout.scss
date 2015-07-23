@@ -1,5 +1,12 @@
+*:focus {
+  outline:none !important;
+}
 #body {
-  margin-top: 100px;
+  margin-top: 80px;
+}
+
+.navbar-default {
+  background-color: rgba(255, 255, 255, 0.90);
 }
 
 #footer {
@@ -7,4 +14,21 @@
 	border-top: 1px solid $gray-lighter;
 	padding-top: 30px;
 	color: $gray-light;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+#sticky-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 80px;
+  background-color: #fff;
 }

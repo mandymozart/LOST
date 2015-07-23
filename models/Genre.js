@@ -8,8 +8,7 @@ var Types    = keystone.Field.Types;
 var Genre = keystone.List('Genre');
 
 Genre.add({
-    name     : {type:String, required:true, index:true, initial:''},
-    category : {type:String, required:true, index:true, initial:'' } 
+    name : {type:String, required:true, index:true, initial:''}
 });
 
 Genre.register();

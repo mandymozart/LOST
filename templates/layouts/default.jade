@@ -1,4 +1,6 @@
 include ../mixins/flash-messages
+include ../mixins/form-mixins
+include ../mixins/auth/auth-forms
 
 doctype html
 html
@@ -7,14 +9,42 @@ html
 	head
 		meta(charset="utf-8")
 		meta(name="viewport", content="width=device-width, initial-scale=1.0")
-		meta(http-equiv="X-UA-Compatible" content="IE=edge")
+		meta(http-equiv="X-UA-Compatible", content="IE=edge")
 
-		title= title || 'LOST'
+		meta(name="description", content="With our map based community you can tell everyone of your tour plan, while you are building it, and plan according to the requests you find. As an organizer you are able to search artists in your area or passing by your area in tour. It´s that simple!")
+		meta(name="author", content="Muriquee")
+		meta(property="og:type", content="website")
+		meta(property="og:site_name", content="Muriquee - Booking on a Map")
+		meta(property="og:title", content="Muriquee - Booking on a Map")
+		meta(property="og:image", content="")
+		meta(property="og:url", content="http://muriquee.com/")
+		meta(property="og:description", content="With our map based community you can tell everyone of your tour plan, while you are building it, and plan according to the requests you find. As an organizer you are able to search artists in your area or passing by your area in tour. It´s that simple!")
+		meta(property="fb:admins", content="100001333739026")
+		meta(property="fb:app_id", content="336496776431398")
+		link(rel="apple-touch-icon", sizes="57x57", href="assets/img/apple-icon-57x57.png")
+		link(rel="apple-touch-icon", sizes="60x60", href="assets/img/apple-icon-60x60.png")
+		link(rel="apple-touch-icon", sizes="72x72", href="assets/img/apple-icon-72x72.png")
+		link(rel="apple-touch-icon", sizes="76x76", href="assets/img/apple-icon-76x76.png")
+		link(rel="apple-touch-icon", sizes="114x114", href="assets/img/apple-icon-114x114.png")
+		link(rel="apple-touch-icon", sizes="120x120", href="assets/img/apple-icon-120x120.png")
+		link(rel="apple-touch-icon", sizes="144x144", href="assets/img/apple-icon-144x144.png")
+		link(rel="apple-touch-icon", sizes="152x152", href="assets/img/apple-icon-152x152.png")
+		link(rel="apple-touch-icon", sizes="180x180", href="assets/img/apple-icon-180x180.png")
+		link(rel="icon" type="image/png", sizes="192x192"  href="assets/img/android-icon-192x192.png")
+		link(rel="icon" type="image/png", sizes="32x32", href="assets/img/favicon-32x32.png")
+		link(rel="icon" type="image/png", sizes="96x96", href="assets/img/favicon-96x96.png")
+		link(rel="icon" type="image/png", sizes="16x16", href="assets/img/favicon-16x16.png")
+		link(rel="manifest", href="assets/img/manifest.json")
+		meta(name="msapplication-TileColor", content="#ffffff")
+		meta(name="msapplication-TileImage", content="assets/img/ms-icon-144x144.png")
+		meta(name="theme-color", content="#ffffff")
+
+		title= title || 'Muriquee'
 		link(rel="shortcut icon", href="/favicon.ico", type="image/x-icon")
 
 		//- Customise the stylesheet for your site by editing /public/styles/site.sass
 		link(href="/styles/site.css", rel="stylesheet")
-		link(href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css", rel="stylesheet")
+		link(href="/styles/fontawesome/css/font-awesome.min.css", rel="stylesheet")
 
 		//- This file provides the default styling for the KeystoneJS Content Editor
 		if user && user.canAccessKeystone
@@ -34,34 +64,16 @@ html
 		block head
 
 	//- HTML BODY
-	body
+	body(ng-app="muriquee", ng-cloak)
 
 		//- HEADER
 		#header
 
 			//- Customise your site's navigation by changing the navLinks Array in ./routes/middleware.js
 			//- ... or completely change this header to suit your design.
+			block header
 
-			div(role="navigation").navbar.navbar-fixed-top.navbar-inverse
-				.container-fluid
-					.navbar-header
-						button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
-							span.sr-only Toggle navigation
-							span.icon-bar
-							span.icon-bar
-							span.icon-bar
-						a.navbar-brand(href='/') LOST
-					.collapse.navbar-collapse
-						ul.nav.navbar-nav.navbar-left
-							each link in navLinks
-								li(class=(section == link.key ? 'active' : null)): a(href=link.href)= link.label
-						ul.nav.navbar-nav.navbar-right
-							if user
-								if user.canAccessKeystone
-									li: a(href='/keystone') Open My Account
-								li: a(href='/keystone/signout') Sign Out
-							else
-								li: a(href='/keystone/signin') Sign In
+				include ../partials/navbars/frontend.jade
 
 		//- BODY
 		#body
@@ -75,39 +87,86 @@ html
 
 			//- Flash messages allow you to display once-off status messages to users, e.g. form
 			//- validation errors, success messages, etc.
-			+flash-messages(messages)
+			block flash-messages
+				+flash-messages(messages)
 
 			//- The content block should contain the body of your template's content
 			block content
 
 
-		//- FOOTER
-		.container: #footer
+	block footer
+		include ../partials/footers/default
 
-			//- You don't _have_ to include a link saying your site is powered by KeystoneJS, but we appreciate it!
-			p &copy; 2015 LOST
-				br
-				a(href='#') Terms Of Use/Legal
-				br
-				a(href="/contact") Contact
-				br
-				| Crafted by&nbsp;
-				a(href="http://www.wearepictures.com",target="_blank")
-					img(src='http://cdn.wearepictures.com/f/wearepictures-logo-952e2e.png')
-				| &nbsp;+&nbsp;
-				a(href='http://www.shalomsalon.de/',target='_blank') Shalom Salon
+	block sticky-footer
+		
 
+	// Modals
+	// Modal: Login
+	include ../partials/modals/login.html
+	// Modal: Company
+	include ../partials/modals/company.html
+	// Modal: Privacy
+	include ../partials/modals/privacy.html
+	// Modal: Terms
+	include ../partials/modals/terms.html
+
+	block modal
+		if !user
+			#modal-auth(tabindex="-1", role="dialog", aria-labelledby="signinModal", aria-hidden="true").modal.fade
+				.modal-dialog
+					.modal-content
+						+auth-forms({ modal: true, initial: 'signin' })
+
+
+		//script(type="text/ng-template",id="modalContent.html"):
+			.modal-header
+			  h3.modal-title Event action occurred!
+			.modal-body
+			  p Action: {{ action }}
+			  p Event: {{ event | json }}
+			.modal-footer
+			  button.btn.btn-primary(ng-click="$modalInstance.close()") OK
 
 		//- JAVASCRIPT
 
-		//- jQuery 1.11.1 is included by default, and required by both Bootstrap
-		//- and the KeystoneJS Content Editor. If you are not targeting IE8,
-		//- you can upgrade to 2.1.1 (also bundled) for better performance.
-		script(src='/js/lib/jquery/jquery-1.11.1.min.js')
+		//- TODO: gruntfile for minifying into /js/lib.js
+		//- TODO: remove jquery from the equation if possible with angular-ui js
+		script(src='/js/lib/jquery/jquery-2.1.1.min.js')
 
-		//- Customise which Bootstrap javascript files are served by including
-		//- them specifically here, instead of bootstrap-3.2.0.min.js
+		//- Step by step remove CDN's to
 		script(src='/js/lib/bootstrap/bootstrap-3.2.0.min.js')
+		script(src="/js/lib/moment/moment.min.js")
+		script(src="/js/lib/lodash/lodash.min.js")
+		script(src="/js/lib/angular/angular-1.4.0/angular.min.js")
+		//script(src="/js/lib/angular/select.js")
+		script(src="/js/lib/angular/ui-bootstrap.min.js")
+		script(src="/js/lib/angular/ui-bootstrap-tpls.min.js")
+
+
+		//angular modules
+		script(src="js/lib/angular/angular-ui-router.min.js")
+		script(src="js/lib/angular/angular-sanitize.js")
+		script(src="js/lib/angular/angular-1.4.0/angular-animate.js")
+		script(src="js/lib/ngStorage.js")
+		script(src="js/lib/angular/multiselect.js")
+		script(src="js/lib/angular/multiselect-tpls.js")
+		// Main Frontend App TODO: grunt to app.js
+		script(src="js/app.js")
+
+		//Angular controllers:
+		script(src="js/controllers/ProfileCtrl.js")
+		script(src="js/controllers/CreateGigGenreTypeheadCtrl.js")
+		script(src="js/controllers/ProfileSearchCtrl.js")
+		script(src="js/controllers/NavbarCtrl.js")
+		script(src="js/controllers/ProfileDetailReadonlyCtrl.js")
+		script(src="js/controllers/DatepickerCtrl.js")
+		script(src="js/controllers/NegotiationDetailCtrl.js")
+		script(src="js/controllers/NegotiationsListCtrl.js")
+		script(src="js/controllers/GeneratorCtrl.js")
+		script(src="js/controllers/IncomingProposalsCtrl.js")
+
+		//Unused simple javascript library
+		script(src="js/lib.js")
 
 		//- The KeystoneJS Content Editor provides support for ks-editable data attributes,
 		//- which generate links to edit content for users who can access Keystone

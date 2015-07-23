@@ -24,10 +24,20 @@ exports.initLocals = function(req, res, next) {
 	var locals = res.locals;
 	
 	locals.navLinks = [
-		{ label: 'Blog',		key: 'blog',		href: '/blog' },
+		{ label: 'Blog',		key: 'blog',		href: '/blog' }
 	];
 	
 	locals.user = req.user;
+
+    var bowser = require('../lib/node-bowser').detect(req);
+
+    locals.system = {
+        mobile: bowser.mobile,
+        ios: bowser.ios,
+        iphone: bowser.iphone,
+        ipad: bowser.ipad,
+        android: bowser.android
+    }
 	
 	next();
 	
@@ -38,8 +48,7 @@ exports.initLocals = function(req, res, next) {
 	Fetches and clears the flashMessages before a view is rendered
 */
 
-exports.flashMessages = function(req, res, next) {
-	
+exports.flashMessages = function(req, res, next) {	
 	var flashMessages = {
 		info: req.flash('info'),
 		success: req.flash('success'),
@@ -48,9 +57,7 @@ exports.flashMessages = function(req, res, next) {
 	};
 	
 	res.locals.messages = _.any(flashMessages, function(msgs) { return msgs.length; }) ? flashMessages : false;
-	
-	next();
-	
+	next();	
 };
 
 
@@ -59,12 +66,41 @@ exports.flashMessages = function(req, res, next) {
  */
 
 exports.requireUser = function(req, res, next) {
-	
+	if (!req.user) {
+		console.log('acces denied');
+		req.flash('error', 'Please sign in to access this page.');
+		res.redirect('/signin');
+	} else {
+		next();
+	}	
+};
+
+exports.requirePremiumUser = function(req, res, next) {
+	if (!req.user) {
+		req.flash('error', 'Please sign in to access this page.');
+		res.redirect('/signin');
+	}
+	else if (!req.user.isPremium){
+		req.flash('error', 'This feature can only be used by Premium Users.');
+		res.redirect('/signin');
+	} 
+	else{
+		next();
+	}
+};
+
+exports.requireAdmin = function(req, res, next) {
 	if (!req.user) {
 		req.flash('error', 'Please sign in to access this page.');
 		res.redirect('/keystone/signin');
-	} else {
+	}
+	else if (!req.user.isAdmin){
+		req.flash('error', 'This feature can only be accessed by administrators.');
+		res.redirect('/profiles')
+	}
+	else{
 		next();
 	}
-	
-};
+}
+
+

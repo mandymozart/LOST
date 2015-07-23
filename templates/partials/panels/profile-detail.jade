@@ -1,0 +1,98 @@
+
+.panel.panel-default.with-nav-tabs.filtered-list#profileDetailPanel(ng-if="isProfileSelected()")
+	.panel-header
+		.panel-heading
+			.panel-title Profile: {{editprofile.name}}, Type: {{editprofile.type}}
+				.label.pull-right(ng-if="saveStatus !== ''") {{saveStatus}}
+	.panel-body
+		form
+			.row
+				.form-group
+					label(for="profile-name-area") Name:
+					input.form-control(id="profile-name-area", rows="1",cols="50",ng-model="editprofile.name",placeholder="Profile Name")
+			.row(ng-if="editprofile.type=='Artist'")
+				.form-group
+					label(for="subtype-select") Subtype:
+					select(id="subtype-select", ng-model="editprofile.subtype",style="width:100%")
+						option(value="{{option}}", ng-repeat="option in storage.datalists.artistTypes")
+							| {{option}}
+			.row
+				.form-group
+					label(for="genre-select") Genres:
+					multiselect.input-xlarge(
+						multiple="true", 
+						ng-if="getGenreList().length > 0",
+						ng-model="editgenres.data", 
+						options="genre.name for genre in getIndexedList(getGenreList()) | filter:$select.search", 
+						change="selected()", 
+						placeholder="Genres")
+			.row
+				.form-group
+					label(for="profile-zip") Zip Code:
+					input.form-control(id="profile-zip", placeholder="ex. 0711", ng-model="editprofile.zip")
+			.row
+				.form-group
+					label(for="link-input") Social Links:
+					input.form-control(id="profile-link",placeholder="ex. http://www.soundcloud.com/awesome_user", ng-model="linkInput.data")
+					span(ng-repeat="link in editprofile.socialLinks track by $index") {{link}} <br>
+					button(ng-click="addSocialLink()") Add Link
+			.row
+				.form-group
+					label(for="profile-about-brief-area") About:
+					textarea.form-control(id="profile-about-brief-area", rows="4", cols="50", ng-model="editprofile.about")
+					
+
+		//form
+			.row
+				.col-sm-4
+					.form-group
+						label(for="profile-name-area") Name:
+							input.form-control(id="profile-name-area",rows="2", cols="50", ng-model="editprofile.name", placeholder="Unique Name")
+
+				.col-sm-4
+					.form-group
+						label(for="profile-type-select") Type: {{editprofile.type}}
+						br
+						//select(id="profile-type-select", ng-model="editprofile.type", ng-change="onProfileTypeSelectionChanged()",style="width:100%")
+							option(value="{{option}}", ng-repeat="option in storage.datalists.profileTypes", selected="selected", ng-if="option == 'Artist'")
+								| {{option}}
+							option(value="{{option}}", ng-repeat="option in storage.datalists.profileTypes", ng-if="option != 'Artist'")
+								| {{option}}
+					.form-group
+						label(for="subtype-select") Subtype:
+						br
+						select(id="subtype-select", ng-model="editprofile.subtype",style="width:100%")
+							option(value="{{option}}", ng-repeat="option in profileSubtypes")
+								| {{option}}
+				.col-sm-4
+					.form-group
+						label(for="genre-select") Genres:
+						ui-select(id="genre-select",multiple, ng-model="editprofile.genres", theme="select2", ng-disabled="disabled", style="max_width: 100%; width: 100%;")
+							ui-select-match(placeholder="Select genres...") {{$item}}
+							ui-select-choices(repeat="genre in storage.datalists.genres | filter:$select.search")
+								| {{genre}}
+			.row
+				.col-sm-4
+					.form-group
+						label(for="profile-zip") ZIP Code
+						input.form-control(id="profile-zip", placeholder="ex. 0711", ng-model="editprofile.zip")
+				.col-sm-8
+					.form-group
+						label(for="profile-link") Links: <br>
+						label(ng-repeat="link in editprofile.socialLinks track by $index") {{link.data}} &nbsp;
+						input.form-control(id="profile-link",placeholder="ex. http://www.soundcloud.com/awesome_user", ng-model="linkInput.data")
+						button(ng-click="addSocialLink()") Add Link
+			.row
+				.col-sm-4
+					//placeholder for profile picture
+				.col-sm-8
+					.form-group
+						label(for="profile-about-brief-area") About:
+						textarea.form-control(id="profile-about-brief-area", rows="2", cols="50", ng-model="editprofile.about")
+
+
+	.panel-footer.text-right
+		button.btn.btn-primary(ng-click="returnToSelection(editprofile)")
+			| Return to selection
+		button.btn.btn-primary(ng-click="saveProfile(editprofile)"): span.fa.fa-save
+			| &nbsp; Save profile

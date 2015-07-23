@@ -1,0 +1,30 @@
+extends ../layouts/default
+
+block header
+	include ../partials/navbars/backend
+
+
+block content
+	.container-fluid
+
+		.row#calendar-interactions
+			.col-sm-5#calendar-controls
+				.row
+					.col-sm-6
+						include ../partials/panels/date-picker
+					.col-sm-6
+						include ../partials/panels/ongoing-negotiations
+				.row
+					.col-sm-12
+						include ../partials/panels/search
+				.row
+					.col-sm-12
+						include ../partials/panels/profile-detail-readonly
+			.col-sm-7
+				include ../partials/panels/negotiation-detail
+				include ../partials/panels/incoming-proposals
+				include ../partials/panels/search-results
+
+
+
+block footer 

@@ -1,0 +1,21 @@
+.col-sm-3.col-xs-6(ng-if="!isProfileSelected()",ng-repeat="profile in storage.profiles | orderBy:'name'")
+	.panel.panel-profile(ng-class="{Artist:'panel--artist',Venue:'panel--venue',Organiser:'panel--organiser'}[profile.type]")
+		.panel-header
+			.panel-heading
+				h4.panel-title
+					span.fa.fa-user(ng-if="profile.type == 'Artist'")
+					span.fa.fa-user-plus(ng-if="profile.type == 'Organiser'")
+					span.fa.fa-building(ng-if="profile.type == 'Venue'")
+					span.profile-info-list--item.profile-name &nbsp; {{profile.name}}
+					.pull-right
+						.fa.fa-cog(ng-click="editProfile(profile)", ng-if="profile._id")
+						//span.fa.fa-cog(ng-click="loadProfile(profile)", ng-if="profile._id == storage.profile._id")
+		.panel-body
+			p.profile
+				.profile-genre-list
+					span.profile-genre-list--item.label.label-info(ng-repeat="g in result.genres track by $index") {{g}}
+				.profile-ongoing-negotiations
+					span.fa.fa-envelope
+					| &nbsp; {{profile.proposals.length}} new proposals
+		.panel-footer.text-right
+			button.btn.btn-primary.btn-xs(ng-click="loadProfile(profile, loadCalendar)") Calendar

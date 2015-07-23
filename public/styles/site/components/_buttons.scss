@@ -1,0 +1,12 @@
+/* Button Styles extensions to the bootstrap core to do color grading for each type of user */
+.btn--artist {
+  background-color: $user-artist-primary-color;
+}
+.btn--organiser {
+  background-color: $user-organiser-primary-color;
+  color: #fff;
+}
+.btn--venue {
+  background-color: $user-venue-primary-color;
+  color: #fff;
+}

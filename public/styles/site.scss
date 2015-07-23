@@ -3,7 +3,11 @@
 
 // Bootstrap can be removed entirely by deleting this line.
 
+@import "bootstrap/theme/variables";
+
 @import "bootstrap/bootstrap";
+
+@import "bootstrap/extensions/columns-same-height";
 
 // The easiest way to customise Bootstrap variables while
 // being able to easily override the source files with new
@@ -12,13 +16,35 @@
 // You can also add your own custom variables to this file for
 // use in your site stylesheets.
 
+
 @import "site/variables";
 
-@import "bootstrap/theme/variables";
+
 @import "bootstrap/theme/bootswatch";
+
+
+
+@import "site/fixes"; // quickfixes
 
 // Site Styles
 // ===========
 
-// Add your own site style includes here
+// Layout
 @import "site/layout";
+// Components
+@import "site/components";
+// Panels
+@import "site/panels";
+// Sections
+@import "site/sections";
+// Forms
+@import "site/forms";
+
+
+// Library Styles
+@import "lib/angular-ui-select";
+@import "lib/angular-animate";
+@import "lib/select2";
+
+// Material Design from Google
+@import "md/_default";

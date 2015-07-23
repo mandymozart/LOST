@@ -1,7 +1,28 @@
 extends ../layouts/default
 
 block content
-	section#introSection
-		.container
-			h1 Booking On A Map
-			p Stay tuned!
+
+	#top
+	.container.marketing
+
+		// Section: Marketing
+		// include ../partials/sections/marketing.html
+
+		// Section: Request Invitation
+		include ../partials/sections/request-invitation.html
+
+
+block footer
+	// Footer: Frontend
+	include ../partials/footers/default
+
+block js
+
+	// Frontend jQuery App for mailchimp
+	script(src="js/marketing-legacy/app.js")
+
+	// Tracking Scripts
+	// GA
+	include ../partials/scripts/ga.html
+
+

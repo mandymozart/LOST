@@ -1,0 +1,29 @@
+//- FOOTER
+.container-fluid: #footer
+	//- You don't _have_ to include a link saying your site is powered by KeystoneJS, but we appreciate it!
+	p &copy; 2015 &nbsp;
+		a(href="#company",data-toggle="modal",data-target="#companyModal") Muriquee UG (haftungsbeschr&auml;nkt)
+		br
+		a(href='#terms',data-toggle="modal",data-target="#termsModal") Terms Of Use
+		br
+		a(href='#privacy',data-toggle="modal",data-target="#privacyModal") Privacy
+		br
+		a(href="/contact") Contact
+		br
+		| in collaboration with&nbsp;
+		a(href="http://www.wearepictures.com",target="_blank")
+			img(src='http://cdn.wearepictures.com/f/wearepictures-logo-952e2e.png')
+		| &nbsp;+&nbsp;
+		a(href='http://www.shalomsalon.de/',target='_blank') Shalom Salon
+		| &nbsp;+&nbsp;
+		a(href='http://www.shalomsalon.de/',target='_blank') Boddinale
+		| &nbsp;+&nbsp;
+		a(href='http://www.shalomsalon.de/',target='_blank') Loophole
+
+	#admin-login
+		if user
+			if user.canAccessKeystone
+				a(href='/keystone') Open Admin
+			a.btn.btn-sm(href='/keystone/signout') Sign Out
+		else
+			a.btn.btn-xs.btn-success(href='/keystone/signin') Admin Sign In

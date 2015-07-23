@@ -28,7 +28,9 @@ keystone.pre('render', middleware.flashMessages);
 
 // Import Route Controllers
 var routes = {
-	views: importRoutes('./views')
+	views: importRoutes('./views'),
+    auth: importRoutes('./auth'),
+	api:  importRoutes('./api')
 };
 
 // Setup Route Bindings
@@ -39,7 +41,42 @@ exports = module.exports = function(app) {
 	app.get('/blog/:category?', routes.views.blog);
 	app.get('/blog/post/:post', routes.views.post);
 	app.all('/contact', routes.views.contact);
-	
+	//app.all('/calendar', routes.views.calendar);
+	app.get('/calendar', middleware.requireUser, routes.views.calendar);
+	app.get('/profiles', middleware.requireUser, routes.views.profiles);
+
+
+	app.get('/generator', middleware.requireAdmin, routes.views.generator);
+
+    // Session
+    app.all('/join', routes.views.session.join);
+    app.all('/signin', routes.views.session.signin);
+    app.get('/signout', routes.views.session.signout);
+    app.all('/forgot-password', routes.views.session['forgot-password']);
+    app.all('/reset-password/:key', routes.views.session['reset-password']);
+
+    // Authentication
+    app.all('/auth/confirm', routes.auth.confirm);
+    //app.all('/auth/app', routes.auth.app);
+    app.all('/auth/:service', routes.auth.service);
+
+	// API
+	app.post('/profilesData', middleware.requireUser, routes.views.profilesData);
+
+	app.get('/api/getDataLists', middleware.requireUser, routes.api.getDataLists);
+	app.get('/api/getUserProfiles', middleware.requireUser, routes.api.getUserProfiles);
+	app.post('/api/generator', middleware.requireAdmin, routes.api.generator);
+	app.post('/api/populateProfile', middleware.requireUser, routes.api.populateProfile);
+	app.post('/api/saveProfile', middleware.requireUser, routes.api.saveProfile);
+	app.post('/api/profileSearch',middleware.requireUser, routes.api.profileSearch);
+	app.post('/api/sendProposal', middleware.requireUser, routes.api.sendProposal);
+	app.post('/api/sendNegotiationMessage', middleware.requireUser, routes.api.sendNegotiationMessage);
+	app.post('/api/acceptProposal', middleware.requireUser, routes.api.acceptProposal);
+	app.post('/api/submitNegotiationOffer', middleware.requireUser, routes.api.submitNegotiationOffer);
+	app.post('/api/populateNegotiationMessages', middleware.requireUser, routes.api.populateNegotiationMessages);
+	app.post('/api/deleteProfile', middleware.requireUser, routes.api.deleteProfile);
+	app.post('/api/acceptNegotiation', middleware.requireUser, routes.api.acceptNegotiation);
+	app.post('/api/rejectNegotiation', middleware.requireUser, routes.api.rejectNegotiation);
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);
 	

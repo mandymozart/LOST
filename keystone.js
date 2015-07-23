@@ -11,8 +11,8 @@ var keystone = require('keystone');
 
 keystone.init({
 
-	'name': 'LOST',
-	'brand': 'LOST',
+	'name': 'Lost',
+	'brand': 'Lost',
 	
 	'sass': 'public',
 	'static': 'public',
@@ -26,8 +26,10 @@ keystone.init({
 	'session': true,
 	'auth': true,
 	'user model': 'User',
-	'cookie secret': '<qZTmLihRM$CA89m~a*zzz4yv!rTSxQy._V[N3tQd![9M*g-NfWde.]+hx#+aa.0'
+	'cookie secret': '<qZTmLihRM$CA89m~a*zzz4yv!rTSxQy._V[N3tQd![9M*g-NfWde.]+hx#+aa.0',
 
+	'signin url':'/keystone/signin',
+	'signin redirect':'/profiles'
 });
 
 // Load your project's Models
@@ -88,10 +90,21 @@ keystone.set('email tests', require('./routes/emails'));
 // Configure the navigation bar in Keystone's Admin UI
 
 keystone.set('nav', {
-	'posts': ['posts', 'post-categories'],
-	'enquiries': 'enquiries',
-	'users': 'users'
+    'users': ['users','profiles'],
+    'communication': 'negotiations',
+    'taxonomies': 'genres',
+	'blog': ['posts', 'post-categories'],
+	'support': 'enquiries'
 });
+
+//create default admin user:
+//var User = keystone.list('User').model;
+//var admin = new User();
+//admin.set(
+//	{ 'name.first': 'Admin', 'name.last': 'User', email: 'janikhotz@gmail.com', password: 'admin', isAdmin: true }
+//);
+//console.log(admin);
+//admin.save();
 
 // Start Keystone to connect to your database and initialise the web server
 
