@@ -47,6 +47,10 @@ app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http){
 	}
 	$scope.send = function(){
 		//alert($scope.models.messageAreaText);
+		if ($scope.models.messageAreaText == ""){
+			alert('Please enter a message first');
+			return;
+		}
 		var req = {
  			method: 'POST',
  			url: '/api/sendNegotiationMessage',

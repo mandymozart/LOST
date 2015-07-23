@@ -42,7 +42,6 @@ exports = module.exports = function(req, res){
 	keystone.list('Profile').model.find()
 		.exec(function(err, docs){
 			var results = _.filter(docs, function(d){
-				console.log('filter');
 				return match(d,options);
 			})
 			res.send(JSON.stringify(results));
