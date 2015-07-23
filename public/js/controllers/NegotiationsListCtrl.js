@@ -50,4 +50,5 @@ app.controller('NegotiationsListCtrl', function($scope, $localStorage, $http){
 		return !$scope.filterDate || n.date == $localStorage.selectedDate;
 	}
 	$scope.filterDate = false;
+	
 });

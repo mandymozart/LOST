@@ -8,7 +8,7 @@
 			ul.nav.nav-tabs
 				li.active: a(href="#resultsResidentTab", data-toggle="tab")
 					span.fa.fa-street-view &nbsp;Resident
-						.label.label-info(ng-if="storage.searchResults.length!=0") {{searchResultsCount}}
+						.label.label-info(ng-if="storage.searchResults.length!=0") {{storage.searchResults.length}}
 				//li: a(href="#resultsOntourTab", data-toggle="tab")
 					span.fa.fa-space-shuttle &nbsp;On tour (2)
 				li.pull-right: a(href="#resultsCalledTab", data-toggle="tab")

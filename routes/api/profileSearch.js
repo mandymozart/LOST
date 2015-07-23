@@ -15,9 +15,10 @@ function match(p,options){
 		return false
 	}
 	//filter by name:
-	if (options.profileName && options.profileName != "" && p.name.toLowerCase().indexOf(options.profileName.toLowerCase() == -1)){
-		//console.log('name exclusion');
-		return false;
+	if (options.profileName && options.profileName != ""){
+		if (p.name.toLowerCase().indexOf(options.profileName.toLowerCase()) == -1){
+			return false;
+		}
 	}
 	//filter by genres:
 	var p = false;
