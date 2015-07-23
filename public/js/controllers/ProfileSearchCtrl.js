@@ -4,6 +4,7 @@ var app = angular.module('muriquee')
 app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage){
     //listeners
     $scope.submitSearch = function(index){
+        $localStorage.selectedNegotiation == undefined;
         var ops = JSON.parse(JSON.stringify($localStorage.searchOptions));
         ops.genres = $scope.unindexList(ops.genres);
         ops.subtypes = $scope.unindexList(ops.profileSubtypes);
