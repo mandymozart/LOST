@@ -160,4 +160,26 @@ app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http){
 			alert('error declining negotiation');
 		})
 	}
+	$scope.otherProfile = function(n){
+		if (!n.sender) return undefined;
+		if (n.sender._id == $localStorage.profile._id){
+			return n.receiver;
+		}
+		else{
+			return n.sender;
+		}
+	}
+	$scope.isNegotiationClosed = function(){
+		return $localStorage.selectedNegotiation.status == "closed";
+	}
+	$scope.isNegotiationOpen = function(){
+		return $localStorage.selectedNegotiation.status == "open";
+	}
+	$scope.hasAccepted = function(p){
+		var n = $localStorage.selectedNegotiation;
+		var s = n.sender;
+		var r = n.receiver;
+		var p = $localStorage.profile;
+		return (n.status == 'sender_accepted' && p._id==s._id) || (n.status == 'receiver_accepted' && p._id==r._id);
+	}
 });
