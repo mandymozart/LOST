@@ -8,26 +8,23 @@ block content
 	.container-fluid
 
 		.row#calendar-interactions
-			.col-sm-7
-				//h4#selectedDate
-				//	span.calendar-date.stacked-icons
-				//		span.calendar-stack.fa-stack.fa-2x
-				//			span.calendar-stack--icon.fa.fa-calendar-o.fa-stack-1x
-				//			span.calendar-stack--text.fa-stack-1x
-				//				span.calendar-digit.calendar--day 27
-				//				span.calendar-digit.calendar--month May&nbsp;
-				//				span.calendar-digit.calendar--year 2015
-				include ../partials/panels/negotiation-detail.jade
-				include ../partials/panels/incoming-proposals.jade
-				include ../partials/panels/search.jade
 			.col-sm-5#calendar-controls
 				.row
 					.col-sm-6
-						include ../partials/panels/ongoing-negotiations.jade
+						include ../partials/panels/date-picker
 					.col-sm-6
-						include ../partials/panels/date-picker.jade
+						include ../partials/panels/ongoing-negotiations
 				.row
 					.col-sm-12
-						include ../partials/panels/profile-detail-readonly.jade
-		.row#negotiationDetailRow
+						include ../partials/panels/search
+				.row
+					.col-sm-12
+						include ../partials/panels/profile-detail-readonly
+			.col-sm-7
+				include ../partials/panels/negotiation-detail
+				include ../partials/panels/incoming-proposals
+				include ../partials/panels/search-results
 
+
+
+block footer 

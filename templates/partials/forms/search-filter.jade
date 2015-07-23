@@ -1,33 +1,36 @@
 form.form-inline#searchFilterForm
 	.row
-		.col-md-4
-			.form-group
-				select.form-control(name='selectProfileType', 
-					ng-init="getInitialProfileType()", 
-					ng-model="storage.searchOptions.profileType",
-					ng-change="onProfileTypeSelectionChanged()")
-					option(value="{{option}}", ng-repeat="option in profileTypes | filter: profileTypeFilter")
-						| {{option}}
-		.col-md-4
-			.form-group
-				multiselect.input-xlarge(multiple="true",
-					ng-if="profileSubtypes.length > 0", 
-					ng-model="storage.searchOptions.profileSubtypes", 
-					options="st.name for st in getIndexedList(getSubtypeList()) | filter:$select.search", 
-					change="selected()", 
-					placeholder="Subtypes")
-		.col-md-4
-			.form-group
-				multiselect.input-xlarge(multiple="true",
-					ng-if="getGenreList().length > 0",
-					ng-model="storage.searchOptions.genres",
-					options="genre.name for genre in getIndexedList(getGenreList()) | filter:$select.search",
-					change="selected()",
-					placeholder="Genres")
-	.row
 		.col-md-10
-			input.form-control(ng-model="storage.searchOptions.profileName",type='text',placeholder='Contact artist',name='inputProfile',id='inputProfile')
+			.row 
+				.col-md-4
+					.form-group
+						select.form-control(name='selectProfileType', 
+							ng-init="getInitialProfileType()", 
+							ng-model="storage.searchOptions.profileType",
+							ng-change="onProfileTypeSelectionChanged()")
+							option(value="{{option}}", ng-repeat="option in profileTypes | filter: profileTypeFilter")
+								| {{option}}
+				.col-md-4
+					.form-group
+						multiselect.input-xlarge(multiple="true",
+							ng-if="profileSubtypes.length > 0", 
+							ng-model="storage.searchOptions.profileSubtypes", 
+							options="st.name for st in getIndexedList(getSubtypeList()) | filter:$select.search", 
+							change="selected()", 
+							placeholder="Subtypes")
+				.col-md-4
+					.form-group
+						multiselect.input-xlarge(multiple="true",
+							ng-if="getGenreList().length > 0",
+							ng-model="storage.searchOptions.genres",
+							options="genre.name for genre in getIndexedList(getGenreList()) | filter:$select.search",
+							change="selected()",
+							placeholder="Genres")
+			.row
+				.col-md-12
+					input.form-control(ng-model="storage.searchOptions.profileName",type='text',placeholder='Contact artist',name='inputProfile',id='inputProfile')
 		.col-md-2
-			button.btn.btn-primary.btn-block(type='submit', ng-click="submitSearch()"): span.fa.fa-search
+			button.btn.btn-primary.btn-block#searchButton(type='submit', ng-click="submitSearch()"): span.fa.fa-search
+
 
 
