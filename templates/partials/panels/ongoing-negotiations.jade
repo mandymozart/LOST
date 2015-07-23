@@ -1,12 +1,5 @@
 .panel.panel-default.scrollable#ongoingNegotiationsPanel(ng-controller="NegotiationsListCtrl", style="height=250; overflow: auto")
 	.panel-heading
-		.dropdown.pull-right
-			a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
-				span.fa.fa-cog
-			ul.dropdown-menu(role='menu')
-				li
-					input(type="checkbox", ng-model="filterDate")
-					span Filter by date
 		.panel-title
 			span.fa.fa-gavel
 			span &nbsp; Ongoing negotiations
@@ -15,12 +8,10 @@
 		table.table.table-striped.table-hover.profile-filtered-list(ng-if="storage.profile.negotiations.length!=0")
 			tbody.profile-filtered-list--body
 				tr(ng-repeat="n in storage.profile.negotiations | filter:dateFilter",ng-animate="'animate'")
-					td
-						span.profile-info-list.hidden {{n.date}}
-					td.profile-info
+					td.profile-info(data-toggle="tooltip",data-placement="right",title="{{n.date}}")
 						span.profile-info-list--item.profile-name {{otherProfile(n).name}}
 						span.profile-type.label.label-primary {{otherProfile(n).type}}
-					td
+					td.text-right
 						a.profile-action-list--item.btn.btn-success.btn-xs(
 									ng-if="storage.selectedNegotiation._id == n._id"
 									ng-click="unselectNegotiations()") 
@@ -31,5 +22,8 @@
 							| select
 
 		.well-lg.text-center(ng-if="storage.profile.negotiations.length==0") No active negotiations!
+	.panel-footer
+		input.checkbox-inline(type="checkbox", ng-model="filterDate")
+		span Filter by date
 
 		

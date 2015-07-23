@@ -24,11 +24,11 @@ body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
 }
-.footer {
-  position: absolute;
+#sticky-footer {
+  position: fixed;
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
-  height: 0px;
+  height: 80px;
   background-color: #fff;
 }

@@ -4690,12 +4690,12 @@ body {
   /* Margin bottom by footer height */
   margin-bottom: 60px; }
 
-.footer {
-  position: absolute;
+#sticky-footer {
+  position: fixed;
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
-  height: 0px;
+  height: 80px;
   background-color: #fff; }
 
 /* Custome UI components */
@@ -4800,8 +4800,7 @@ http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
   width: 100%; }
 
 #datePickerPanel .event-selected {
-  border-color: black;
-  border-width: 3px; }
+  border-color: black; }
 
 #datePickerPanel .event-negotiation-open button {
   background-color: #EF9A9A; }
@@ -4835,11 +4834,11 @@ http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
   min-height: 323px; }
 
 #ongoingNegotiationsPanel .panel-body {
-  max-height: 276px;
+  min-height: 233px;
   overflow: scroll; }
 
-#searchPanel .ui-select-container input, #searchPanel select, #searchPanel .form-control, #searchPanel .form-group {
-  width: 100%; }
+#profileSearchPanel .row {
+  margin-left: -12px; }
 
 #negotiationDetailPanel .panel-body {
   padding-left: 15px;
@@ -5000,6 +4999,12 @@ http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
 
 .marketing {
   margin-top: 0px; }
+
+#searchFilterForm #searchButton {
+  height: 80px; }
+
+#searchFilterForm .form-control, #searchFilterForm .form-group {
+  width: 100%; }
 
 /*!
  * ui-select
