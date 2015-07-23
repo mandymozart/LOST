@@ -15,6 +15,25 @@ html {
   background-color: rgba(255, 255, 255, 0.90);
 }
 
+.navbar-brand {
+  padding-top: 15px;
+  padding-bottom: 0;
+  margin-left: -140px !important;
+  color: #fff;
+  transition: all 0.5s;
+}
+.navbar-brand:hover {
+  margin-left: -15px !important;
+}
+.navbar-brand #profileLink {
+  margin-top: -19px;
+  display: inline-block;
+  margin-right: 15px;
+}
+.navbar-brand img {
+  margin-top: 8px;
+}
+
 #footer {
 	margin-top: 30px;
 	border-top: 1px solid $gray-lighter;

@@ -3,7 +3,7 @@
 		.panel-heading
 			.panel-close.pull-right(ng-click="close()")
 				span.fa.fa-times
-			.panel-title: b {{otherProfile(storage.selectedNegotiation).name}} &nbsp;
+			.panel-title(ng-click="showProfile()"): b {{otherProfile(storage.selectedNegotiation).name}} &nbsp;
 				span.profile-type.label.label-primary {{otherProfile(storage.selectedNegotiation).type}}
 				span.text-success(ng-if="hasAccepted(otherProfile(storage.profile))")
 					| &nbsp; has accepted!

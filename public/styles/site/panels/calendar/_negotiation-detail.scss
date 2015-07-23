@@ -3,7 +3,9 @@
   font-size: 2em;
   color: #666;
 }
-
+#negotiationDetailPanel .panel-title {
+  cursor: pointer;
+}
 #negotiationDetailPanel .panel-body {
   padding-left: 15px;
   padding-right: 15px;
@@ -13,6 +15,9 @@
   margin-bottom: 15px;
   border-radius: 4px;
   width: 80%;
+}
+#negotiationDetailPanel .chat-body {
+  margin-top: 15px;
 }
 
 #negotiationDetailPanel .message.message-sent {

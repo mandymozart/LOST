@@ -14,6 +14,9 @@ app.controller('NegotiationsListCtrl', function($scope, $localStorage, $http){
 			return n.sender;
 		}
 	}
+	$scope.showProfile = function(p){
+		$localStorage.selectedResult = p;
+	}
 
 	$scope.selectNegotiation = function(n){
 		var req = {
