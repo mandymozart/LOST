@@ -2,7 +2,13 @@ form.form-inline#searchFilterForm
 	.row
 		.col-md-4
 			.form-group
-				select.form-control(name='selectProfileType', 
+				.radio-inline(ng-repeat="option in profileTypes | filter: profileTypeFilter")
+					input(name="{{option}}",
+						type="radio",
+						value="{{option}}",
+						ng-model="storage.searchOptions.profileType") 
+					{{option}}
+				//select.form-control(name='selectProfileType', 
 					ng-init="getInitialProfileType()", 
 					ng-model="storage.searchOptions.profileType",
 					ng-change="onProfileTypeSelectionChanged()")

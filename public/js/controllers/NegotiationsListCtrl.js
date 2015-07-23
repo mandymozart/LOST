@@ -32,10 +32,10 @@ app.controller('NegotiationsListCtrl', function($scope, $localStorage, $http){
                 setTimeout(function(){
                     var hh = document.getElementById('negotiationDetailChatBody').offsetHeight;
                     //var fh = document.getElementById('footer').offsetHeight;
-                    console.log(hh);
+                    //console.log(hh);
 
                     var wHeight = window.innerHeight;
-                    console.log(wHeight);
+                    //console.log(wHeight);
                     $('#negotiationDetailChatBody').height(wHeight-420);
                     var wtf = $('#negotiationDetailChatBody');
                     var height = wtf[0].scrollHeight;
