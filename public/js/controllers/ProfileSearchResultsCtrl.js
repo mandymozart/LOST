@@ -52,4 +52,16 @@ app.controller('ProfileSearchResultsCtrl', function($scope, $localStorage, $http
                 alert('error sending proposals');
             })
     }
+
+    $scope.searchResultsCount = $localStorage.searchResults.length;
+
+    $scope.$watch('$localStorage.selectedNegotiation', function() {
+        console.log('scope.watch.selectedNegotiation');
+       if(!$localStorage.selectedNegotiation == 0){
+        console.log('!selectedNegotiation');
+            setTimeout(function(){
+                $('#profileSearchResultsBody').height(window.innerHeight-455);
+            },500);
+       }
+    });
 })
