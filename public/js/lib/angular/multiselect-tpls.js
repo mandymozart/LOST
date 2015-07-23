@@ -287,7 +287,7 @@ angular.module('multiselect.tpl.html', [])
 
       "<div class=\"btn-group\">\n" +
       "  <button type=\"button\" class=\"btn btn-default dropdown-toggle\" ng-click=\"toggleSelect()\" ng-disabled=\"disabled\" ng-class=\"{'error': !valid()}\">\n" +
-      "    {{header}} <span class=\"caret\"></span>\n" +
+      "    {{header}} &nbsp;<span class=\"caret\"></span>\n" +
       "  </button>\n" +
       "  <ul class=\"dropdown-menu\">\n" +
       "    <li>\n" +

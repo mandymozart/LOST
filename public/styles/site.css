@@ -4667,11 +4667,16 @@ div {
   -o-transition: height 1s ease;
   transition: height 1s ease; }
 
-*:focus {
-  outline: none !important; }
+html {
+  position: relative;
+  min-height: 100%; }
 
 #body {
-  margin-top: 80px; }
+  margin-top: 80px;
+  margin-bottom: 0; }
+
+*:focus {
+  outline: none !important; }
 
 .navbar-default {
   background-color: rgba(255, 255, 255, 0.9); }
@@ -4681,14 +4686,6 @@ div {
   border-top: 1px solid #eeeeee;
   padding-top: 30px;
   color: #bbb; }
-
-html {
-  position: relative;
-  min-height: 100%; }
-
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px; }
 
 #sticky-footer {
   position: fixed;
@@ -4830,15 +4827,30 @@ http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
 #datePickerPanel .event-proposal button {
   font-weight: bold; }
 
-#ongoingNegotiationsPanel {
-  min-height: 323px; }
-
 #ongoingNegotiationsPanel .panel-body {
-  min-height: 233px;
+  min-height: 190px;
   overflow: scroll; }
 
-#profileSearchPanel .row {
-  margin-left: -12px; }
+#incomingProposalsPanel .panel-body {
+  height: 233px; }
+
+#profileSearchPanel .row .row {
+  margin-left: 0; }
+
+#profileSearchPanel .row .row .col-md-4 {
+  padding-left: 0;
+  padding-right: 0; }
+
+#profileSearchPanel .row .row .col-md-4:first-child, #profileSearchPanel .row .row .col-md-12 {
+  padding-left: 15px;
+  padding-right: 0px; }
+
+#profileSearchPanel #profileTypeFilter {
+  margin-top: 7px;
+  height: 30px; }
+
+#profileSearchPanel #genreFilter .dropdown-menu {
+  text-transform: capitalize; }
 
 #negotiationDetailPanel .panel-body {
   padding-left: 15px;

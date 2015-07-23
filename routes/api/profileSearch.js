@@ -23,6 +23,7 @@ function match(p,options){
 	//filter by genres:
 	var p = false;
 	var k = options.genres ? options.genres.length : 0;
+	if(k>0&&!p.genres) return false;
 	for (var i=0;i<k;i++){
 		p = p.genres.indexOf(options.genres[i]) > -1;
 	}
