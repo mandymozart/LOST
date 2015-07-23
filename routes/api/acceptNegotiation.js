@@ -6,12 +6,12 @@ exports = module.exports = function(req, res) {
 
 	var callback = function(p, n){
 		if (n.status == 'open'){
-			n.status = p._id.toString() == n.sender.toString() ? 'sender_accepted' : 'receiver_accepted'
+			n.status = p._id.toString() == n.sender._id.toString() ? 'sender_accepted' : 'receiver_accepted'
 			n.save()
 			res.send(n)
 		}
 		else if (n.status == 'sender_accepted'){
-			if (p._id.toString() == n.receiver.toString()){
+			if (p._id.toString() == n.receiver._id.toString()){
 				n.status = 'closed'
 				n.save()
 				res.send(n)
@@ -21,7 +21,7 @@ exports = module.exports = function(req, res) {
 			}
 		}
 		else if (n.status == 'receiver_accepted'){
-			if (p._id.toString() == n.sender.toString()){
+			if (p._id.toString() == n.sender._id.toString()){
 				n.status = 'closed'
 				n.save()
 				res.send(n)
@@ -40,6 +40,9 @@ exports = module.exports = function(req, res) {
 			if (err0) console.log(err0)
 			keystone.list('Negotiation').model.find()
 				.where('_id', req.body.negotiation._id)
+				.populate('sender')
+				.populate('receiver')
+				.populate('messages')
 				.exec(function(err1, negotiations){
 					if (err1) console.log(err1)
 					callback(profiles[0], negotiations[0])

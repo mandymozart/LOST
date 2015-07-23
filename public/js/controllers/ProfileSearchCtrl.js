@@ -178,6 +178,5 @@ app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage){
             profileName    : ''
         };
     }
-    //$scope.searchResultsCount = $localStorage.searchResults.length;
-    
+   
 });

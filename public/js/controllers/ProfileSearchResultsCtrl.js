@@ -52,5 +52,4 @@ app.controller('ProfileSearchResultsCtrl', function($scope, $localStorage, $http
                 alert('error sending proposals');
             })
     }
-    $scope.searchResultsCount = $localStorage.searchResults.length;
 })

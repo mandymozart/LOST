@@ -12,8 +12,8 @@ exports = module.exports = function(req, res){
 		.exec(function(err, doc){
 			doc = doc[0];
 			doc.currentOffer = req.body.offer;
+			doc.status = 'open';
 			doc.save();
-			console.log(doc);
 			res.send(doc);
 		})
 }
