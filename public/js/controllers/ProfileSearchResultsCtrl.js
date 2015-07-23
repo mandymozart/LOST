@@ -56,11 +56,9 @@ app.controller('ProfileSearchResultsCtrl', function($scope, $localStorage, $http
     $scope.searchResultsCount = $localStorage.searchResults.length;
 
     $scope.$watch('$localStorage.selectedNegotiation', function() {
-        console.log('scope.watch.selectedNegotiation');
-       if(!$localStorage.selectedNegotiation == 0){
-        console.log('!selectedNegotiation');
+       if($localStorage.selectedNegotiation == undefined){
             setTimeout(function(){
-                $('#profileSearchResultsBody').height(window.innerHeight-455);
+                $('#profileSearchResultsTab').height(window.innerHeight-490);
             },500);
        }
     });

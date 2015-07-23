@@ -31,7 +31,7 @@ app.controller('NegotiationsListCtrl', function($scope, $localStorage, $http){
 			$localStorage.selectedNegotiation = data;
                 setTimeout(function(){
                     var wHeight = window.innerHeight;
-                    $('#negotiationDetailChatBody').height(wHeight-420);
+                    $('#negotiationDetailChatBody').height(wHeight-445);
                     var wtf = $('#negotiationDetailChatBody');
                     var height = wtf[0].scrollHeight;
                     wtf.scrollTop(height);

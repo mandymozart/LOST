@@ -4,8 +4,9 @@
 			.panel-title Profile
 	.panel-body(ng-controller="ProfileDetailReadonlyCtrl")
 		.row
-			.col-sm-4
+			.col-md-2
 				img.img-responsive(src='//placehold.it/250x250',alt='Profile Image')
+			.col-sm-4
 				h5 {{storage.selectedResult.name}}
 				.label.label-default {{storage.selectedResult.type}}
 				.label.label-primary {{storage.selectedResult.subtype}}

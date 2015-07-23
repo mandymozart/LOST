@@ -4746,8 +4746,8 @@ multiselect .dropdown-menu > li > a {
 
 /* Default */
 .panel-front {
-  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3); }
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3); }
 
 .panel--artist {
   background-color: #FF5722;
@@ -4852,9 +4852,14 @@ http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
 #profileSearchPanel #genreFilter .dropdown-menu {
   text-transform: capitalize; }
 
+#negotiationDetailPanel #negotiationDate, #negotiationDetailPanel #negotiationOffer {
+  font-size: 2em;
+  color: #666; }
+
 #negotiationDetailPanel .panel-body {
   padding-left: 15px;
-  padding-right: 15px; }
+  padding-right: 15px;
+  border-top: solid 1px #ddd; }
 
 #negotiationDetailPanel .message {
   margin-bottom: 15px;

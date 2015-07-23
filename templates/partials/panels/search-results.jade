@@ -13,7 +13,7 @@
 				li.pull-right: a(href="#resultsRememberedTab", data-toggle="tab")
 					span.fa.fa-bookmark &nbsp; Remembered
 						.label.label-success(ng-if="storage.rememberedProfiles.length!=0") {{storage.rememberedProfiles.length}}
-			.tab-content
+			.tab-content.scrollable#profileSearchResultsTab
 				// Tab: Residents
 				include ../tabs/results-resident.jade
 				// Tab: On Tour

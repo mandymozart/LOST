@@ -42,7 +42,8 @@ function match(p,options){
 exports = module.exports = function(req, res){
 	var options = req.body;
 	console.log(options);
-	if (!options.profileType) res.send([]);
+	if (!options.profileType){ res.send([]); return; }
+
 	keystone.list('Profile').model.find()
 		.exec(function(err, docs){
 			var results = _.filter(docs, function(d){
