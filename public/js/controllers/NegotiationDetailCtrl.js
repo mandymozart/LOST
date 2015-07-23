@@ -59,6 +59,7 @@ app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http){
  				profile:$localStorage.profile
  			}
 		};
+		console.log(req.data);
 		$http(req)
 		.success(function(data){
 			if (data.err){
@@ -134,6 +135,8 @@ app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http){
 		})
 	}
 	$scope.decline = function(){
+		var p = confirm('Are you sure you want to delete this negotiation');
+		if (!p) return;
 		var req = {
 			method : 'POST',
 			url : '/api/rejectNegotiation',
@@ -150,7 +153,6 @@ app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http){
 			for (var i=0;i<$localStorage.profile.negotiations.length;i++){
 				if ($localStorage.profile.negotiations[i]._id == $localStorage.selectedNegotiation._id){
 					$localStorage.profile.negotiations.splice(i,1);
-					alert('removeing at ' + i);
 					break;
 				} 
 			}
@@ -160,8 +162,8 @@ app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http){
 			alert('error declining negotiation');
 		})
 	}
-	$scope.otherProfile = function(n){
-		if (!n.sender) return undefined;
+	$scope.otherProfile = function(){
+		var n = $localStorage.selectedNegotiation;
 		if (n.sender._id == $localStorage.profile._id){
 			return n.receiver;
 		}
@@ -176,10 +178,20 @@ app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http){
 		return $localStorage.selectedNegotiation.status == "open";
 	}
 	$scope.hasAccepted = function(p){
+		if (!p) return false;
 		var n = $localStorage.selectedNegotiation;
 		var s = n.sender;
 		var r = n.receiver;
-		var p = $localStorage.profile;
-		return (n.status == 'sender_accepted' && p._id==s._id) || (n.status == 'receiver_accepted' && p._id==r._id);
+		if (n.status == 'sender_accepted' && p.slug == s.slug){
+			return true;
+		}
+		if (n.status == 'receiver_accepted' && p.slug == r.slug){
+			return true;
+		}
+		return false;
+	}
+
+	$scope.formatMessage = function(msg){
+		return msg.replace(/(?:\r\n|\r|\n)/g, '<br />')
 	}
 });
