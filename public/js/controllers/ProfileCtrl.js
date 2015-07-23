@@ -107,7 +107,8 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage){
 			creationDate    : new Date(),
 			favourites      : [],
 			called 			: [],
-			tours 			: []
+			tours 			: [],
+			geolocation     : {lat:0.0,lon:0.0}
 		}
 		$scope.editprofile = newProfile;
 		$scope.saveStatus = "new unsaved profile";

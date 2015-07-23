@@ -32,6 +32,11 @@
 					input.form-control(id="profile-zip", placeholder="ex. 0711", ng-model="editprofile.zip")
 			.row
 				.form-group
+					label(for="profile-lat") Latitude
+					input.form-control(type="number", placeholder="0",ng-model="editprofile.geolocation.lat")
+					label(for="profile-lon") Longitude
+					input.form-control(type="number", placeholder="0",ng-model="editprofile.geolocation.lon")
+				.form-group
 					label(for="link-input") Social Links:
 					input.form-control(id="profile-link",placeholder="ex. http://www.soundcloud.com/awesome_user", ng-model="linkInput.data")
 					span(ng-repeat="link in editprofile.socialLinks track by $index") {{link}} <br>

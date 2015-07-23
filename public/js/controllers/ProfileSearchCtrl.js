@@ -22,10 +22,35 @@ app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage){
                 if (data.length == 0){
                     //TODO nothing found
                 }
+                else{
+                    $scope.calculateGeoMarkers();
+                }
             })
             .error(function(){
                 alert('error retreiving data from server');
             })
+    }
+    $scope.calculateGeoMarkers = function(){
+        $localStorage.markers = [];
+        $localStorage.searchResults.forEach(function(p){
+            $localStorage.markers.push({
+                lat:parseFloat(p.geolocation.lat),
+                lon:parseFloat(p.geolocation.lon),
+                label: {
+                    message:p.name,
+                    //message: '<img src="profile/pic/something.jpg"></img>'
+                    show:false,
+                    showOnMouseOver:true,
+                    style:{
+                        //anchor: [0.5, 1],
+                        //anchorXUnits: 'fraction',
+                        //anchorYUnits: 'fraction',
+                        //opacity: 0.90,
+                        //src:'images/markers/someMarker.png'
+                    }
+                }
+            })
+        })
     }
     //$scope.showProfile = function(p){
     //    $localStorage.selectedResult = p;
