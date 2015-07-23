@@ -69,7 +69,7 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage){
 			}
 		})
 		.error(function(){
-			alert('error retreiveing negotiations data from server');
+			alert('error retrieving negotiations data from server');
 		});
 	}
 

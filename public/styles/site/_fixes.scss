@@ -1,3 +1,9 @@
 a:focus {
   background-color: transparent;
 }
+div {
+  -moz-transition: height 1s ease;
+  -webkit-transition: height 1s ease;
+  -o-transition: height 1s ease;
+  transition: height 1s ease;
+}
