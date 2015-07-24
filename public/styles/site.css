@@ -4668,9 +4668,6 @@ div {
   -o-transition: height 1s ease;
   transition: height 1s ease; }
 
-.btn:focus, .btn:active:focus, .btn.active:focus {
-  background-color: #bbb !important; }
-
 html {
   position: relative;
   min-height: 100%; }
@@ -4848,6 +4845,9 @@ http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
 
 #datePickerPanel .event-proposal button {
   font-weight: bold; }
+
+#datePickerPanel .btn:focus, #datePickerPanel .btn:active:focus, #datePickerPanel .btn.active:focus {
+  background-color: #bbb !important; }
 
 #ongoingNegotiationsPanel .panel-body {
   height: 190px;

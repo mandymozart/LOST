@@ -1,7 +1,7 @@
 'use strict';
 var app = angular.module('muriquee')
 
-app.controller('IncomingProposalsCtrl', function($scope, $localStorage, $http){
+app.controller('IncomingProposalsCtrl', function($scope, $localStorage, $http,SoundcloudService){
 	$scope.storage = $localStorage;
 	$scope.proposals = $localStorage.profile.proposals;
 
@@ -31,6 +31,7 @@ app.controller('IncomingProposalsCtrl', function($scope, $localStorage, $http){
 
 	$scope.showProfile = function(p){
 		$localStorage.selectedResult = p;
+		SoundcloudService();
 	}
 	$scope.acceptProposal = function(p){
 		var req = {
