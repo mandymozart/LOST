@@ -2,7 +2,7 @@
 
 var app = angular.module('muriquee');
 
-app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http){
+app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http,SoundcloudService){
 	$scope.models = {}
 	$scope.models.messageAreaText = '';
 	$scope.storage = $localStorage;
@@ -177,6 +177,7 @@ app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http){
 	}
 	$scope.showProfile = function(){
 		$localStorage.selectedResult = $scope.otherProfile();
+		SoundcloudService();
 	}
 	$scope.close = function(){
 		$localStorage.selectedNegotiation = undefined;

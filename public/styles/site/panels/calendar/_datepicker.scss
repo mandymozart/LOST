@@ -31,3 +31,8 @@
 #datePickerPanel .event-proposal button {
 	font-weight: bold;
 }
+#datePickerPanel .btn:focus, 
+#datePickerPanel .btn:active:focus, 
+#datePickerPanel .btn.active:focus { 
+	background-color: $gray-light !important;
+}

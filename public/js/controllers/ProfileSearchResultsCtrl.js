@@ -1,11 +1,12 @@
 'use strict'
 var app = angular.module('muriquee')
 
-app.controller('ProfileSearchResultsCtrl', function($scope, $localStorage, $http){
+app.controller('ProfileSearchResultsCtrl', function($scope, $localStorage, $http,SoundcloudService){
 	$scope.storage = $localStorage;
 
 	$scope.showProfile = function(p){
         $localStorage.selectedResult = p;
+        SoundcloudService();
     }
 
 	$scope.rememberProfile = function(p){
