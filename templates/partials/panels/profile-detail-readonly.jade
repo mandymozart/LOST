@@ -5,12 +5,19 @@
 	.panel-body(ng-controller="ProfileDetailReadonlyCtrl")
 		.row
 			.col-md-2
-				img.img-responsive(src='//placehold.it/250x250',alt='Profile Image')
-			.col-sm-4
+				img.img-responsive(src='http://placehold.it/85?text=N/A',ng-if="!storage.selectedResult.image",alt='Profile Picture N/A')
+				img.img-responsive(src='',ng-attr-src='{{storage.selectedResult.image}}',ng-if="storage.selectedResult.image",alt='Profile Soundcloud')
+			.col-sm-10
 				h5 {{storage.selectedResult.name}}
 				.label.label-default {{storage.selectedResult.type}}
 				.label.label-primary {{storage.selectedResult.subtype}}
-			.col-sm-8
-				h6 About
+				br
+				ol.list-unstyled
+					li(ng-repeat="link in storage.selectedResult.socialLinks")
+						a(href="{{link}}",target="_blank") {{link}}
+		.row
+			.col-sm-12
+				h6(ng-if="storage.selectedResult.about") About
 				p.about-brief {{storage.selectedResult.about}}
-				// iframe(width="100%", height="480", scrolling="no", frameborder="no", src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/676334&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false")
+				.soundcloud-embed(ng-bind-html="storage.selectedResult.soundcloud_embed_code",ng-if="storage.selectedResult.soundcloud_embed_code")
+
