@@ -2,7 +2,7 @@
 var app = angular.module('muriquee')
 
 
-app.controller('ProfileCtrl', function($scope, $http, $localStorage){
+app.controller('ProfileCtrl', function($scope, $http, $localStorage, MapMarkerService){
 
 	function resetStorage(){
 		$scope.storage = $localStorage.$default({
@@ -22,7 +22,25 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage){
 		$localStorage.profile = {};
 	}
 
-	$scope.editprofile = {};
+	$scope.editprofile = {
+			name            : '',
+			about 		    : '',
+			genres          : [],
+			type            : '',
+			subtype         : '',
+			negotiations 	: [],
+			proposals 		: [],
+			state 			: 'draft',
+			zip 			: '00000',
+			socialLinks 	: [],
+			soundcloundId   : 0,
+			image           : null,
+			creationDate    : new Date(),
+			favourites      : [],
+			called 			: [],
+			tours 			: [],
+			geolocation     : {lat:0.0,lon:0.0}
+		};
 
 	resetStorage();
 	$localStorage.profiles = [];
@@ -107,11 +125,24 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage){
 			creationDate    : new Date(),
 			favourites      : [],
 			called 			: [],
-			tours 			: []
+			tours 			: [],
+			geolocation     : {lat:0.0,lon:0.0}
 		}
 		$scope.editprofile = newProfile;
 		$scope.saveStatus = "new unsaved profile";
 	}//end create profile
+
+	$scope.markers = {
+		m : {
+			title:$scope.editprofile.name,
+            lat:parseFloat($scope.editprofile.geolocation.lat),
+            lng:parseFloat($scope.editprofile.geolocation.lon),
+            message:"<span>Drag this marker to your profile's location<br/></span>",
+            focus:true,
+            draggable:true,
+            icon:MapMarkerService.markerIcon($scope.editprofile)
+		}
+	}
 
 	$scope.loadCalendar = function(){
 		if ($localStorage.profile){
@@ -255,11 +286,46 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage){
 		$scope.editprofile.socialLinks.push($scope.linkInput.data);
 	}
 
+	$scope.$on('leafletDirectiveMarker.drag', function(event,args){
+		$scope.editprofile.geolocation.lat = $scope.mouseposition.lat;
+		$scope.editprofile.geolocation.lon = $scope.mouseposition.lng;
+    });
+
+    $scope.$on('leafletDirectiveMap.click', function(event){
+        $scope.eventDetected = "Click";
+        //console.log(event);
+    });
+
+    $scope.$on('leafletDirectiveMap.mousemove', function(event, args){
+        $scope.mouseposition = args.leafletEvent.latlng;
+    });
+
 	$scope.editgenres = {data:[]};
 	$scope.linkInput = {data:''};
 	$scope.saveStatus = '';
 	$scope.fetchDataLists();
 	$scope.profileSubtypes = $localStorage.datalists.artistTypes;
+	$scope.mouseposition = {
+		lat:0,
+		lon:0
+	}
 	
+	angular.extend($scope,$scope.markers);
+	angular.extend($scope,{
+		center : {
+			lat : 53.30,
+			lng : 13.25,
+			zoom : 6
+		},
+		defaults: {
+            scrollWheelZoom: false
+        },
+        events: {
+            map: {
+                enable: ['zoomstart', 'drag', 'click', 'mousemove'],
+                logic: 'emit'
+            }
+        }
+	})
 
 });
