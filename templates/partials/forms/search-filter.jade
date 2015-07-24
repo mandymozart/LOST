@@ -1,6 +1,9 @@
 form.form-inline#searchFilterForm
 	.row
 		.col-md-10
+			.row
+				.col-md-12
+					input.form-control(ng-model="storage.searchOptions.profileName",type='text',placeholder='Search by Name',name='inputProfile',id='inputProfile')
 			.row 
 				.col-md-4
 					.form-group#profileTypeFilter
@@ -26,9 +29,6 @@ form.form-inline#searchFilterForm
 							options="st.name for st in getIndexedList(getSubtypeList()) | filter:$select.search", 
 							change="selected()", 
 							placeholder="Subtypes")
-			.row
-				.col-md-12
-					input.form-control(ng-model="storage.searchOptions.profileName",type='text',placeholder='Search by Name',name='inputProfile',id='inputProfile')
 		.col-md-2
 			button.btn.btn-primary.btn-block#searchButton(type='submit', ng-click="submitSearch()"): span.fa.fa-search
 

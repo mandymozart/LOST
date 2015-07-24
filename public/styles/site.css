@@ -225,7 +225,7 @@ body {
   font-size: 13px;
   line-height: 1.846;
   color: #666;
-  background-color: whitesmoke; }
+  background-color: #E7FAFC; }
 
 input, button, select, textarea {
   font-family: inherit;
@@ -259,7 +259,7 @@ img {
 .img-thumbnail {
   padding: 4px;
   line-height: 1.846;
-  background-color: whitesmoke;
+  background-color: #E7FAFC;
   border: 1px solid #ddd;
   border-radius: 0px;
   -webkit-transition: all 0.2s ease-in-out;
@@ -1290,7 +1290,7 @@ th {
   .table > tbody + tbody {
     border-top: 2px solid #ddd; }
   .table .table {
-    background-color: whitesmoke; }
+    background-color: #E7FAFC; }
 
 .table-condensed > thead > tr > th, .table-condensed > thead > tr > td, .table-condensed > tbody > tr > th, .table-condensed > tbody > tr > td, .table-condensed > tfoot > tr > th, .table-condensed > tfoot > tr > td {
   padding: 5px; }
@@ -2364,7 +2364,7 @@ tbody.collapse.in {
       border-radius: 0px 0px 0 0; }
 
     .nav-tabs-justified > .active > a, .nav-tabs.nav-justified > .active > a, .nav-tabs-justified > .active > a:hover, .nav-tabs.nav-justified > .active > a:hover, .nav-tabs-justified > .active > a:focus, .nav-tabs.nav-justified > .active > a:focus {
-      border-bottom-color: whitesmoke; }
+      border-bottom-color: #E7FAFC; }
  }
 
 .tab-content > .tab-pane {
@@ -2943,7 +2943,7 @@ a.badge:hover, a.badge:focus {
   padding: 4px;
   margin-bottom: 23px;
   line-height: 1.846;
-  background-color: whitesmoke;
+  background-color: #E7FAFC;
   border: 1px solid #ddd;
   border-radius: 0px;
   -webkit-transition: all 0.2s ease-in-out;
@@ -4668,12 +4668,15 @@ div {
   -o-transition: height 1s ease;
   transition: height 1s ease; }
 
+.btn:focus, .btn:active:focus, .btn.active:focus {
+  background-color: #bbb !important; }
+
 html {
   position: relative;
   min-height: 100%; }
 
 #body {
-  margin-top: 80px;
+  margin-top: 67px;
   margin-bottom: 0; }
 
 *:focus {
@@ -4681,6 +4684,20 @@ html {
 
 .navbar-default {
   background-color: rgba(255, 255, 255, 0.9); }
+
+.navbar-brand {
+  padding-top: 15px;
+  padding-bottom: 0;
+  color: #fff;
+  transition: all 0.5s; }
+
+.navbar-brand #profileLink {
+  margin-top: -19px;
+  display: inline-block;
+  margin-right: 15px; }
+
+.navbar-brand img {
+  margin-top: 8px; }
 
 #footer {
   margin-top: 30px;
@@ -4743,13 +4760,17 @@ multiselect .dropdown-menu {
 
 multiselect .dropdown-menu > li > a {
   padding: 3px 10px;
+  cursor: pointer;
+  text-transform: capitalize; }
+
+.panel-front {
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3); }
+
+.panel-close {
   cursor: pointer; }
 
 /* Default */
-.panel-front {
-  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3); }
-
 .panel--artist {
   background-color: #FF5722;
   color: #fff; }
@@ -4829,11 +4850,20 @@ http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
   font-weight: bold; }
 
 #ongoingNegotiationsPanel .panel-body {
-  min-height: 190px;
+  height: 190px;
   overflow: scroll; }
+
+#ongoingNegotiationsPanel .profile-info {
+  cursor: pointer; }
 
 #incomingProposalsPanel .panel-body {
   height: 233px; }
+
+#incomingProposalsPanel .profile-info {
+  cursor: pointer; }
+
+#profileSearchPanel {
+  border: solid 8px #e53a1c; }
 
 #profileSearchPanel .row .row {
   margin-left: 0; }
@@ -4853,14 +4883,25 @@ http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
 #profileSearchPanel #genreFilter .dropdown-menu {
   text-transform: capitalize; }
 
+#negotiationDetailPanel #negotiationDate, #negotiationDetailPanel #negotiationOffer {
+  font-size: 2em;
+  color: #666; }
+
+#negotiationDetailPanel .panel-title {
+  cursor: pointer; }
+
 #negotiationDetailPanel .panel-body {
   padding-left: 15px;
-  padding-right: 15px; }
+  padding-right: 15px;
+  border-top: solid 1px #ddd; }
 
 #negotiationDetailPanel .message {
   margin-bottom: 15px;
   border-radius: 4px;
   width: 80%; }
+
+#negotiationDetailPanel .chat-body {
+  margin-top: 15px; }
 
 #negotiationDetailPanel .message.message-sent {
   float: left;
@@ -4881,20 +4922,28 @@ http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
   clear: both; }
 
 /* Profiles */
-#profileDetailPanel .row {
-  margin-left: 0;
-  margin-right: 0; }
+#profileDetailPanel .panel-body {
+  margin-left: 30px;
+  margin-right: 30px; }
 
 .panel-profile .panel-body {
   padding-left: 15px;
   padding-right: 15px; }
 
 .panel-profile:hover {
-  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3); }
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3); }
 
 .panel-profile {
   transition: all 0.5s; }
+
+.panel-profile .profile-edit-link {
+  cursor: pointer;
+  transition: all 0.5s; }
+
+.panel-profile .profile-edit-link:hover {
+  margin-top: 2px;
+  color: #eeeeee; }
 
 /* Frontend */
 .social-signup-buttons {
@@ -4946,7 +4995,7 @@ http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
 	} */ }
 
 .auth-form-divider-text {
-  background-color: whitesmoke;
+  background-color: #E7FAFC;
   display: inline-block;
   padding: 0 1em;
   position: relative;
@@ -5012,6 +5061,19 @@ http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
 
 .marketing {
   margin-top: 0px; }
+
+body.sitesection-profiles {
+  margin-top: 80px; }
+
+/* Brand Back Link */
+.sitesection-calendar .navbar-brand {
+  margin-left: -140px !important; }
+
+.sitesection-calendar .navbar-brand:hover {
+  margin-left: -15px !important; }
+
+.sitesection-calendar #calendar-controls, .sitesection-calendar #incomingProposalsPanel {
+  margin-top: 15px; }
 
 #searchFilterForm #searchButton {
   height: 80px; }

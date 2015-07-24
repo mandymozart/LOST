@@ -7,13 +7,13 @@
 						.label.label-info(ng-if="storage.searchResults.length!=0") {{storage.searchResults.length}}
 				//li: a(href="#resultsOntourTab", data-toggle="tab")
 					span.fa.fa-space-shuttle &nbsp;On tour (2)
-				li.pull-right: a(href="#resultsCalledTab", data-toggle="tab")
+				//li.pull-right: a(href="#resultsCalledTab", data-toggle="tab")
 					span.fa.fa-send &nbsp; Called
 						.label.label-success(ng-if="storage.calledProfiles.length!=0") {{storage.calledProfiles.length}}
 				li.pull-right: a(href="#resultsRememberedTab", data-toggle="tab")
 					span.fa.fa-bookmark &nbsp; Remembered
 						.label.label-success(ng-if="storage.rememberedProfiles.length!=0") {{storage.rememberedProfiles.length}}
-			.tab-content
+			.tab-content.scrollable#profileSearchResultsTab
 				// Tab: Residents
 				include ../tabs/results-resident.jade
 				// Tab: On Tour
@@ -21,7 +21,7 @@
 				// Tab: Remembered
 				include ../tabs/results-remembered.jade
 				// Tab: Called
-				include ../tabs/results-called.jade
+				//include ../tabs/results-called.jade
 
 		.panel-footer.text-right
 			button.btn.btn-default(type='submit', ng-click="rememberAll()"): span

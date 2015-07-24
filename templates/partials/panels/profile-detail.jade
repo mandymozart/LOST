@@ -1,11 +1,12 @@
 
-.panel.panel-default.with-nav-tabs.filtered-list#profileDetailPanel(ng-if="isProfileSelected()")
+.panel.panel-default#profileDetailPanel(ng-if="isProfileSelected()")
 	.panel-header
 		.panel-heading
-			.panel-title Profile: {{editprofile.name}}, Type: {{editprofile.type}}
+			.panel-title: b {{editprofile.name}} 
+				span.label.label-primary {{editprofile.type}}
 				.label.pull-right(ng-if="saveStatus !== ''") {{saveStatus}}
 	.panel-body
-		form
+		form#profileDetailForm
 			.row
 				.form-group
 					label(for="profile-name-area") Name:

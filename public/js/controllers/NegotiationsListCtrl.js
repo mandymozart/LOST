@@ -14,6 +14,9 @@ app.controller('NegotiationsListCtrl', function($scope, $localStorage, $http){
 			return n.sender;
 		}
 	}
+	$scope.showProfile = function(p){
+		$localStorage.selectedResult = p;
+	}
 
 	$scope.selectNegotiation = function(n){
 		var req = {
@@ -31,7 +34,7 @@ app.controller('NegotiationsListCtrl', function($scope, $localStorage, $http){
 			$localStorage.selectedNegotiation = data;
                 setTimeout(function(){
                     var wHeight = window.innerHeight;
-                    $('#negotiationDetailChatBody').height(wHeight-420);
+                    $('#negotiationDetailChatBody').height(wHeight-445);
                     var wtf = $('#negotiationDetailChatBody');
                     var height = wtf[0].scrollHeight;
                     wtf.scrollTop(height);
