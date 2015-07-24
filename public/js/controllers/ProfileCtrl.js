@@ -132,11 +132,6 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage, MapMarkerSe
 		$scope.saveStatus = "new unsaved profile";
 	}//end create profile
 
-	$scope.center = {
-		lat : 0,
-		lng : 0,
-		zoom : 2
-	}
 	$scope.markers = {
 		m : {
 			title:$scope.editprofile.name,
@@ -291,17 +286,18 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage, MapMarkerSe
 		$scope.editprofile.socialLinks.push($scope.linkInput.data);
 	}
 
-	$scope.$on('leafletDirectiveMarker.drag', function(event){
-		//console.log(event);
-    	console.log(event)
-    });
-    $scope.$on("leafletDirectiveMap.geojsonMouseover", function(ev, leafletEvent) {
-            
+	$scope.$on('leafletDirectiveMarker.drag', function(event,args){
+		$scope.editprofile.geolocation.lat = $scope.mouseposition.lat;
+		$scope.editprofile.geolocation.lon = $scope.mouseposition.lng;
     });
 
-	$scope.$on("leafletDirectiveMap.geojsonClick", function(ev, featureSelected, leafletEvent) {
-    	console.log(ev);
-    	console.log(leafletEvent); 
+    $scope.$on('leafletDirectiveMap.click', function(event){
+        $scope.eventDetected = "Click";
+        //console.log(event);
+    });
+
+    $scope.$on('leafletDirectiveMap.mousemove', function(event, args){
+        $scope.mouseposition = args.leafletEvent.latlng;
     });
 
 	$scope.editgenres = {data:[]};
@@ -309,7 +305,27 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage, MapMarkerSe
 	$scope.saveStatus = '';
 	$scope.fetchDataLists();
 	$scope.profileSubtypes = $localStorage.datalists.artistTypes;
+	$scope.mouseposition = {
+		lat:0,
+		lon:0
+	}
 	
 	angular.extend($scope,$scope.markers);
+	angular.extend($scope,{
+		center : {
+			lat : 53.30,
+			lng : 13.25,
+			zoom : 6
+		},
+		defaults: {
+            scrollWheelZoom: false
+        },
+        events: {
+            map: {
+                enable: ['zoomstart', 'drag', 'click', 'mousemove'],
+                logic: 'emit'
+            }
+        }
+	})
 
 });
