@@ -64,7 +64,7 @@ html
 		block head
 
 	//- HTML BODY
-	body(ng-app="muriquee", ng-cloak)
+	body(class=section ? 'sitesection-' + section : null,ng-app="muriquee", ng-cloak)
 
 		//- HEADER
 		#header

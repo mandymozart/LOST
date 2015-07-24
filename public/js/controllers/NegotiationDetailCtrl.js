@@ -175,6 +175,13 @@ app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http){
 			return n.sender;
 		}
 	}
+	$scope.showProfile = function(){
+		$localStorage.selectedResult = $scope.otherProfile();
+	}
+	$scope.close = function(){
+		$localStorage.selectedNegotiation = undefined;
+		return false;
+	}
 	$scope.isNegotiationClosed = function(){
 		return $localStorage.selectedNegotiation.status == "closed";
 	}

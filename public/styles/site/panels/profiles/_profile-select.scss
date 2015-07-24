@@ -3,8 +3,16 @@
   padding-right: 15px;
 }
 .panel-profile:hover {
-  @include box-shadow(0 1px 4px rgba(0,0,0,.3));
+  @include box-shadow(0 5px 10px rgba(0,0,0,.3));
 }
 .panel-profile {
   transition: all 0.5s;
+}
+.panel-profile .profile-edit-link {
+	cursor: pointer;
+	transition: all 0.5s;
+}
+.panel-profile .profile-edit-link:hover {
+	margin-top: 2px;
+	color: $gray-lighter;
 }
