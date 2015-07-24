@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700");
-@import url(lib/anglar-openlayers-directive.css);
-@import url(lib/ol.css);
+@import url(lib/leaflet.css);
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;

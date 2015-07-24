@@ -1,6 +1,6 @@
 #mapCtrl(ng-controller="MapCtrl")
 	.panel.panel-default#mapPanel
-		.panel-body
+		//.panel-body
 			{{mouseposition}}
 			openlayers(ol-center="storage.center", 
 				ol-defaults="defaults",
@@ -9,3 +9,9 @@
 				ol-marker(ng-repeat="m in storage.markers", 
 					ol-marker-properties="m")
 				ol-marker(ol-marker-properties="homemarker")
+				ol-layer(ol-layer-properties="searchradius")
+		.panel-body
+			leaflet(height="480px",
+				width="640px",
+				center="center",
+				markers="storage.markers")

@@ -34,21 +34,12 @@ app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage){
         $localStorage.markers = [];
         $localStorage.searchResults.forEach(function(p){
             $localStorage.markers.push({
+                name:p.name,
                 lat:parseFloat(p.geolocation.lat),
-                lon:parseFloat(p.geolocation.lon),
-                label: {
-                    message:p.name,
-                    //message: '<img src="profile/pic/something.jpg"></img>'
-                    show:false,
-                    showOnMouseOver:true,
-                    style:{
-                        //anchor: [0.5, 1],
-                        //anchorXUnits: 'fraction',
-                        //anchorYUnits: 'fraction',
-                        //opacity: 0.90,
-                        //src:'images/markers/someMarker.png'
-                    }
-                }
+                lng:parseFloat(p.geolocation.lon),
+                message:p.name,
+                focus:false,
+                draggable:false
             })
         })
     }
