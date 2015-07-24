@@ -224,7 +224,7 @@ body {
   font-size: 13px;
   line-height: 1.846;
   color: #666;
-  background-color: whitesmoke; }
+  background-color: #E7FAFC; }
 
 input, button, select, textarea {
   font-family: inherit;
@@ -258,7 +258,7 @@ img {
 .img-thumbnail {
   padding: 4px;
   line-height: 1.846;
-  background-color: whitesmoke;
+  background-color: #E7FAFC;
   border: 1px solid #ddd;
   border-radius: 0px;
   -webkit-transition: all 0.2s ease-in-out;
@@ -1289,7 +1289,7 @@ th {
   .table > tbody + tbody {
     border-top: 2px solid #ddd; }
   .table .table {
-    background-color: whitesmoke; }
+    background-color: #E7FAFC; }
 
 .table-condensed > thead > tr > th, .table-condensed > thead > tr > td, .table-condensed > tbody > tr > th, .table-condensed > tbody > tr > td, .table-condensed > tfoot > tr > th, .table-condensed > tfoot > tr > td {
   padding: 5px; }
@@ -2363,7 +2363,7 @@ tbody.collapse.in {
       border-radius: 0px 0px 0 0; }
 
     .nav-tabs-justified > .active > a, .nav-tabs.nav-justified > .active > a, .nav-tabs-justified > .active > a:hover, .nav-tabs.nav-justified > .active > a:hover, .nav-tabs-justified > .active > a:focus, .nav-tabs.nav-justified > .active > a:focus {
-      border-bottom-color: whitesmoke; }
+      border-bottom-color: #E7FAFC; }
  }
 
 .tab-content > .tab-pane {
@@ -2942,7 +2942,7 @@ a.badge:hover, a.badge:focus {
   padding: 4px;
   margin-bottom: 23px;
   line-height: 1.846;
-  background-color: whitesmoke;
+  background-color: #E7FAFC;
   border: 1px solid #ddd;
   border-radius: 0px;
   -webkit-transition: all 0.2s ease-in-out;
@@ -4667,12 +4667,15 @@ div {
   -o-transition: height 1s ease;
   transition: height 1s ease; }
 
+.btn:focus, .btn:active:focus, .btn.active:focus {
+  background-color: #bbb !important; }
+
 html {
   position: relative;
   min-height: 100%; }
 
 #body {
-  margin-top: 80px;
+  margin-top: 67px;
   margin-bottom: 0; }
 
 *:focus {
@@ -4684,12 +4687,8 @@ html {
 .navbar-brand {
   padding-top: 15px;
   padding-bottom: 0;
-  margin-left: -140px !important;
   color: #fff;
   transition: all 0.5s; }
-
-.navbar-brand:hover {
-  margin-left: -15px !important; }
 
 .navbar-brand #profileLink {
   margin-top: -19px;
@@ -4850,7 +4849,7 @@ http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
   font-weight: bold; }
 
 #ongoingNegotiationsPanel .panel-body {
-  min-height: 190px;
+  height: 190px;
   overflow: scroll; }
 
 #ongoingNegotiationsPanel .profile-info {
@@ -4995,7 +4994,7 @@ http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
 	} */ }
 
 .auth-form-divider-text {
-  background-color: whitesmoke;
+  background-color: #E7FAFC;
   display: inline-block;
   padding: 0 1em;
   position: relative;
@@ -5061,6 +5060,19 @@ http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
 
 .marketing {
   margin-top: 0px; }
+
+body.sitesection-profiles {
+  margin-top: 80px; }
+
+/* Brand Back Link */
+.sitesection-calendar .navbar-brand {
+  margin-left: -140px !important; }
+
+.sitesection-calendar .navbar-brand:hover {
+  margin-left: -15px !important; }
+
+.sitesection-calendar #calendar-controls, .sitesection-calendar #incomingProposalsPanel {
+  margin-top: 15px; }
 
 #searchFilterForm #searchButton {
   height: 80px; }
