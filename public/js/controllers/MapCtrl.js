@@ -1,8 +1,18 @@
 'use strict';
 var app = angular.module('muriquee')
 
-app.controller('MapCtrl', function($scope,$localStorage,leafletData,leafletBoundsHelpers){
+app.controller('MapCtrl', function($scope,$localStorage,leafletData,leafletBoundsHelpers,MapMarkerService){
 	$scope.storage = $localStorage;
+	var p = $localStorage.profile;
+	$localStorage.profileMarker = {
+		name:p.name,
+        lat:parseFloat(p.geolocation.lat),
+        lng:parseFloat(p.geolocation.lon),
+        message:MapMarkerService.markerMessage($localStorage.profile),
+        focus:false,
+        draggable:false,
+        icon:MapMarkerService.markerIcon($localStorage.profile)
+	};
 	$scope.defaults = {
 		scrollWheelZoom: true,
 		doubleClickZoom: false,

@@ -1,7 +1,7 @@
 'use strict'
 var app = angular.module('muriquee')
 
-app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage){
+app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage, MapMarkerService){
     //listeners
     $scope.submitSearch = function(index){
         $localStorage.selectedNegotiation = undefined;
@@ -35,17 +35,27 @@ app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage){
                 alert('error retreiving data from server');
             })
     }
+
     $scope.calculateGeoMarkers = function(){
-        $localStorage.markers = [];
+        $localStorage.markers = {};
+        $localStorage.markers[$localStorage.profile._id] = $localStorage.profileMarker;
         $localStorage.searchResults.forEach(function(p){
-            $localStorage.markers.push({
-                name:p.name,
+            var marker = {
+                title:p.name,
                 lat:parseFloat(p.geolocation.lat),
                 lng:parseFloat(p.geolocation.lon),
-                message:p.name,
+                message:MapMarkerService.markerMessage(p),
                 focus:false,
-                draggable:false
-            })
+                draggable:false,
+                icon:MapMarkerService.markerIcon(p)
+                //label:{
+                //    message:MapMarkerService.markerMessage(p),
+                //    options:{
+                //        noHide:true
+                //    }
+                //}
+            }
+            $localStorage.markers[p._id] = marker;
         })
     }
     //$scope.showProfile = function(p){

@@ -33,7 +33,6 @@ Profile.add({
         lat : { type:Types.Number, default: 0.0 },
         lon : { type:Types.Number, default: 0.0 }
     },
-
     tours           : { type: Types.Relationship, ref: 'Tour', many:true }    
 });
 
