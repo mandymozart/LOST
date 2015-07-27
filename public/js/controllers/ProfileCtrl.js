@@ -96,7 +96,6 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage, MapMarkerSe
 		$scope.center.lat = $scope.markers.m.lat = parseFloat(p.geolocation.lat);
 		$scope.center.lng = $scope.markers.m.lng = parseFloat(p.geolocation.lon);
 
-		$scope.
 		$scope.center.zoom = 6;
 	}
 
@@ -282,7 +281,8 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage, MapMarkerSe
 		if (!$scope.editprofile) return;
 		var zip = $scope.editprofile.zip;
 		var url = 'http://nominatim.openstreetmap.org/search/'
-		var query = '?postalcode='+$scope.editprofile.zip.toString()
+		var query  = '?postalcode='+$scope.editprofile.zip.toString();
+		    query += '?format=json'
 
 	}
 

@@ -161,6 +161,7 @@ app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http,So
 				} 
 			}
 			$localStorage.selectedNegotiation = undefined;
+			$localStorage.viewmode = 'calendar';
 		})
 		.error(function(){
 			alert('error declining negotiation');
@@ -180,7 +181,8 @@ app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http,So
 		SoundcloudService();
 	}
 	$scope.close = function(){
-		$localStorage.selectedNegotiation = undefined;
+		//$localStorage.selectedNegotiation = undefined;
+		$localStorage.viewmode = 'calendar';
 		return false;
 	}
 	$scope.isNegotiationClosed = function(){

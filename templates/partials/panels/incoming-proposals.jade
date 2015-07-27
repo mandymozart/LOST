@@ -1,5 +1,7 @@
 #incomingProposalCtrl(ng-controller="IncomingProposalsCtrl")
-	.panel.panel-default#incomingProposalsPanel(ng-if="storage.selectedNegotiation == undefined", style="height=250; overflow: auto")
+	.panel.panel-default#incomingProposalsPanel(
+		ng-if="storage.viewmode=='calendar'", 
+		style="height=250; overflow: auto")
 		.panel-heading
 			.panel-title: span.fa.fa-inbox &nbsp; Incoming proposals
 				.label.label-info(ng-if="storage.profile.proposals.length!=0") {{storage.profile.proposals.length}}

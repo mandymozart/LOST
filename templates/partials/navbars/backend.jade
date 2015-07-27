@@ -6,12 +6,10 @@ div(role="navigation").navbar.navbar-fixed-top.navbar-default
 					span.fa.fa-chevron-left
 					| &nbsp; Profiles
 				img(src='/images/muriquee-brand.svg',height='32')
-		// show this if profile is selected
-		ul.nav.navbar-nav.navbar-left
-			li.navbar-link: a(href='/calendar')
-				span.fa.fa-calendar
-			li.navbar-link: a(href='/map')
-				span.fa.fa-street-view
+		.btn-group
+			label.btn.btn-success(ng-model="storage.viewmode", btn-radio="'calendar'"): span.fa.fa-calendar
+			label.btn.btn-success(ng-model="storage.viewmode", btn-radio="'map'"): span.fa.fa-street-view
+			label.btn.btn-success(ng-model="storage.viewmode", btn-radio="'negotiation'"): span.fa.fa-envelope-o
 		// this is analog to profile select panel except additional preferences, and user functions // + admin section
 		ul.nav.navbar-nav.navbar-right
 			//h4#selectedDate
@@ -29,8 +27,8 @@ div(role="navigation").navbar.navbar-fixed-top.navbar-default
 					span.calendar-digit.calendar--day {{getDay()}}&nbsp;
 					span.calendar-digit.calendar--year {{getYear()}}&nbsp;
 			li.dropdown
-				a.dropdown-toggle(href='#',data-toggle='dropdown',role='button',aria-expanded='false') {{profile.name}} &nbsp;
-					span.label.label-default {{profile.type}}
+				a.dropdown-toggle(href='#',data-toggle='dropdown',role='button',aria-expanded='false') {{storage.profile.name}} &nbsp;
+					span.label.label-default {{storage.profile.type}}
 					| &nbsp;
 					span.fa.fa-user &nbsp;
 					span.caret

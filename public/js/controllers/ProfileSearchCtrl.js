@@ -29,6 +29,16 @@ app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage, MapMa
                 }
                 else{
                     $scope.calculateGeoMarkers();
+                    if ($localStorage.rememberedProfiles.length == 0){
+                        return;
+                    }
+                    $localStorage.searchResults.forEach(function(p){
+                        $localStorage.rememberedProfiles.forEach(function(q){
+                            if (p._id == q._id){
+                                p.isRemembered = true;
+                            }
+                        });
+                    });
                 }
             })
             .error(function(){
