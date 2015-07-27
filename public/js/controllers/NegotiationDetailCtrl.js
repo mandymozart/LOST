@@ -2,7 +2,7 @@
 
 var app = angular.module('muriquee');
 
-app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http){
+app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http,SoundcloudService,Notification){
 	$scope.models = {}
 	$scope.models.messageAreaText = '';
 	$scope.storage = $localStorage;
@@ -46,7 +46,11 @@ app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http){
 		return nm.sender === $localStorage.profile._id;
 	}
 	$scope.send = function(){
-		//alert($scope.models.messageAreaText);
+		//Notification($scope.models.messageAreaText);
+		if ($scope.models.messageAreaText == ""){
+			Notification('Please enter a message first');
+			return;
+		}
 		var req = {
  			method: 'POST',
  			url: '/api/sendNegotiationMessage',
@@ -59,10 +63,11 @@ app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http){
  				profile:$localStorage.profile
  			}
 		};
+		console.log(req.data);
 		$http(req)
 		.success(function(data){
 			if (data.err){
-				alert(data.message);
+				Notification(data.message);
 				return;
 			}
 			var req = {
@@ -85,11 +90,11 @@ app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http){
                 },500);
 			})
 			.error(function(){
-				alert('error populating negotiation messages');
+				Notification('error populating negotiation messages');
 			});
 		})
 		.error(function(){
-			alert('error posting negotiation message');
+			Notification('error posting negotiation message');
 		});
 	}
 	$scope.offer = function(){
@@ -109,7 +114,7 @@ app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http){
 			$localStorage.selectedNegotiation = data;
 		})
 		.error(function(){
-			alert('error submitting offer');
+			Notification('error submitting offer');
 		})
 	}
 	$scope.accept = function(){
@@ -127,13 +132,15 @@ app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http){
 		$http(req)
 		.success(function(data){
 			$localStorage.selectedNegotiation = data;
-			alert('successfully accepted negotiation. status: ' + data.status);
+			Notification.success('Successfully accepted negotiation');
 		})
 		.error(function(){
-			alert('error accepting negotiation');
+			Notification.error('Error accepting negotiation');
 		})
 	}
 	$scope.decline = function(){
+		var p = confirm('Are you sure you want to delete this negotiation');
+		if (!p) return;
 		var req = {
 			method : 'POST',
 			url : '/api/rejectNegotiation',
@@ -150,24 +157,33 @@ app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http){
 			for (var i=0;i<$localStorage.profile.negotiations.length;i++){
 				if ($localStorage.profile.negotiations[i]._id == $localStorage.selectedNegotiation._id){
 					$localStorage.profile.negotiations.splice(i,1);
-					alert('removeing at ' + i);
 					break;
 				} 
 			}
 			$localStorage.selectedNegotiation = undefined;
+			$localStorage.viewmode = 'calendar';
 		})
 		.error(function(){
-			alert('error declining negotiation');
+			Notification('error declining negotiation');
 		})
 	}
-	$scope.otherProfile = function(n){
-		if (!n.sender) return undefined;
+	$scope.otherProfile = function(){
+		var n = $localStorage.selectedNegotiation;
 		if (n.sender._id == $localStorage.profile._id){
 			return n.receiver;
 		}
 		else{
 			return n.sender;
 		}
+	}
+	$scope.showProfile = function(){
+		$localStorage.selectedResult = $scope.otherProfile();
+		SoundcloudService();
+	}
+	$scope.close = function(){
+		//$localStorage.selectedNegotiation = undefined;
+		$localStorage.viewmode = 'calendar';
+		return false;
 	}
 	$scope.isNegotiationClosed = function(){
 		return $localStorage.selectedNegotiation.status == "closed";
@@ -176,10 +192,20 @@ app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http){
 		return $localStorage.selectedNegotiation.status == "open";
 	}
 	$scope.hasAccepted = function(p){
+		if (!p) return false;
 		var n = $localStorage.selectedNegotiation;
 		var s = n.sender;
 		var r = n.receiver;
-		var p = $localStorage.profile;
-		return (n.status == 'sender_accepted' && p._id==s._id) || (n.status == 'receiver_accepted' && p._id==r._id);
+		if (n.status == 'sender_accepted' && p.slug == s.slug){
+			return true;
+		}
+		if (n.status == 'receiver_accepted' && p.slug == r.slug){
+			return true;
+		}
+		return false;
+	}
+
+	$scope.formatMessage = function(msg){
+		return msg.replace(/(?:\r\n|\r|\n)/g, '<br />')
 	}
 });

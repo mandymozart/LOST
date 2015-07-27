@@ -1,10 +1,12 @@
 .tab-pane.fade.in.active.scrollable#resultsResidentTab(style="height: 400px;")
-	table.table.table-striped.table-hover.profile-filtered-list(ng-if="storage.searchResults.length!=0")
+	table.table.table-hover.profile-filtered-list(ng-if="storage.searchResults.length!=0")
 		tbody.profile-filtered-list--body
 			tr(ng-repeat="result in storage.searchResults | filter:filterOnTour")
 				td.profile-info(ng-click="showProfile(result)")
-					span.profile-info-list--item.profile-name {{result.name}}
-					span.profile-type.label.label-primary {{result.type}}
+					span.fa.fa-user(ng-if="result.type == 'Artist'")
+					span.fa.fa-user-secret(ng-if="result.type == 'Organiser'")
+					span.fa.fa-building(ng-if="result.type == 'Venue'")
+					span.profile-info-list--item.profile-name &nbsp; {{result.name}}
 				td.profile-genre-list
 					span.profile-genre-list--item.label.label-info(ng-repeat="g in result.genres track by $index", ng-animate="'animate'") {{g}}
 				td.

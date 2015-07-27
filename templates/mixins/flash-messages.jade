@@ -1,17 +1,20 @@
 mixin flash-messages(messages)
 	if messages
-		#flash-messages.container
-			each message in messages.info
-				+flash-message(message, 'info')
-			each message in messages.success
-				+flash-message(message, 'success')
-			each message in messages.warning
-				+flash-message(message, 'warning')
-			each message in messages.error
-				+flash-message(message, 'danger')
+		#flash-messages
+					each message in messages.info
+						+flash-message(message, 'info')
+					each message in messages.success
+						+flash-message(message, 'success')
+					each message in messages.warning
+						+flash-message(message, 'warning')
+					each message in messages.error
+						+flash-message(message, 'danger')
 				
 mixin flash-message(message, type)
-	div(class='alert alert-' + type)
+	div(class='alert alert-' + type + ' alert-dismissible fade in')
+		button.close(type="button", data-dismiss="alert", aria-label="Close")
+			span(aria-hidden="true") &times;
+
 		if utils.isObject(message)
 			if message.title
 				h4= message.title

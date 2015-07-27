@@ -1,0 +1,22 @@
+.panel-front {
+  @include box-shadow(0 5px 10px rgba(0,0,0,.3));
+}
+.panel-close {
+	cursor: pointer;
+}
+
+.panel--artist,
+.panel--artist .panel-footer {
+  background-color: $user-artist-primary-color;
+  color: #fff;
+}
+.panel--organiser,
+.panel--organiser .panel-footer {
+  background-color: $user-organiser-primary-color;
+  color: #fff;
+}
+.panel--venue,
+.panel--venue .panel-footer {
+  background-color: $user-venue-primary-color;
+  color: #fff;
+}

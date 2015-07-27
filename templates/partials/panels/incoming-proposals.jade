@@ -1,18 +1,25 @@
 #incomingProposalCtrl(ng-controller="IncomingProposalsCtrl")
-	.panel.panel-default#incomingProposalsPanel(ng-if="storage.selectedNegotiation == undefined", style="height=250; overflow: auto")
+	.panel.panel-default#incomingProposalsPanel(
+		ng-if="storage.viewmode=='calendar'", 
+		style="height=250; overflow: auto")
 		.panel-heading
-			.panel-title: span.fa.fa-inbox &nbsp; Incoming proposals
+			.panel-title
+				span.fa.fa-inbox
+				| &nbsp; Incoming proposals
 				.label.label-info(ng-if="storage.profile.proposals.length!=0") {{storage.profile.proposals.length}}
 		.panel-body.scrollable
-			table.table.table-striped.table-hover.profile-filtered-list(ng-if="storage.profile.proposals.length!=0")
+			table.table.table-hover.profile-filtered-list(ng-if="storage.profile.proposals.length!=0")
 				tbody.profile-filtered-list--body
 					tr(ng-repeat="proposal in storage.profile.proposals")
+						td.profile-info(ng-click="showProfile(proposal.sender)")
+							span.fa.fa-user(ng-if="proposal.sender.type == 'Artist'")
+							span.fa.fa-user-secret(ng-if="proposal.sender.type == 'Organiser'")
+							span.fa.fa-building(ng-if="proposal.sender.type == 'Venue'")
+							span.profile-info-list--item.profile-name &nbsp; {{proposal.sender.name}}
+							span.profile-type.label.label-primary {{proposal.sender.type}}
 						td
 							span.fa.fa-calendar
 							span &nbsp; {{getMonth(proposal)}} {{getDay(proposal)}} {{getYear(proposal)}}
-						td(ng-click="showProfile(proposal.sender)")
-							span.profile-info-list--item.profile-name {{proposal.sender.name}}
-							span.profile-type.label.label-primary {{proposal.sender.type}}
 						td.text-right
 							button.btn.btn-success.btn-xs(ng-click="acceptProposal(proposal)")
 								| Accept

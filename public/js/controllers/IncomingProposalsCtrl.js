@@ -1,7 +1,7 @@
 'use strict';
 var app = angular.module('muriquee')
 
-app.controller('IncomingProposalsCtrl', function($scope, $localStorage, $http){
+app.controller('IncomingProposalsCtrl', function($scope, $localStorage, $http,SoundcloudService,Notification){
 	$scope.storage = $localStorage;
 	$scope.proposals = $localStorage.profile.proposals;
 
@@ -31,6 +31,7 @@ app.controller('IncomingProposalsCtrl', function($scope, $localStorage, $http){
 
 	$scope.showProfile = function(p){
 		$localStorage.selectedResult = p;
+		SoundcloudService();
 	}
 	$scope.acceptProposal = function(p){
 		var req = {
@@ -49,10 +50,10 @@ app.controller('IncomingProposalsCtrl', function($scope, $localStorage, $http){
 		.success(function(data){
 			console.log(data);
 			$localStorage.profile = data;
-			alert('sucessfully accepted proposal');
+			Notification.success('Sucessfully accepted proposal');
 		})
 		.error(function(){
-			alert('error accepting proposal');
+			Notification.error('Error accepting proposal');
 		})
 	}
 	$scope.declineProposal = function(p){

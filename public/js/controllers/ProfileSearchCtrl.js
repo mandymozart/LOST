@@ -1,9 +1,15 @@
 'use strict'
 var app = angular.module('muriquee')
 
-app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage){
+app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage, MapMarkerService){
     //listeners
     $scope.submitSearch = function(index){
+        $localStorage.selectedNegotiation = undefined;
+
+        setTimeout(function(){
+                $('#profileSearchResultsTab').height(window.innerHeight-490);
+            },500);
+
         var ops = JSON.parse(JSON.stringify($localStorage.searchOptions));
         ops.genres = $scope.unindexList(ops.genres);
         ops.subtypes = $scope.unindexList(ops.profileSubtypes);
@@ -18,67 +24,99 @@ app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage){
         $http(req)
             .success(function(data){
                 $localStorage.searchResults = data;
-                $scope.searchResultsCount = $localStorage.searchResults.length;
+                if (data.length == 0){
+                    $scope.calculateGeoMarkers();
+                }
+                else{
+                    $scope.calculateGeoMarkers();
+                    if ($localStorage.rememberedProfiles.length == 0){
+                        return;
+                    }
+                    $localStorage.searchResults.forEach(function(p){
+                        $localStorage.rememberedProfiles.forEach(function(q){
+                            if (p._id == q._id){
+                                p.isRemembered = true;
+                            }
+                        });
+                    });
+                }
             })
             .error(function(){
                 alert('error retreiving data from server');
             })
     }
-    $scope.showProfile = function(p){
-        $localStorage.selectedResult = p;
-    }
-    $scope.pingProfile = function(p){
-        //TODO
-        alert('ping profile: \n' + JSON.stringify(p));
-    }
-    $scope.commentProfile = function(p){
-        //TODO
-        alert('commentProfile: \n' + JSON.stringify(p));
-    }
-    $scope.rememberProfile = function(p){
-        if (!$scope.storage.rememberedProfiles){
-            $scope.storage.rememberedProfiles = [];
-        }
-        if ($scope.storage.rememberedProfiles.indexOf(p) == -1){
-            $scope.storage.rememberedProfiles.push(p);
-            p.isRemembered = true;
-        }
-    }
-    $scope.removeRemeberedProfile = function(p){
-        var i = $scope.storage.rememberedProfiles.indexOf(p);
-        $scope.storage.rememberedProfiles.splice(i, 1);
-        p.isRemembered = false;
-    }
-    $scope.rememberAll = function(){
-        $scope.storage.searchResults.forEach($scope.rememberProfile);
-    }
-    $scope.removeAll = function(){
-        $scope.storage.rememberedProfiles.forEach(function(p){
-            p.isRemembered = false;
-        });
-        $scope.storage.rememberedProfiles = [];
-    }
-    $scope.pushCall = function(){
-        var req = {
-            method: 'POST',
-            url: '/api/sendProposal',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            data: {
-                profile:$scope.storage.profile,
-                profiles:$scope.storage.rememberedProfiles,
-                proposedDate:$scope.storage.selectedDate,
+
+    $scope.calculateGeoMarkers = function(){
+        $localStorage.markers = {};
+        $localStorage.markers[$localStorage.profile._id] = $localStorage.profileMarker;
+        $localStorage.markers['search_marker'] = $localStorage.searchMarker;
+        $localStorage.searchResults.forEach(function(p){
+            var marker = {
+                title:p.name,
+                lat:parseFloat(p.geolocation.lat),
+                lng:parseFloat(p.geolocation.lon),
+                message:MapMarkerService.markerMessage(p),
+                focus:false,
+                draggable:false,
+                icon:MapMarkerService.markerIcon(p)
+                //label:{
+                //    message:MapMarkerService.markerMessage(p),
+                //    options:{
+                //        noHide:true
+                //    }
+                //}
             }
-        }
-        $http(req)
-            .success(function(data){
-                alert('sucessfully sent proposals for: ' + $localStorage.selectedDate);
-            })
-            .error(function(){
-                alert('error sending proposals');
-            })
+            $localStorage.markers[p._id] = marker;
+        })
     }
+    //$scope.showProfile = function(p){
+    //    $localStorage.selectedResult = p;
+    //}
+
+    //$scope.rememberProfile = function(p){
+    //    if (!$scope.storage.rememberedProfiles){
+    //        $scope.storage.rememberedProfiles = [];
+    //    }
+    //    if ($scope.storage.rememberedProfiles.indexOf(p) == -1){
+    //        $scope.storage.rememberedProfiles.push(p);
+    //        p.isRemembered = true;
+    //    }
+    //}
+    //$scope.removeRemeberedProfile = function(p){
+    //    var i = $scope.storage.rememberedProfiles.indexOf(p);
+    //    $scope.storage.rememberedProfiles.splice(i, 1);
+    //    p.isRemembered = false;
+    //}
+    //$scope.rememberAll = function(){
+    //    $scope.storage.searchResults.forEach($scope.rememberProfile);
+    //}
+    //$scope.removeAll = function(){
+    //    $scope.storage.rememberedProfiles.forEach(function(p){
+    //        p.isRemembered = false;
+    //    });
+    //    $scope.storage.rememberedProfiles = [];
+    //}
+    //$scope.pushCall = function(){
+    //    var req = {
+    //        method: 'POST',
+    //        url: '/api/sendProposal',
+    //        headers: {
+    //            'Content-Type': 'application/json'
+    //        },
+    //        data: {
+    //            profile:$scope.storage.profile,
+    //            profiles:$scope.storage.rememberedProfiles,
+    //            proposedDate:$scope.storage.selectedDate,
+    //        }
+    //    }
+    //    $http(req)
+    //        .success(function(data){
+    //            alert('sucessfully sent proposals for: ' + $localStorage.selectedDate);
+    //        })
+    //        .error(function(){
+    //            alert('error sending proposals');
+    //        })
+    //}
 
     //filters
     $scope.filterOnTour = function(p){
@@ -183,5 +221,5 @@ app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage){
             profileName    : ''
         };
     }
-    $scope.searchResultsCount = $localStorage.searchResults.length;
+   
 });

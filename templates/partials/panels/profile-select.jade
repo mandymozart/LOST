@@ -8,7 +8,7 @@
 					span.fa.fa-building(ng-if="profile.type == 'Venue'")
 					span.profile-info-list--item.profile-name &nbsp; {{profile.name}}
 					.pull-right
-						.fa.fa-cog(ng-click="editProfile(profile)", ng-if="profile._id")
+						.fa.fa-cog.profile-edit-link(ng-click="editProfile(profile)", ng-if="profile._id")
 						//span.fa.fa-cog(ng-click="loadProfile(profile)", ng-if="profile._id == storage.profile._id")
 		.panel-body
 			p.profile
@@ -18,4 +18,4 @@
 					span.fa.fa-envelope
 					| &nbsp; {{profile.proposals.length}} new proposals
 		.panel-footer.text-right
-			button.btn.btn-primary.btn-xs(ng-click="loadProfile(profile, loadCalendar)") Calendar
+			button.btn.btn-default.btn-block.btn-xs(ng-click="loadProfile(profile, loadCalendar)") Calendar

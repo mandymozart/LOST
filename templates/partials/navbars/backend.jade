@@ -2,15 +2,16 @@ div(role="navigation").navbar.navbar-fixed-top.navbar-default
 	.container-fluid(ng-controller="NavbarCtrl")
 		.navbar-header
 			a.navbar-brand(href='/profiles')
+				#profileLink 
+					span.fa.fa-chevron-left
+					| &nbsp; Profiles
 				img(src='/images/muriquee-brand.svg',height='32')
-		// show this if profile is selected
-		ul.nav.navbar-nav.navbar-left
-			li.navbar-link: a(href='/calendar')
-				span.fa.fa-calendar
-			li.navbar-link: a(href='/map')
-				span.fa.fa-street-view
+		.btn-group.navbar-right
+			label.btn.btn-default.btn-lg(ng-model="storage.viewmode", btn-radio="'calendar'"): span.fa.fa-calendar
+			label.btn.btn-default.btn-lg(ng-model="storage.viewmode", btn-radio="'map'"): span.fa.fa-street-view
+			label.btn.btn-default.btn-lg(ng-model="storage.viewmode", btn-radio="'negotiation'"): span.fa.fa-envelope-o
 		// this is analog to profile select panel except additional preferences, and user functions // + admin section
-		ul.nav.navbar-nav.navbar-right
+		ul.nav.navbar-nav
 			//h4#selectedDate
 				//	span.calendar-date.stacked-icons
 				//		span.calendar-stack.fa-stack.fa-2x
@@ -26,16 +27,14 @@ div(role="navigation").navbar.navbar-fixed-top.navbar-default
 					span.calendar-digit.calendar--day {{getDay()}}&nbsp;
 					span.calendar-digit.calendar--year {{getYear()}}&nbsp;
 			li.dropdown
-				a.dropdown-toggle(href='#',data-toggle='dropdown',role='button',aria-expanded='false') {{profile.name}} &nbsp;
-					span.label.label-default {{profile.type}}
-					| &nbsp;
-					span.fa.fa-user &nbsp;
-					span.caret
+				a.dropdown-toggle(href='#',data-toggle='dropdown',role='button',aria-expanded='false') 
+					span.fa.fa-user(ng-if="storage.profile.type == 'Artist'")
+					span.fa.fa-user-secret(ng-if="storage.profile.type == 'Organiser'")
+					span.fa.fa-building(ng-if="storage.profile.type == 'Venue'")
+					| &nbsp; {{storage.profile.name}} 
 				ul.dropdown-menu(role='menu')
 					li: a(href='/profiles'): .text-primary
 						span.fa.fa-users &nbsp;Profiles
-					li: a(href='#')
-						span.fa.fa-cog &nbsp;Preferences
 					li: a(href='/signout')
 						span.fa.fa-sign-out &nbsp;Sign Out
 					if user.canAccessKeystone

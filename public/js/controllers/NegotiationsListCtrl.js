@@ -2,7 +2,7 @@
 
 var app = angular.module('muriquee');
 
-app.controller('NegotiationsListCtrl', function($scope, $localStorage, $http){
+app.controller('NegotiationsListCtrl', function($scope, $localStorage, $http, SoundcloudService,Notification){
 	$scope.storage = $localStorage;
 	$localStorage.selectedNegotiation = undefined;
 	
@@ -13,6 +13,10 @@ app.controller('NegotiationsListCtrl', function($scope, $localStorage, $http){
 		else{
 			return n.sender;
 		}
+	}
+	$scope.showProfile = function(p){
+		$localStorage.selectedResult = p;
+		SoundcloudService();
 	}
 
 	$scope.selectNegotiation = function(n){
@@ -29,25 +33,26 @@ app.controller('NegotiationsListCtrl', function($scope, $localStorage, $http){
 		$http(req)
 		.success(function(data){
 			$localStorage.selectedNegotiation = data;
-                setTimeout(function(){
-                    var wHeight = window.innerHeight;
-                    $('#negotiationDetailChatBody').height(wHeight-420);
-                    var wtf = $('#negotiationDetailChatBody');
-                    var height = wtf[0].scrollHeight;
-                    wtf.scrollTop(height);
-                },500);
-
-
+			if (data) $localStorage.viewmode = 'negotiation';
+            setTimeout(function(){
+                var wHeight = window.innerHeight;
+                $('#negotiationDetailChatBody').height(wHeight-445);
+                var wtf = $('#negotiationDetailChatBody');
+                var height = wtf[0].scrollHeight;
+                wtf.scrollTop(height);
+            },500);
 		})
 		.error(function(){
-			alert('error populating negotiation messages');
+			Notification.error('Error populating negotiation messages');
 		});
 	}
 	$scope.unselectNegotiations = function(){
 		$localStorage.selectedNegotiation = undefined;
+		//$localStorage.viewmode = 'calendar';
 	}
 	$scope.dateFilter = function(n){
-		return !$scope.filterDate || n.date == $localStorage.selectedDate;
+		return !$scope.filterDate || ((new Date(n.date).setHours(0,0,0,0)) == (new Date($localStorage.selectedDate).setHours(0,0,0,0)));
 	}
 	$scope.filterDate = false;
+	
 });

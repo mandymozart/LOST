@@ -4,12 +4,14 @@ block flash-messages
 	//- intentionally blank
 
 block content
-	.container-xs
-		.page-intro
-			h1 Sign into Muriquee
-			+flash-messages(messages)
-		.page-content
-			+auth-forms({ modal: false, initial: 'signin' })
+	.container
+		.row
+			.col-md-6.col-md-offset-3
+				.page-intro
+					h1 Sign into Muriquee
+					+flash-messages(messages)
+				.page-content
+					+auth-forms({ modal: false, initial: 'signin' })
 
 block js
 	script.

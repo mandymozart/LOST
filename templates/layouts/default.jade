@@ -64,7 +64,7 @@ html
 		block head
 
 	//- HTML BODY
-	body(ng-app="muriquee", ng-cloak)
+	body(class=section ? 'sitesection-' + section : null,ng-app="muriquee", ng-cloak)
 
 		//- HEADER
 		#header
@@ -101,8 +101,6 @@ html
 		
 
 	// Modals
-	// Modal: Login
-	include ../partials/modals/login.html
 	// Modal: Company
 	include ../partials/modals/company.html
 	// Modal: Privacy
@@ -142,6 +140,9 @@ html
 		script(src="/js/lib/angular/ui-bootstrap.min.js")
 		script(src="/js/lib/angular/ui-bootstrap-tpls.min.js")
 
+		//openlayers script
+		//leaflet script
+		script(src="js/lib/leaflet/leaflet.js")
 
 		//angular modules
 		script(src="js/lib/angular/angular-ui-router.min.js")
@@ -150,8 +151,16 @@ html
 		script(src="js/lib/ngStorage.js")
 		script(src="js/lib/angular/multiselect.js")
 		script(src="js/lib/angular/multiselect-tpls.js")
+		//script(src="js/lib/angular/angular-openlayers-directive.min.js")
+		script(src="js/lib/angular/angular-leaflet-directive.min.js")
+		script(src="js/lib/angular/angular-ui-notification.min.js")
 		// Main Frontend App TODO: grunt to app.js
 		script(src="js/app.js")
+
+		//Angular services:
+		script(src="js/services/MapMarkerService.js")
+		script(src="js/services/SoundcloudService.js")
+		script(src="js/services/GeocodingService.js")
 
 		//Angular controllers:
 		script(src="js/controllers/ProfileCtrl.js")
@@ -164,6 +173,8 @@ html
 		script(src="js/controllers/NegotiationsListCtrl.js")
 		script(src="js/controllers/GeneratorCtrl.js")
 		script(src="js/controllers/IncomingProposalsCtrl.js")
+		script(src="js/controllers/ProfileSearchResultsCtrl.js")
+		script(src="js/controllers/MapCtrl.js")
 
 		//Unused simple javascript library
 		script(src="js/lib.js")

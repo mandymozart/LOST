@@ -7,19 +7,8 @@ var Types    = keystone.Field.Types;
 
 var Profile = new keystone.List('Profile', {
     autokey : { path:'slug', from:'name', unique:true }
-
-Profile.add({
-    user  : { type: Types.Relationship, ref: 'User', index: true },
-    name  : { type: String, required: true, index: true },
-    about : {
-                brief    : { type: Types.Html, wysiwig: true, height: 50 },
-                extended : { type: Types.Html, wysiwig: true, height: 300} 
-            },
-    //TODO socialLinks    : {type : undefined } 
-    //TODO souncloudLinks : {type : undefined }
-    //TODO videoLinks     : {type : undefined }
-    //TODO 
 });
+
 
 Profile.add({
     user            : { type: Types.Relationship, ref: 'User', index: true },
@@ -40,7 +29,10 @@ Profile.add({
     creationDate    : { type: Types.Date },
     favourites      : { type: Types.Relationship, ref: 'Profile', many:true },
     called          : { type: Types.Relationship, ref: 'Profile', many:true },
-
+    geolocation     : {
+        lat : { type:Types.Number, default: 0.0 },
+        lon : { type:Types.Number, default: 0.0 }
+    },
     tours           : { type: Types.Relationship, ref: 'Tour', many:true }    
 });
 

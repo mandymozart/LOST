@@ -1,12 +1,19 @@
 /* Button Styles extensions to the bootstrap core to do color grading for each type of user */
 .btn--artist {
   background-color: $user-artist-primary-color;
+  border-color: $user-artist-primary-color;
+  color: #fff;
 }
 .btn--organiser {
   background-color: $user-organiser-primary-color;
+  border-color: $user-organiser-primary-color;
   color: #fff;
 }
 .btn--venue {
   background-color: $user-venue-primary-color;
+  border-color: $user-venue-primary-color;
   color: #fff;
+}
+.navbar .btn-lg {
+	padding: 20px 26px;
 }
