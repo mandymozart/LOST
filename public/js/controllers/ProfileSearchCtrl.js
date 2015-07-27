@@ -5,7 +5,7 @@ app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage, MapMa
     //listeners
     $scope.submitSearch = function(index){
         $localStorage.selectedNegotiation = undefined;
-
+        $localStorage.selectedResult = undefined;
         setTimeout(function(){
                 $('#profileSearchResultsTab').height(window.innerHeight-490);
             },500);
