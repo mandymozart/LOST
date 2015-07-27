@@ -173,16 +173,16 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage, MapMarkerSe
 			}
 			$http(req)
 			.success(function(data){
-				$scope.saveStatus = "successfully saved profile";
+				$scope.saveStatus = "Successfully saved profile";
 				$scope.fetchProfiles(function(){
-					console.log('fetched');
+					$scope.editprofile = data;
 				});
 			})
 			.error(function(){
-				$scope.saveStatus = "error saving profile";
+				$scope.saveStatus = "Error saving profile";
 			});
 		}
-		else $scope.saveStatus = "no profile selected to save";
+		else $scope.saveStatus = "No profile selected to save";
 	}
 
 	$scope.returnToSelection = function(p){
@@ -274,7 +274,9 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage, MapMarkerSe
 	}
 
 	$scope.addSocialLink = function(){
-		$scope.editprofile.socialLinks.push($scope.linkInput.data);
+		if ($scope.linkInput.data){
+			$scope.editprofile.socialLinks.push($scope.linkInput.data);
+		}
 	}
 
 	$scope.onZipEntered = function(){
