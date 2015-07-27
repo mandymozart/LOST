@@ -5075,6 +5075,13 @@ body.sitesection-profiles {
 .sitesection-calendar #calendar-controls, .sitesection-calendar #incomingProposalsPanel {
   margin-top: 15px; }
 
+.sitesection-session #body {
+  margin-top: 180px;
+  margin-bottom: 100px; }
+
+.sitesection-session .js-auth-trigger {
+  display: none; }
+
 #searchFilterForm #searchButton {
   height: 80px; }
 
