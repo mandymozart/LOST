@@ -93,6 +93,11 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage, MapMarkerSe
 
 	$scope.editProfile = function(p) {
 		$scope.editprofile = p;
+		$scope.center.lat = $scope.markers.m.lat = parseFloat(p.geolocation.lat);
+		$scope.center.lng = $scope.markers.m.lng = parseFloat(p.geolocation.lon);
+
+		$scope.
+		$scope.center.zoom = 6;
 	}
 
 	$scope.createProfile = function(type){
@@ -249,19 +254,6 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage, MapMarkerSe
 		}
 	}
 
-	//$scope.onProfileTypeSelectionChanged = function(){
-	//	var pt = $localStorage.searchOptions.profileType;
-	//	if (pt === 'Artist'){
-	//		$scope.profileSubtypes = $localStorage.datalists.artistTypes;
-	//	}
-	//	else if (pt === 'Venue'){
-	//		$scope.profileSubtypes = $localStorage.datalists.venueTypes;
-	//	}
-	//	else {
-	//		$scope.profileSubtypes = $localStorage.datalists.organiserTypes;
-	//	}
-	//}
-
 	$scope.fetchDataLists = function(){
 		var req = {
 			method  : 'GET',
@@ -284,6 +276,14 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage, MapMarkerSe
 
 	$scope.addSocialLink = function(){
 		$scope.editprofile.socialLinks.push($scope.linkInput.data);
+	}
+
+	$scope.onPostalCodeEntered = function(){
+		if (!$scope.editprofile) return;
+		var zip = $scope.editprofile.zip;
+		var url = 'http://nominatim.openstreetmap.org/search/'
+		var query = '?postalcode='+$scope.editprofile.zip.toString()
+
 	}
 
 	$scope.$on('leafletDirectiveMarker.drag', function(event,args){
@@ -327,5 +327,7 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage, MapMarkerSe
             }
         }
 	})
-
+	$scope.saveStatus = 'successfully saved profile';
+	$scope.returnToSelection($scope.editprofile);
+	$scope.saveStatus = '';
 });
