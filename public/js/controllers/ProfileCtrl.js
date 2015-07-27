@@ -357,7 +357,8 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage, MapMarkerSe
 		defaults: {
             scrollWheelZoom: false,
             doubleClickZoom: true,
-            maxZoom:16
+            maxZoom:16,
+            minZoom:3
         },
         events: {
             map: {
