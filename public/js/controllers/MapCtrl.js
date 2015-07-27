@@ -5,7 +5,7 @@ app.controller('MapCtrl', function($scope,$localStorage,leafletData,leafletBound
 	$scope.storage = $localStorage;
 	$scope.storage.viewmode = 'calendar';
 	var p = $localStorage.profile;
-	$localStorage.searchOptions.radius = 1;
+	$localStorage.searchOptions.radius = 1000;
 	$localStorage.profileMarker = {
 		name:p.name,
         lat:parseFloat(p.geolocation.lat),
@@ -23,6 +23,10 @@ app.controller('MapCtrl', function($scope,$localStorage,leafletData,leafletBound
 		focus:true,
 		draggable:true
 	};
+	$localStorage.searchOptions.geolocation = {
+		lat:$localStorage.profileMarker.lat,
+		lon:$localStorage.profileMarker.lng
+	}
 	$localStorage.markers = {};
 	$localStorage.markers[$localStorage.profile._id] = $localStorage.profileMarker;
     $localStorage.markers['search_marker'] = $localStorage.searchMarker;
