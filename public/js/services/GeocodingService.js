@@ -1,7 +1,7 @@
 'use strict'
 var app = angular.module('muriquee')
 
-app.factory('GeocodingService', function($http)
+app.factory('GeocodingService', function($http){
 
 	var url = 'http://nominatim.openstreetmap.org/search/';
 
