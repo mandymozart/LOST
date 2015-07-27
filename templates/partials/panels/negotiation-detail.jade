@@ -1,17 +1,16 @@
 #negotiationDetailCtrl(ng-controller="NegotiationDetailCtrl")
-	.panel.panel-default.panel-front#noNegotiationSelectedPanel(
+	.alert.alert-default#noNegotiationSelectedAlert(
 		ng-if="storage.viewmode == 'negotiation' && !storage.selectedNegotiation")
-		.panel-heading
-			span
-				| Please select a negotiation!
-	.panel.panel-default.panel-front#negotiationDetailPanel(
+		h4.alert-heading Please select a negotiation!
+	.panel.panel-default.panel-flat#negotiationDetailPanel(
 		ng-if="storage.viewmode == 'negotiation' && storage.selectedNegotiation", 
 		style="height=350; overflow: auto")
 		.panel-heading
-			.panel-close.pull-right(ng-click="close()")
-				span.fa.fa-times
-			.panel-title(ng-click="showProfile()"): b {{otherProfile(storage.selectedNegotiation).name}} &nbsp;
-				span.profile-type.label.label-primary {{otherProfile(storage.selectedNegotiation).type}}
+			.panel-title(ng-click="showProfile()")
+				span.fa.fa-user(ng-if="otherProfile(storage.selectedNegotiation).type == 'Artist'")
+				span.fa.fa-user-secret(ng-if="otherProfile(storage.selectedNegotiation).type == 'Organiser'")
+				span.fa.fa-building(ng-if="otherProfile(storage.selectedNegotiation).type == 'Venue'")
+				b &nbsp; {{otherProfile(storage.selectedNegotiation).name}} &nbsp;
 				span.text-success(ng-if="hasAccepted(otherProfile(storage.profile))")
 					| &nbsp; has accepted!
 			.row

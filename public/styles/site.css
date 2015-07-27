@@ -225,7 +225,7 @@ body {
   font-size: 13px;
   line-height: 1.846;
   color: #666;
-  background-color: #E7FAFC; }
+  background-color: #fcfcfc; }
 
 input, button, select, textarea {
   font-family: inherit;
@@ -259,7 +259,7 @@ img {
 .img-thumbnail {
   padding: 4px;
   line-height: 1.846;
-  background-color: #E7FAFC;
+  background-color: #fcfcfc;
   border: 1px solid #ddd;
   border-radius: 0px;
   -webkit-transition: all 0.2s ease-in-out;
@@ -1290,7 +1290,7 @@ th {
   .table > tbody + tbody {
     border-top: 2px solid #ddd; }
   .table .table {
-    background-color: #E7FAFC; }
+    background-color: #fcfcfc; }
 
 .table-condensed > thead > tr > th, .table-condensed > thead > tr > td, .table-condensed > tbody > tr > th, .table-condensed > tbody > tr > td, .table-condensed > tfoot > tr > th, .table-condensed > tfoot > tr > td {
   padding: 5px; }
@@ -2364,7 +2364,7 @@ tbody.collapse.in {
       border-radius: 0px 0px 0 0; }
 
     .nav-tabs-justified > .active > a, .nav-tabs.nav-justified > .active > a, .nav-tabs-justified > .active > a:hover, .nav-tabs.nav-justified > .active > a:hover, .nav-tabs-justified > .active > a:focus, .nav-tabs.nav-justified > .active > a:focus {
-      border-bottom-color: #E7FAFC; }
+      border-bottom-color: #fcfcfc; }
  }
 
 .tab-content > .tab-pane {
@@ -2943,7 +2943,7 @@ a.badge:hover, a.badge:focus {
   padding: 4px;
   margin-bottom: 23px;
   line-height: 1.846;
-  background-color: #E7FAFC;
+  background-color: #fcfcfc;
   border: 1px solid #ddd;
   border-radius: 0px;
   -webkit-transition: all 0.2s ease-in-out;
@@ -4673,7 +4673,7 @@ html {
   min-height: 100%; }
 
 #body {
-  margin-top: 67px;
+  margin-top: 80px;
   margin-bottom: 0; }
 
 *:focus {
@@ -4723,17 +4723,27 @@ html {
 .scrollable {
   overflow: scroll; }
 
+.profile-info {
+  cursor: pointer; }
+
 /* Button Styles extensions to the bootstrap core to do color grading for each type of user */
 .btn--artist {
-  background-color: #FF5722; }
+  background-color: #FF5722;
+  border-color: #FF5722;
+  color: #fff; }
 
 .btn--organiser {
   background-color: #607D8B;
+  border-color: #607D8B;
   color: #fff; }
 
 .btn--venue {
   background-color: #FFC107;
+  border-color: #FFC107;
   color: #fff; }
+
+.navbar .btn-lg, .navbar .btn-group-lg > .btn {
+  padding: 20px 26px; }
 
 multiselect {
   display: block; }
@@ -4767,19 +4777,19 @@ multiselect .dropdown-menu > li > a {
 .panel-close {
   cursor: pointer; }
 
-/* Default */
-.panel--artist {
+.panel--artist, .panel--artist .panel-footer {
   background-color: #FF5722;
   color: #fff; }
 
-.panel--organiser {
+.panel--organiser, .panel--organiser .panel-footer {
   background-color: #607D8B;
   color: #fff; }
 
-.panel--venue {
+.panel--venue, .panel--venue .panel-footer {
   background-color: #FFC107;
   color: #fff; }
 
+/* Default */
 /* Calendar */
 /* Font Awesome Icon Stack overwrite
 http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
@@ -4995,7 +5005,7 @@ http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
 	} */ }
 
 .auth-form-divider-text {
-  background-color: #E7FAFC;
+  background-color: #fcfcfc;
   display: inline-block;
   padding: 0 1em;
   position: relative;
@@ -5072,9 +5082,6 @@ body.sitesection-profiles {
 .sitesection-calendar .navbar-brand:hover {
   margin-left: -15px !important; }
 
-.sitesection-calendar #calendar-controls, .sitesection-calendar #incomingProposalsPanel {
-  margin-top: 15px; }
-
 .sitesection-session #body {
   margin-top: 180px;
   margin-bottom: 100px; }
@@ -5087,6 +5094,16 @@ body.sitesection-profiles {
 
 #searchFilterForm .form-control, #searchFilterForm .form-group {
   width: 100%; }
+
+#profileDetailForm .section-title {
+  margin-top: 40px;
+  border-bottom: 1px solid #eeeeee;
+  padding-bottom: 10px; }
+
+#profileDetailForm .section {
+  margin-bottom: 80px;
+  margin-left: 15px;
+  margin-right: 15px; }
 
 /*!
  * ui-select
@@ -5790,6 +5807,68 @@ disabled look for disabled choices in the results dropdown
 
 .ui-select-container[search-enabled=false].ng-dirty .ui-select-match .text-muted.ng-hide {
   display: none !important; }
+
+/**
+ * angular-ui-notification - Angular.js service providing simple notifications using Bootstrap 3 styles with css transitions for animating
+ * @author Alex_Crack
+ * @version v0.0.11
+ * @link https://github.com/alexcrack/angular-ui-notification
+ * @license MIT
+ */
+.ui-notification {
+  position: fixed;
+  z-index: 9999;
+  width: 300px;
+  cursor: pointer;
+  -webkit-transition: all ease 0.5s;
+  -o-transition: all ease 0.5s;
+  transition: all ease 0.5s;
+  color: #fff;
+  background: #337ab7;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); }
+
+.ui-notification.killed {
+  -webkit-transition: opacity ease 1s;
+  -o-transition: opacity ease 1s;
+  transition: opacity ease 1s;
+  opacity: 0; }
+
+.ui-notification > h3 {
+  font-size: 14px;
+  font-weight: 700;
+  display: block;
+  margin: 10px 10px 0;
+  padding: 0 0 5px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3); }
+
+.ui-notification a {
+  color: #fff; }
+
+.ui-notification a:hover {
+  text-decoration: underline; }
+
+.ui-notification > .message {
+  margin: 10px; }
+
+.ui-notification.warning {
+  color: #fff;
+  background: #f0ad4e; }
+
+.ui-notification.error {
+  color: #fff;
+  background: #d9534f; }
+
+.ui-notification.success {
+  color: #fff;
+  background: #5cb85c; }
+
+.ui-notification.info {
+  color: #fff;
+  background: #5bc0de; }
+
+.ui-notification:hover {
+  opacity: 0.7; }
 
 .material-icons.md-18 {
   font-size: 18px; }

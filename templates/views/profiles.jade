@@ -15,10 +15,10 @@ block content
 						span.fa.fa-user-plus(ng-if="editprofile.type == 'Organiser'")
 						span.fa.fa-building(ng-if="editprofile.type == 'Venue'")
 						| &nbsp; {{editprofile.name}}
-						| &nbsp;
-						span.label.label-primary {{editprofile.type}}
+						//| &nbsp;
+						//span.label.label-primary {{editprofile.type}}
 			.col-sm-6.text-right#createProfileButtons(ng-if="!isProfileSelected()")
-				button.btn.btn-primary.btn--artist(ng-click="createProfile('Artist')")
+				button.btn.btn-default.btn--artist(ng-click="createProfile('Artist')")
 					span.fa.fa-user
 					| &nbsp; New artist
 				button.btn.btn-default.btn--organiser(ng-click="createProfile('Organiser')")
@@ -35,13 +35,12 @@ block content
 
 
 		hr.divider
-		.row
-			// Panel: Profile Select
-			include ../partials/panels/profile-select.jade
-			// Panel: Profile Detail
-			include ../partials/panels/profile-detail.jade
-		hr.divider
-		.row
+		// Panel: Profile Select
+		include ../partials/panels/profile-select.jade
+		// Panel: Profile Detail
+		include ../partials/panels/profile-detail.jade
+		//hr.divider
+		//.row
 			.col-sm-8.col-sm-offset-2
 				// Alert: Profile Instructions
 				include ../partials/alerts/profiles-instructions

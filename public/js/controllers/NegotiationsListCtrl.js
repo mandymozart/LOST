@@ -2,7 +2,7 @@
 
 var app = angular.module('muriquee');
 
-app.controller('NegotiationsListCtrl', function($scope, $localStorage, $http, SoundcloudService){
+app.controller('NegotiationsListCtrl', function($scope, $localStorage, $http, SoundcloudService,Notification){
 	$scope.storage = $localStorage;
 	$localStorage.selectedNegotiation = undefined;
 	
@@ -43,7 +43,7 @@ app.controller('NegotiationsListCtrl', function($scope, $localStorage, $http, So
             },500);
 		})
 		.error(function(){
-			alert('error populating negotiation messages');
+			Notification.error('Error populating negotiation messages');
 		});
 	}
 	$scope.unselectNegotiations = function(){

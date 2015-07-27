@@ -2,7 +2,7 @@
 
 var app = angular.module('muriquee');
 
-app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http,SoundcloudService){
+app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http,SoundcloudService,Notification){
 	$scope.models = {}
 	$scope.models.messageAreaText = '';
 	$scope.storage = $localStorage;
@@ -46,9 +46,9 @@ app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http,So
 		return nm.sender === $localStorage.profile._id;
 	}
 	$scope.send = function(){
-		//alert($scope.models.messageAreaText);
+		//Notification($scope.models.messageAreaText);
 		if ($scope.models.messageAreaText == ""){
-			alert('Please enter a message first');
+			Notification('Please enter a message first');
 			return;
 		}
 		var req = {
@@ -67,7 +67,7 @@ app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http,So
 		$http(req)
 		.success(function(data){
 			if (data.err){
-				alert(data.message);
+				Notification(data.message);
 				return;
 			}
 			var req = {
@@ -90,11 +90,11 @@ app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http,So
                 },500);
 			})
 			.error(function(){
-				alert('error populating negotiation messages');
+				Notification('error populating negotiation messages');
 			});
 		})
 		.error(function(){
-			alert('error posting negotiation message');
+			Notification('error posting negotiation message');
 		});
 	}
 	$scope.offer = function(){
@@ -114,7 +114,7 @@ app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http,So
 			$localStorage.selectedNegotiation = data;
 		})
 		.error(function(){
-			alert('error submitting offer');
+			Notification('error submitting offer');
 		})
 	}
 	$scope.accept = function(){
@@ -132,10 +132,10 @@ app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http,So
 		$http(req)
 		.success(function(data){
 			$localStorage.selectedNegotiation = data;
-			alert('successfully accepted negotiation. status: ' + data.status);
+			Notification.success('Successfully accepted negotiation');
 		})
 		.error(function(){
-			alert('error accepting negotiation');
+			Notification.error('Error accepting negotiation');
 		})
 	}
 	$scope.decline = function(){
@@ -164,7 +164,7 @@ app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http,So
 			$localStorage.viewmode = 'calendar';
 		})
 		.error(function(){
-			alert('error declining negotiation');
+			Notification('error declining negotiation');
 		})
 	}
 	$scope.otherProfile = function(){

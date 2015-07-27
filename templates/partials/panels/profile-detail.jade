@@ -1,52 +1,74 @@
 form.form#profileDetailForm(ng-if="isProfileSelected()")
-		.alert.alert-success.alert-dismissable.fade.in(ng-if="saveStatus !== ''") 
-			//button.close(type="button", data-dismiss="alert", aria-label="Close")
-				span(aria-hidden="true") &times;
-			&nbsp; {{saveStatus}} &nbsp;
-	.col-md-5
+	.section.section-form#basicInformationSection
+		h4.section-title Basic Information &nbsp;
+			span.fa.fa-info.pull-right
+
+		p.lead Primarily people want to know who you are, and what you are doing! Be brief, be understood!
+
+		.form-group 
+			label(for="profile-name-area") Name:
+			input.form-control.input-lg(id="profile-name-area", max-length="30",ng-model="editprofile.name",placeholder="Profile Name")
 
 		.form-group
-		label(for="profile-name-area") Name:
-		input.form-control(id="profile-name-area", rows="1",cols="50",ng-model="editprofile.name",placeholder="Profile Name")
-		#subtypeSelect(ng-if="editprofile.type=='Artist'")
-			.form-group
-				label(for="subtype-select") Subtype:
-				select(id="subtype-select", ng-model="editprofile.subtype",style="width:100%")
-					option(value="{{option}}", ng-repeat="option in storage.datalists.artistTypes")
-						| {{option}}
+			label(for="profile-about-brief-area") About:
+			textarea.form-control(id="profile-about-brief-area", rows="4", cols="50", ng-model="editprofile.about",placeholder="Please, add you few pleasent words.")
+	
+				
+	.section.section-form#taggingSection
+		h4.section-title Tagging &nbsp;
+			span.fa.fa-tags.pull-right
+		p.lead When others look for you with the search, it makes sense to also let the robot understand what you are to narrow down the results.
 		.row
-			.form-group
-				label(for="genre-select") Genres:
-				multiselect.input-lg(
-					multiple="true", 
-					ng-if="getGenreList().length > 0",
-					ng-model="editgenres.data", 
-					options="genre.name for genre in getIndexedList(getGenreList()) | filter:$select.search", 
-					change="selected()", 
-					placeholder="Genres")
+			.col-md-5
+				.form-group
+					label(for="genre-select") Genres:
+					multiselect(
+						multiple="true", 
+						ng-if="getGenreList().length > 0",
+						ng-model="editgenres.data", 
+						options="genre.name for genre in getIndexedList(getGenreList()) | filter:$select.search", 
+						change="selected()", 
+						placeholder="Genres")
+			.col-md-7
+				.form-group#subtypeSelect(ng-if="editprofile.type=='Artist'")
+					label(for="subtype-select") Subtype:
+					br
+					.btn-group
+						label#subtype-select.btn.btn-default(ng-model="editprofile.subtype", btn-radio="'{{option}}'", ng-repeat="option in storage.datalists.artistTypes") {{option}}
+			
+	.section.section-form#locationSection
+		h4.section-title Your Location &nbsp;
+			span.fa.fa-map-marker.pull-right 
+		p.lead To interact with other profiles you need to place your own on the map. Type your zip code, select your country and correct the marker on the map.
 		.row
-			.form-group
-				label(for="profile-zip") Zip Code:
-				input.form-control(id="profile-zip", placeholder="ex. 0711", ng-model="editprofile.zip")
-				//label(for="profile-lat") Latitude
-				//input.form-control(type="number", placeholder="0",ng-model="editprofile.geolocation.lat")
-				//label(for="profile-lon") Longitude
-				//input.form-control(type="number", placeholder="0",ng-model="editprofile.geolocation.lon")
+			.col-md-5
+				.form-group
+					label(for="profile-zip") Zip Code:
+					input.form-control.input-lg(id="profile-zip", placeholder="ex. 0711", ng-model="editprofile.zip")
+					//label(for="profile-lat") Latitude
+					//input.form-control(type="number", placeholder="0",ng-model="editprofile.geolocation.lat")
+					//label(for="profile-lon") Longitude
+					//input.form-control(type="number", placeholder="0",ng-model="editprofile.geolocation.lon")
+			.col-sm-7
+				leaflet(height="256px",
+					width="100%",
+					center="center",
+					markers="markers")
+	.section.section-form#connectionsSection
+		h4.section-title Connections &nbsp;
+			span.fa.fa-share-alt.pull-right
+		p.lead Let people know about where they can find more relevant sources about your profile on the web and how they can stay in touch with you.
+		.form-group
+			label(for="link-input") Social Links:
+			
+			table.table.table-hover.table-bordered
+				tr(ng-repeat="link in editprofile.socialLinks track by $index")
+					td {{link}} 
 
-		.row
-			.form-group
-				label(for="link-input") Social Links:
-				input.form-control(id="profile-link",placeholder="ex. http://www.soundcloud.com/awesome_user", ng-model="linkInput.data")
-				span(ng-repeat="link in editprofile.socialLinks track by $index") {{link}} <br>
-				button(ng-click="addSocialLink()") Add Link
-		.row
-			.form-group
-				label(for="profile-about-brief-area") About:
-				textarea.form-control(id="profile-about-brief-area", rows="4", cols="50", ng-model="editprofile.about")
+			input.form-control(id="profile-link",placeholder="ex. http://www.soundcloud.com/awesome_user", ng-model="linkInput.data")
+			button.btn.btn-default.btn-block(ng-click="addSocialLink()"): span.fa.fa-plus &nbsp; Add Link
 
-	.col-sm-7
-		leaflet(height="256px",
-			width="100%",
-			center="center",
-			markers="markers")
-		
+	.form-footer
+		button.btn.btn-primary.btn-block.btn-lg(ng-click="saveProfile(editprofile)")
+					| &nbsp; Save profile
+

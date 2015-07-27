@@ -1,7 +1,7 @@
 'use strict'
 var app = angular.module('muriquee')
 
-app.controller('ProfileSearchResultsCtrl', function($scope, $localStorage, $http,SoundcloudService){
+app.controller('ProfileSearchResultsCtrl', function($scope, $localStorage, $http,SoundcloudService,Notification){
 	$scope.storage = $localStorage;
 
 	$scope.showProfile = function(p){
@@ -47,10 +47,10 @@ app.controller('ProfileSearchResultsCtrl', function($scope, $localStorage, $http
         }
         $http(req)
             .success(function(data){
-                alert('sucessfully sent proposals for: ' + $localStorage.selectedDate);
+                Notification.success('Sucessfully sent proposals for: <br />' + $localStorage.selectedDate);
             })
             .error(function(){
-                alert('error sending proposals');
+                Notification.error('error sending proposals');
             })
     }
 

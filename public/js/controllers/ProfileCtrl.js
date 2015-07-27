@@ -2,7 +2,7 @@
 var app = angular.module('muriquee')
 
 
-app.controller('ProfileCtrl', function($scope, $http, $localStorage, MapMarkerService){
+app.controller('ProfileCtrl', function($scope, $http, $localStorage, MapMarkerService, Notification){
 
 	function resetStorage(){
 		$scope.storage = $localStorage.$default({
@@ -173,7 +173,7 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage, MapMarkerSe
 			}
 			$http(req)
 			.success(function(data){
-				$scope.saveStatus = "successfully saved profile";
+				Notification.success('Successfully saved profile');
 				$scope.fetchProfiles(function(){
 					console.log('fetched');
 				});

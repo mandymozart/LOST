@@ -1,7 +1,7 @@
 #mapCtrl(ng-controller="MapCtrl")
-	.panel.panel-default.panel-front#mapPanel(ng-if="storage.viewmode == 'map'")
+	.panel.panel-default.panel-flat#mapPanel(ng-if="storage.viewmode == 'map'")
 		.panel-body
-			leaflet(height="480px",
+			leaflet(height="600px",
 				width="100%",
 				center="center",
 				markers="storage.markers")
