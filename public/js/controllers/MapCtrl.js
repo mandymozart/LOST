@@ -41,7 +41,8 @@ app.controller('MapCtrl', function($scope,$localStorage,leafletData,leafletBound
 		},
 		defaults: {
             scrollWheelZoom: false,
-			doubleClickZoom: true
+			doubleClickZoom: true,
+			maxZoom:16
         },
         events: {
             map: {
