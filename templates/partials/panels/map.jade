@@ -4,5 +4,8 @@
 			leaflet(height="600px",
 				width="100%",
 				center="center",
-				markers="storage.markers")
-
+				markers="storage.markers",
+				defaults="defaults")
+			label(for="searchRadiusInput") Search radius
+			input#searchRadioInput(type="number", ng-model="storage.searchOptions.radius")
+			| km

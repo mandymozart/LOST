@@ -1,7 +1,6 @@
 #negotiationDetailCtrl(ng-controller="NegotiationDetailCtrl")
-	.alert.alert-default#noNegotiationSelectedAlert(
-		ng-if="storage.viewmode == 'negotiation' && !storage.selectedNegotiation")
-		h4.alert-heading Please select a negotiation!
+	.alert.alert-info#noNegotiationSelectedAlert(ng-if="storage.viewmode == 'negotiation' && !storage.selectedNegotiation")
+		p Please select a negotiation!
 	.panel.panel-default.panel-flat#negotiationDetailPanel(
 		ng-if="storage.viewmode == 'negotiation' && storage.selectedNegotiation", 
 		style="height=350; overflow: auto")

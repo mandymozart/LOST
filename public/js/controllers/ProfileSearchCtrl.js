@@ -25,7 +25,7 @@ app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage, MapMa
             .success(function(data){
                 $localStorage.searchResults = data;
                 if (data.length == 0){
-                    //TODO nothing found
+                    $scope.calculateGeoMarkers();
                 }
                 else{
                     $scope.calculateGeoMarkers();
@@ -49,6 +49,7 @@ app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage, MapMa
     $scope.calculateGeoMarkers = function(){
         $localStorage.markers = {};
         $localStorage.markers[$localStorage.profile._id] = $localStorage.profileMarker;
+        $localStorage.markers['search_marker'] = $localStorage.searchMarker;
         $localStorage.searchResults.forEach(function(p){
             var marker = {
                 title:p.name,

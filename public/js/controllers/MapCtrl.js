@@ -5,6 +5,7 @@ app.controller('MapCtrl', function($scope,$localStorage,leafletData,leafletBound
 	$scope.storage = $localStorage;
 	$scope.storage.viewmode = 'calendar';
 	var p = $localStorage.profile;
+	$localStorage.searchOptions.radius = 1000;
 	$localStorage.profileMarker = {
 		name:p.name,
         lat:parseFloat(p.geolocation.lat),
@@ -14,15 +15,51 @@ app.controller('MapCtrl', function($scope,$localStorage,leafletData,leafletBound
         draggable:false,
         icon:MapMarkerService.markerIcon($localStorage.profile)
 	};
-	$scope.defaults = {
-		scrollWheelZoom: false,
-		doubleClickZoom: true
+	$localStorage.searchMarker = {
+		name:'search_marker',
+		lat:$localStorage.profileMarker.lat,
+		lng:$localStorage.profileMarker.lng,
+		message:'Search Center',
+		focus:true,
+		draggable:true
 	};
-	$scope.center = {
-		lat : $localStorage.profile.geolocation.lat,
-		lng : $localStorage.profile.geolocation.lon,
-		zoom : 4
-	};
+	$localStorage.searchOptions.geolocation = {
+		lat:$localStorage.profileMarker.lat,
+		lon:$localStorage.profileMarker.lng
+	}
+	$localStorage.markers = {};
+	$localStorage.markers[$localStorage.profile._id] = $localStorage.profileMarker;
+    $localStorage.markers['search_marker'] = $localStorage.searchMarker;
+    $localStorage.searchOptions.geolocation = {};
+        
+
+	angular.extend($scope,{
+		center: {
+			lat : $localStorage.profile.geolocation.lat,
+			lng : $localStorage.profile.geolocation.lon,
+			zoom : 4
+		},
+		defaults: {
+            scrollWheelZoom: false,
+			doubleClickZoom: true,
+			maxZoom:16,
+			minZoom:3
+        },
+        events: {
+            map: {
+                enable: ['zoomstart', 'drag', 'click', 'mousemove'],
+                logic: 'emit'
+            }
+        }
+	})
+
+	$scope.$on('leafletDirectiveMarker.drag', function(event,args){
+		$localStorage.searchOptions.geolocation.lat = $scope.mouseposition.lat;
+		$localStorage.searchOptions.geolocation.lon = $scope.mouseposition.lng;
+    });
+    $scope.$on('leafletDirectiveMap.mousemove', function(event, args){
+        $scope.mouseposition = args.leafletEvent.latlng;
+    });
 })
 
 //app.controller('MapCtrl', function($scope, $localStorage, olData){
