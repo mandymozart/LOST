@@ -30,8 +30,14 @@
 			.row
 				.col-sm-4
 					.form-group
+						label(for="country-select") Country:
+						select(id="country-select", ng-model="country.data", placeholder="select your country")
+							option(value="{{option}}", ng-repeat="option in countries")
+								| {{option}}
+						br
 						label(for="profile-zip") Zip Code:
 						input.form-control(id="profile-zip", placeholder="ex. 0711", ng-model="editprofile.zip", ng-enter="onZipEntered()")
+						button.form-control.btn.btn-primary(type="submit", ng-click="onZipEntered()") Submit
 						label(for="profile-lat") Latitude
 						input.form-control(type="number", placeholder="0",ng-model="editprofile.geolocation.lat")
 						label(for="profile-lon") Longitude

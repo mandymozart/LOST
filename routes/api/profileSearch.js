@@ -28,7 +28,7 @@ function match(p,options){
 		var lat2 = p.geolocation.lat;
 		var lon2 = p.geolocation.lon;
 		var d = getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2);
-		console.log('filter by location, r = ' + d)
+		//console.log('filter by location, r = ' + d)
 		if (d > options.radius){
 			return false;
 		}
