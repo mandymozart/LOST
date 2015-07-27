@@ -3,7 +3,7 @@ var path     = require('path')
 var readline = require('readline')
 var mongodb  = require('mongodb')
 
-var traverse = function(collection){
+var traverse = function(collection, callback){
 	var filePath = path.join(__dirname, 'allCountries.txt')
 
 	var rd = readline.createInterface({
@@ -12,12 +12,14 @@ var traverse = function(collection){
     	terminal: false
 	})
 
+	var index = 0;
+
 	rd.on('line', function(line) {
 		var splits = line.trim().split('\t')
 		var json = {
 			countrycode : splits[0],
 			name        : splits[2],
-			city        : splits[3],
+			province    : splits[3],
 			zip         : splits[1],
 			geolocation : {
 				lat : parseFloat(splits[9]),
@@ -25,10 +27,11 @@ var traverse = function(collection){
 			}
 		}
 	
-		console.log(json)
-		collection.insert(json, function(err,docs){
-			if (err) console.log(err);
-		})
+		collection.insert(json)
+	})
+	rd.on('close', function(args){
+		console.log('successfully inported geoinfo database')
+		if (callback) callback();
 	})
 }
 
@@ -36,7 +39,7 @@ mongodb.MongoClient.connect('mongodb://127.0.0.1:27017/lost', function (err, db)
     if (err) {
         throw err;
     } 
-    traverse(db.collection('geoinfos'));   
+    traverse(db.collection('geoinfos'), function(){db.close()});   
 });
 
 
