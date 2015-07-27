@@ -31,7 +31,7 @@
 				.col-sm-4
 					.form-group
 						label(for="profile-zip") Zip Code:
-						input.form-control(id="profile-zip", placeholder="ex. 0711", ng-model="editprofile.zip")
+						input.form-control(id="profile-zip", placeholder="ex. 0711", ng-model="editprofile.zip", ng-enter="onZipEntered()")
 						label(for="profile-lat") Latitude
 						input.form-control(type="number", placeholder="0",ng-model="editprofile.geolocation.lat")
 						label(for="profile-lon") Longitude

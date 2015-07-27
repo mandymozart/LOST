@@ -277,12 +277,29 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage, MapMarkerSe
 		$scope.editprofile.socialLinks.push($scope.linkInput.data);
 	}
 
-	$scope.onPostalCodeEntered = function(){
+	$scope.onZipEntered = function(){
 		if (!$scope.editprofile) return;
-		var zip = $scope.editprofile.zip;
-		var url = 'http://nominatim.openstreetmap.org/search/'
-		var query  = '?postalcode='+$scope.editprofile.zip.toString();
-		    query += '?format=json'
+		var req = {
+ 			method: 'POST',
+ 			url: '/api/geoinfoQuery',
+ 			headers: {
+   				'Content-Type': 'application/json'
+ 			},
+ 			data: {
+ 				zip:$scope.editprofile.zip
+ 			}
+		}
+		$http(req)
+		.success(function(data){
+			alert(JSON.stringify(data));
+			$scope.editprofile.geolocation = data[0].geolocation;
+			$scope.markers.m.lat = data[0].geolocation.lat;
+			$scope.markers.m.lng = data[0].geolocation.lon;
+
+		})
+		.error(function(){
+			alert('error retrieving negotiations data from server');
+		});
 
 	}
 
