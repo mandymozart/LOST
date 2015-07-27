@@ -3,6 +3,7 @@ var app = angular.module('muriquee')
 
 app.controller('MapCtrl', function($scope,$localStorage,leafletData,leafletBoundsHelpers,MapMarkerService){
 	$scope.storage = $localStorage;
+	$scope.storage.viewmode = 'calendar';
 	var p = $localStorage.profile;
 	$localStorage.profileMarker = {
 		name:p.name,
@@ -14,9 +15,8 @@ app.controller('MapCtrl', function($scope,$localStorage,leafletData,leafletBound
         icon:MapMarkerService.markerIcon($localStorage.profile)
 	};
 	$scope.defaults = {
-		scrollWheelZoom: true,
-		doubleClickZoom: false,
-
+		scrollWheelZoom: false,
+		doubleClickZoom: true
 	};
 	$scope.center = {
 		lat : $localStorage.profile.geolocation.lat,

@@ -1,5 +1,12 @@
 #negotiationDetailCtrl(ng-controller="NegotiationDetailCtrl")
-	.panel.panel-default.panel-front#negotiationDetailPanel(ng-if="storage.selectedNegotiation != undefined", style="height=350; overflow: auto")
+	.panel.panel-default.panel-front#noNegotiationSelectedPanel(
+		ng-if="storage.viewmode == 'negotiation' && !storage.selectedNegotiation")
+		.panel-heading
+			span
+				| Please select a negotiation!
+	.panel.panel-default.panel-front#negotiationDetailPanel(
+		ng-if="storage.viewmode == 'negotiation' && storage.selectedNegotiation", 
+		style="height=350; overflow: auto")
 		.panel-heading
 			.panel-close.pull-right(ng-click="close()")
 				span.fa.fa-times
@@ -30,12 +37,6 @@
 				.col-md-3
 					button.btn.btn-success.btn-block(ng-if="isNegotiationClosed()", disabled) Closed
 					button.btn.btn-warning.btn-block(ng-click="decline()") Decline		
-
-
-
-
-
-
 		.panel-body
 			.chat-body.scrollable#negotiationDetailChatBody
 				.message(ng-class="{true:'message-sent', false:'message-received'}[sent(message)]",ng-repeat="message in storage.selectedNegotiation.messages")

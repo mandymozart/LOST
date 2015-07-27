@@ -1,5 +1,5 @@
 #profileSearchResultsCtrl(ng-controller="ProfileSearchResultsCtrl")
-	.panel.panel-default#profileSearchResultsPanel(ng-if="storage.selectedNegotiation == undefined")
+	.panel.panel-default#profileSearchResultsPanel(ng-if="storage.viewmode == 'calendar'")
 		.panel-body#profileSearchResultsBody
 			ul.nav.nav-tabs
 				li.active: a(href="#resultsResidentTab", data-toggle="tab")
