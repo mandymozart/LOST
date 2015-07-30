@@ -55,7 +55,7 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage, MapMarkerSe
 				alert('error retrieving profile data from server');
 			});
 	}
-	$scope.fetchProfiles();
+	$scope.fetchProfiles(undefined);
 
 	$scope.isProfileSelected = function(){
 		return $scope.editprofile.name != undefined;
@@ -329,7 +329,6 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage, MapMarkerSe
 	$scope.country = {data:''};
 	$scope.saveStatus = '';
 	$scope.fetchDataLists();
-	$scope.profileSubtypes = $localStorage.datalists.artistTypes;
 	$scope.mouseposition = {
 		lat:0,
 		lon:0
