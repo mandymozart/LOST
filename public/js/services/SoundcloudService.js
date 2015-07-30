@@ -29,7 +29,7 @@ app.factory('SoundcloudService', function($http,$sce,$localStorage){
 		});
 	}
 	var soundcloudCrawler = function(){
-		var socialLinks = $localStorage.selectedResult.socialLinks;
+		var socialLinks = $localStorage.selectedResult ? $localStorage.selectedResult.socialLinks : [];
 		var soundcloudLink = undefined;
 		var link = '';
 		socialLinks.forEach(function(link){
@@ -46,5 +46,4 @@ app.factory('SoundcloudService', function($http,$sce,$localStorage){
 	}
 
 	return soundcloudCrawler;
-
 });

@@ -2,7 +2,7 @@
 	//.panel-header
 		.panel-heading
 			.panel-title Profile
-	.panel-body(ng-if="storage.selectedResult")
+	.panel-body(ng-if="storage.selectedResult != undefined")
 		.row
 			.col-md-2
 				img.img-responsive(src='http://placehold.it/85?text=N/A',ng-if="!storage.selectedResult.image",alt='Profile Picture N/A')
