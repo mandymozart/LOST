@@ -6,13 +6,16 @@
   @include box-shadow(0 5px 10px rgba(0,0,0,.3));
 }
 .panel-profile {
+  cursor: pointer;
   transition: all 0.5s;
 }
 .panel-profile .profile-edit-link {
+	margin-top: -10px;
+	margin-right: -15px;
 	cursor: pointer;
 	transition: all 0.5s;
 }
 .panel-profile .profile-edit-link:hover {
-	margin-top: 2px;
-	color: $gray-lighter;
+	//margin-top: 2px;
+	//color: $gray-lighter;
 }

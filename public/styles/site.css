@@ -4945,15 +4945,14 @@ http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3); }
 
 .panel-profile {
-  transition: all 0.5s; }
-
-.panel-profile .profile-edit-link {
   cursor: pointer;
   transition: all 0.5s; }
 
-.panel-profile .profile-edit-link:hover {
-  margin-top: 2px;
-  color: #eeeeee; }
+.panel-profile .profile-edit-link {
+  margin-top: -10px;
+  margin-right: -15px;
+  cursor: pointer;
+  transition: all 0.5s; }
 
 /* Frontend */
 .social-signup-buttons {

@@ -1,14 +1,15 @@
-.col-sm-3.col-xs-6(ng-if="!isProfileSelected()",ng-repeat="profile in storage.profiles | orderBy:'name'")
-	.panel.panel-profile(ng-class="{Artist:'panel--artist',Venue:'panel--venue',Organiser:'panel--organiser'}[profile.type]")
+.col-sm-3.col-xs-6(ng-if="!isProfileSelected()",ng-repeat="profile in storage.profiles | orderBy:'type'")
+	.panel.panel-profile(ng-class="{Artist:'panel--artist',Venue:'panel--venue',Organiser:'panel--organiser'}[profile.type]",ng-click="loadProfile(profile, loadCalendar)")
 		.panel-header
 			.panel-heading
 				h4.panel-title
-					span.fa.fa-user(ng-if="profile.type == 'Artist'")
-					span.fa.fa-user-plus(ng-if="profile.type == 'Organiser'")
-					span.fa.fa-building(ng-if="profile.type == 'Venue'")
-					span.profile-info-list--item.profile-name &nbsp; {{profile.name}}
+					span.badge.badge-artist(ng-if="editprofile.type == 'Artist'")
+					span.badge.badge-organiser(ng-if="editprofile.type == 'Organiser'")
+					span.badge.badge-venue(ng-if="editprofile.type == 'Venue'")
+					span.profile-info-list--item.profile-name {{profile.name}}
 					.pull-right
-						.fa.fa-cog.profile-edit-link(ng-click="editProfile(profile)", ng-if="profile._id")
+						.btn.btn-default.profile-edit-link(ng-click="editProfile(profile)", ng-if="profile._id")
+							.fa.fa-cog
 						//span.fa.fa-cog(ng-click="loadProfile(profile)", ng-if="profile._id == storage.profile._id")
 		.panel-body
 			p.profile
@@ -17,5 +18,5 @@
 				.profile-ongoing-negotiations
 					span.fa.fa-envelope
 					| &nbsp; {{profile.proposals.length}} new proposals
-		.panel-footer.text-right
-			button.btn.btn-default.btn-block.btn-xs(ng-click="loadProfile(profile, loadCalendar)") Calendar
+		//.panel-footer.text-right
+			button.btn.btn-default.btn-block.btn-xs() Calendar
