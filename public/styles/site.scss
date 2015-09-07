@@ -17,11 +17,12 @@
 // use in your site stylesheets.
 
 
-@import "site/variables";
-
 
 @import "bootstrap/theme/bootswatch";
 
+// No bootstrap affecting variables will work in the following file
+
+@import "site/variables";
 
 
 @import "site/fixes"; // quickfixes

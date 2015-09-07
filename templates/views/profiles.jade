@@ -33,4 +33,4 @@ block content
 		// Panel: Profile Detail
 		include ../partials/panels/profile-detail.jade
 		//hr.divider
-		p.lead Start by creating your first profile.
+		p.lead(ng-if="storage.profiles.length == 0") Start by creating your first profile.
