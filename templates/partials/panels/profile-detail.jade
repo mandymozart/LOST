@@ -34,7 +34,7 @@ form.form#profileDetailForm(ng-if="isProfileSelected()")
 					label(for="subtype-select") Subtype:
 					br
 					.btn-group
-						label#subtype-select.btn.btn-default(ng-model="editprofile.subtype", btn-radio="'{{option}}'", ng-repeat="option in storage.datalists.artistTypes") {{option}}
+						label#subtype-select.btn.btn-default(ng-model="editprofile.subtype", btn-radio="'{{option}}'", ng-repeat="option in storage.datalists.artistTypes", ng-click="editgenres.data = []") {{option}}
 			
 	.section.section-form#locationSection
 		h4.section-title Your Location &nbsp;
