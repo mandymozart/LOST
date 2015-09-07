@@ -76,6 +76,6 @@ form.form#profileDetailForm(ng-if="isProfileSelected()")
 			button.btn.btn-default.btn-block(ng-click="addSocialLink()"): span.fa.fa-plus &nbsp; Add Link
 
 	.form-footer
-		button.btn.btn-primary.btn-block.btn-lg(ng-click="saveProfile(editprofile)")
+		button.btn.btn-primary.btn-block.btn-lg(ng-click="saveProfile(editprofile); editprofile.name = undefined;")
 					| &nbsp; Save profile
 
