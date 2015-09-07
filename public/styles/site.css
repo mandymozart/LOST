@@ -4712,6 +4712,7 @@ html {
 
 /* Custome UI components */
 .profile-info-list--item, .profile-genre-list--item {
+  cursor: pointer;
   margin-right: 5px; }
 
 .profile-action-list {
@@ -4725,6 +4726,21 @@ html {
 
 .profile-info {
   cursor: pointer; }
+
+.profile-list-item {
+  cursor: pointer; }
+
+.profile--remembered {
+  background: #4CAF50;
+  color: #fff; }
+
+.profile--remembered:hover {
+  background-color: #8BCB8D;
+  color: #666;
+  cursor: pointer; }
+
+.profile--selected {
+  background-color: #ff9800; }
 
 /* Button Styles extensions to the bootstrap core to do color grading for each type of user */
 .btn--artist {
@@ -5892,3 +5908,22 @@ disabled look for disabled choices in the results dropdown
 
 .material-icons.md-light.md-inactive {
   color: rgba(255, 255, 255, 0.3); }
+
+.animate-enter, .animate-leave {
+  -webkit-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -moz-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -ms-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -o-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  position: relative;
+  display: block; }
+
+.animate-enter.animate-enter-active, .animate-leave {
+  opacity: 1;
+  top: 0;
+  height: 30px; }
+
+.animate-leave.animate-leave-active, .animate-enter {
+  opacity: 0;
+  top: -50px;
+  height: 0px; }

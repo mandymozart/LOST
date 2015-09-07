@@ -23,7 +23,7 @@ app.controller('ProfileSearchResultsCtrl', function($scope, $localStorage, $http
         else
         //second time clicked and not yet remembered
         {
-            $scope.rememberProfile(p);
+            $scope.rememberProfile(p, true);
         }
     }
 	$scope.rememberProfile = function(p,notification){
@@ -34,7 +34,7 @@ app.controller('ProfileSearchResultsCtrl', function($scope, $localStorage, $http
             $scope.storage.rememberedProfiles.push(p);
             p.isRemembered = true;
             if(notification){
-                Notification.success(p.name + ' was added to your remembered List');
+                Notification.success(p.name + ' was added to your remembered list');
             }
         }
     }
@@ -42,19 +42,21 @@ app.controller('ProfileSearchResultsCtrl', function($scope, $localStorage, $http
         var i = $scope.storage.rememberedProfiles.indexOf(p);
         $scope.storage.rememberedProfiles.splice(i, 1);
         p.isRemembered = false;
-        Notification.primary(p.name + ' was removed from your remembered List');
+        Notification.primary(p.name + ' was removed from your remembered list');
     }
     $scope.rememberAll = function(){
         var n = $scope.storage.rememberedProfiles.length;
         $scope.storage.searchResults.forEach($scope.rememberProfile,false);
         n = $scope.storage.rememberedProfiles.length - n;
-        Notification.success('' + n  + 'profiles were added to your remembered List');
+        Notification.success('' + n  + ' profile' + (n == 1 ? ' was ' : 's were ') + 'added to your remembered list');
     }
     $scope.removeAll = function(){
         $scope.storage.rememberedProfiles.forEach(function(p){
             p.isRemembered = false;
         });
+        var n = $scope.storage.rememberedProfiles.length;
         $scope.storage.rememberedProfiles = [];
+        Notification.primary('' + n + ' profile' + (n == 1 ? ' was ' : 's were ') + 'removed from your remembered list');
     }
     $scope.resultOrderFunction = function(profile){
         return (profile.isRemembered ? '_____' : '') + profile.name;
