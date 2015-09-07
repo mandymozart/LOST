@@ -7,7 +7,7 @@
 			.col-md-2
 				img.img-responsive(src='http://placehold.it/85?text=N/A',ng-if="!storage.selectedResult.image",alt='Profile Picture N/A')
 				img.img-responsive(src='',ng-attr-src='{{storage.selectedResult.image}}',ng-if="storage.selectedResult.image",alt='Profile Soundcloud')
-			.col-sm-10
+			.col-sm-6
 				h5 {{storage.selectedResult.name}}
 				.label.label-default {{storage.selectedResult.type}}
 				.label.label-primary {{storage.selectedResult.subtype}}
@@ -15,6 +15,8 @@
 				ol.list-unstyled
 					li(ng-repeat="link in storage.selectedResult.socialLinks")
 						a(href="{{link}}",target="_blank") {{link}}
+			.col-sm-4
+				button.btn.btn-lg.btn-block.btn-success(ng-click="book()") Book
 		.row
 			.col-sm-12
 				h6(ng-if="storage.selectedResult.about") About
