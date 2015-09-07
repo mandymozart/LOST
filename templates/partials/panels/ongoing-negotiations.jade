@@ -8,15 +8,15 @@
 		table.table.table-hover.profile-filtered-list(ng-if="storage.profile.negotiations.length!=0")
 			tbody.profile-filtered-list--body
 				tr(ng-repeat="n in storage.profile.negotiations | filter:dateFilter",ng-animate="'animate'")
-					td.profile-info(data-toggle="tooltip",data-placement="right",title="{{n.date}}",ng-click="showProfile(otherProfile(n))")
+					td.profile-info(data-toggle="tooltip",data-placement="right",title="{{n.date}}",ng-click="onNegotiationClick(n)",ng-class="storage.selectedNegotiation && storage.selectedNegotiation._id == n._id ? 'negotiation--selected' : 'negotiation--default'")
 						span.fa.fa-user(ng-if="otherProfile(n).type == 'Artist'")
 						span.fa.fa-user-plus(ng-if="otherProfile(n).type == 'Organiser'")
 						span.fa.fa-building(ng-if="otherProfile(n).type == 'Venue'")
 						span.profile-info-list--item.profile-name &nbsp; {{otherProfile(n).name}}
-					td.text-right
+					//td.text-right
 						a.profile-action-list--item.btn.btn-success.btn-xs(
 									ng-if="storage.selectedNegotiation._id == n._id"
-									ng-click="unselectNegotiations()") 
+									ng-click="onNegotiationsClick(n)") 
 							| selected
 						a.profile-action-list--item.btn.btn-default.btn-xs(
 									ng-if="storage.selectedNegotiation._id != n._id"

@@ -10,7 +10,7 @@
 				//li.pull-right: a(href="#resultsCalledTab", data-toggle="tab")
 					span.fa.fa-send &nbsp; Called
 						.label.label-success(ng-if="storage.calledProfiles.length!=0") {{storage.calledProfiles.length}}
-				li.pull-right: a(href="#resultsRememberedTab", data-toggle="tab")
+				//li.pull-right: a(href="#resultsRememberedTab", data-toggle="tab")
 					span.fa.fa-bookmark &nbsp; Remembered
 						.label.label-success(ng-if="storage.rememberedProfiles.length!=0") {{storage.rememberedProfiles.length}}
 			.tab-content.scrollable#profileSearchResultsTab
@@ -19,7 +19,7 @@
 				// Tab: On Tour
 				//include ../tabs/results-ontour.jade
 				// Tab: Remembered
-				include ../tabs/results-remembered.jade
+				//include ../tabs/results-remembered.jade
 				// Tab: Called
 				//include ../tabs/results-called.jade
 
