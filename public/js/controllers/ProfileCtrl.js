@@ -7,7 +7,7 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage, MapMarkerSe
 	setInterval(function(){
 		if ($localStorage.profile){
 			console.log('profile reloaded');
-			loadProfile($localStorage.profile);
+			$scope.loadProfile($localStorage.profile);
 		}
 	}, 30000);
 
