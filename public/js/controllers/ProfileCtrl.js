@@ -186,6 +186,8 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage, MapMarkerSe
 					$scope.editprofile.name = undefined;
 					//$scope.editprofile = data;
 				});
+				$scope.editprofile = {};
+				$scope.saveStatus = "";
 			})
 			.error(function(){
 				$scope.saveStatus = "Error saving profile";
@@ -241,7 +243,11 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage, MapMarkerSe
     }
 
 	$scope.deleteProfile = function(p){
-		if (p){
+		var r = true;
+				
+		r = confirm("Are you sure you want to delete forever this profile?");
+					
+		if (p || r){
 			var req = {
 				method: 'POST',
 				url: 'api/deleteProfile',
@@ -254,7 +260,9 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage, MapMarkerSe
 			}
 			$http(req)
 			.success(function(data){
-				alert('successfully deleted profile');
+				$scope.editprofile = {};
+				$scope.saveStatus = "";
+				Notification.success('This profile has been terminated indefinitely!');
 			})
 			.error(function(){
 				alert('error deleting profile');

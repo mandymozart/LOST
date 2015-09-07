@@ -20,7 +20,7 @@ div(role="navigation").navbar.navbar-fixed-top.navbar-default
 					li
 						a(href='/profiles').user.hidden-xs
 							//img(src=(user.photo && user._.photo.thumbnail(27,27) : user.avatarUrl || '/images/avatar.png'), width=27).img-circle
-							= user.name.first
+							| Profiles
 					li: a(href='/signout')
 						span.visible-xs Sign out
 						span.entypo.entypo-large.entypo-logout.hidden-xs

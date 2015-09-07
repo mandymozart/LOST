@@ -11,27 +11,20 @@ block content
 					span#profileName(ng-if="isProfileSelected()") 
 						span.fa.fa-chevron-right 
 						| &nbsp; 
-						span.fa.fa-user(ng-if="editprofile.type == 'Artist'")
-						span.fa.fa-user-plus(ng-if="editprofile.type == 'Organiser'")
-						span.fa.fa-building(ng-if="editprofile.type == 'Venue'")
+						span.badge.badge-artist(ng-if="editprofile.type == 'Artist'")
+						span.badge.badge-organiser(ng-if="editprofile.type == 'Organiser'")
+						span.badge.badge-venue(ng-if="editprofile.type == 'Venue'")
 						| &nbsp; {{editprofile.name}}
 						//| &nbsp;
 						//span.label.label-primary {{editprofile.type}}
 			.col-sm-6.text-right#createProfileButtons(ng-if="!isProfileSelected()")
-				button.btn.btn-default.btn--artist(ng-click="createProfile('Artist')")
-					span.fa.fa-user
-					| &nbsp; New artist
-				button.btn.btn-default.btn--organiser(ng-click="createProfile('Organiser')")
-					span.fa.fa-user-secret
-					| &nbsp; New organiser
-				button.btn.btn-default.btn--venue(ng-click="createProfile('Venue')")
-					span.fa.fa-building
-					| &nbsp; New venue
+				button.btn.btn-default.btn--artist(ng-click="createProfile('Artist')") New artist
+				button.btn.btn-default.btn--organiser(ng-click="createProfile('Organiser')") New organiser
+				button.btn.btn-default.btn--venue(ng-click="createProfile('Venue')") New venue
 			.col-sm-6.text-right#saveProfileButton(ng-if="isProfileSelected()")
-				button.btn.btn-default(ng-click="returnToSelection(editprofile)")
-					| Cancel
-				button.btn.btn-primary(ng-click="saveProfile(editprofile)"): span.fa.fa-save
-					| &nbsp; Save profile
+				button.btn.btn-default(ng-click="returnToSelection(editprofile)") Cancel
+				button.btn.btn-primary(ng-click="saveProfile(editprofile)") Save
+				button.btn.btn-warning(ng-click="deleteProfile(editprofile)") Delete profile
 
 
 		hr.divider
@@ -40,7 +33,4 @@ block content
 		// Panel: Profile Detail
 		include ../partials/panels/profile-detail.jade
 		//hr.divider
-		//.row
-			.col-sm-8.col-sm-offset-2
-				// Alert: Profile Instructions
-				include ../partials/alerts/profiles-instructions
+		p.lead(ng-if="storage.profiles.length == 0") Start by creating your first profile.

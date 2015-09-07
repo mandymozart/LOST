@@ -50,10 +50,10 @@ Enquiry.schema.methods.sendNotificationEmail = function(callback) {
 		new keystone.Email('enquiry-notification').send({
 			to: admins,
 			from: {
-				name: 'LOST',
-				email: 'contact@lost.com'
+				name: 'Muriquee',
+				email: 'gianluca.baccanico@gmail.com'
 			},
-			subject: 'New Enquiry for LOST',
+			subject: 'New Enquiry for Muriquee',
 			enquiry: enquiry
 		}, callback);
 		
