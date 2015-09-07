@@ -165,7 +165,8 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage, MapMarkerSe
 	}//end load calendar
 
 	$scope.saveProfile = function(p){
-		p.genres = $scope.unindexList($scope.editgenres.data);
+		//p.genres = $scope.unindexList($scope.editgenres.data);
+		p.genres = $scope.editgenres.data;
 		if (p){
 			var req = {
  				method: 'POST',
