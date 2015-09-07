@@ -170,15 +170,13 @@ app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage, MapMa
 
     $scope.profileSubtypes = [];
 
-    if ($localStorage.searchOptions === {}){
-        $localStorage.searchOptions  = {
-            profileType    : 'Artist',
-            location       : [ 0.0, 0.0 ],
-            radius         : 15.0,
-            genres         : [],
-            subtypes       : [],
-            profileName    : ''
-        };
-    }
+    $localStorage.searchOptions  = {
+        profileType    : $localStorage.profile.type == 'Artist' ? 'Venue' : 'Artist',
+        location       : [ 0.0, 0.0 ],
+        radius         : 15.0,
+        genres         : [],
+        subtypes       : [],
+        profileName    : ''
+    };
    
 });
