@@ -8,8 +8,25 @@ app.controller('ProfileSearchResultsCtrl', function($scope, $localStorage, $http
         $localStorage.selectedResult = p;
         SoundcloudService();
     }
-
-	$scope.rememberProfile = function(p, notification){
+    $scope.onResultClicked = function(p){
+        console.log(p);
+        if (p.isRemembered)
+        //clicked result already remembered
+        {
+            $scope.removeRememberedProfile(p);
+        }
+        else if (!$localStorage.selectedResult || $localStorage.selectedResult._id != p._id) 
+        //first time clicked
+        {
+            $scope.showProfile(p);
+        }
+        else
+        //second time clicked and not yet remembered
+        {
+            $scope.rememberProfile(p);
+        }
+    }
+	$scope.rememberProfile = function(p,notification){
     	if (!$scope.storage.rememberedProfiles){
             $scope.storage.rememberedProfiles = [];
         }
@@ -21,7 +38,7 @@ app.controller('ProfileSearchResultsCtrl', function($scope, $localStorage, $http
             }
         }
     }
-    $scope.removeRemeberedProfile = function(p){
+    $scope.removeRememberedProfile = function(p){
         var i = $scope.storage.rememberedProfiles.indexOf(p);
         $scope.storage.rememberedProfiles.splice(i, 1);
         p.isRemembered = false;
@@ -38,6 +55,9 @@ app.controller('ProfileSearchResultsCtrl', function($scope, $localStorage, $http
             p.isRemembered = false;
         });
         $scope.storage.rememberedProfiles = [];
+    }
+    $scope.resultOrderFunction = function(profile){
+        return (profile.isRemembered ? '_____' : '') + profile.name;
     }
     $scope.pushCall = function(){
         var req = {
