@@ -335,8 +335,12 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage, MapMarkerSe
 		}
 		else
 		{
-			$scope.editgenres.splice(i,1);
+			$scope.editgenres.data.splice(i,1);
 		}
+	}
+
+	$scope.clearGenreSelection = function(){
+		$scope.editgenres.data = [];
 	}
 
 	$scope.$on('leafletDirectiveMarker.drag', function(event,args){
