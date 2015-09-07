@@ -24,6 +24,13 @@ app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage, MapMa
         $http(req)
             .success(function(data){
                 $localStorage.searchResults = data;
+                
+                //jump to search results tab if in negotiation view
+                if ($localStorage.viewmode == 'negotiation')
+                {
+                    $localStorage.viewmode = 'calendar';
+                }
+                
                 if (data.length == 0){
                     $scope.calculateGeoMarkers();
                 }
