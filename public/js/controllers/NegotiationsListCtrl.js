@@ -48,8 +48,10 @@ app.controller('NegotiationsListCtrl', function($scope, $localStorage, $http, So
                 var wHeight = window.innerHeight;
                 $('#negotiationDetailChatBody').height(wHeight-445);
                 var wtf = $('#negotiationDetailChatBody');
-                var height = wtf[0].scrollHeight;
-                wtf.scrollTop(height);
+                if (wtf[0]){
+                	var height = wtf[0].scrollHeight;
+            		wtf.scrollTop(height);
+            	}
             },500);
 		})
 		.error(function(){
