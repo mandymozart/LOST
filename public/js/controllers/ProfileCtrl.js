@@ -176,7 +176,8 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage, MapMarkerSe
 				Notification.success('Successfully saved profile');
 				$scope.saveStatus = "successfully saved profile";
 				$scope.fetchProfiles(function(){
-					$scope.editprofile = data;
+					$scope.editprofile.name = undefined;
+					//$scope.editprofile = data;
 				});
 			})
 			.error(function(){
