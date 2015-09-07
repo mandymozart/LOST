@@ -14,7 +14,7 @@ app.controller('ProfileDetailReadonlyCtrl', function($scope, $localStorage, $htt
             },
             data: {
                 profile:$scope.storage.profile,
-                profiles:[$scope.storage.selectedRedult],
+                profiles:[$scope.storage.selectedResult],
                 proposedDate:$scope.storage.selectedDate
             }
         }
