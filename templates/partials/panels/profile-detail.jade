@@ -30,14 +30,16 @@ form.form#profileDetailForm(ng-if="isProfileSelected()")
 					.col-md-6(ng-if="editprofile.type=='Artist'")
 						.form-group#subtypeSelect
 							.btn-group
-								label#subtype-select.btn.btn-default(ng-model="editprofile.subtype", btn-radio="'{{option}}'", ng-repeat="option in storage.datalists.artistTypes", ng-click="editgenres.data = []", style="margin-right:5px;margin-bottom: 5px;") {{option}}
-					
+								label#subtype-select.btn.btn-default(ng-model="editprofile.subtype", btn-radio="'{{option}}'", ng-repeat="option in storage.datalists.artistTypes", ng-click="clearGenreSelection()", style="margin-right:5px;margin-bottom: 5px;") {{option}}
 					.col-md-6
 						.form-group
-							//.btn-group
-								label#subtype-select.btn.btn-default(ng-model="editgenres.data", btn-radio="'{{genre}}'", ng-repeat="genre.name for genre in getIndexedList(getGenreList())") {{genre.name}}
-					
-							multiselect(
+							.btn-group
+								button#genre-select.btn.btn-default(ng-if="getGenreList().length > 0",
+									ng-click="toggleGenre(option)", 
+									btn-toggle, 
+									ng-repeat="option in getGenreList()",
+									ng-class="editgenres.data.indexOf(option) < 0 ? '' : 'active'") {{option}}
+							//multiselect(
 								multiple="true", 
 								ng-if="getGenreList().length > 0",
 								ng-model="editgenres.data", 
