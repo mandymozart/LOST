@@ -54,6 +54,10 @@ app.controller('ProfileSearchResultsCtrl', function($scope, $localStorage, $http
             })
     }
 
+    $scope.resultOrderFunction = function(profile){
+        return (profile.isRemembered ? '_____' : '') + profile.name;
+    }
+
     $scope.searchResultsCount = $localStorage.searchResults.length;
 
     $scope.$watch('$localStorage.selectedNegotiation', function() {
