@@ -36,8 +36,12 @@ form.form#profileDetailForm(ng-if="isProfileSelected()")
 						.form-group
 							//.btn-group
 								label#subtype-select.btn.btn-default(ng-model="editgenres.data", btn-radio="'{{genre}}'", ng-repeat="genre.name for genre in getIndexedList(getGenreList())") {{genre.name}}
-					
-							multiselect(
+							.btn-group
+								label#genre-select.btn.btn-default(ng-if="getGenreList().length > 0",
+									ng-click="toggleGenre(option)", 
+									btn-toggle, 
+									ng-repeat="option in getGenreList()") {{option}}
+							//multiselect(
 								multiple="true", 
 								ng-if="getGenreList().length > 0",
 								ng-model="editgenres.data", 

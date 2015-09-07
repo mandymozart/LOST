@@ -326,6 +326,19 @@ app.controller('ProfileCtrl', function($scope, $http, $localStorage, MapMarkerSe
 
 	}
 
+	$scope.toggleGenre = function(genre)
+	{
+		var i = $scope.editgenres.data.indexOf(genre);
+		if (i < 0)
+		{
+			$scope.editgenres.data.push(genre);
+		}
+		else
+		{
+			$scope.editgenres.splice(i,1);
+		}
+	}
+
 	$scope.$on('leafletDirectiveMarker.drag', function(event,args){
 		$scope.editprofile.geolocation.lat = $scope.mouseposition.lat;
 		$scope.editprofile.geolocation.lon = $scope.mouseposition.lng;
