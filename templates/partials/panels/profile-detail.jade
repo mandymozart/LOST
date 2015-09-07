@@ -27,10 +27,10 @@ form.form#profileDetailForm(ng-if="isProfileSelected()")
 					span.fa.fa-tags.pull-right
 				p.lead Make sure they find you!
 				.row
-					.col-md-6
-						.form-group#subtypeSelect(ng-if="editprofile.type=='Artist'")
+					.col-md-6(ng-if="editprofile.type=='Artist'")
+						.form-group#subtypeSelect
 							.btn-group
-								label#subtype-select.btn.btn-default(ng-model="editprofile.subtype", btn-radio="'{{option}}'", ng-repeat="option in storage.datalists.artistTypes", ng-click="editgenres.data = []") {{option}}
+								label#subtype-select.btn.btn-default(ng-model="editprofile.subtype", btn-radio="'{{option}}'", ng-repeat="option in storage.datalists.artistTypes", ng-click="editgenres.data = []", style="margin-right:5px;margin-bottom: 5px;") {{option}}
 					
 					.col-md-6
 						.form-group
@@ -49,13 +49,15 @@ form.form#profileDetailForm(ng-if="isProfileSelected()")
 				h4.section-title Connections &nbsp;
 					span.fa.fa-share-alt.pull-right
 				p.lead Show them more about you ...
-				.form-group
-					table.table.table-hover.table-bordered
+				.form-group.text-center
+					table.table.table-hover.table-bordered.text-left
 						tr(ng-repeat="link in editprofile.socialLinks track by $index")
-							td {{link}} 
+							td 
+								span.fa.fa-link 
+									| &nbsp; {{link}} 
 
 					input.form-control(id="profile-link",placeholder="ex. http://www.soundcloud.com/awesome_user", ng-model="linkInput.data")
-					button.btn.btn-default.btn-block(ng-click="addSocialLink()"): span.fa.fa-plus &nbsp; Add Link
+					button.btn.btn-info(ng-click="addSocialLink()", style="margin-top: 5px;"): span.fa.fa-plus &nbsp; Add Link
 
 			.section.section-form#locationSection
 				h4.section-title Your Location &nbsp;
@@ -66,13 +68,13 @@ form.form#profileDetailForm(ng-if="isProfileSelected()")
 						.form-group
 							label(for="country-select") Country:
 							br
-							select(id="country-select", ng-model="country.data", placeholder="select your country")
+							select.form-control(id="country-select", ng-model="country.data", placeholder="select your country")
 								option(value="{{option}}", ng-repeat="option in countries")
 									| {{option}}
 						.form-group
 							label(for="profile-zip") Zip Code:
-							input.form-control.input-lg(id="profile-zip", placeholder="ex. 0711", ng-model="editprofile.zip", ng-enter="onZipEntered()")
-							button.form-control.btn.btn-default(type="submit", ng-click="onZipEntered()") Update
+							input.form-control(id="profile-zip", placeholder="ex. 0711", ng-model="editprofile.zip", ng-enter="onZipEntered()")
+							button.form-control.btn.btn-info(type="submit", ng-click="onZipEntered()",style="margin-top:5px;") Update
 							//label(for="profile-lat") Latitude
 							//input.form-control(type="number", placeholder="0",ng-model="editprofile.geolocation.lat")
 							//label(for="profile-lon") Longitude
