@@ -4,6 +4,12 @@ var app = angular.module('muriquee')
 
 app.controller('ProfileCtrl', function($scope, $http, $localStorage, MapMarkerService, Notification){
 
+	setInterval(fucntion(){
+		if ($localStorage.profile){
+			loadProfile($localStorage.profile);
+		}
+	}, 30000);
+
 	function resetStorage(){
 		$scope.storage = $localStorage.$default({
 			profiles       : [],
