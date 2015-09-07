@@ -32,6 +32,7 @@ app.factory('SoundcloudService', function($http,$sce,$localStorage){
 		var socialLinks = $localStorage.selectedResult ? $localStorage.selectedResult.socialLinks : [];
 		var soundcloudLink = undefined;
 		var link = '';
+		if (!socialLinks) return;
 		socialLinks.forEach(function(link){
 			console.log(link)
 			if (link != undefined){
