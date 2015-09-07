@@ -9,17 +9,16 @@ app.controller('ProfileSearchResultsCtrl', function($scope, $localStorage, $http
         SoundcloudService();
     }
 
-	$scope.rememberProfile = function(p,notification){
+	$scope.rememberProfile = function(p, notification){
     	if (!$scope.storage.rememberedProfiles){
             $scope.storage.rememberedProfiles = [];
         }
         if ($scope.storage.rememberedProfiles.indexOf(p) == -1){
             $scope.storage.rememberedProfiles.push(p);
             p.isRemembered = true;
-            if(!notification){
+            if(notification){
                 Notification.success(p.name + ' was added to your remembered List');
             }
-            
         }
     }
     $scope.removeRemeberedProfile = function(p){
@@ -29,8 +28,10 @@ app.controller('ProfileSearchResultsCtrl', function($scope, $localStorage, $http
         Notification.primary(p.name + ' was removed from your remembered List');
     }
     $scope.rememberAll = function(){
+        var n = $scope.storage.rememberedProfiles.length;
         $scope.storage.searchResults.forEach($scope.rememberProfile,false);
-        Notification.success($scope.storage.rememberedProfiles.indexOf(p)+1 + ' were added to your remembered List');
+        n = $scope.storage.rememberedProfiles.length - n;
+        Notification.success('' + n  + 'profiles were added to your remembered List');
     }
     $scope.removeAll = function(){
         $scope.storage.rememberedProfiles.forEach(function(p){
