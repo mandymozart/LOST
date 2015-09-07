@@ -1431,9 +1431,9 @@ output {
   font-size: 13px;
   line-height: 1.846;
   color: #666;
-  background-color: transparent;
+  background-color: #fff;
   background-image: none;
-  border: 1px solid transparent;
+  border: 1px solid #fff;
   border-radius: 0px;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
@@ -1454,7 +1454,7 @@ output {
     color: #bbb; }
   .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
     cursor: not-allowed;
-    background-color: transparent;
+    background-color: #eeeeee;
     opacity: 1; }
 
 textarea.form-control {
@@ -2219,7 +2219,7 @@ tbody.collapse.in {
   color: #666;
   text-align: center;
   background-color: transparent;
-  border: 1px solid transparent;
+  border: 1px solid #fff;
   border-radius: 0px; }
   .input-group-addon.input-sm, .form-horizontal .form-group-sm .input-group-addon.form-control, .input-group-sm > .input-group-addon, .input-group-sm > .input-group-btn > .input-group-addon.btn {
     padding: 5px 10px;
@@ -4712,6 +4712,7 @@ html {
 
 /* Custome UI components */
 .profile-info-list--item, .profile-genre-list--item {
+  cursor: pointer;
   margin-right: 5px; }
 
 .profile-action-list {
@@ -4725,6 +4726,21 @@ html {
 
 .profile-info {
   cursor: pointer; }
+
+.profile-list-item {
+  cursor: pointer; }
+
+.profile--remembered {
+  background: #4CAF50;
+  color: #fff; }
+
+.profile--remembered:hover {
+  background-color: #8BCB8D;
+  color: #666;
+  cursor: pointer; }
+
+.profile--selected {
+  background-color: #ff9800; }
 
 /* Button Styles extensions to the bootstrap core to do color grading for each type of user */
 .btn--artist {
@@ -4788,6 +4804,10 @@ multiselect .dropdown-menu > li > a {
 .panel--venue, .panel--venue .panel-footer {
   background-color: #FFC107;
   color: #fff; }
+
+textarea, textarea.form-control, input.form-control, input[type=text], input[type=password], input[type=email], input[type=number], [type=text].form-control, [type=password].form-control, [type=email].form-control, [type=tel].form-control, [contenteditable].form-control {
+  padding-left: 10px;
+  padding-right: 10px; }
 
 /* Default */
 /* Calendar */
@@ -5892,3 +5912,22 @@ disabled look for disabled choices in the results dropdown
 
 .material-icons.md-light.md-inactive {
   color: rgba(255, 255, 255, 0.3); }
+
+.animate-enter, .animate-leave {
+  -webkit-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -moz-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -ms-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -o-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  position: relative;
+  display: block; }
+
+.animate-enter.animate-enter-active, .animate-leave {
+  opacity: 1;
+  top: 0;
+  height: 30px; }
+
+.animate-leave.animate-leave-active, .animate-enter {
+  opacity: 0;
+  top: -50px;
+  height: 0px; }

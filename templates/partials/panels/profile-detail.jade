@@ -22,43 +22,6 @@ form.form#profileDetailForm(ng-if="isProfileSelected()")
 						label(for="profile-about-brief-area") Contacts:
 						textarea.form-control(id="profile-about-brief-area", rows="4", cols="50", ng-model="editprofile.about",placeholder="Say something ...")
 				
-<<<<<<< HEAD
-	.section.section-form#taggingSection
-		h4.section-title Tagging &nbsp;
-			span.fa.fa-tags.pull-right
-		p.lead When others look for you with the search, it makes sense to also let the robot understand what you are to narrow down the results.
-		.row
-			.col-md-5
-				.form-group
-					label(for="genre-select") Genres:
-					multiselect(
-						multiple="true", 
-						ng-if="getGenreList().length > 0",
-						ng-model="editgenres.data", 
-						options="genre.name for genre in getIndexedList(getGenreList()) | filter:$select.search", 
-						change="selected()", 
-						placeholder="Genres")
-			.col-md-7
-				.form-group#subtypeSelect(ng-if="editprofile.type=='Artist'")
-					label(for="subtype-select") Subtype:
-					br
-					.btn-group
-						label#subtype-select.btn.btn-default(ng-model="editprofile.subtype", btn-radio="'{{option}}'", ng-repeat="option in storage.datalists.artistTypes", ng-click="editgenres.data = []") {{option}}
-			
-	.section.section-form#locationSection
-		h4.section-title Your Location &nbsp;
-			span.fa.fa-map-marker.pull-right 
-		p.lead To interact with other profiles you need to place your own on the map. Type your zip code, select your country and correct the marker on the map.
-		.row
-			.col-md-5
-				.form-group
-					label(for="country-select") Country:
-					br
-					select(id="country-select", ng-model="country.data", placeholder="select your country")
-						option(value="{{option}}", ng-repeat="option in countries")
-							| {{option}}
-=======
-						
 			.section.section-form#genresSection
 				h4.section-title Genres &nbsp;
 					span.fa.fa-tags.pull-right
@@ -67,7 +30,7 @@ form.form#profileDetailForm(ng-if="isProfileSelected()")
 					.col-md-6
 						.form-group#subtypeSelect(ng-if="editprofile.type=='Artist'")
 							.btn-group
-								label#subtype-select.btn.btn-default(ng-model="editprofile.subtype", btn-radio="'{{option}}'", ng-repeat="option in storage.datalists.artistTypes") {{option}}
+								label#subtype-select.btn.btn-default(ng-model="editprofile.subtype", btn-radio="'{{option}}'", ng-repeat="option in storage.datalists.artistTypes", ng-click="editgenres.data = []") {{option}}
 					
 					.col-md-6
 						.form-group
@@ -86,7 +49,6 @@ form.form#profileDetailForm(ng-if="isProfileSelected()")
 				h4.section-title Connections &nbsp;
 					span.fa.fa-share-alt.pull-right
 				p.lead Show them more about you ...
->>>>>>> origin/bugfix-select-whole-line
 				.form-group
 					table.table.table-hover.table-bordered
 						tr(ng-repeat="link in editprofile.socialLinks track by $index")
@@ -96,10 +58,6 @@ form.form#profileDetailForm(ng-if="isProfileSelected()")
 					button.btn.btn-default.btn-block(ng-click="addSocialLink()"): span.fa.fa-plus &nbsp; Add Link
 
 
-<<<<<<< HEAD
-	.form-footer
-		button.btn.btn-primary.btn-block.btn-lg(ng-click="saveProfile(editprofile); editprofile.name = undefined;")
-=======
 			.section.section-form#locationSection
 				h4.section-title Your Location &nbsp;
 					span.fa.fa-map-marker.pull-right 
@@ -127,8 +85,7 @@ form.form#profileDetailForm(ng-if="isProfileSelected()")
 							markers="markers")
 			
 	.form-footer.text-center
-		button.btn.btn-primary.btn-lg(ng-click="saveProfile(editprofile)")
->>>>>>> origin/bugfix-select-whole-line
-					| &nbsp; Save profile
+		button.btn.btn-success.btn-lg(ng-click="saveProfile(editprofile)")
+					| Save profile
 
 
