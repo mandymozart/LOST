@@ -6,3 +6,18 @@
 #ongoingNegotiationsPanel .profile-info {
  cursor:pointer;
 }
+.negotiation--selected {
+	background:
+}
+.negotiation--selected {
+	background: $brand-success;
+	color: #fff;
+}
+.negotiation--selected:hover {
+	background-color: #8BCB8D;
+	color: $gray;
+	cursor: pointer;
+}
+.negotiation--default {
+
+}

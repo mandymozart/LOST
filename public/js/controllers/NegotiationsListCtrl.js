@@ -18,7 +18,17 @@ app.controller('NegotiationsListCtrl', function($scope, $localStorage, $http, So
 		$localStorage.selectedResult = p;
 		SoundcloudService();
 	}
-
+	$scope.onNegotiationClick = function(n){
+		if (!$localStorage.selectedNegotiation || $localStorage.selectedNegotiation._id != n._id) 
+        {
+            $scope.showProfile($scope.otherProfile(n));
+            $scope.selectNegotiation(n);
+        }
+        else
+        {
+            $scope.unselectNegotiations();
+        }
+	}
 	$scope.selectNegotiation = function(n){
 		var req = {
 			method: 'POST',
@@ -38,10 +48,8 @@ app.controller('NegotiationsListCtrl', function($scope, $localStorage, $http, So
                 var wHeight = window.innerHeight;
                 $('#negotiationDetailChatBody').height(wHeight-445);
                 var wtf = $('#negotiationDetailChatBody');
-                if (wtf[0]){
-                	var height = wtf[0].scrollHeight;
-                	wtf.scrollTop(height);
-            	}
+                var height = wtf[0].scrollHeight;
+                wtf.scrollTop(height);
             },500);
 		})
 		.error(function(){
@@ -50,7 +58,7 @@ app.controller('NegotiationsListCtrl', function($scope, $localStorage, $http, So
 	}
 	$scope.unselectNegotiations = function(){
 		$localStorage.selectedNegotiation = undefined;
-		//$localStorage.viewmode = 'calendar';
+		$localStorage.viewmode = 'calendar';
 	}
 	$scope.dateFilter = function(n){
 		return !$scope.filterDate || ((new Date(n.date).setHours(0,0,0,0)) == (new Date($localStorage.selectedDate).setHours(0,0,0,0)));

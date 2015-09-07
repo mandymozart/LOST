@@ -4402,12 +4402,12 @@ select, select.form-control {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  padding-left: 0;
-  padding-right: 0\9;
+  padding-left: 10px;
+  padding-right: 10px\9;
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAMAAACelLz8AAAAJ1BMVEVmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmaP/QSjAAAADHRSTlMAAgMJC0uWpKa6wMxMdjkoAAAANUlEQVR4AeXJyQEAERAAsNl7Hf3X6xt0QL6JpZWq30pdvdadme+0PMdzvHm8YThHcT1H7K0BtOMDniZhWOgAAAAASUVORK5CYII=);
   background-size: 13px;
   background-repeat: no-repeat;
-  background-position: right center;
+  background-position: right 10px center;
   -webkit-box-shadow: inset 0 -1px 0 #ddd;
   box-shadow: inset 0 -1px 0 #ddd;
   font-size: 16px;
@@ -4884,6 +4884,17 @@ http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
   overflow: scroll; }
 
 #ongoingNegotiationsPanel .profile-info {
+  cursor: pointer; }
+
+.negotiation--selected { }
+
+.negotiation--selected {
+  background: #4CAF50;
+  color: #fff; }
+
+.negotiation--selected:hover {
+  background-color: #8BCB8D;
+  color: #666;
   cursor: pointer; }
 
 #incomingProposalsPanel .panel-body {
