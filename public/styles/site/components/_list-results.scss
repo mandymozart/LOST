@@ -1,5 +1,6 @@
 .profile-info-list--item,
 .profile-genre-list--item {
+	cursor: pointer;
   margin-right: 5px;
 }
 .profile-action-list {
@@ -13,4 +14,22 @@
 }
 .profile-info {
 	cursor: pointer;
+}
+.profile-list-item {
+	cursor: pointer;
+}
+.profile--remembered {
+	background: $brand-success;
+	color: #fff;
+}
+.profile--remembered:hover {
+	background-color: #8BCB8D;
+	color: $gray;
+	cursor: pointer;
+}
+.profile--selected {
+	background-color: $brand-warning;
+}
+.profile--default {
+
 }
