@@ -67,7 +67,7 @@ app.controller('ProfileSearchResultsCtrl', function($scope, $localStorage, $http
         var n = $scope.storage.rememberedProfiles.length;
         $scope.storage.searchResults.forEach($scope.rememberProfile,false);
         n = $scope.storage.rememberedProfiles.length - n;
-        Notification.success('' + n  + ' profile' + (n == 1 ? ' was ' : 's were ') + 'added to your remembered list');
+        Notification.info('Now, you can send requests to ' + n  + ' profile' + (n == 1 ? ' was ' : 's were ') + ' at once.');
     }
     $scope.removeAll = function(){
         $scope.storage.rememberedProfiles.forEach(function(p){
@@ -75,7 +75,7 @@ app.controller('ProfileSearchResultsCtrl', function($scope, $localStorage, $http
         });
         var n = $scope.storage.rememberedProfiles.length;
         $scope.storage.rememberedProfiles = [];
-        Notification.primary('' + n + ' profile' + (n == 1 ? ' was ' : 's were ') + 'removed from your remembered list');
+        //Notification.primary('' + n + ' profile' + (n == 1 ? ' was ' : 's were ') + 'removed from your remembered list');
     }
     $scope.resultOrderFunction = function(profile){
         return (profile.isRemembered ? '_____' : '') + profile.name;
@@ -108,11 +108,11 @@ app.controller('ProfileSearchResultsCtrl', function($scope, $localStorage, $http
 
     $scope.searchResultsCount = $localStorage.searchResults.length;
 
-    $scope.$watch('$localStorage.selectedNegotiation', function() {
-       if($localStorage.selectedNegotiation == undefined){
-            setTimeout(function(){
-                $('#profileSearchResultsTab').height(window.innerHeight-490);
-            },500);
-       }
-    });
+    //$scope.$watch('$localStorage.selectedNegotiation', function() {
+    //   if($localStorage.selectedNegotiation == undefined){
+    //        setTimeout(function(){
+    //            $('#profileSearchResultsTab').height(window.innerHeight-490);
+    //        },500);
+    //   }
+    //});
 })

@@ -1,15 +1,12 @@
 .profile-info-list--item,
 .profile-genre-list--item {
-  margin-right: 5px;
+  margin-right: 0.2em;
 }
 .profile-genre-list {
 	cursor: pointer;
 }
 .profile-action-list {
   text-align: right;
-}
-.profile-action-list--item {
-  margin-left: 5px;
 }
 .scrollable {
   overflow: scroll;

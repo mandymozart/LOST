@@ -1,4 +1,4 @@
-.tab-pane.fade.in.active.scrollable#resultsResidentTab(style="height: 400px;")
+.tab-pane.fade.in.active.scrollable#resultsResidentTab
 	table.table.table-hover.profile-filtered-list(ng-if="storage.searchResults.length!=0")
 		tbody.profile-filtered-list--body
 			tr.result-list-item(ng-repeat="result in storage.searchResults | orderBy : resultOrderFunction ",ng-animate="'animate'")
@@ -15,4 +15,4 @@
 				//td.profile-action-list
 				//	a.profile-action-list--item.btn.btn-default.btn-xs(ng-click="pingProfile(result)")
 				//		span.fa.fa-bell &nbsp;Ping
-	.well-lg.text-center(ng-if="storage.searchResults.length==0") No results match your search!
+	.well-lg.text-center.lead(ng-if="storage.searchResults.length==0") No results match your search!

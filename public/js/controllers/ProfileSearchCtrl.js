@@ -6,9 +6,9 @@ app.controller('ProfileSearchCtrl', function($scope, $http, $localStorage, MapMa
     $scope.submitSearch = function(index){
         $localStorage.selectedNegotiation = undefined;
         $localStorage.selectedResult = undefined;
-        setTimeout(function(){
-                $('#profileSearchResultsTab').height(window.innerHeight-490);
-            },500);
+        //setTimeout(function(){
+        //        $('#profileSearchResultsTab').height(window.innerHeight-490);
+        //    },500);
 
         var ops = JSON.parse(JSON.stringify($localStorage.searchOptions));
         ops.genres = $scope.unindexList(ops.genres);

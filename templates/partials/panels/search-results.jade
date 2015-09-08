@@ -1,10 +1,23 @@
 #profileSearchResultsCtrl(ng-controller="ProfileSearchResultsCtrl")
-	.panel.panel-default#profileSearchResultsPanel(ng-if="storage.viewmode == 'calendar'")
+	.panel-ground#profileSearchResultsPanel(ng-if="storage.viewmode == 'calendar'")
+		.panel-header
+			.pull-right(ng-if="storage.searchResults.length!=0")
+				button.btn.btn-default(type='submit', ng-click="rememberAll()"): span Select All
+				button.btn.btn-default(type='submit', ng-click="removeAll()"): span Reset
+				button.btn.btn-success(type='submit', ng-click="pushCall()") Request &nbsp;
+					span.fa.fa-send-o
+			.panel-heading(style="padding-left:0;")
+				h4(style="margin-top:0;") Search Results for 
+					span.fa.fa-calendar-o &nbsp;
+					span.calendar-digit.calendar--month {{getMonth()}}&nbsp;
+					span.calendar-digit.calendar--day {{getDay()}}&nbsp;
+					span.calendar-digit.calendar--year {{getYear()}}&nbsp;
+					small(ng-if="storage.searchResults.length>1") ( {{storage.searchResults.length}} Residents )
+
 		.panel-body#profileSearchResultsBody
-			ul.nav.nav-tabs
+			//ul.nav.nav-tabs
 				li.active: a(href="#resultsResidentTab", data-toggle="tab")
-					span.fa.fa-street-view &nbsp;Resident
-						.label.label-info(ng-if="storage.searchResults.length!=0") {{storage.searchResults.length}}
+			
 				//li: a(href="#resultsOntourTab", data-toggle="tab")
 					span.fa.fa-space-shuttle &nbsp;On tour (2)
 				//li.pull-right: a(href="#resultsCalledTab", data-toggle="tab")
@@ -22,11 +35,3 @@
 				//include ../tabs/results-remembered.jade
 				// Tab: Called
 				//include ../tabs/results-called.jade
-
-		.panel-footer.text-right
-			button.btn.btn-default(type='submit', ng-click="rememberAll()"): span
-				| &nbsp; Select All
-			button.btn.btn-default(type='submit', ng-click="removeAll()"): span
-				| &nbsp; Reset
-			button.btn.btn-success(type='submit', ng-click="pushCall()"): span.fa.fa-send-o
-				| &nbsp; Request

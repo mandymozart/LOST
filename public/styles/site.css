@@ -4712,16 +4712,13 @@ html {
 
 /* Custome UI components */
 .profile-info-list--item, .profile-genre-list--item {
-  margin-right: 5px; }
+  margin-right: 0.2em; }
 
 .profile-genre-list {
   cursor: pointer; }
 
 .profile-action-list {
   text-align: right; }
-
-.profile-action-list--item {
-  margin-left: 5px; }
 
 .scrollable {
   overflow: scroll; }
@@ -4908,26 +4905,24 @@ http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
 #incomingProposalsPanel .profile-info {
   cursor: pointer; }
 
+#profileDetail {
+  margin-bottom: 15px; }
+
+#profileDetail .label-info {
+  display: inline-block; }
+
 #profileSearchPanel {
   border: solid 8px #54C9EC; }
 
 #profileSearchPanel .row .row {
   margin-left: 0; }
 
-#profileSearchPanel .row .row .col-md-4 {
-  padding-left: 0;
-  padding-right: 0; }
-
-#profileSearchPanel .row .row .col-md-4:first-child, #profileSearchPanel .row .row .col-md-12 {
+#profileSearchPanel .row .row .col-md-12 {
   padding-left: 15px;
   padding-right: 0px; }
 
-#profileSearchPanel #profileTypeFilter {
-  margin-top: 7px;
-  height: 30px; }
-
-#profileSearchPanel #genreFilter .dropdown-menu {
-  text-transform: capitalize; }
+#profileSearchResultsPanel {
+  margin-bottom: 15px; }
 
 #negotiationDetailPanel #negotiationDate, #negotiationDetailPanel #negotiationOffer {
   font-size: 2em;
@@ -4971,9 +4966,6 @@ http://blog.fontawesome.io/2014/05/19/stacking-text-and-icons/
 #profileDetailPanel .panel-body {
   margin-left: 30px;
   margin-right: 30px; }
-
-#profileDetailPanel .label-info {
-  margin-right: 5px; }
 
 .panel-profile .panel-body {
   padding-left: 15px;
@@ -5120,6 +5112,9 @@ body.sitesection-profiles {
 .sitesection-calendar .navbar-brand:hover {
   margin-left: -15px !important; }
 
+.sitesection-calendar #inputProfile {
+  padding: 0; }
+
 .sitesection-session #body {
   margin-top: 180px;
   margin-bottom: 100px; }
@@ -5132,6 +5127,14 @@ body.sitesection-profiles {
 
 #searchFilterForm .form-control, #searchFilterForm .form-group {
   width: 100%; }
+
+#profileSearchPanel #profileTypeFilter {
+  margin-top: 6px;
+  margin-left: 5px;
+  height: 30px; }
+
+#profileSearchPanel #genreFilter .dropdown-menu {
+  text-transform: capitalize; }
 
 #profileDetailForm .section-title {
   margin-top: 40px;
