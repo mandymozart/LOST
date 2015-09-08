@@ -4,6 +4,31 @@ var app = angular.module('muriquee')
 app.controller('ProfileSearchResultsCtrl', function($scope, $localStorage, $http,SoundcloudService,Notification){
 	$scope.storage = $localStorage;
 
+    var monthNames = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec"
+    ]
+
+    $scope.getDay = function(){
+        return new Date($localStorage.selectedDate).getUTCDate();
+    }
+    $scope.getMonth = function(){
+        return monthNames[new Date($localStorage.selectedDate).getUTCMonth()];
+    }
+    $scope.getYear = function(){
+        return new Date($localStorage.selectedDate).getUTCFullYear();
+    }
+
 	$scope.showProfile = function(p){
         $localStorage.selectedResult = p;
         SoundcloudService();
@@ -19,30 +44,24 @@ app.controller('ProfileSearchResultsCtrl', function($scope, $localStorage, $http
         //first time clicked
         {
             $scope.showProfile(p);
-        }
-        else
-        //second time clicked and not yet remembered
-        {
-            $scope.rememberProfile(p, true);
+            $scope.rememberProfile(p, false);
         }
     }
-	$scope.rememberProfile = function(p,notification){
+	$scope.rememberProfile = function(p){
     	if (!$scope.storage.rememberedProfiles){
             $scope.storage.rememberedProfiles = [];
         }
         if ($scope.storage.rememberedProfiles.indexOf(p) == -1){
             $scope.storage.rememberedProfiles.push(p);
             p.isRemembered = true;
-            if(notification){
-                Notification.success(p.name + ' was added to your remembered list');
-            }
+            //Notification.success(p.name + ' was added to your remembered list');
         }
     }
     $scope.removeRememberedProfile = function(p){
         var i = $scope.storage.rememberedProfiles.indexOf(p);
         $scope.storage.rememberedProfiles.splice(i, 1);
         p.isRemembered = false;
-        Notification.primary(p.name + ' was removed from your remembered list');
+        //Notification.primary(p.name + ' was removed from your remembered list');
     }
     $scope.rememberAll = function(){
         var n = $scope.storage.rememberedProfiles.length;
