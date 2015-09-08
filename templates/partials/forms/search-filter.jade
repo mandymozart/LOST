@@ -5,7 +5,7 @@ form.form-inline#searchFilterForm
 				.col-md-12
 					input.form-control(ng-model="storage.searchOptions.profileName",type='text',placeholder='Search by Name',name='inputProfile',id='inputProfile')
 			.row 
-				.col-md-4
+				.col-md-6
 					.form-group#profileTypeFilter
 						.radio-inline(ng-repeat="option in profileTypes | filter: profileTypeFilter")
 							input(name="{{option}}",
@@ -13,7 +13,7 @@ form.form-inline#searchFilterForm
 								value="{{option}}",
 								ng-model="storage.searchOptions.profileType") 
 							| {{option}}
-				.col-md-4
+				.col-md-3(style="padding:0;")
 					.form-group#genresFilter
 						multiselect.input-xlarge(multiple="true",
 							ng-if="getGenreList().length > 0",
@@ -21,7 +21,7 @@ form.form-inline#searchFilterForm
 							options="genre.name for genre in getIndexedList(getGenreList()) | filter:$select.search",
 							change="selected()",
 							placeholder="Genres")
-				.col-md-4
+				.col-md-3(style="padding:0;")
 					.form-group#subtypesFilter
 						multiselect.input-xlarge(multiple="true",
 							ng-if="getSubtypeList().length > 0", 
