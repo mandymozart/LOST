@@ -24,6 +24,7 @@
 				.col-md-3
 					button.btn.btn-success.btn-block(ng-if="!hasAccepted(storage.profile) && !isNegotiationClosed()",ng-click="accept()") Accept
 					button.btn.btn-success.btn-block(ng-if="hasAccepted(storage.profile)", disabled) Accepted
+					button.btn.btn-success.btn-block(ng-if="isNegotiationClosed()", disabled) Closed
 			.row
 				.col-md-6
 					b.text-default#negotiationOffer
@@ -33,7 +34,6 @@
 					button.btn.btn-primary.btn-block(ng-click="offer()")
 							| Offer
 				.col-md-3
-					button.btn.btn-success.btn-block(ng-if="isNegotiationClosed()", disabled) Closed
 					button.btn.btn-warning.btn-block(ng-click="decline()") Decline		
 		.panel-body
 			.chat-body.scrollable#negotiationDetailChatBody
