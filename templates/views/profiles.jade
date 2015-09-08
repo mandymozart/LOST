@@ -24,7 +24,7 @@ block content
 			.col-sm-6.text-right#saveProfileButton(ng-if="isProfileSelected()")
 				button.btn.btn-default(ng-click="returnToSelection(editprofile)") Cancel
 				button.btn.btn-success(ng-click="saveProfile(editprofile)") Save
-				button.btn.btn-danger.btn-xs(ng-click="deleteProfile(editprofile)") Delete profile
+				button.btn.btn-danger(ng-click="deleteProfile(editprofile)") Delete profile
 
 
 		hr.divider
