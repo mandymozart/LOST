@@ -2,12 +2,12 @@
 	table.table.table-hover.profile-filtered-list(ng-if="storage.searchResults.length!=0")
 		tbody.profile-filtered-list--body
 			tr.result-list-item(ng-repeat="result in storage.searchResults | orderBy : resultOrderFunction ",ng-animate="'animate'")
-				td.profile-info(ng-click="onResultClicked(result)",ng-class=" result.isRemembered ? 'profile--remembered' : (storage.selectedResult && storage.selectedResult._id == result._id ? 'profile--selected' : 'profile--default') ")
+				td.profile-info(ng-click="onResultClicked(result)",ng-class=" result.isRemembered ? 'success' : (storage.selectedResult && storage.selectedResult._id == result._id ? 'active' : 'profile--default') ")
 					span.fa.fa-user(ng-if="result.type == 'Artist'")
 					span.fa.fa-user-secret(ng-if="result.type == 'Organiser'")
 					span.fa.fa-building(ng-if="result.type == 'Venue'")
 					span.profile-info-list--item.profile-name &nbsp; {{result.name}}
-				td.profile-genre-list.text-right(ng-click="onResultClicked(result)",ng-class=" result.isRemembered ? 'profile--remembered' : (storage.selectedResult && storage.selectedResult._id == result._id ? 'profile--selected' : 'profile--default') ")
+				td.profile-genre-list.text-right(ng-click="onResultClicked(result)",ng-class=" result.isRemembered ? 'success' : (storage.selectedResult && storage.selectedResult._id == result._id ? 'active' : 'profile--default') ")
 					span.profile-genre-list--item.label.label-info(ng-repeat="g in result.genres track by $index",ng-show="$index<3", ng-animate="'animate'") {{g}}
 				//td.profile-action-list(on="result")
 					a.profile-action-list--item.btn.btn-success.btn-xs(ng-if="result.isRemembered", ng-click="removeRemeberedProfile(result)") Remove

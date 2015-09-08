@@ -23,8 +23,8 @@ block content
 				button.btn.btn-default.btn--venue(ng-click="createProfile('Venue')") New venue
 			.col-sm-6.text-right#saveProfileButton(ng-if="isProfileSelected()")
 				button.btn.btn-default(ng-click="returnToSelection(editprofile)") Cancel
-				button.btn.btn-primary(ng-click="saveProfile(editprofile)") Save
-				button.btn.btn-warning(ng-click="deleteProfile(editprofile)") Delete profile
+				button.btn.btn-success(ng-click="saveProfile(editprofile)") Save
+				button.btn.btn-danger.btn-xs(ng-click="deleteProfile(editprofile)") Delete profile
 
 
 		hr.divider

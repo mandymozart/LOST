@@ -8,7 +8,7 @@
 		table.table.table-hover.profile-filtered-list(ng-if="storage.profile.negotiations.length!=0")
 			tbody.profile-filtered-list--body
 				tr(ng-repeat="n in storage.profile.negotiations | filter:dateFilter",ng-animate="'animate'")
-					td.profile-info(data-toggle="tooltip",data-placement="right",title="{{n.date}}",ng-click="onNegotiationClick(n)",ng-class="storage.selectedNegotiation && storage.selectedNegotiation._id == n._id ? 'negotiation--selected' : 'negotiation--default'")
+					td.profile-info(data-toggle="tooltip",data-placement="right",title="{{n.date}}",ng-click="onNegotiationClick(n)",ng-class="storage.selectedNegotiation && storage.selectedNegotiation._id == n._id ? 'info' : 'negotiation--default'")
 						span.fa.fa-user(ng-if="otherProfile(n).type == 'Artist'")
 						span.fa.fa-user-plus(ng-if="otherProfile(n).type == 'Organiser'")
 						span.fa.fa-building(ng-if="otherProfile(n).type == 'Venue'")

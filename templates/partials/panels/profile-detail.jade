@@ -38,7 +38,8 @@ form.form#profileDetailForm(ng-if="isProfileSelected()")
 									ng-click="toggleGenre(option)", 
 									btn-toggle, 
 									ng-repeat="option in getGenreList()",
-									ng-class="editgenres.data.indexOf(option) < 0 ? '' : 'active'") {{option}}
+									ng-class="editgenres.data.indexOf(option) < 0 ? '' : 'active'",
+									style="margin-right:5px;margin-bottom: 5px;") {{option}}
 							//multiselect(
 								multiple="true", 
 								ng-if="getGenreList().length > 0",
@@ -58,7 +59,7 @@ form.form#profileDetailForm(ng-if="isProfileSelected()")
 								span.fa.fa-link 
 									| &nbsp; {{link}} 
 
-					input.form-control(id="profile-link",placeholder="ex. http://www.soundcloud.com/awesome_user", ng-model="linkInput.data")
+					input.form-control(id="profile-link",placeholder="ex. http://www.soundcloud.com/awesome_user", ng-model="linkInput.data",style="margin-top: 5px;")
 					button.btn.btn-info(ng-click="addSocialLink()", style="margin-top: 5px;"): span.fa.fa-plus &nbsp; Add Link
 
 			.section.section-form#locationSection

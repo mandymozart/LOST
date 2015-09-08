@@ -9,14 +9,15 @@
 				img.img-responsive(src='',ng-attr-src='{{storage.selectedResult.image}}',ng-if="storage.selectedResult.image",alt='Profile Soundcloud')
 			.col-sm-6
 				h5 {{storage.selectedResult.name}}
-				.label.label-default {{storage.selectedResult.type}}
+				.label.label-default(ng-class="{Artist:'panel--artist',Venue:'panel--venue',Organiser:'panel--organiser'}[storage.selectedResult.type]") {{storage.selectedResult.type}}
 				.label.label-primary {{storage.selectedResult.subtype}}
+				.label.label-info.profile-genre-list--item(ng-repeat="g in storage.selectedResult.genres track by $index") {{g}}
 				br
 				ol.list-unstyled
 					li(ng-repeat="link in storage.selectedResult.socialLinks")
 						a(href="{{link}}",target="_blank") {{link}}
 			.col-sm-4
-				button.btn.btn-lg.btn-block.btn-success(ng-click="book()") Book
+				button.btn.btn-lg.btn-block.btn-success(ng-click="book()",ng-if="storage.selectedResult.type == 'Artist'") Book
 		.row
 			.col-sm-12
 				h6(ng-if="storage.selectedResult.about") About
