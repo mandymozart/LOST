@@ -5,24 +5,23 @@
 		.panel-heading
 			.panel-title
 				span.fa.fa-inbox
-				| &nbsp; Incoming proposals
-				.label.label-info(ng-if="storage.profile.proposals.length!=0") {{storage.profile.proposals.length}}
+				| &nbsp; Incoming proposals&nbsp;
+				span.proposal-count.text-muted(ng-if="storage.profile.proposals.length!=0") ({{storage.profile.proposals.length}})
 		.panel-body.scrollable
 			table.table.table-hover.profile-filtered-list(ng-if="storage.profile.proposals.length!=0")
 				tbody.profile-filtered-list--body
 					tr(ng-repeat="proposal in storage.profile.proposals")
 						td.profile-info(ng-click="showProfile(proposal.sender)")
-							span.fa.fa-user(ng-if="proposal.sender.type == 'Artist'")
-							span.fa.fa-user-secret(ng-if="proposal.sender.type == 'Organiser'")
-							span.fa.fa-building(ng-if="proposal.sender.type == 'Venue'")
-							span.profile-info-list--item.profile-name &nbsp; {{proposal.sender.name}}
+							span.label.label-artist.panel--artist(ng-if="proposal.sender.type == 'Artist'") &nbsp;
+							span.label.label-organiser.panel--organiser(ng-if="proposal.sender.type == 'Organiser'") &nbsp;
+							span.label.label-venue.panel--venue(ng-if="proposal.sender.type == 'Venue'") &nbsp;
+							b.profile-info-list--item.profile-name &nbsp; {{proposal.sender.name}}
 						td.proposal-date(ng-click="showProfile(proposal.sender)")
 							span.fa.fa-calendar-o
 							span &nbsp; {{getMonth(proposal)}} {{getDay(proposal)}} {{getYear(proposal)}}
 						td.text-right
 							button.btn.btn-success.btn-xs(ng-click="acceptProposal(proposal)")
-								| Start Negotiation 
-								span.fa.fa-chevron-left
+								| Open 
 							button.btn.btn-danger.btn-xs(ng-click="declineProposal(proposal)")
 								| Delete
 			.well-lg.text-center.lead(ng-if="storage.profile.proposals.length==0") No incoming proposals, yet!

@@ -1,11 +1,17 @@
 #mapCtrl(ng-controller="MapCtrl")
 	.panel.panel-default.panel-flat#mapPanel(ng-if="storage.viewmode == 'map'")
+		.panel-heading
+			.panel-title: span.fa.fa-street-view &nbsp; Tourplaner 
+				small.text-warning Under Construction
 		.panel-body
-			leaflet(height="600px",
+			
+			img(src='/images/map-placeholder.jpg',width='100%')
+			//leaflet(height="600px",
 				width="100%",
 				center="center",
 				markers="storage.markers",
 				defaults="defaults")
+		.panel-footer
 			label(for="searchRadiusInput") Search radius
-			input#searchRadioInput(type="number", ng-model="storage.searchOptions.radius")
-			| km
+			input.disabled#searchRadioInput(type="number", ng-model="storage.searchOptions.radius")
+			| &nbsp;km

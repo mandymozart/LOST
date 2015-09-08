@@ -50,10 +50,8 @@ app.controller('IncomingProposalsCtrl', function($scope, $localStorage, $http,So
 		.success(function(data){
 			console.log(data);
 			$localStorage.profile = data;
-			// TODO: directly open Negotiation on Accept (button change to Open in Frontend)
-			Notification.success('The proposal went into your negotiations.'); // needs to be removed if the below is changed accordingly
-			// Here the returned data does not contain the just started negotiation to excecute:
-			// $scope.selectNegotiation(n);
+			$localStorage.viewmode = 'negotiation';
+			$scope.selectNegotiation(data.negotiations[data.negotiations.length - 1]);
 		})
 		.error(function(){
 			Notification.error('Error accepting proposal');

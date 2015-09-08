@@ -2,17 +2,22 @@
 	.panel-heading
 		.panel-title
 			span.fa.fa-gavel
-			span &nbsp; Ongoing negotiations
-			.label.label-info(ng-if="storage.profile.negotiations!=0") {{storage.profile.negotiations.length}}
+			span &nbsp; Ongoing negotiations&nbsp;
+			span.text-muted.negotiations-count(ng-if="storage.profile.negotiations!=0") ({{storage.profile.negotiations.length}})
 	.panel-body.scrollable
 		table.table.table-hover.profile-filtered-list(ng-if="storage.profile.negotiations.length!=0")
 			tbody.profile-filtered-list--body
 				tr(ng-repeat="n in storage.profile.negotiations | filter:dateFilter",ng-animate="'animate'")
-					td.profile-info(data-toggle="tooltip",data-placement="right",title="{{n.date}}",ng-click="onNegotiationClick(n)",ng-class="storage.selectedNegotiation && storage.selectedNegotiation._id == n._id ? 'info' : 'negotiation--default'")
-						span.fa.fa-user(ng-if="otherProfile(n).type == 'Artist'")
-						span.fa.fa-user-secret(ng-if="otherProfile(n).type == 'Organiser'")
-						span.fa.fa-building(ng-if="otherProfile(n).type == 'Venue'")
-						span.profile-info-list--item.profile-name &nbsp; {{otherProfile(n).name}}
+					td.profile-info(data-toggle="tooltip",data-placement="right",title="{{n.date}}",ng-click="onNegotiationClick(n)",ng-class="storage.selectedNegotiation && storage.selectedNegotiation._id == n._id ? 'active' : 'negotiation--default'")
+						span.label.label-artist.panel--artist(ng-if="otherProfile(n).type == 'Artist'") &nbsp;
+						span.label.label-organiser.panel--organiser(ng-if="otherProfile(n).type == 'Organiser'") &nbsp;
+						span.label.label-venue.panel--venue(ng-if="otherProfile(n).type == 'Venue'") &nbsp;
+						b.profile-info-list--item.profile-name &nbsp; {{otherProfile(n).name}}
+						span.negotiation-date.pull-right 
+							span.fa.fa-calendar-o &nbsp;
+							span.calendar-digit.calendar--month {{getMonth(n)}}&nbsp;
+							span.calendar-digit.calendar--day {{getDay(n)}}&nbsp;
+							span.calendar-digit.calendar--year {{getYear(n)}}&nbsp;
 					//td.text-right
 						a.profile-action-list--item.btn.btn-success.btn-xs(
 									ng-if="storage.selectedNegotiation._id == n._id"

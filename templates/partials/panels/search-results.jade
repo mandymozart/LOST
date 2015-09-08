@@ -2,10 +2,22 @@
 	.panel-ground#profileSearchResultsPanel(ng-if="storage.viewmode == 'calendar'")
 		.panel-header
 			.pull-right(ng-if="storage.searchResults.length!=0")
-				button.btn.btn-default(type='submit', ng-click="rememberAll()"): span Select All
-				button.btn.btn-default(type='submit', ng-click="removeAll()"): span Reset
-				button.btn.btn-success(type='submit', ng-click="pushCall()") Request &nbsp;
-					span.fa.fa-send-o
+				button.btn.btn-default(type='submit', ng-click="rememberAll()",ng-if="storage.rememberedProfiles.length!=storage.searchResults.length"): span Select All
+				button.btn.btn-default.disabled(type='submit',ng-if="storage.rememberedProfiles.length==storage.searchResults.length"): span All Selected
+				button.btn.btn-default(type='submit', ng-click="removeAll()",ng-if="storage.rememberedProfiles.length!=0"): span Reset
+				button.btn.btn-default.disabled(type='submit', ng-if="storage.rememberedProfiles.length==0"): span Reset
+				//Request if Artist
+				.request(style="display:inline;",ng-if="storage.profile.type == 'Artist'")
+					button.btn.btn-success(type='submit', ng-click="pushCall()",ng-if="storage.rememberedProfiles.length!=0") Request &nbsp;
+						span.fa.fa-send-o
+					button.btn.btn-success.disabled(type='submit',ng-if="storage.rememberedProfiles.length==0") Request &nbsp;
+						span.fa.fa-send-o
+				//Call if Venue and Organisers
+				.call(style="display:inline;",ng-if="storage.profile.type == 'Venue' || storage.profile.type == 'Organiser'")
+					button.btn.btn-success(type='submit', ng-click="pushCall()",ng-if="storage.rememberedProfiles.length!=0") Call &nbsp;
+						span.fa.fa-bell-o
+					button.btn.btn-success.disabled(type='submit',ng-if="storage.rememberedProfiles.length==0") Call &nbsp;
+						span.fa.fa-bell-slash-o
 			.panel-heading(style="padding-left:0;")
 				h4(style="margin-top:0;") Search Results for 
 					span.fa.fa-calendar-o &nbsp;

@@ -6,9 +6,9 @@
 		style="height=350; overflow: auto")
 		.panel-heading
 			.panel-title(ng-click="showProfile()")
-				span.fa.fa-user(ng-if="otherProfile(storage.selectedNegotiation).type == 'Artist'")
-				span.fa.fa-user-secret(ng-if="otherProfile(storage.selectedNegotiation).type == 'Organiser'")
-				span.fa.fa-building(ng-if="otherProfile(storage.selectedNegotiation).type == 'Venue'")
+				span.label.label-artist.panel--artist(ng-if="otherProfile(storage.selectedNegotiation).type == 'Artist'") &nbsp;
+				span.label.label-organiser.panel--organiser(ng-if="otherProfile(storage.selectedNegotiation).type == 'Organiser'") &nbsp;
+				span.label.label-venue.panel--venue(ng-if="otherProfile(storage.selectedNegotiation).type == 'Venue'") &nbsp;
 				b &nbsp; {{otherProfile(storage.selectedNegotiation).name}} &nbsp;
 				span.text-success(ng-if="hasAccepted(otherProfile(storage.profile))")
 					| &nbsp; has accepted!

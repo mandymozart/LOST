@@ -21,17 +21,18 @@ div(role="navigation").navbar.navbar-fixed-top.navbar-default
 				//				span.calendar-digit.calendar--month May&nbsp;
 				//				span.calendar-digit.calendar--year 2015
 			li.navbar-text#selectedDate
-				b.text-info
+				b.text-primary
 					span.fa.fa-calendar-o &nbsp;
 					span.calendar-digit.calendar--month {{getMonth()}}&nbsp;
 					span.calendar-digit.calendar--day {{getDay()}}&nbsp;
 					span.calendar-digit.calendar--year {{getYear()}}&nbsp;
 			li.dropdown
 				a.dropdown-toggle(href='#',data-toggle='dropdown',role='button',aria-expanded='false') 
-					span.fa.fa-user(ng-if="storage.profile.type == 'Artist'")
-					span.fa.fa-user-secret(ng-if="storage.profile.type == 'Organiser'")
-					span.fa.fa-building(ng-if="storage.profile.type == 'Venue'")
-					| &nbsp; {{storage.profile.name}} 
+					span.label.label-artist.panel--artist(ng-if="storage.profile.type == 'Artist'") &nbsp;
+					span.label.label-organiser.panel--organiser(ng-if="storage.profile.type == 'Organiser'") &nbsp;
+					span.label.label-venue.panel--venue(ng-if="storage.profile.type == 'Venue'") &nbsp;
+					b &nbsp; {{storage.profile.name}} 
+					span.caret
 				ul.dropdown-menu(role='menu')
 					li: a(href='/profiles'): .text-primary
 						span.fa.fa-users &nbsp;Profiles

@@ -6,6 +6,30 @@ app.controller('NegotiationsListCtrl', function($scope, $localStorage, $http, So
 	$scope.storage = $localStorage;
 	$localStorage.selectedNegotiation = undefined;
 	
+	var monthNames = [
+		"Jan",
+		"Feb",
+		"Mar",
+		"Apr",
+		"May",
+		"Jun",
+		"Jul",
+		"Aug",
+		"Sep",
+		"Oct",
+		"Nov",
+		"Dec"
+	]
+	$scope.getDay = function(n){
+		return new Date(n.date).getUTCDate();
+	}
+	$scope.getMonth = function(n){
+		return monthNames[new Date(n.date).getUTCMonth()];
+	}
+	$scope.getYear = function(n){
+		return new Date(n.date).getUTCFullYear();
+	}
+
 	$scope.otherProfile = function(n){
 		if (n.sender._id == $localStorage.profile._id){
 			return n.receiver;

@@ -5,7 +5,7 @@
 	.panel-body(ng-if="storage.selectedResult != undefined")
 		.row
 			.col-md-2
-				img.img-responsive(src='http://placehold.it/85?text=N/A',ng-if="!storage.selectedResult.image",alt='Profile Picture N/A')
+				img.img-responsive(src='http://placehold.it/85/E5F9FF/54C9EC?text=N/A',ng-if="!storage.selectedResult.image",alt='Profile Picture N/A')
 				img.img-responsive(src='',ng-attr-src='{{storage.selectedResult.image}}',ng-if="storage.selectedResult.image",alt='Profile Soundcloud')
 			.col-sm-6
 				h5 {{storage.selectedResult.name}}

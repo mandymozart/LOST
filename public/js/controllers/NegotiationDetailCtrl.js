@@ -112,6 +112,7 @@ app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http,So
 		$http(req)
 		.success(function(data){
 			$localStorage.selectedNegotiation = data;
+			Notification.info('Your offer was sent and is awaiting reply!')
 		})
 		.error(function(){
 			Notification('error submitting offer');
@@ -139,7 +140,7 @@ app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http,So
 		})
 	}
 	$scope.decline = function(){
-		var p = confirm('Are you sure you want to delete this negotiation');
+		var p = confirm('Are you sure you want to delete this negotiation?');
 		if (!p) return;
 		var req = {
 			method : 'POST',
@@ -162,6 +163,7 @@ app.controller('NegotiationDetailCtrl', function($scope, $localStorage, $http,So
 			}
 			$localStorage.selectedNegotiation = undefined;
 			$localStorage.viewmode = 'calendar';
+			Notification.warning('Negotiation was declined')
 		})
 		.error(function(){
 			Notification('error declining negotiation');
