@@ -8,11 +8,15 @@
 		table.table.table-hover.profile-filtered-list(ng-if="storage.profile.negotiations.length!=0")
 			tbody.profile-filtered-list--body
 				tr(ng-repeat="n in storage.profile.negotiations | filter:dateFilter",ng-animate="'animate'")
-					td.profile-info(data-toggle="tooltip",data-placement="right",title="{{n.date}}",ng-click="onNegotiationClick(n)",ng-class="storage.selectedNegotiation && storage.selectedNegotiation._id == n._id ? 'active' : 'negotiation--default'")
+					td.profile-info(ng-click="onNegotiationClick(n)",ng-class="storage.selectedNegotiation && storage.selectedNegotiation._id == n._id ? 'active' : 'negotiation--default'")
 						span.label.label-artist.panel--artist(ng-if="otherProfile(n).type == 'Artist'") &nbsp;
 						span.label.label-organiser.panel--organiser(ng-if="otherProfile(n).type == 'Organiser'") &nbsp;
 						span.label.label-venue.panel--venue(ng-if="otherProfile(n).type == 'Venue'") &nbsp;
-						b.profile-info-list--item.profile-name &nbsp; {{otherProfile(n).name}}
+						b.profile-info-list--item.profile-name &nbsp; {{otherProfile(n).name}} &nbsp;
+						span.label.label-primary(ng-if="n.status == 'open'") Open
+						span.label.label-warning(ng-if="n.status == 'sender_accepted'") Sender accepted
+						span.label.label-success(ng-if="n.status == 'closed'") Closed
+						span.label.label-warning(ng-if="n.status == 'receiver_accepted'") Receiver accepted
 						span.negotiation-date.pull-right 
 							span.fa.fa-calendar-o &nbsp;
 							span.calendar-digit.calendar--month {{getMonth(n)}}&nbsp;
