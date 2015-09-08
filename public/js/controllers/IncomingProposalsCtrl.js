@@ -50,7 +50,10 @@ app.controller('IncomingProposalsCtrl', function($scope, $localStorage, $http,So
 		.success(function(data){
 			console.log(data);
 			$localStorage.profile = data;
-			Notification.success('Sucessfully accepted proposal');
+			// TODO: directly open Negotiation on Accept (button change to Open in Frontend)
+			Notification.success('The proposal went into your negotiations.'); // needs to be removed if the below is changed accordingly
+			// Here the returned data does not contain the just started negotiation to excecute:
+			// $scope.selectNegotiation(n);
 		})
 		.error(function(){
 			Notification.error('Error accepting proposal');
@@ -59,5 +62,34 @@ app.controller('IncomingProposalsCtrl', function($scope, $localStorage, $http,So
 	$scope.declineProposal = function(p){
 		//TODO
 		alert(p);
+	}
+	$scope.selectNegotiation = function(n){
+		var req = {
+			method: 'POST',
+ 			url: '/api/populateNegotiationMessages',
+ 			headers: {
+   				'Content-Type': 'application/json'
+ 			},
+			data:{
+				negotiation:n
+			}
+		};
+		$http(req)
+		.success(function(data){
+			$localStorage.selectedNegotiation = data;
+			if (data) $localStorage.viewmode = 'negotiation';
+            setTimeout(function(){
+                var wHeight = window.innerHeight;
+                $('#negotiationDetailChatBody').height(wHeight-445);
+                var wtf = $('#negotiationDetailChatBody');
+                if (wtf[0]){
+                	var height = wtf[0].scrollHeight;
+            		wtf.scrollTop(height);
+            	}
+            },500);
+		})
+		.error(function(){
+			Notification.error('Error populating negotiation messages');
+		});
 	}
 });

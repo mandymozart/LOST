@@ -16,13 +16,13 @@
 							span.fa.fa-user-secret(ng-if="proposal.sender.type == 'Organiser'")
 							span.fa.fa-building(ng-if="proposal.sender.type == 'Venue'")
 							span.profile-info-list--item.profile-name &nbsp; {{proposal.sender.name}}
-							span.profile-type.label.label-primary {{proposal.sender.type}}
-						td
-							span.fa.fa-calendar
+						td.proposal-date(ng-click="showProfile(proposal.sender)")
+							span.fa.fa-calendar-o
 							span &nbsp; {{getMonth(proposal)}} {{getDay(proposal)}} {{getYear(proposal)}}
 						td.text-right
 							button.btn.btn-success.btn-xs(ng-click="acceptProposal(proposal)")
-								| Accept
-							button.btn.btn-warning.btn-xs(ng-click="declineProposal(proposal)")
-								| Decline
-			.well-lg.text-center(ng-if="storage.profile.proposals.length==0") No incoming proposals, yet!
+								| Start Negotiation 
+								span.fa.fa-chevron-left
+							button.btn.btn-danger.btn-xs(ng-click="declineProposal(proposal)")
+								| Delete
+			.well-lg.text-center.lead(ng-if="storage.profile.proposals.length==0") No incoming proposals, yet!
