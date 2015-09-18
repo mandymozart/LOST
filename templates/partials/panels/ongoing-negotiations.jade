@@ -14,9 +14,12 @@
 						span.label.label-venue.panel--venue(ng-if="otherProfile(n).type == 'Venue'") &nbsp;
 						b.profile-info-list--item.profile-name &nbsp; {{otherProfile(n).name}} &nbsp;
 						span.label.label-primary(ng-if="n.status == 'open'") Open
-						span.label.label-warning(ng-if="n.status == 'sender_accepted'") Sender accepted
-						span.label.label-success(ng-if="n.status == 'closed'") Closed
-						span.label.label-warning(ng-if="n.status == 'receiver_accepted'") Receiver accepted
+						span.label.label-success(ng-if="n.status == 'sender_accepted'") Accepted &nbsp;
+							span.fa.fa-circle-o
+						span.label.label-success(ng-if="n.status == 'closed'") Accepted &nbsp;
+							span.fa.fa-check-cirle-o
+						span.label.label-success(ng-if="n.status == 'receiver_accepted'") &nbsp;
+							span.fa.fa-circle-o
 						span.negotiation-date.pull-right 
 							span.fa.fa-calendar-o &nbsp;
 							span.calendar-digit.calendar--month {{getMonth(n)}}&nbsp;
