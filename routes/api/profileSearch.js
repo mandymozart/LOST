@@ -21,7 +21,8 @@ function deg2rad(deg) {
 }
 
 function match(p,options){
-	//filter by location
+	//filter by location switch on when map works
+	/*
 	if (options.geolocation && options.radius){
 		var lat1 = options.geolocation.lat;
 		var lon1 = options.geolocation.lon;
@@ -33,6 +34,7 @@ function match(p,options){
 			return false;
 		}
 	}
+	*/
 
 	//filter by type:
 	if (p.type != options.profileType){
@@ -52,16 +54,19 @@ function match(p,options){
 		}
 	}
 	//filter by genres:
-	var p = false;
+	var q = false;
 	var k = options.genres ? options.genres.length : 0;
 
-	if(k>0&&!p.genres) return false;
+	if(k>0 && !p.genres) {
+		//console.log('exc 1, k = ' + k +', p = ' + p);
+		return false;
+	}
 
 	for (var i=0;i<k;i++){
-		p = p.genres.indexOf(options.genres[i]) > -1;
+		q = p.genres.indexOf(options.genres[i]) > -1;
 	}
-	if (!p && !k==0){
-		//console.log('genre exclusion');
+	if (!q && !k==0){
+		//console.log('genre exclusion, p = ' + p + ', k = ' + k);
 		return false;
 	}
 
